@@ -15,6 +15,8 @@ async function main() {
   await import('./integration/progress.integration.test');
   await import('./integration/intelligence.integration.test');
   await import('./integration/mentor.integration.test');
+  await import('./integration/assessment.integration.test');
+  await import('./integration/contest.integration.test');
 
   // Allow tests to execute and finish
   setTimeout(async () => {
@@ -25,7 +27,8 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 7500);
+  }, 9000);
+
 }
 
 main().catch(err => {

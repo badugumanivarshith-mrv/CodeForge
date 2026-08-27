@@ -145,3 +145,53 @@ export enum ContentStatus {
   STAGED = 'staged',
   PUBLISHED = 'published',
 }
+
+export enum AssessmentType {
+  DIAGNOSTIC = 'diagnostic',
+  TOPIC_MASTERY = 'topic_mastery',
+  SKILL_BENCHMARK = 'skill_benchmark',
+  CODING_CHALLENGE = 'coding_challenge',
+  MOCK_INTERVIEW = 'mock_interview',
+}
+
+export enum AssessmentSessionStatus {
+  NOT_STARTED = 'not_started',
+  IN_PROGRESS = 'in_progress',
+  PAUSED = 'paused',
+  COMPLETED = 'completed',
+  ABANDONED = 'abandoned',
+  EXPIRED = 'expired',
+}
+
+export enum AssessmentQuestionType {
+  MCQ = 'mcq',
+  MULTIPLE_SELECT = 'multiple_select',
+  CODE_COMPLETION = 'code_completion',
+  DEBUGGING = 'debugging',
+  OUTPUT_PREDICTION = 'output_prediction',
+  CODING_PROBLEM = 'coding_problem',
+  COMPLEXITY_ANALYSIS = 'complexity_analysis',
+  CONCEPTUAL = 'conceptual',
+  CODE_REVIEW = 'code_review',
+}
+
+export enum ContestState {
+  DRAFT = 'draft',
+  UPCOMING = 'upcoming',
+  LIVE = 'live',
+  ENDED = 'ended',
+  ARCHIVED = 'archived',
+}
+
+export enum LeaderboardTimeframe {
+  GLOBAL = 'global',
+  WEEKLY = 'weekly',
+  MONTHLY = 'monthly',
+  CONTEST = 'contest',
+}
+
+export enum RatingReferenceType {
+  ASSESSMENT = 'assessment',
+  CONTEST = 'contest',
+  PROBLEM = 'problem',
+}

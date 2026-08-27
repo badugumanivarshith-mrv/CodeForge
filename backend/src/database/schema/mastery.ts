@@ -11,8 +11,10 @@ import {
   unique,
 } from 'drizzle-orm/pg-core';
 import { MistakeCategory } from '@codeforge/shared';
+import { languageIdEnum } from './enums';
 import { users } from './users';
 import { topics, lessons, languages } from './curriculum';
+
 
 export const userLessonProgress = pgTable(
   'user_lesson_progress',
@@ -58,9 +60,10 @@ export const userMistakeMemory = pgTable('user_mistake_memory', {
   userId: uuid('user_id')
     .notNull()
     .references(() => users.id, { onDelete: 'cascade' }),
-  languageId: varchar('language_id', { length: 50 })
+  languageId: languageIdEnum('language_id')
     .notNull()
     .references(() => languages.id),
+
   topicId: uuid('topic_id')
     .notNull()
     .references(() => topics.id, { onDelete: 'cascade' }),

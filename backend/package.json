@@ -11,6 +11,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
     "test": "tsx --test tests/unit/*.test.ts tests/integration/*.test.ts tests/security/*.test.ts",
+    "test:all": "tsx tests/run.ts",
+
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",

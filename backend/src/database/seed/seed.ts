@@ -14,6 +14,9 @@ import {
   problemExamples,
   problemConstraints,
   testCases,
+  assessmentQuestions,
+  contests,
+  contestProblems,
 } from '../schema';
 import { eq, and } from 'drizzle-orm';
 import { seedLanguages } from './data/languages';
@@ -23,7 +26,10 @@ import { SEED_TOPICS } from './data/topics';
 import { SEED_LESSONS } from './data/lessons';
 import { SEED_QUIZZES } from './data/quizzes';
 import { SEED_PROBLEMS } from './data/problems';
+import { SEED_ASSESSMENT_QUESTIONS } from './data/assessments';
+import { SEED_CONTESTS } from './data/contests';
 import { logger } from '../../core/utils/logger';
+
 
 export const runSeed = async () => {
   logger.info('🌱 Starting CodeForge V2 Database Seeding...');
@@ -265,6 +271,7 @@ export const runSeed = async () => {
 
     // 7. Seed Algorithmic Problems
     logger.info('  -> Seeding Algorithmic Arena Problems...');
+    const problemMap = new Map<string, string>();
     for (const prob of SEED_PROBLEMS) {
       const topicId = topicMap.get(prob.topicSlug);
       if (!topicId) continue;
@@ -309,6 +316,8 @@ export const runSeed = async () => {
           .returning({ id: problems.id });
         problemId = inserted.id;
       }
+      problemMap.set(prob.slug, problemId);
+
 
       // Examples
       await db.delete(problemExamples).where(eq(problemExamples.problemId, problemId));
@@ -349,7 +358,95 @@ export const runSeed = async () => {
     }
     logger.info(`  ✓ Successfully seeded Arena problems, test cases, and multi-language starter code.`);
 
+    // 7. Seed Assessment Question Bank
+    logger.info('  -> Seeding Assessment Question Bank...');
+    for (const q of SEED_ASSESSMENT_QUESTIONS) {
+      const topicId = topicMap.get(q.topicSlug);
+      if (!topicId) continue;
+
+      await db.insert(assessmentQuestions).values({
+        questionType: q.questionType,
+        topicId,
+        difficulty: q.difficulty,
+        promptMdx: q.promptMdx,
+        optionsJson: q.options || [],
+        codeSnippet: q.codeSnippet,
+        starterCodeJson: q.starterCodeJson || {},
+        supportedLanguagesJson: q.supportedLanguagesJson || ['python', 'javascript'],
+        solutionCode: q.solutionCode,
+        points: q.points,
+        estimatedTimeSeconds: q.estimatedTimeSeconds,
+        explanationMdx: q.explanationMdx,
+        scoringRulesJson: q.scoringRulesJson || {},
+        metadataJson: q.metadataJson || {},
+      });
+    }
+    logger.info(`  ✓ Successfully seeded ${SEED_ASSESSMENT_QUESTIONS.length} Assessment Questions.`);
+
+    // 8. Seed Contests
+    logger.info('  -> Seeding Contests & Problem Sets...');
+    for (const c of SEED_CONTESTS) {
+      const startAt = new Date(Date.now() + c.startAtOffsetDays * 86400000);
+      const endAt = new Date(Date.now() + c.endAtOffsetDays * 86400000);
+
+      const existingContest = await db
+        .select()
+        .from(contests)
+        .where(eq(contests.slug, c.slug))
+        .limit(1);
+
+      let contestId: string;
+      if (existingContest.length > 0) {
+        contestId = existingContest[0].id;
+        await db
+          .update(contests)
+          .set({
+            title: c.title,
+            descriptionMdx: c.descriptionMdx,
+            status: c.status,
+            startAt,
+            endAt,
+            durationMinutes: c.durationMinutes,
+            totalPoints: c.totalPoints,
+            scoringFormula: c.scoringFormula,
+          })
+          .where(eq(contests.id, contestId));
+      } else {
+        const [inserted] = await db
+          .insert(contests)
+          .values({
+            slug: c.slug,
+            title: c.title,
+            descriptionMdx: c.descriptionMdx,
+            status: c.status,
+            startAt,
+            endAt,
+            durationMinutes: c.durationMinutes,
+            totalPoints: c.totalPoints,
+            scoringFormula: c.scoringFormula,
+          })
+          .returning({ id: contests.id });
+        contestId = inserted.id;
+      }
+
+      await db.delete(contestProblems).where(eq(contestProblems.contestId, contestId));
+      for (const cp of c.problemSlugs) {
+        const problemId = problemMap.get(cp.slug);
+        if (problemId) {
+          await db.insert(contestProblems).values({
+            contestId,
+            problemId,
+            sequence: cp.sequence,
+            points: cp.points,
+            penaltyMinutes: cp.penaltyMinutes,
+          });
+        }
+      }
+    }
+    logger.info(`  ✓ Successfully seeded ${SEED_CONTESTS.length} Contests.`);
+
     logger.info('🎉 Database seeding completed successfully!');
+
   } catch (error) {
     logger.error({ error }, '❌ Error during database seeding');
     throw error;

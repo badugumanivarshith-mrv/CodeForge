@@ -10,3 +10,6 @@ export * from './GamificationRepository';
 export * from './LearnerIntelligenceRepository';
 export * from './MentorRepository';
 export * from './SubmissionRepository';
+export * from './AssessmentRepository';
+export * from './ContestRepository';
+export * from './RatingRepository';

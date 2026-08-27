@@ -16,7 +16,14 @@ import {
   XPTransactionType,
   ContentStatus,
   MistakeCategory,
+  AssessmentType,
+  AssessmentSessionStatus,
+  AssessmentQuestionType,
+  ContestState,
+  LeaderboardTimeframe,
+  RatingReferenceType,
 } from '../enums/index.js';
+
 
 // Standard API Response Envelopes
 export interface ApiResponse<T = unknown> {
@@ -869,5 +876,314 @@ export interface GeneratePracticeDto {
   weaknessCategory?: string;
   preferredLanguage?: LanguageId | string;
   difficulty?: ProblemDifficulty;
+}
+
+// ==========================================
+// PHASE 7: ASSESSMENT & COMPETITIVE PLATFORM
+// ==========================================
+
+export interface AssessmentQuestionOptionDto {
+  id: string;
+  sequence: number;
+  optionText: string;
+  // NOTE: isCorrect is strictly withheld from client delivery
+}
+
+export interface AssessmentQuestionDto {
+  id: string;
+  questionType: AssessmentQuestionType;
+  topicId: string;
+  topicName?: string;
+  difficulty: ProblemDifficulty | QuizDifficulty | string;
+  promptMdx: string;
+  options?: AssessmentQuestionOptionDto[];
+  codeSnippet?: string | null;
+  starterCode?: Record<string, string> | null;
+  supportedLanguages?: (LanguageId | string)[];
+  points: number;
+  estimatedTimeSeconds?: number;
+  scoringRules?: Record<string, unknown>;
+  metadata?: Record<string, unknown>;
+}
+
+export interface AssessmentSessionDto {
+  id: string;
+  userId: string;
+  assessmentType: AssessmentType;
+  status: AssessmentSessionStatus;
+  startedAt?: string | null;
+  expiresAt?: string | null;
+  completedAt?: string | null;
+  timeLimitMinutes: number;
+  remainingSeconds?: number;
+  currentQuestionIndex: number;
+  totalQuestions: number;
+  currentDifficulty: ProblemDifficulty | string;
+  totalScore: number;
+  maxScore: number;
+  accuracyPercentage: number;
+  finalSkillEstimate?: string | null;
+  topicPerformance?: Record<string, unknown>;
+  currentQuestion?: AssessmentQuestionDto | null;
+  createdAt: string;
+}
+
+export interface AssessmentAttemptDto {
+  id: string;
+  sessionId: string;
+  questionId: string;
+  questionType: AssessmentQuestionType;
+  selectedOptionIds?: string[];
+  userCode?: string;
+  languageId?: string;
+  isCorrect: boolean;
+  scoreEarned: number;
+  maxScore: number;
+  timeSpentSeconds: number;
+  explanationMdx?: string | null;
+  feedbackMdx?: string | null;
+  evaluatedAt: string;
+}
+
+export interface AssessmentResultDto {
+  sessionId: string;
+  userId: string;
+  assessmentType: AssessmentType;
+  score: number;
+  maxScore: number;
+  percentage: number;
+  accuracy: number;
+  timeSpentSeconds: number;
+  skillRatingBefore: number;
+  skillRatingAfter: number;
+  skillRatingDelta: number;
+  rankPercentile: number;
+  status: AssessmentSessionStatus;
+  completedAt: string;
+  attemptsCount: number;
+}
+
+export interface AssessmentTopicBreakdownDto {
+  topicId: string;
+  topicName: string;
+  score: number;
+  maxScore: number;
+  percentage: number;
+  strengthLevel: 'strong' | 'developing' | 'weak';
+}
+
+export interface AssessmentAnalyticsDto {
+  sessionId: string;
+  userId: string;
+  overallScore: number;
+  maxScore: number;
+  percentage: number;
+  accuracy: number;
+  timeSpentSeconds: number;
+  codingSuccessRate: number;
+  difficultyBreakdown: {
+    easy: { attempted: number; correct: number };
+    medium: { attempted: number; correct: number };
+    difficult: { attempted: number; correct: number };
+  };
+  topicPerformance: Record<string, AssessmentTopicBreakdownDto>;
+  errorCategories: Record<string, number>;
+  strengths: string[];
+  weaknesses: string[];
+}
+
+export interface RemediationActionItemDto {
+  id: string;
+  type: 'lesson' | 'problem' | 'mentor_concept' | 'targeted_practice';
+  targetId?: string;
+  title: string;
+  description: string;
+  priority: 'high' | 'medium' | 'low';
+  completed: boolean;
+  estimatedMinutes?: number;
+}
+
+export interface RemediationPlanDto {
+  assessmentId: string;
+  generatedAt: string;
+  summary: string;
+  weakConcepts: string[];
+  prerequisiteGaps: string[];
+  actionItems: RemediationActionItemDto[];
+  estimatedStudyTimeMinutes: number;
+}
+
+// Contest Contracts
+export interface ContestProblemDto {
+  id: string;
+  contestId: string;
+  problemId: string;
+  sequence: number;
+  points: number;
+  penaltyMinutes: number;
+  title: string;
+  difficulty: ProblemDifficulty | string;
+  slug: string;
+}
+
+export interface ContestDto {
+  id: string;
+  slug: string;
+  title: string;
+  descriptionMdx: string;
+  status: ContestState;
+  startAt: string;
+  endAt: string;
+  durationMinutes: number;
+  createdBy: string;
+  participantCount: number;
+  problemCount: number;
+  totalPoints: number;
+  rulesJson?: Record<string, unknown>;
+  scoringFormula: string;
+  problems?: ContestProblemDto[];
+  userRegistered?: boolean;
+  createdAt: string;
+}
+
+export interface ContestParticipantDto {
+  id: string;
+  contestId: string;
+  userId: string;
+  username: string;
+  displayName: string;
+  avatarUrl?: string | null;
+  registeredAt: string;
+  startedAt?: string | null;
+  finishedAt?: string | null;
+  score: number;
+  penaltyTimeMinutes: number;
+  rank: number;
+  finalRatingChange?: number | null;
+  status: 'registered' | 'in_progress' | 'completed' | 'disqualified';
+}
+
+export interface ContestSubmissionDto {
+  id: string;
+  contestId: string;
+  participantId: string;
+  problemId: string;
+  submissionId: string;
+  scoreEarned: number;
+  isPassed: boolean;
+  penaltyAppliedMinutes: number;
+  submittedAt: string;
+}
+
+export interface ContestProblemResultDto {
+  problemId: string;
+  solved: boolean;
+  attempts: number;
+  points: number;
+  timeMinutes: number;
+}
+
+export interface ContestLeaderboardEntryDto {
+  rank: number;
+  userId: string;
+  username: string;
+  displayName: string;
+  avatarUrl?: string | null;
+  score: number;
+  penaltyTimeMinutes: number;
+  solvedProblemsCount: number;
+  problemResults: Record<string, ContestProblemResultDto>;
+}
+
+export interface ContestLeaderboardDto {
+  contestId: string;
+  contestTitle: string;
+  status: ContestState;
+  totalParticipants: number;
+  entries: ContestLeaderboardEntryDto[];
+}
+
+// Skill Rating Contracts
+export interface SkillRatingDto {
+  userId: string;
+  currentRating: number;
+  peakRating: number;
+  confidenceInterval: number;
+  matchesCount: number;
+  assessmentsCount: number;
+  percentile: number;
+  rankTier: 'Novice' | 'Apprentice' | 'Adept' | 'Master' | 'Grandmaster' | string;
+  lastUpdated: string;
+}
+
+export interface SkillRatingHistoryDto {
+  id: string;
+  userId: string;
+  previousRating: number;
+  newRating: number;
+  ratingChange: number;
+  changeReason: string;
+  referenceType: RatingReferenceType | string;
+  referenceId: string;
+  timestamp: string;
+}
+
+export interface GlobalLeaderboardEntryDto {
+  rank: number;
+  userId: string;
+  username: string;
+  displayName: string;
+  avatarUrl: string | null;
+  currentRating: number;
+  totalXp: number;
+  solvedCount: number;
+  percentile: number;
+}
+
+export interface GlobalLeaderboardDto {
+  timeframe: LeaderboardTimeframe;
+  totalUsers: number;
+  entries: GlobalLeaderboardEntryDto[];
+}
+
+
+// Request DTOs
+export interface CreateAssessmentSessionDto {
+  assessmentType: AssessmentType;
+  topicId?: string;
+  timeLimitMinutes?: number;
+  initialDifficulty?: ProblemDifficulty;
+}
+
+export interface SubmitAssessmentAnswerDto {
+  sessionId: string;
+  questionId: string;
+  selectedOptionIds?: string[];
+  codeAnswer?: string;
+  languageId?: LanguageId | string;
+  timeSpentSeconds?: number;
+}
+
+export interface CreateContestDto {
+  title: string;
+  slug?: string;
+  descriptionMdx: string;
+  startAt: string;
+  endAt: string;
+  durationMinutes: number;
+  problems: {
+    problemId: string;
+    sequence: number;
+    points: number;
+    penaltyMinutes?: number;
+  }[];
+  rulesJson?: Record<string, unknown>;
+}
+
+export interface SubmitContestProblemDto {
+  contestId: string;
+  problemId: string;
+  sourceCode: string;
+  languageId: LanguageId | string;
 }
 

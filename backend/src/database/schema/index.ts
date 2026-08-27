@@ -10,3 +10,7 @@ export * from './gamification';
 export * from './ai';
 export * from './projects';
 export * from './analytics';
+export * from './mastery';
+export * from './assessments';
+export * from './contests';
+export * from './ratings';

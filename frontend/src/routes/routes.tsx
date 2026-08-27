@@ -18,8 +18,13 @@ import { AdminPage } from '../pages/AdminPage';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { NotFoundPage } from '../pages/NotFoundPage';
+import { AssessmentHubPage } from '../pages/AssessmentHubPage';
+import { AssessmentWorkspacePage } from '../pages/AssessmentWorkspacePage';
+import { AssessmentResultPage } from '../pages/AssessmentResultPage';
+import { ContestHubPage } from '../pages/ContestHubPage';
 
 export const router = createBrowserRouter([
+
   {
     path: '/',
     element: <MainLayout />,
@@ -79,8 +84,25 @@ export const router = createBrowserRouter([
             path: 'quiz/topic/:topicId',
             element: <QuizPage />,
           },
+          {
+            path: 'assessments',
+            element: <AssessmentHubPage />,
+          },
+          {
+            path: 'assessments/:id',
+            element: <AssessmentWorkspacePage />,
+          },
+          {
+            path: 'assessments/:id/result',
+            element: <AssessmentResultPage />,
+          },
+          {
+            path: 'contests',
+            element: <ContestHubPage />,
+          },
         ],
       },
+
       {
         element: <ProtectedRoute allowedRoles={[UserRole.ADMIN]} />,
         children: [

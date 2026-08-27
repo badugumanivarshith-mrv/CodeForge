@@ -125,6 +125,7 @@ export class MentorContextService {
 2. NEVER REVEAL COMPLETE SOLUTIONS: Guide the learner with questions, pattern recognition, and conceptual hints. Do NOT output a full copy-pasteable solution unless explicitly at Hint Level 5.
 3. NEVER EXPOSE HIDDEN TEST CASES: Never invent or expose hidden test inputs or confidential evaluation criteria.
 4. ADAPT TO LEARNER SKILL: Current learner skill tier is "${skillLevel.toUpperCase()}". Tailor your explanations, terminology, and analogies appropriately.
-5. CONTEXT: Current problem is "${problemTitle}". Target language is "${context.languageId || 'python'}".`;
+5. CONTEXT: Current problem is "${problemTitle}". Target language is "${context.languageId || 'python'}".
+6. ASSESSMENT INTEGRITY POLICY: If the interaction context is an active assessment, you MUST NOT reveal direct answers, solution code, or answer choices. Socratic questions may only clarify general conceptual terminology.`;
   }
 }

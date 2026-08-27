@@ -15,6 +15,10 @@ import { adminRouter } from './admin.routes';
 import { analyticsRouter } from './analytics.routes';
 import { intelligenceRouter } from './intelligence.routes';
 import { mentorRouter } from './mentor.routes';
+import { assessmentRouter } from './assessment.routes';
+import { contestRouter } from './contest.routes';
+import { leaderboardRouter } from './leaderboard.routes';
+import { ratingRouter } from './rating.routes';
 
 export const v1Router = Router();
 
@@ -34,3 +38,7 @@ v1Router.use('/admin', adminRouter);
 v1Router.use('/analytics', analyticsRouter);
 v1Router.use('/intelligence', intelligenceRouter);
 v1Router.use('/mentor', mentorRouter);
+v1Router.use('/assessments', assessmentRouter);
+v1Router.use('/contests', contestRouter);
+v1Router.use('/leaderboards', leaderboardRouter);
+v1Router.use('/ratings', ratingRouter);

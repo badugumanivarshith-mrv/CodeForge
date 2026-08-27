@@ -9,3 +9,6 @@ export * from './IProgressRepository';
 export * from './IGamificationRepository';
 export * from './ILearnerIntelligenceRepository';
 export * from './IMentorRepository';
+export * from './IAssessmentRepository';
+export * from './IContestRepository';
+export * from './IRatingRepository';

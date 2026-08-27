@@ -251,8 +251,89 @@ export const DashboardPage: React.FC = () => {
         </div>
       </div>
 
+      {/* Phase 7 Adaptive Assessment & Contest Quick Launch Banner */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '16px',
+          marginBottom: '32px',
+        }}
+      >
+        <Card padding="md" glow style={{ border: '1px solid rgba(59, 130, 246, 0.3)', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 58, 138, 0.2) 100%)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+            <div>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase' }}>
+                Skill Benchmark
+              </span>
+              <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#f8fafc', margin: '4px 0 6px 0' }}>
+                Adaptive Assessment
+              </h3>
+              <p style={{ fontSize: '13px', color: '#94a3b8', margin: 0 }}>
+                Calibrate your rating and unlock verified skill credentials.
+              </p>
+            </div>
+            <Award size={24} color="#60a5fa" />
+          </div>
+          <button
+            onClick={() => navigate('/assessments')}
+            style={{
+              padding: '8px 14px',
+              borderRadius: '8px',
+              border: 'none',
+              background: '#2563eb',
+              color: '#ffffff',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            Take Assessment →
+          </button>
+        </Card>
+
+        <Card padding="md" glow style={{ border: '1px solid rgba(245, 158, 11, 0.3)', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(120, 53, 15, 0.2) 100%)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+            <div>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: '#fbbf24', textTransform: 'uppercase' }}>
+                Competitive Arena
+              </span>
+              <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#f8fafc', margin: '4px 0 6px 0' }}>
+                Weekly Contests & Ranks
+              </h3>
+              <p style={{ fontSize: '13px', color: '#94a3b8', margin: 0 }}>
+                Compete against global coders in timed ICPC-style rounds.
+              </p>
+            </div>
+            <Flame size={24} color="#f59e0b" />
+          </div>
+          <button
+            onClick={() => navigate('/contests')}
+            style={{
+              padding: '8px 14px',
+              borderRadius: '8px',
+              border: 'none',
+              background: '#d97706',
+              color: '#ffffff',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            View Contests →
+          </button>
+        </Card>
+      </div>
+
       {/* Recently Completed Lessons */}
       {dashboard?.recentCompletedLessons && dashboard.recentCompletedLessons.length > 0 && (
+
         <div>
           <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <BookOpen size={18} color="#818cf8" /> Recently Completed Lessons

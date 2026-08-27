@@ -19,7 +19,14 @@ import {
   MistakeCategory,
   XPTransactionType,
   ContentStatus,
+  AssessmentType,
+  AssessmentSessionStatus,
+  AssessmentQuestionType,
+  ContestState,
+  LeaderboardTimeframe,
+  RatingReferenceType,
 } from '@codeforge/shared';
+
 
 export const userRoleEnum = pgEnum('user_role', [
   UserRole.STUDENT,
@@ -161,4 +168,54 @@ export const contentStatusEnum = pgEnum('content_status', [
   ContentStatus.DRAFT,
   ContentStatus.STAGED,
   ContentStatus.PUBLISHED,
+]);
+
+export const assessmentTypeEnum = pgEnum('assessment_type', [
+  AssessmentType.DIAGNOSTIC,
+  AssessmentType.TOPIC_MASTERY,
+  AssessmentType.SKILL_BENCHMARK,
+  AssessmentType.CODING_CHALLENGE,
+  AssessmentType.MOCK_INTERVIEW,
+]);
+
+export const assessmentSessionStatusEnum = pgEnum('assessment_session_status', [
+  AssessmentSessionStatus.NOT_STARTED,
+  AssessmentSessionStatus.IN_PROGRESS,
+  AssessmentSessionStatus.PAUSED,
+  AssessmentSessionStatus.COMPLETED,
+  AssessmentSessionStatus.ABANDONED,
+  AssessmentSessionStatus.EXPIRED,
+]);
+
+export const assessmentQuestionTypeEnum = pgEnum('assessment_question_type', [
+  AssessmentQuestionType.MCQ,
+  AssessmentQuestionType.MULTIPLE_SELECT,
+  AssessmentQuestionType.CODE_COMPLETION,
+  AssessmentQuestionType.DEBUGGING,
+  AssessmentQuestionType.OUTPUT_PREDICTION,
+  AssessmentQuestionType.CODING_PROBLEM,
+  AssessmentQuestionType.COMPLEXITY_ANALYSIS,
+  AssessmentQuestionType.CONCEPTUAL,
+  AssessmentQuestionType.CODE_REVIEW,
+]);
+
+export const contestStateEnum = pgEnum('contest_state', [
+  ContestState.DRAFT,
+  ContestState.UPCOMING,
+  ContestState.LIVE,
+  ContestState.ENDED,
+  ContestState.ARCHIVED,
+]);
+
+export const leaderboardTimeframeEnum = pgEnum('leaderboard_timeframe', [
+  LeaderboardTimeframe.GLOBAL,
+  LeaderboardTimeframe.WEEKLY,
+  LeaderboardTimeframe.MONTHLY,
+  LeaderboardTimeframe.CONTEST,
+]);
+
+export const ratingReferenceTypeEnum = pgEnum('rating_reference_type', [
+  RatingReferenceType.ASSESSMENT,
+  RatingReferenceType.CONTEST,
+  RatingReferenceType.PROBLEM,
 ]);
