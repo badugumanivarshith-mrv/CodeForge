@@ -329,7 +329,82 @@ export const DashboardPage: React.FC = () => {
             View Contests →
           </button>
         </Card>
+
+        {/* Career & Portfolio Hub Card */}
+        <Card
+          padding="lg"
+          style={{
+            background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(5, 150, 105, 0.05))',
+            border: '1px solid rgba(16, 185, 129, 0.3)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+            <div>
+              <span style={{ fontSize: '12px', fontWeight: 700, color: '#34d399', textTransform: 'uppercase' }}>
+                Career Intelligence
+              </span>
+              <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#f8fafc', margin: '4px 0 6px 0' }}>
+                Readiness & Portfolios
+              </h3>
+              <p style={{ fontSize: '13px', color: '#94a3b8', margin: 0 }}>
+                Track career skill gaps, mock interviews, ATS resumes & public portfolio.
+              </p>
+            </div>
+            <Award size={24} color="#10b981" />
+          </div>
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => navigate('/career')}
+              style={{
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: 'none',
+                background: '#059669',
+                color: '#ffffff',
+                fontSize: '12px',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}
+            >
+              Career Roadmaps →
+            </button>
+            <button
+              onClick={() => navigate('/portfolio')}
+              style={{
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                background: 'rgba(255,255,255,0.05)',
+                color: '#ffffff',
+                fontSize: '12px',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}
+            >
+              My Portfolio
+            </button>
+            <button
+              onClick={() => navigate('/interviews')}
+              style={{
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid rgba(255,255,255,0.1)',
+                background: 'rgba(255,255,255,0.05)',
+                color: '#ffffff',
+                fontSize: '12px',
+                fontWeight: 600,
+                cursor: 'pointer',
+              }}
+            >
+              Mock Interview
+            </button>
+          </div>
+        </Card>
       </div>
+
 
       {/* Recently Completed Lessons */}
       {dashboard?.recentCompletedLessons && dashboard.recentCompletedLessons.length > 0 && (

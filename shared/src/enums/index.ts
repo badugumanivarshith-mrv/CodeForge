@@ -42,6 +42,7 @@ export enum ProblemDifficulty {
   EASY = 'easy',
   MEDIUM = 'medium',
   DIFFICULT = 'difficult',
+  HARD = 'difficult',
 }
 
 export enum AssignmentDifficulty {
@@ -194,4 +195,57 @@ export enum RatingReferenceType {
   ASSESSMENT = 'assessment',
   CONTEST = 'contest',
   PROBLEM = 'problem',
+}
+
+export enum StudyGroupRole {
+  OWNER = 'owner',
+  ADMIN = 'admin',
+  MEMBER = 'member',
+}
+
+export enum ForumTargetType {
+  POST = 'post',
+  ANSWER = 'answer',
+}
+
+export enum ForumVoteType {
+  UPVOTE = 'upvote',
+  DOWNVOTE = 'downvote',
+}
+
+export enum CareerRole {
+  FRONTEND_DEVELOPER = 'frontend_developer',
+  BACKEND_DEVELOPER = 'backend_developer',
+  FULLSTACK_DEVELOPER = 'fullstack_developer',
+  DEVOPS_ENGINEER = 'devops_engineer',
+  CLOUD_ENGINEER = 'cloud_engineer',
+  AI_ENGINEER = 'ai_engineer',
+  DATA_SCIENTIST = 'data_scientist',
+  CYBERSECURITY_ENGINEER = 'cybersecurity_engineer',
+  MOBILE_DEVELOPER = 'mobile_developer',
+}
+
+export enum InterviewType {
+  BEHAVIORAL = 'behavioral',
+  TECHNICAL = 'technical',
+  CODING = 'coding',
+  SYSTEM_DESIGN = 'system_design',
+  MIXED = 'mixed',
+}
+
+export enum InterviewStatus {
+  IN_PROGRESS = 'in_progress',
+  COMPLETED = 'completed',
+  CANCELLED = 'cancelled',
+}
+
+export enum ActivityType {
+  ASSESSMENT_COMPLETED = 'assessment_completed',
+  CONTEST_PARTICIPATION = 'contest_participation',
+  CONTEST_WIN = 'contest_win',
+  ACHIEVEMENT_UNLOCKED = 'achievement_unlocked',
+  PROJECT_PUBLISHED = 'project_published',
+  SKILL_PROMOTED = 'skill_promoted',
+  INTERVIEW_COMPLETED = 'interview_completed',
+  FORUM_ACCEPTED_ANSWER = 'forum_accepted_answer',
 }

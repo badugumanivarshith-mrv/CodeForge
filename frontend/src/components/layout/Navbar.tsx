@@ -57,11 +57,11 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Primary Navigation */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
           <Link
             to="/learn"
             style={{
-              fontSize: '14px',
+              fontSize: '13px',
               fontWeight: 600,
               color: 'var(--text-secondary)',
               transition: 'color var(--transition-fast)',
@@ -74,7 +74,7 @@ export const Navbar: React.FC = () => {
           <Link
             to="/workspace"
             style={{
-              fontSize: '14px',
+              fontSize: '13px',
               fontWeight: 600,
               color: 'var(--text-secondary)',
               transition: 'color var(--transition-fast)',
@@ -85,9 +85,9 @@ export const Navbar: React.FC = () => {
             Workspace
           </Link>
           <Link
-            to="/leaderboard"
+            to="/contests"
             style={{
-              fontSize: '14px',
+              fontSize: '13px',
               fontWeight: 600,
               color: 'var(--text-secondary)',
               transition: 'color var(--transition-fast)',
@@ -95,7 +95,85 @@ export const Navbar: React.FC = () => {
             onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
             onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
           >
-            Leaderboard
+            Contests
+          </Link>
+          <Link
+            to="/forum"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--text-secondary)',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Forum
+          </Link>
+          <Link
+            to="/groups"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--text-secondary)',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Study Groups
+          </Link>
+          <Link
+            to="/career"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--text-secondary)',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Career
+          </Link>
+          <Link
+            to="/interviews"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--text-secondary)',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Interviews
+          </Link>
+          <Link
+            to="/talent"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--text-secondary)',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Talent
+          </Link>
+          <Link
+            to="/feed"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--text-secondary)',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
+          >
+            Feed
           </Link>
           {isAdmin && (
             <Link
@@ -104,7 +182,7 @@ export const Navbar: React.FC = () => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '4px',
-                fontSize: '14px',
+                fontSize: '13px',
                 fontWeight: 600,
                 color: '#f43f5e',
               }}
@@ -114,6 +192,7 @@ export const Navbar: React.FC = () => {
           )}
         </nav>
       </div>
+
 
       {/* Right Controls & Auth Profile */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

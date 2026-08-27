@@ -19,6 +19,14 @@ import { assessmentRouter } from './assessment.routes';
 import { contestRouter } from './contest.routes';
 import { leaderboardRouter } from './leaderboard.routes';
 import { ratingRouter } from './rating.routes';
+import { portfolioRouter } from './portfolio.routes';
+import { groupRouter } from './group.routes';
+import { forumRouter } from './forum.routes';
+import { careerRouter } from './career.routes';
+import { interviewRouter } from './interview.routes';
+import { resumeRouter } from './resume.routes';
+import { talentRouter } from './talent.routes';
+import { activityRouter } from './activity.routes';
 
 export const v1Router = Router();
 
@@ -42,3 +50,11 @@ v1Router.use('/assessments', assessmentRouter);
 v1Router.use('/contests', contestRouter);
 v1Router.use('/leaderboards', leaderboardRouter);
 v1Router.use('/ratings', ratingRouter);
+v1Router.use('/portfolio', portfolioRouter);
+v1Router.use('/groups', groupRouter);
+v1Router.use('/forum', forumRouter);
+v1Router.use('/career', careerRouter);
+v1Router.use('/interviews', interviewRouter);
+v1Router.use('/resumes', resumeRouter);
+v1Router.use('/talent', talentRouter);
+v1Router.use('/feed', activityRouter);

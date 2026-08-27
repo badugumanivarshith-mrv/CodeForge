@@ -23,8 +23,20 @@ import { AssessmentWorkspacePage } from '../pages/AssessmentWorkspacePage';
 import { AssessmentResultPage } from '../pages/AssessmentResultPage';
 import { ContestHubPage } from '../pages/ContestHubPage';
 
-export const router = createBrowserRouter([
+// Phase 8 Pages
+import { PortfolioPage } from '../pages/PortfolioPage';
+import { StudyGroupsPage } from '../pages/StudyGroupsPage';
+import { StudyGroupDetailPage } from '../pages/StudyGroupDetailPage';
+import { ForumPage } from '../pages/ForumPage';
+import { ForumPostDetailPage } from '../pages/ForumPostDetailPage';
+import { CareerDashboardPage } from '../pages/CareerDashboardPage';
+import { InterviewHubPage } from '../pages/InterviewHubPage';
+import { InterviewSessionPage } from '../pages/InterviewSessionPage';
+import { ResumeBuilderPage } from '../pages/ResumeBuilderPage';
+import { TalentDiscoveryPage } from '../pages/TalentDiscoveryPage';
+import { ActivityFeedPage } from '../pages/ActivityFeedPage';
 
+export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
@@ -60,6 +72,30 @@ export const router = createBrowserRouter([
       {
         path: 'u/:username',
         element: <PublicProfilePage />,
+      },
+      {
+        path: 'forum',
+        element: <ForumPage />,
+      },
+      {
+        path: 'forum/:idOrSlug',
+        element: <ForumPostDetailPage />,
+      },
+      {
+        path: 'groups',
+        element: <StudyGroupsPage />,
+      },
+      {
+        path: 'groups/:idOrSlug',
+        element: <StudyGroupDetailPage />,
+      },
+      {
+        path: 'talent',
+        element: <TalentDiscoveryPage />,
+      },
+      {
+        path: 'feed',
+        element: <ActivityFeedPage />,
       },
       {
         element: <ProtectedRoute />,
@@ -99,6 +135,26 @@ export const router = createBrowserRouter([
           {
             path: 'contests',
             element: <ContestHubPage />,
+          },
+          {
+            path: 'portfolio',
+            element: <PortfolioPage />,
+          },
+          {
+            path: 'career',
+            element: <CareerDashboardPage />,
+          },
+          {
+            path: 'interviews',
+            element: <InterviewHubPage />,
+          },
+          {
+            path: 'interviews/:sessionId',
+            element: <InterviewSessionPage />,
+          },
+          {
+            path: 'resumes',
+            element: <ResumeBuilderPage />,
           },
         ],
       },

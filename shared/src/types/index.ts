@@ -22,7 +22,15 @@ import {
   ContestState,
   LeaderboardTimeframe,
   RatingReferenceType,
+  StudyGroupRole,
+  ForumTargetType,
+  ForumVoteType,
+  CareerRole,
+  InterviewType,
+  InterviewStatus,
+  ActivityType,
 } from '../enums/index.js';
+
 
 
 // Standard API Response Envelopes
@@ -1187,3 +1195,499 @@ export interface SubmitContestProblemDto {
   languageId: LanguageId | string;
 }
 
+// ==========================================
+// PHASE 8: PORTFOLIO DTOs
+// ==========================================
+export interface PortfolioProjectDto {
+  id: string;
+  userId: string;
+  title: string;
+  description: string;
+  repositoryUrl?: string;
+  demoUrl?: string;
+  technologies: string[];
+  isFeatured: boolean;
+  starsCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PortfolioSettingsDto {
+  userId: string;
+  headline?: string;
+  aboutMdx?: string;
+  isPublic: boolean;
+  themePreference: string;
+  customSlug?: string;
+  featuredSkillIds: string[];
+  socialLinks: Record<string, string>;
+  updatedAt: string;
+}
+
+export interface PortfolioHeatmapItemDto {
+  date: string;
+  count: number;
+  level: number;
+}
+
+export interface PortfolioSkillItemDto {
+  skillName: string;
+  level: string;
+  score: number;
+}
+
+export interface FullPortfolioDto {
+  user: {
+    id: string;
+    username: string;
+    fullName: string;
+    avatarUrl?: string;
+    bio?: string;
+  };
+  settings: PortfolioSettingsDto;
+  projects: PortfolioProjectDto[];
+  skills: PortfolioSkillItemDto[];
+  rating: {
+    currentRating: number;
+    peakRating: number;
+    rankTier: string;
+    percentile?: number;
+  };
+  contests: {
+    participatedCount: number;
+    bestRank?: number;
+  };
+  achievements: {
+    id: string;
+    title: string;
+    badgeIcon: string;
+    unlockedAt: string;
+  }[];
+  heatmap: PortfolioHeatmapItemDto[];
+}
+
+export interface CreatePortfolioProjectDto {
+  title: string;
+  description: string;
+  repositoryUrl?: string;
+  demoUrl?: string;
+  technologies?: string[];
+  isFeatured?: boolean;
+}
+
+export interface UpdatePortfolioProjectDto {
+  title?: string;
+  description?: string;
+  repositoryUrl?: string;
+  demoUrl?: string;
+  technologies?: string[];
+  isFeatured?: boolean;
+}
+
+export interface UpdatePortfolioSettingsDto {
+  headline?: string;
+  aboutMdx?: string;
+  isPublic?: boolean;
+  themePreference?: string;
+  customSlug?: string;
+  featuredSkillIds?: string[];
+  socialLinks?: Record<string, string>;
+}
+
+// ==========================================
+// PHASE 8: STUDY GROUPS DTOs
+// ==========================================
+export interface StudyGroupDto {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  ownerId: string;
+  avatarUrl?: string;
+  isPrivate: boolean;
+  maxMembers: number;
+  memberCount: number;
+  userRole?: StudyGroupRole;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StudyGroupMemberDto {
+  groupId: string;
+  userId: string;
+  username: string;
+  fullName: string;
+  avatarUrl?: string;
+  role: StudyGroupRole;
+  joinedAt: string;
+}
+
+export interface StudyGroupDiscussionDto {
+  id: string;
+  groupId: string;
+  userId: string;
+  authorName: string;
+  authorAvatar?: string;
+  title: string;
+  contentMdx: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StudyGroupGoalDto {
+  id: string;
+  groupId: string;
+  title: string;
+  targetTopicId?: string;
+  targetContestId?: string;
+  targetDate?: string;
+  isCompleted: boolean;
+  createdAt: string;
+}
+
+export interface CreateStudyGroupDto {
+  name: string;
+  description: string;
+  avatarUrl?: string;
+  isPrivate?: boolean;
+  maxMembers?: number;
+}
+
+export interface CreateDiscussionDto {
+  title: string;
+  contentMdx: string;
+}
+
+export interface GroupLeaderboardEntryDto {
+  userId: string;
+  username: string;
+  fullName: string;
+  avatarUrl?: string;
+  role: StudyGroupRole;
+  xp: number;
+  problemsSolved: number;
+  rating: number;
+  rank: number;
+}
+
+// ==========================================
+// PHASE 8: COMMUNITY FORUM DTOs
+// ==========================================
+export interface ForumTagDto {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  postsCount: number;
+}
+
+export interface ForumPostDto {
+  id: string;
+  userId: string;
+  authorName: string;
+  authorAvatar?: string;
+  title: string;
+  slug: string;
+  contentMdx: string;
+  viewsCount: number;
+  upvotesCount: number;
+  downvotesCount: number;
+  score: number;
+  answersCount: number;
+  acceptedAnswerId?: string;
+  tags: ForumTagDto[];
+  userVote?: ForumVoteType;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ForumAnswerDto {
+  id: string;
+  postId: string;
+  userId: string;
+  authorName: string;
+  authorAvatar?: string;
+  contentMdx: string;
+  upvotesCount: number;
+  downvotesCount: number;
+  score: number;
+  isAccepted: boolean;
+  userVote?: ForumVoteType;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateForumPostDto {
+  title: string;
+  contentMdx: string;
+  tagIds: string[];
+}
+
+export interface CreateForumAnswerDto {
+  contentMdx: string;
+}
+
+export interface VoteForumDto {
+  targetType: ForumTargetType;
+  targetId: string;
+  voteType: ForumVoteType;
+}
+
+// ==========================================
+// PHASE 8: CAREER INTELLIGENCE DTOs
+// ==========================================
+export interface CareerGoalDto {
+  id: string;
+  userId: string;
+  targetRole: CareerRole;
+  targetLevel: string;
+  targetTimelineMonths: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CareerSkillGapDto {
+  skillName: string;
+  requiredLevel: string;
+  currentLevel: string;
+  isMet: boolean;
+  gapSeverity: 'none' | 'minor' | 'critical';
+}
+
+export interface CareerRoadmapPhaseDto {
+  phaseNumber: number;
+  title: string;
+  description: string;
+  topics: string[];
+  recommendedProjects: string[];
+}
+
+export interface CareerPathDetailDto {
+  role: CareerRole;
+  title: string;
+  description: string;
+  marketDemand: 'Very High' | 'High' | 'Moderate';
+  avgSalaryRange: string;
+  keySkills: string[];
+  roadmapPhases: CareerRoadmapPhaseDto[];
+}
+
+export interface CareerReadinessDto {
+  targetRole: CareerRole;
+  readinessScore: number;
+  skillGaps: CareerSkillGapDto[];
+  recommendedCourses: {
+    topicId: string;
+    title: string;
+    languageId: string;
+  }[];
+  recommendedProjects: {
+    title: string;
+    difficulty: string;
+    description: string;
+  }[];
+  timelineEstimate: string;
+  careerRoadmap: CareerPathDetailDto;
+}
+
+export interface SetCareerGoalDto {
+  targetRole: CareerRole;
+  targetLevel?: string;
+  targetTimelineMonths?: number;
+}
+
+// ==========================================
+// PHASE 8: AI INTERVIEW PREPARATION DTOs
+// ==========================================
+export interface InterviewSessionDto {
+  id: string;
+  userId: string;
+  interviewType: InterviewType;
+  roleTitle: string;
+  difficulty: ProblemDifficulty | string;
+  status: InterviewStatus;
+  currentQuestionIndex: number;
+  totalQuestions: number;
+  overallScore?: number;
+  communicationScore?: number;
+  technicalScore?: number;
+  confidenceScore?: number;
+  startedAt: string;
+  completedAt?: string;
+}
+
+export interface InterviewExchangeDto {
+  id: string;
+  sessionId: string;
+  questionOrder: number;
+  questionText: string;
+  userAnswerText?: string;
+  evaluationFeedback?: string;
+  score?: number;
+  timeSpentSeconds?: number;
+  createdAt: string;
+}
+
+export interface StartInterviewDto {
+  interviewType: InterviewType;
+  roleTitle: string;
+  difficulty: ProblemDifficulty | string;
+}
+
+export interface AnswerInterviewQuestionDto {
+  exchangeId: string;
+  answerText: string;
+  timeSpentSeconds?: number;
+}
+
+export interface InterviewFeedbackDto {
+  session: InterviewSessionDto;
+  exchanges: InterviewExchangeDto[];
+  feedbackSummaryMdx: string;
+  strengths: string[];
+  weaknesses: string[];
+  improvementSuggestions: string[];
+}
+
+// ==========================================
+// PHASE 8: AI RESUME GENERATOR DTOs
+// ==========================================
+export interface ResumeDto {
+  id: string;
+  userId: string;
+  title: string;
+  templateName: string;
+  targetRole: string;
+  personalInfo: {
+    fullName: string;
+    email: string;
+    phone?: string;
+    location?: string;
+    website?: string;
+    linkedin?: string;
+    github?: string;
+  };
+  skills: string[];
+  experience: {
+    company: string;
+    position: string;
+    startDate: string;
+    endDate?: string;
+    current?: boolean;
+    highlights: string[];
+  }[];
+  projects: {
+    name: string;
+    description: string;
+    technologies: string[];
+    liveUrl?: string;
+    repoUrl?: string;
+  }[];
+  education: {
+    institution: string;
+    degree: string;
+    fieldOfStudy: string;
+    graduationYear: string;
+  }[];
+  atsScore?: number;
+  atsFeedback?: {
+    score: number;
+    strengths: string[];
+    missingKeywords: string[];
+    formattingSuggestions: string[];
+  };
+  isPublic: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateResumeDto {
+  title: string;
+  templateName?: string;
+  targetRole: string;
+  importCodeforgeData?: boolean;
+  personalInfo?: ResumeDto['personalInfo'];
+  skills?: string[];
+  experience?: ResumeDto['experience'];
+  projects?: ResumeDto['projects'];
+  education?: ResumeDto['education'];
+}
+
+export interface UpdateResumeDto {
+  title?: string;
+  templateName?: string;
+  targetRole?: string;
+  personalInfo?: ResumeDto['personalInfo'];
+  skills?: string[];
+  experience?: ResumeDto['experience'];
+  projects?: ResumeDto['projects'];
+  education?: ResumeDto['education'];
+  atsScore?: number;
+  atsFeedback?: ResumeDto['atsFeedback'];
+  isPublic?: boolean;
+}
+
+
+export interface AtsAnalysisDto {
+  score: number;
+  strengths: string[];
+  missingKeywords: string[];
+  suggestions: string[];
+}
+
+// ==========================================
+// PHASE 8: TALENT DISCOVERY & SOCIAL FEED DTOs
+// ==========================================
+export interface TalentSearchQueryDto {
+  role?: string;
+  language?: string;
+  skill?: string;
+  minRating?: number;
+  experience?: string;
+  limit?: number;
+  offset?: number;
+}
+
+export interface TalentProfileSummaryDto {
+  userId: string;
+  username: string;
+  fullName: string;
+  avatarUrl?: string;
+  headline?: string;
+  rating: number;
+  rankTier: string;
+  topLanguages: string[];
+  skills: string[];
+  projectsCount: number;
+  contestsRank?: number;
+}
+
+export interface ActivityFeedEventDto {
+  id: string;
+  userId: string;
+  username: string;
+  fullName: string;
+  avatarUrl?: string;
+  activityType: ActivityType;
+  title: string;
+  description: string;
+  metadata: Record<string, unknown>;
+  isPublic: boolean;
+  createdAt: string;
+}
+
+export type PortfolioDto = FullPortfolioDto;
+
+export interface ForumPostDetailDto extends ForumPostDto {
+  answers: ForumAnswerDto[];
+}
+
+export type CreateStudyDiscussionDto = CreateDiscussionDto;
+
+export interface CreateStudyGoalDto {
+  title: string;
+  description?: string;
+  targetDate?: string;
+  targetTopicId?: string;
+  targetContestId?: string;
+}

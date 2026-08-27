@@ -25,7 +25,15 @@ import {
   ContestState,
   LeaderboardTimeframe,
   RatingReferenceType,
+  StudyGroupRole,
+  ForumTargetType,
+  ForumVoteType,
+  CareerRole,
+  InterviewType,
+  InterviewStatus,
+  ActivityType,
 } from '@codeforge/shared';
+
 
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -218,4 +226,57 @@ export const ratingReferenceTypeEnum = pgEnum('rating_reference_type', [
   RatingReferenceType.ASSESSMENT,
   RatingReferenceType.CONTEST,
   RatingReferenceType.PROBLEM,
+]);
+
+export const studyGroupRoleEnum = pgEnum('study_group_role', [
+  StudyGroupRole.OWNER,
+  StudyGroupRole.ADMIN,
+  StudyGroupRole.MEMBER,
+]);
+
+export const forumTargetTypeEnum = pgEnum('forum_target_type', [
+  ForumTargetType.POST,
+  ForumTargetType.ANSWER,
+]);
+
+export const forumVoteTypeEnum = pgEnum('forum_vote_type', [
+  ForumVoteType.UPVOTE,
+  ForumVoteType.DOWNVOTE,
+]);
+
+export const careerRoleEnum = pgEnum('career_role', [
+  CareerRole.FRONTEND_DEVELOPER,
+  CareerRole.BACKEND_DEVELOPER,
+  CareerRole.FULLSTACK_DEVELOPER,
+  CareerRole.DEVOPS_ENGINEER,
+  CareerRole.CLOUD_ENGINEER,
+  CareerRole.AI_ENGINEER,
+  CareerRole.DATA_SCIENTIST,
+  CareerRole.CYBERSECURITY_ENGINEER,
+  CareerRole.MOBILE_DEVELOPER,
+]);
+
+export const interviewTypeEnum = pgEnum('interview_type', [
+  InterviewType.BEHAVIORAL,
+  InterviewType.TECHNICAL,
+  InterviewType.CODING,
+  InterviewType.SYSTEM_DESIGN,
+  InterviewType.MIXED,
+]);
+
+export const interviewStatusEnum = pgEnum('interview_status', [
+  InterviewStatus.IN_PROGRESS,
+  InterviewStatus.COMPLETED,
+  InterviewStatus.CANCELLED,
+]);
+
+export const activityTypeEnum = pgEnum('activity_type', [
+  ActivityType.ASSESSMENT_COMPLETED,
+  ActivityType.CONTEST_PARTICIPATION,
+  ActivityType.CONTEST_WIN,
+  ActivityType.ACHIEVEMENT_UNLOCKED,
+  ActivityType.PROJECT_PUBLISHED,
+  ActivityType.SKILL_PROMOTED,
+  ActivityType.INTERVIEW_COMPLETED,
+  ActivityType.FORUM_ACCEPTED_ANSWER,
 ]);

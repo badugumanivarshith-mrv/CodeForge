@@ -17,6 +17,13 @@ async function main() {
   await import('./integration/mentor.integration.test');
   await import('./integration/assessment.integration.test');
   await import('./integration/contest.integration.test');
+  await import('./integration/portfolio.integration.test');
+  await import('./integration/groups.integration.test');
+  await import('./integration/forum.integration.test');
+  await import('./integration/career.integration.test');
+  await import('./integration/interview.integration.test');
+  await import('./integration/resume.integration.test');
+  await import('./integration/talent.integration.test');
 
   // Allow tests to execute and finish
   setTimeout(async () => {
@@ -27,7 +34,8 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 9000);
+  }, 12000);
+
 
 }
 

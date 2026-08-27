@@ -17,6 +17,7 @@ import {
   assessmentQuestions,
   contests,
   contestProblems,
+  forumTags,
 } from '../schema';
 import { eq, and } from 'drizzle-orm';
 import { seedLanguages } from './data/languages';
@@ -28,7 +29,9 @@ import { SEED_QUIZZES } from './data/quizzes';
 import { SEED_PROBLEMS } from './data/problems';
 import { SEED_ASSESSMENT_QUESTIONS } from './data/assessments';
 import { SEED_CONTESTS } from './data/contests';
+import { SEED_FORUM_TAGS } from './data/community';
 import { logger } from '../../core/utils/logger';
+
 
 
 export const runSeed = async () => {
@@ -443,11 +446,31 @@ export const runSeed = async () => {
         }
       }
     }
-    logger.info(`  ✓ Successfully seeded ${SEED_CONTESTS.length} Contests.`);
+    // 9. Seed Forum Tags
+    logger.info('  -> Seeding Forum Tags...');
+    for (const tag of SEED_FORUM_TAGS) {
+      await db
+        .insert(forumTags)
+        .values({
+          name: tag.name,
+          slug: tag.slug,
+          description: tag.description,
+          postsCount: 0,
+        })
+        .onConflictDoUpdate({
+          target: forumTags.slug,
+          set: {
+            name: tag.name,
+            description: tag.description,
+          },
+        });
+    }
+    logger.info(`  ✓ Successfully seeded ${SEED_FORUM_TAGS.length} Forum Tags.`);
 
     logger.info('🎉 Database seeding completed successfully!');
 
   } catch (error) {
+
     logger.error({ error }, '❌ Error during database seeding');
     throw error;
   } finally {
