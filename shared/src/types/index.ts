@@ -371,6 +371,7 @@ export interface ProblemDto {
 
 // Progress & Dashboard Types
 export interface ProgressDashboardDto {
+
   gamification: GamificationSummaryDto;
   activeLanguage: LanguageDto | null;
   topicMasteries: TopicMasteryDto[];
@@ -704,5 +705,169 @@ export interface LearningAnalyticsDto {
     proficient: number;
     mastered: number;
   };
+}
+
+// ============================================================
+// PHASE 6: AI CODING MENTOR & INTELLIGENT PROBLEM-SOLVING
+// ============================================================
+
+export type MentorMode =
+  | 'socratic_hint'
+  | 'code_review'
+  | 'submission_analysis'
+  | 'concept_explanation'
+  | 'general_chat'
+  | 'targeted_practice';
+
+export type SocraticHintLevel = 1 | 2 | 3 | 4 | 5;
+
+export interface SocraticHintResultDto {
+  hintLevel: SocraticHintLevel;
+  title: string;
+  hint: string;
+  guidingQuestion: string;
+  nextLevelAvailable: boolean;
+}
+
+export interface CodeReviewResultDto {
+  summary: string;
+  correctness: {
+    status: 'correct' | 'partially_correct' | 'incorrect';
+    explanation: string;
+  };
+  bugs: Array<{
+    line?: number;
+    description: string;
+    severity: 'critical' | 'major' | 'minor';
+    fixSuggestion?: string;
+  }>;
+  edgeCases: Array<{
+    caseDescription: string;
+    handled: boolean;
+    suggestion?: string;
+  }>;
+  complexity: {
+    time: string;
+    space: string;
+    explanation?: string;
+  };
+  suggestions: string[];
+  learningPoints: string[];
+}
+
+export interface SubmissionAnalysisResultDto {
+  summary: string;
+  errorType:
+    | 'compilation_error'
+    | 'runtime_error'
+    | 'wrong_answer'
+    | 'time_limit_exceeded'
+    | 'memory_limit_exceeded'
+    | 'logic_error';
+  rootCause: string;
+  errorExplanation: string;
+  remediationSteps: string[];
+  learningTakeaway: string;
+  suggestedHintLevel?: SocraticHintLevel;
+}
+
+export interface ConceptExplanationDto {
+  concept: string;
+  skillLevel: 'beginner' | 'intermediate' | 'advanced' | 'expert';
+  analogy: string;
+  corePrinciples: string[];
+  codeExamples: Array<{
+    language: string;
+    title: string;
+    code: string;
+    explanation: string;
+  }>;
+  commonPitfalls: string[];
+  prerequisiteAdvice?: string;
+}
+
+export interface TargetedPracticeDto {
+  id: string;
+  title: string;
+  targetSkillOrWeakness: string;
+  difficulty: ProblemDifficulty;
+  descriptionMdx: string;
+  constraints: string[];
+  examples: Array<{
+    input: string;
+    output: string;
+    explanation?: string;
+  }>;
+  starterCode: Record<string, string>;
+  learningObjective: string;
+}
+
+export interface MentorMessageDto {
+  id: string;
+  sessionId: string;
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  codeContext?: string;
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+}
+
+export interface MentorSessionDto {
+  id: string;
+  userId: string;
+  interactionType: AIInteractionType | string;
+  contextType: 'problem' | 'topic' | 'lesson' | 'general' | 'practice';
+  contextId: string;
+  currentHintLevel: SocraticHintLevel;
+  createdAt: string;
+  endedAt?: string | null;
+  messages?: MentorMessageDto[];
+}
+
+export interface CreateMentorSessionDto {
+  interactionType: AIInteractionType | string;
+  contextType: 'problem' | 'topic' | 'lesson' | 'general' | 'practice';
+  contextId: string;
+  initialCodeContext?: string;
+}
+
+export interface SendMentorMessageDto {
+  sessionId: string;
+  content: string;
+  codeContext?: string;
+  currentLanguage?: LanguageId | string;
+}
+
+export interface RequestHintDto {
+  problemId: string;
+  currentCode: string;
+  languageId: LanguageId | string;
+  requestedLevel?: SocraticHintLevel;
+  sessionId?: string;
+}
+
+export interface RequestCodeReviewDto {
+  problemId?: string;
+  code: string;
+  languageId: LanguageId | string;
+  topicId?: string;
+}
+
+export interface AnalyzeSubmissionDto {
+  submissionId: string;
+  problemId?: string;
+}
+
+export interface ExplainConceptDto {
+  concept: string;
+  languageId?: LanguageId | string;
+  topicId?: string;
+}
+
+export interface GeneratePracticeDto {
+  targetTopicId?: string;
+  weaknessCategory?: string;
+  preferredLanguage?: LanguageId | string;
+  difficulty?: ProblemDifficulty;
 }
 

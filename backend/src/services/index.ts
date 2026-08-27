@@ -8,3 +8,6 @@ export * from './quiz.service';
 export * from './progress.service';
 export * from './gamification.service';
 export * from './learnerIntelligence.service';
+export * from './mentorContext.service';
+export * from './mentor.service';
+export * from './ai';

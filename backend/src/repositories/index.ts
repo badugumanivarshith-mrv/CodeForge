@@ -8,3 +8,5 @@ export * from './QuizRepository';
 export * from './ProgressRepository';
 export * from './GamificationRepository';
 export * from './LearnerIntelligenceRepository';
+export * from './MentorRepository';
+export * from './SubmissionRepository';

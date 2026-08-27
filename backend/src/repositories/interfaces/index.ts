@@ -8,3 +8,4 @@ export * from './ISubmissionRepository';
 export * from './IProgressRepository';
 export * from './IGamificationRepository';
 export * from './ILearnerIntelligenceRepository';
+export * from './IMentorRepository';

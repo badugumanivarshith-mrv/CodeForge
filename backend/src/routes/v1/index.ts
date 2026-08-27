@@ -14,6 +14,7 @@ import { projectsRouter } from './projects.routes';
 import { adminRouter } from './admin.routes';
 import { analyticsRouter } from './analytics.routes';
 import { intelligenceRouter } from './intelligence.routes';
+import { mentorRouter } from './mentor.routes';
 
 export const v1Router = Router();
 
@@ -32,3 +33,4 @@ v1Router.use('/projects', projectsRouter);
 v1Router.use('/admin', adminRouter);
 v1Router.use('/analytics', analyticsRouter);
 v1Router.use('/intelligence', intelligenceRouter);
+v1Router.use('/mentor', mentorRouter);

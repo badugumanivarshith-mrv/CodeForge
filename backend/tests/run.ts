@@ -14,6 +14,7 @@ async function main() {
   await import('./integration/quizzes.integration.test');
   await import('./integration/progress.integration.test');
   await import('./integration/intelligence.integration.test');
+  await import('./integration/mentor.integration.test');
 
   // Allow tests to execute and finish
   setTimeout(async () => {
