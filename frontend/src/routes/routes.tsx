@@ -37,6 +37,10 @@ export const router = createBrowserRouter([
         element: <LearnPage />,
       },
       {
+        path: 'learn/:languageSlug/:topicSlug',
+        element: <LearnPage />,
+      },
+      {
         path: 'workspace',
         element: <WorkspacePage />,
       },
@@ -69,6 +73,10 @@ export const router = createBrowserRouter([
           },
           {
             path: 'quiz/:quizId',
+            element: <QuizPage />,
+          },
+          {
+            path: 'quiz/topic/:topicId',
             element: <QuizPage />,
           },
         ],

@@ -1,17 +1,46 @@
-import { Router, Request, Response } from 'express';
-import { sendSuccess } from '../../core/utils/response';
-import { TIER_1_LANGUAGES } from '@codeforge/shared';
+import { Router } from 'express';
+import { CurriculumController } from '../../controllers/curriculum.controller';
+import {
+  CurriculumRepository,
+  ProblemRepository,
+  QuizRepository,
+  ProgressRepository,
+} from '../../repositories';
+import { CurriculumService } from '../../services';
+import { optionalAuthGuard } from '../../middleware/authMiddleware';
+import { validateRequest } from '../../middleware/validateRequest';
+import {
+  languageSlugParamSchema,
+  topicSlugParamsSchema,
+} from '../../validations/curriculum.validation';
 
 export const curriculumRouter = Router();
 
-curriculumRouter.get('/languages', (_req: Request, res: Response) => {
-  return sendSuccess(res, TIER_1_LANGUAGES);
-});
+const curriculumRepo = new CurriculumRepository();
+const problemRepo = new ProblemRepository();
+const quizRepo = new QuizRepository();
+const progressRepo = new ProgressRepository();
 
-curriculumRouter.get('/:languageSlug', (_req: Request, res: Response) => {
-  return sendSuccess(res, { message: 'Language curriculum roadmap endpoint ready' });
-});
+const curriculumService = new CurriculumService(
+  curriculumRepo,
+  problemRepo,
+  quizRepo,
+  progressRepo,
+);
+const curriculumController = new CurriculumController(curriculumService);
 
-curriculumRouter.get('/:languageSlug/:topicSlug', (_req: Request, res: Response) => {
-  return sendSuccess(res, { message: 'Topic details endpoint ready' });
-});
+curriculumRouter.get('/languages', curriculumController.getLanguages);
+
+curriculumRouter.get(
+  '/:languageSlug',
+  optionalAuthGuard,
+  validateRequest(languageSlugParamSchema),
+  curriculumController.getLanguageRoadmap,
+);
+
+curriculumRouter.get(
+  '/:languageSlug/:topicSlug',
+  optionalAuthGuard,
+  validateRequest(topicSlugParamsSchema),
+  curriculumController.getTopicDetail,
+);

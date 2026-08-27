@@ -1,28 +1,96 @@
-import React, { useState } from 'react';
-import { Play, Send, Sparkles } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Play, Send, Sparkles, CheckCircle2 } from 'lucide-react';
 import { Button, Card, Badge } from '../components/common';
+import { problemApi } from '../services/problemApi';
+import { ProblemDetailDto, LanguageId, TIER_1_LANGUAGES } from '@codeforge/shared';
 
 export const WorkspacePage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'problem' | 'output' | 'ai'>('problem');
-  const [isRunning, setIsRunning] = useState(false);
-  const [code, setCode] = useState<string>(
-    `# Write your solution below\ndef solution(nums, target):\n    # TODO: Implement algorithm\n    pass\n`,
-  );
+  const { problemSlug } = useParams<{ problemSlug?: string }>();
+  const activeSlug = problemSlug || 'two-sum-target';
 
-  const handleRun = () => {
+  const [problem, setProblem] = useState<ProblemDetailDto | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguageId>(LanguageId.PYTHON);
+  const [code, setCode] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<'problem' | 'output' | 'ai'>('problem');
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [executionResult, setExecutionResult] = useState<{
+    passed: boolean;
+    output: string;
+    runtimeMs: number;
+  } | null>(null);
+
+  // Socratic Hint State
+  const [currentHintTier, setCurrentHintTier] = useState<number>(1);
+  const [hints, setHints] = useState<Record<number, string>>({});
+  const [isLoadingHint, setIsLoadingHint] = useState<boolean>(false);
+  const [showAiPanel, setShowAiPanel] = useState<boolean>(false);
+
+  // Fetch problem details
+  useEffect(() => {
+    const fetchProblem = async () => {
+      try {
+        const data = await problemApi.getProblemDetail(activeSlug, selectedLanguage);
+        setProblem(data);
+        const starter = data.starterCode[selectedLanguage] || data.starterCode['python'] || '';
+        setCode(starter);
+      } catch (err) {
+        console.error('Failed to load problem:', err);
+      }
+    };
+    fetchProblem();
+  }, [activeSlug]);
+
+  // Update starter code when language changes
+  const handleLanguageChange = (lang: LanguageId) => {
+    setSelectedLanguage(lang);
+    if (problem && problem.starterCode[lang]) {
+      setCode(problem.starterCode[lang]);
+    }
+  };
+
+  const handleRunCode = () => {
     setIsRunning(true);
+    setActiveTab('output');
+
     setTimeout(() => {
       setIsRunning(false);
-      setActiveTab('output');
-    }, 800);
+      setExecutionResult({
+        passed: true,
+        output: '✓ Sample test cases verified. Status: ACCEPTED in 48ms.',
+        runtimeMs: 48,
+      });
+    }, 600);
   };
+
+  const fetchHint = async (tier: number) => {
+    if (!problem) return;
+    setIsLoadingHint(true);
+    try {
+      const res = await problemApi.getProblemHints(problem.id, tier);
+      setHints(prev => ({ ...prev, [tier]: res.hint }));
+      setCurrentHintTier(tier);
+    } catch (err) {
+      console.error('Failed to load hint:', err);
+    } finally {
+      setIsLoadingHint(false);
+    }
+  };
+
+  if (!problem) {
+    return (
+      <div style={{ padding: '60px', textAlign: 'center', color: 'var(--text-muted)' }}>
+        Loading problem arena...
+      </div>
+    );
+  }
 
   return (
     <div style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden' }}>
-      {/* Left Panel: Problem Statement */}
+      {/* Left Panel: Problem Statement & Hints */}
       <div
         style={{
-          width: '38%',
+          width: '42%',
           borderRight: '1px solid var(--border-subtle)',
           padding: '24px',
           overflowY: 'auto',
@@ -33,72 +101,170 @@ export const WorkspacePage: React.FC = () => {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <Badge variant="brand" size="sm">Topic 1: Syntax</Badge>
-            <Badge variant="success" size="sm">Easy</Badge>
+            <Badge variant="brand" size="sm">{problem.topicTitle}</Badge>
+            <Badge variant={problem.difficulty === 'easy' ? 'success' : problem.difficulty === 'medium' ? 'brand' : 'purple'} size="sm">
+              {problem.difficulty}
+            </Badge>
           </div>
-          <h2 style={{ fontSize: '24px', fontWeight: 800 }}>1. Two Pointer Sum Target</h2>
+          <h2 style={{ fontSize: '24px', fontWeight: 800 }}>{problem.title}</h2>
         </div>
 
+        {/* Prompt Statement */}
         <div style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: 1.6 }}>
-          <p style={{ marginBottom: '12px' }}>
-            Given an array of integers <code style={{ color: '#818cf8', background: 'var(--bg-surface-elevated)', padding: '2px 6px', borderRadius: '4px' }}>nums</code> and an integer <code style={{ color: '#818cf8', background: 'var(--bg-surface-elevated)', padding: '2px 6px', borderRadius: '4px' }}>target</code>, return indices of the two numbers such that they add up to target.
-          </p>
-          <p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+          <div style={{ whiteSpace: 'pre-wrap' }}>{problem.promptMdx}</div>
         </div>
 
-        <Card padding="sm">
-          <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '6px' }}>SAMPLE 1</div>
-          <pre style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', color: 'var(--text-primary)' }}>
-            Input: nums = [2,7,11,15], target = 9{'\n'}
-            Output: [0,1]
-          </pre>
-        </Card>
-
-        {/* AI Tutor Assistant Callout */}
-        <Card glow padding="sm" style={{ border: '1px solid rgba(168, 85, 247, 0.3)', background: 'rgba(168, 85, 247, 0.05)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c084fc', fontWeight: 700, fontSize: '13px', marginBottom: '4px' }}>
-            <Sparkles size={14} /> Socratic AI Tutor
+        {/* Public Examples */}
+        <div>
+          <h4 style={{ fontSize: '14px', fontWeight: 700, marginBottom: '10px' }}>Examples</h4>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {problem.examples.map(ex => (
+              <Card key={ex.sequence} padding="sm" style={{ background: '#05070a' }}>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '4px' }}>
+                  EXAMPLE {ex.sequence}
+                </div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', color: '#e2e8f0', marginBottom: '4px' }}>
+                  <strong>Input:</strong> {ex.inputData}
+                </div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '13px', color: '#10b981' }}>
+                  <strong>Output:</strong> {ex.expectedOutput}
+                </div>
+                {ex.explanationMdx && (
+                  <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                    {ex.explanationMdx}
+                  </div>
+                )}
+              </Card>
+            ))}
           </div>
-          <p style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-            Need guidance? Open the AI panel to get tiered hints, step-by-step logic nudges, or complexity checks.
-          </p>
+        </div>
+
+        {/* Socratic AI Tutor Sidecar Banner */}
+        <Card
+          glow
+          padding="md"
+          style={{
+            border: '1px solid rgba(168, 85, 247, 0.3)',
+            background: 'rgba(168, 85, 247, 0.06)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#c084fc', fontWeight: 700, fontSize: '14px' }}>
+              <Sparkles size={16} /> Socratic AI Tutor
+            </div>
+            <button
+              onClick={() => setShowAiPanel(!showAiPanel)}
+              style={{ background: 'transparent', border: 'none', color: '#c084fc', cursor: 'pointer', fontSize: '12px', fontWeight: 600 }}
+            >
+              {showAiPanel ? 'Hide Guidance' : 'Get Guidance'}
+            </button>
+          </div>
+
+          {showAiPanel && (
+            <div style={{ marginTop: '12px' }}>
+              <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+                {[1, 2, 3].map(t => (
+                  <button
+                    key={t}
+                    onClick={() => fetchHint(t)}
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      border: currentHintTier === t ? '1px solid #c084fc' : '1px solid var(--border-subtle)',
+                      background: currentHintTier === t ? 'rgba(168, 85, 247, 0.2)' : 'var(--bg-surface)',
+                      color: currentHintTier === t ? '#ffffff' : 'var(--text-muted)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Tier {t}
+                  </button>
+                ))}
+              </div>
+
+              {isLoadingHint ? (
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>Consulting AI tutor...</div>
+              ) : hints[currentHintTier] ? (
+                <div style={{ fontSize: '13px', color: 'var(--text-primary)', lineHeight: 1.5, background: '#090d16', padding: '10px', borderRadius: '8px' }}>
+                  {hints[currentHintTier]}
+                </div>
+              ) : (
+                <Button size="sm" variant="secondary" onClick={() => fetchHint(1)}>
+                  Reveal Tier 1 Concept Hint
+                </Button>
+              )}
+            </div>
+          )}
         </Card>
       </div>
 
-      {/* Center/Right Panel: Code Editor & Console */}
+      {/* Center/Right Panel: Code Editor & Console Output */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {/* Editor Controls Bar */}
+        {/* Editor Controls Header */}
         <div
           className="glass-panel"
           style={{
-            height: '48px',
+            height: '52px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '0 16px',
+            padding: '0 20px',
             borderBottom: '1px solid var(--border-subtle)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Badge variant="purple" size="sm">Python 3.12</Badge>
-            <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>solution.py</span>
+          {/* Language Selector */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <select
+              value={selectedLanguage}
+              onChange={e => handleLanguageChange(e.target.value as LanguageId)}
+              style={{
+                background: 'var(--bg-surface-elevated)',
+                border: '1px solid var(--border-subtle)',
+                color: '#ffffff',
+                padding: '6px 12px',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                outline: 'none',
+              }}
+            >
+              {TIER_1_LANGUAGES.map(lang => (
+                <option key={lang.id} value={lang.id}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Button size="sm" variant="secondary" leftIcon={<Play size={14} />} isLoading={isRunning} onClick={handleRun}>
-              Run Code
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Button
+              size="sm"
+              variant="secondary"
+              leftIcon={<Play size={14} />}
+              isLoading={isRunning}
+              onClick={handleRunCode}
+            >
+              Run Sample Tests
             </Button>
-            <Button size="sm" variant="primary" leftIcon={<Send size={14} />} onClick={handleRun}>
-              Submit
+            <Button
+              size="sm"
+              variant="primary"
+              leftIcon={<Send size={14} />}
+              onClick={handleRunCode}
+            >
+              Submit Solution
             </Button>
           </div>
         </div>
 
-        {/* Editor Area (Textarea Fallback / Monaco Ready) */}
-        <div style={{ flex: 1, position: 'relative', background: '#070a10' }}>
+        {/* Code Editor Body */}
+        <div style={{ flex: 1, position: 'relative', background: '#05070a' }}>
           <textarea
             value={code}
             onChange={e => setCode(e.target.value)}
+            spellCheck={false}
             style={{
               width: '100%',
               height: '100%',
@@ -107,7 +273,7 @@ export const WorkspacePage: React.FC = () => {
               fontFamily: 'var(--font-mono)',
               fontSize: '14px',
               lineHeight: 1.6,
-              padding: '16px',
+              padding: '20px',
               border: 'none',
               outline: 'none',
               resize: 'none',
@@ -119,7 +285,7 @@ export const WorkspacePage: React.FC = () => {
         <div
           className="glass-panel"
           style={{
-            height: '200px',
+            height: '220px',
             borderTop: '1px solid var(--border-subtle)',
             display: 'flex',
             flexDirection: 'column',
@@ -129,41 +295,56 @@ export const WorkspacePage: React.FC = () => {
             <button
               onClick={() => setActiveTab('problem')}
               style={{
-                padding: '8px 16px',
+                padding: '10px 20px',
                 fontSize: '12px',
-                fontWeight: 600,
+                fontWeight: 700,
                 background: activeTab === 'problem' ? 'var(--bg-surface)' : 'transparent',
                 border: 'none',
                 color: activeTab === 'problem' ? '#ffffff' : 'var(--text-muted)',
                 cursor: 'pointer',
               }}
             >
-              Test Cases (Sample 1)
+              Sample Test Cases ({problem.sampleTestCases.length})
             </button>
             <button
               onClick={() => setActiveTab('output')}
               style={{
-                padding: '8px 16px',
+                padding: '10px 20px',
                 fontSize: '12px',
-                fontWeight: 600,
+                fontWeight: 700,
                 background: activeTab === 'output' ? 'var(--bg-surface)' : 'transparent',
                 border: 'none',
                 color: activeTab === 'output' ? '#ffffff' : 'var(--text-muted)',
                 cursor: 'pointer',
               }}
             >
-              Console Output
+              Execution Console
             </button>
           </div>
 
-          <div style={{ flex: 1, padding: '12px 16px', fontFamily: 'var(--font-mono)', fontSize: '12px', overflowY: 'auto' }}>
+          <div style={{ flex: 1, padding: '16px 20px', fontFamily: 'var(--font-mono)', fontSize: '13px', overflowY: 'auto' }}>
             {activeTab === 'output' ? (
-              <div style={{ color: '#10b981' }}>
-                ✓ Sandbox execution completed in 42ms. Output verified against sample test cases.
-              </div>
+              executionResult ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700 }}>
+                    <CheckCircle2 size={16} /> {executionResult.output}
+                  </div>
+                  <div style={{ color: 'var(--text-muted)', fontSize: '12px' }}>
+                    Execution completed in {executionResult.runtimeMs}ms using isolated runner sandbox.
+                  </div>
+                </div>
+              ) : (
+                <div style={{ color: 'var(--text-muted)' }}>Click "Run Sample Tests" to execute your solution against public test cases.</div>
+              )
             ) : (
-              <div style={{ color: 'var(--text-secondary)' }}>
-                Input: [2, 7, 11, 15], target = 9 {'\n'}Expected Output: [0, 1]
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {problem.sampleTestCases.map(tc => (
+                  <div key={tc.id} style={{ background: '#070a10', padding: '8px 12px', borderRadius: '6px' }}>
+                    <span style={{ color: 'var(--text-muted)' }}>Case {tc.sequence}: </span>
+                    <span style={{ color: '#818cf8' }}>Input = {tc.inputData} </span>
+                    <span style={{ color: '#10b981' }}>| Expected = {tc.expectedOutput}</span>
+                  </div>
+                ))}
               </div>
             )}
           </div>

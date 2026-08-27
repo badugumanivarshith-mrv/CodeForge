@@ -9,6 +9,10 @@ async function main() {
   await import('./integration/auth.integration.test');
   await import('./integration/users.integration.test');
   await import('./security/security.test');
+  await import('./integration/curriculum.integration.test');
+  await import('./integration/problems.integration.test');
+  await import('./integration/quizzes.integration.test');
+  await import('./integration/progress.integration.test');
 
   // Allow tests to execute and finish
   setTimeout(async () => {
@@ -19,7 +23,7 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 3500);
+  }, 7500);
 }
 
 main().catch(err => {

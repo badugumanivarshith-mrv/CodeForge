@@ -1,25 +1,14 @@
-import { Router, Request, Response } from 'express';
-import { sendSuccess } from '../../core/utils/response';
-import { authGuard } from '../../middleware/authMiddleware';
+import { Router } from 'express';
+import { GamificationController } from '../../controllers/gamification.controller';
+import { GamificationRepository } from '../../repositories';
+import { GamificationService } from '../../services';
+import { authGuard, optionalAuthGuard } from '../../middleware/authMiddleware';
 
 export const gamificationRouter = Router();
 
-gamificationRouter.get('/summary', authGuard, (_req: Request, res: Response) => {
-  return sendSuccess(res, {
-    totalXp: 0,
-    currentLevel: 1,
-    nextLevelXp: 100,
-    levelProgressPercentage: 0,
-    currentStreak: 0,
-    longestStreak: 0,
-    freezeTokensAvailable: 1,
-  });
-});
+const gamificationRepo = new GamificationRepository();
+const gamificationService = new GamificationService(gamificationRepo);
+const gamificationController = new GamificationController(gamificationService);
 
-gamificationRouter.get('/leaderboard', authGuard, (_req: Request, res: Response) => {
-  return sendSuccess(res, { rankings: [] });
-});
-
-gamificationRouter.get('/achievements', authGuard, (_req: Request, res: Response) => {
-  return sendSuccess(res, { achievements: [] });
-});
+gamificationRouter.get('/summary', authGuard, gamificationController.getSummary);
+gamificationRouter.get('/leaderboard', optionalAuthGuard, gamificationController.getLeaderboard);

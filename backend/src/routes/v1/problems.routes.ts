@@ -1,17 +1,33 @@
-import { Router, Request, Response } from 'express';
-import { sendSuccess } from '../../core/utils/response';
-import { authGuard } from '../../middleware/authMiddleware';
+import { Router } from 'express';
+import { ProblemController } from '../../controllers/problem.controller';
+import { ProblemRepository, CurriculumRepository } from '../../repositories';
+import { ProblemService } from '../../services';
+import { authGuard, optionalAuthGuard } from '../../middleware/authMiddleware';
+import { validateRequest } from '../../middleware/validateRequest';
+import {
+  problemSlugParamSchema,
+  problemHintParamSchema,
+} from '../../validations/problem.validation';
 
 export const problemsRouter = Router();
 
-problemsRouter.get('/', authGuard, (_req: Request, res: Response) => {
-  return sendSuccess(res, { message: 'Problems list endpoint ready' });
-});
+const problemRepo = new ProblemRepository();
+const curriculumRepo = new CurriculumRepository();
+const problemService = new ProblemService(problemRepo, curriculumRepo);
+const problemController = new ProblemController(problemService);
 
-problemsRouter.get('/:problemSlug', authGuard, (req: Request, res: Response) => {
-  return sendSuccess(res, { slug: req.params.problemSlug, message: 'Problem details endpoint ready' });
-});
+problemsRouter.get('/', optionalAuthGuard, problemController.listProblems);
 
-problemsRouter.get('/:problemId/hints/:tier', authGuard, (req: Request, res: Response) => {
-  return sendSuccess(res, { problemId: req.params.problemId, tier: req.params.tier });
-});
+problemsRouter.get(
+  '/:problemSlug',
+  optionalAuthGuard,
+  validateRequest(problemSlugParamSchema),
+  problemController.getProblemDetail,
+);
+
+problemsRouter.get(
+  '/:problemId/hints/:tier',
+  authGuard,
+  validateRequest(problemHintParamSchema),
+  problemController.getProblemHints,
+);
