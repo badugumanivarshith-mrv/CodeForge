@@ -10,7 +10,7 @@
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
-    "test": "tsx tests/run.ts",
+    "test": "tsx --test tests/unit/*.test.ts tests/integration/*.test.ts tests/security/*.test.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",

@@ -155,6 +155,23 @@ export interface TopicDto {
   estimatedHours: number;
 }
 
+export interface TopicProgressSummaryDto extends TopicDto {
+  isUnlocked: boolean;
+  isCompleted: boolean;
+  lessonsTotal: number;
+  lessonsCompleted: number;
+  problemsTotal: number;
+  problemsSolved: number;
+  quizPassed: boolean;
+  masteryScore: number;
+}
+
+export interface LanguageRoadmapDto {
+  language: LanguageDto;
+  topics: TopicProgressSummaryDto[];
+  overallProgressPercentage: number;
+}
+
 export interface LessonDto {
   id: string;
   topicId: string;
@@ -164,6 +181,7 @@ export interface LessonDto {
   description: string | null;
   readTimeMinutes: number;
   status: ContentStatus;
+  isCompleted?: boolean;
 }
 
 export interface LessonSectionDto {
@@ -185,12 +203,44 @@ export interface LearningExampleDto {
   explanationMdx: string | null;
 }
 
+export interface LessonDetailDto {
+  lesson: LessonDto;
+  topic: TopicDto;
+  language: LanguageDto;
+  sections: LessonSectionDto[];
+  examples: LearningExampleDto[];
+  previousLessonId: string | null;
+  nextLessonId: string | null;
+  isCompleted: boolean;
+}
+
+export interface TopicDetailDto {
+  topic: TopicDto;
+  language: LanguageDto;
+  lessons: LessonDto[];
+  quiz: {
+    id: string;
+    title: string;
+    difficulty: QuizDifficulty;
+    questionCount: number;
+    isPassed: boolean;
+    bestScore: number;
+  } | null;
+  problems: {
+    id: string;
+    slug: string;
+    title: string;
+    difficulty: ProblemDifficulty;
+    isSolved: boolean;
+  }[];
+}
+
 // Quiz Domain Types
 export interface QuizOptionDto {
   id: string;
   sequence: number;
   optionText: string;
-  isCorrect?: boolean;
+  isCorrect?: boolean; // Stripped in client payloads!
 }
 
 export interface QuizQuestionDto {
@@ -200,7 +250,7 @@ export interface QuizQuestionDto {
   questionType: QuestionType;
   questionMdx: string;
   codeSnippet: string | null;
-  explanationMdx: string | null;
+  explanationMdx?: string | null;
   points: number;
   options: QuizOptionDto[];
 }
@@ -213,6 +263,31 @@ export interface QuizDto {
   difficulty: QuizDifficulty;
   passingScorePercentage: number;
   questions?: QuizQuestionDto[];
+}
+
+export interface QuizAnswerSubmission {
+  questionId: string;
+  selectedOptionId: string;
+}
+
+export interface QuizSubmitRequestDto {
+  answers: QuizAnswerSubmission[];
+}
+
+export interface QuizSubmitResultDto {
+  quizId: string;
+  scorePercentage: number;
+  isPassed: boolean;
+  correctAnswersCount: number;
+  totalQuestions: number;
+  xpAwarded: number;
+  questionsReview?: Array<{
+    questionId: string;
+    selectedOptionId: string;
+    correctOptionId: string;
+    isCorrect: boolean;
+    explanationMdx: string | null;
+  }>;
 }
 
 export interface QuizAttemptDto {
@@ -248,6 +323,35 @@ export interface ProblemExampleDto {
   explanationMdx: string | null;
 }
 
+export interface ProblemSummaryDto {
+  id: string;
+  topicId: string;
+  topicTitle?: string;
+  languageId?: LanguageId;
+  slug: string;
+  title: string;
+  difficulty: ProblemDifficulty;
+  isSolved?: boolean;
+}
+
+export interface ProblemDetailDto {
+  id: string;
+  topicId: string;
+  topicTitle: string;
+  languageId: LanguageId;
+  slug: string;
+  title: string;
+  difficulty: ProblemDifficulty;
+  promptMdx: string;
+  starterCode: Record<string, string>;
+  boilerplateCode: Record<string, string>;
+  memoryLimitMb: number;
+  timeLimitMs: number;
+  examples: ProblemExampleDto[];
+  sampleTestCases: TestCaseDto[];
+  isSolved?: boolean;
+}
+
 export interface ProblemDto {
   id: string;
   topicId: string;
@@ -263,6 +367,15 @@ export interface ProblemDto {
   isPublished: boolean;
   examples?: ProblemExampleDto[];
   sampleTestCases?: TestCaseDto[];
+}
+
+// Progress & Dashboard Types
+export interface ProgressDashboardDto {
+  gamification: GamificationSummaryDto;
+  activeLanguage: LanguageDto | null;
+  topicMasteries: TopicMasteryDto[];
+  recentCompletedLessons: LessonDto[];
+  recommendedTopic: TopicDto | null;
 }
 
 // Assignment Domain Types
@@ -333,6 +446,9 @@ export interface TopicMasteryDto {
   id: string;
   userId: string;
   topicId: string;
+  topicTitle?: string;
+  topicSequence?: number;
+  languageId?: LanguageId;
   masteryLevel: MasteryLevel;
   masteryScore: number;
   bktProbability: number;

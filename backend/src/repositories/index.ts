@@ -2,3 +2,8 @@ export * from './interfaces';
 export * from './UserRepository';
 export * from './SessionRepository';
 export * from './TokenRepository';
+export * from './CurriculumRepository';
+export * from './ProblemRepository';
+export * from './QuizRepository';
+export * from './ProgressRepository';
+export * from './GamificationRepository';

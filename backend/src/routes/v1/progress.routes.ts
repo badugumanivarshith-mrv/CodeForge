@@ -1,13 +1,27 @@
-import { Router, Request, Response } from 'express';
-import { sendSuccess } from '../../core/utils/response';
+import { Router } from 'express';
+import { ProgressController } from '../../controllers/progress.controller';
+import {
+  ProgressRepository,
+  GamificationRepository,
+  CurriculumRepository,
+  UserRepository,
+} from '../../repositories';
+import { ProgressService } from '../../services';
 import { authGuard } from '../../middleware/authMiddleware';
 
 export const progressRouter = Router();
 
-progressRouter.get('/summary', authGuard, (_req: Request, res: Response) => {
-  return sendSuccess(res, { message: 'Progress summary endpoint ready' });
-});
+const progressRepo = new ProgressRepository();
+const gamificationRepo = new GamificationRepository();
+const curriculumRepo = new CurriculumRepository();
+const userRepo = new UserRepository();
 
-progressRouter.get('/topics/:topicId', authGuard, (req: Request, res: Response) => {
-  return sendSuccess(res, { topicId: req.params.topicId, masteryScore: 0.0 });
-});
+const progressService = new ProgressService(
+  progressRepo,
+  gamificationRepo,
+  curriculumRepo,
+  userRepo,
+);
+const progressController = new ProgressController(progressService);
+
+progressRouter.get('/dashboard', authGuard, progressController.getDashboard);
