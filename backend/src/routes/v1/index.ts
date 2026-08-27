@@ -1,0 +1,32 @@
+import { Router } from 'express';
+import { authRouter } from './auth.routes';
+import { usersRouter } from './users.routes';
+import { curriculumRouter } from './curriculum.routes';
+import { lessonsRouter } from './lessons.routes';
+import { quizzesRouter } from './quizzes.routes';
+import { problemsRouter } from './problems.routes';
+import { assignmentsRouter } from './assignments.routes';
+import { submissionsRouter } from './submissions.routes';
+import { aiRouter } from './ai.routes';
+import { progressRouter } from './progress.routes';
+import { gamificationRouter } from './gamification.routes';
+import { projectsRouter } from './projects.routes';
+import { adminRouter } from './admin.routes';
+import { analyticsRouter } from './analytics.routes';
+
+export const v1Router = Router();
+
+v1Router.use('/auth', authRouter);
+v1Router.use('/users', usersRouter);
+v1Router.use('/curriculum', curriculumRouter);
+v1Router.use('/lessons', lessonsRouter);
+v1Router.use('/quizzes', quizzesRouter);
+v1Router.use('/problems', problemsRouter);
+v1Router.use('/assignments', assignmentsRouter);
+v1Router.use('/submissions', submissionsRouter);
+v1Router.use('/ai', aiRouter);
+v1Router.use('/progress', progressRouter);
+v1Router.use('/gamification', gamificationRouter);
+v1Router.use('/projects', projectsRouter);
+v1Router.use('/admin', adminRouter);
+v1Router.use('/analytics', analyticsRouter);
