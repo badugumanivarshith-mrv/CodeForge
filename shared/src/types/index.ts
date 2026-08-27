@@ -560,3 +560,149 @@ export interface ProjectDto {
   status: ProjectStatus;
   repositoryTemplateUrl: string | null;
 }
+
+// ==========================================
+// Phase 5: Adaptive Intelligence & Learning DTOs
+// ==========================================
+
+export type ConceptualMasteryLevel =
+  | 'not_started'
+  | 'learning'
+  | 'developing'
+  | 'proficient'
+  | 'mastered';
+
+export interface LearnerIntelligenceProfileDto {
+  userId: string;
+  overallSkillLevel: 'beginner' | 'intermediate' | 'advanced' | 'expert';
+  overallMasteryScore: number;
+  confidenceLevel: number; // 0 to 100
+  learningVelocity: number; // topics/lessons completed per week
+  quizAccuracyPercentage: number;
+  problemSolvingSuccessRate: number;
+  currentStreakDays: number;
+  totalXp: number;
+  activeLanguage: LanguageDto | null;
+  strengths: string[];
+  weaknesses: string[];
+  recentActivitySummary: {
+    lessonsCompletedLast7Days: number;
+    quizzesAttemptedLast7Days: number;
+    problemsSubmittedLast7Days: number;
+  };
+}
+
+export interface TopicMasteryDetailDto {
+  topicId: string;
+  topicTitle: string;
+  topicSequence: number;
+  languageId: LanguageId;
+  masteryScore: number; // 0 to 100
+  conceptualState: ConceptualMasteryLevel;
+  bktProbability: number; // 0.0 to 1.0
+  evidence: {
+    lessonsProgress: { completed: number; total: number; percentage: number };
+    quizBestScore: number;
+    problemsSolved: number;
+    recencyDaysAgo: number;
+  };
+  explanation: string;
+  lastActivityAt: string;
+}
+
+export interface WeaknessItemDto {
+  id: string;
+  topicId: string;
+  topicTitle: string;
+  topicSequence: number;
+  languageId: LanguageId;
+  weaknessScore: number; // 0 to 100 (higher means more critical gap)
+  category: 'quiz_concept_failure' | 'problem_failure' | 'prerequisite_gap' | 'inactivity_decay';
+  evidence: string;
+  recommendedRemediation: string;
+  priority: 'high' | 'medium' | 'low';
+}
+
+export interface AdaptiveDifficultyDto {
+  topicId: string;
+  topicTitle: string;
+  currentMasteryScore: number;
+  recommendedDifficulty: ProblemDifficulty;
+  rationale: string;
+  metrics: {
+    recentSubmissionsCount: number;
+    consecutiveSuccesses: number;
+    consecutiveFailures: number;
+    quizAccuracy: number;
+  };
+}
+
+export interface LearningPathItemDto {
+  id: string;
+  sequence: number;
+  actionType:
+    | 'continue_lesson'
+    | 'review_topic'
+    | 'practice_problem'
+    | 'take_quiz'
+    | 'advance_topic'
+    | 'revisit_prerequisite'
+    | 'maintain_streak';
+  targetType: 'lesson' | 'quiz' | 'problem' | 'topic';
+  targetId: string;
+  targetSlug?: string;
+  targetTitle: string;
+  topicTitle: string;
+  priority: 'urgent' | 'high' | 'normal' | 'optional';
+  reason: string;
+  expectedBenefit: string;
+  estimatedMinutes: number;
+  isCompleted: boolean;
+  actionUrl: string;
+}
+
+export interface RecommendationDto {
+  id: string;
+  type:
+    | 'CONTINUE_LESSON'
+    | 'REVIEW_TOPIC'
+    | 'PRACTICE_PROBLEM'
+    | 'TAKE_QUIZ'
+    | 'ADVANCE_TOPIC'
+    | 'REVISIT_PREREQUISITE'
+    | 'MAINTAIN_STREAK';
+  title: string;
+  reason: string;
+  priority: 'urgent' | 'high' | 'normal';
+  targetId: string;
+  targetSlug?: string;
+  ctaText: string;
+  ctaUrl: string;
+  badgeText?: string;
+}
+
+export interface LearningAnalyticsDto {
+  userId: string;
+  totalActivitiesCount: number;
+  lessonsCompletedCount: number;
+  quizzesAttemptedCount: number;
+  quizzesPassedCount: number;
+  averageQuizScore: number;
+  problemsAttemptedCount: number;
+  problemsSolvedCount: number;
+  problemSuccessRatePercentage: number;
+  totalXp: number;
+  xpVelocityLast7Days: number;
+  currentStreakDays: number;
+  learningConsistencyScore: number; // 0 to 100
+  strongestTopics: Array<{ topicId: string; title: string; score: number }>;
+  weakestTopics: Array<{ topicId: string; title: string; score: number }>;
+  topicMasteryDistribution: {
+    notStarted: number;
+    learning: number;
+    developing: number;
+    proficient: number;
+    mastered: number;
+  };
+}
+

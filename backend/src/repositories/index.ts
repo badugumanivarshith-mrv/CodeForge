@@ -7,3 +7,4 @@ export * from './ProblemRepository';
 export * from './QuizRepository';
 export * from './ProgressRepository';
 export * from './GamificationRepository';
+export * from './LearnerIntelligenceRepository';

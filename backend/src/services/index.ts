@@ -7,3 +7,4 @@ export * from './problem.service';
 export * from './quiz.service';
 export * from './progress.service';
 export * from './gamification.service';
+export * from './learnerIntelligence.service';
