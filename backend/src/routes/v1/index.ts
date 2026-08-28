@@ -28,6 +28,13 @@ import { resumeRouter } from './resume.routes';
 import { talentRouter } from './talent.routes';
 import { activityRouter } from './activity.routes';
 import { judgeRouter } from './judge.routes';
+import { companiesRouter } from './companies.routes';
+import { jobsRouter } from './jobs.routes';
+import { applicationsRouter } from './applications.routes';
+import { careerAdvisorRouter } from './careerAdvisor.routes';
+import { referralRouter } from './referral.routes';
+import { hiringChallengesRouter } from './hiringChallenges.routes';
+import { interviewsPipelineRouter } from './interviewsPipeline.routes';
 
 export const v1Router = Router();
 
@@ -60,3 +67,10 @@ v1Router.use('/interviews', interviewRouter);
 v1Router.use('/resumes', resumeRouter);
 v1Router.use('/talent', talentRouter);
 v1Router.use('/feed', activityRouter);
+v1Router.use('/companies', companiesRouter);
+v1Router.use('/jobs', jobsRouter);
+v1Router.use('/applications', applicationsRouter);
+v1Router.use('/advisor', careerAdvisorRouter);
+v1Router.use('/referrals', referralRouter);
+v1Router.use('/hiring-challenges', hiringChallengesRouter);
+v1Router.use('/pipeline', interviewsPipelineRouter);

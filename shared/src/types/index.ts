@@ -30,6 +30,15 @@ import {
   InterviewStatus,
   ActivityType,
   JudgeVerdict,
+  JobType,
+  WorkplaceType,
+  JobStatus,
+  ApplicationStage,
+  MatchCategory,
+  ReferralStatus,
+  HiringInterviewType,
+  HiringInterviewStatus,
+  OfferRecommendation,
 } from '../enums/index.js';
 
 
@@ -1839,4 +1848,402 @@ export interface SubmissionFilterQueryDto {
   offset?: number;
   sortBy?: 'createdAt' | 'runtime' | 'memory';
   sortOrder?: 'asc' | 'desc';
+}
+
+// ==========================================
+// Phase 10: AI Placement & Hiring Ecosystem DTOs
+// ==========================================
+
+export interface CompanyDto {
+  id: string;
+  name: string;
+  slug: string;
+  website: string | null;
+  logoUrl: string | null;
+  description: string | null;
+  industry: string | null;
+  size: string | null;
+  location: string | null;
+  isVerified: boolean;
+  verifiedAt: string | null;
+  jobCount?: number;
+  recruiterCount?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateCompanyDto {
+  name: string;
+  website?: string;
+  logoUrl?: string;
+  description?: string;
+  industry?: string;
+  size?: string;
+  location?: string;
+  isVerified?: boolean;
+}
+
+export interface UpdateCompanyDto extends Partial<CreateCompanyDto> {
+  isVerified?: boolean;
+}
+
+export interface RecruiterProfileDto {
+  id: string;
+  userId: string;
+  companyId: string;
+  companyName?: string;
+  companySlug?: string;
+  companyLogoUrl?: string | null;
+  isCompanyVerified?: boolean;
+  title: string;
+  department?: string | null;
+  linkedinUrl?: string | null;
+  isPrimary: boolean;
+  createdAt: string;
+}
+
+export interface RegisterRecruiterDto {
+  companyId?: string;
+  companyName?: string;
+  title: string;
+  department?: string;
+  linkedinUrl?: string;
+  website?: string;
+  industry?: string;
+  location?: string;
+  size?: string;
+}
+
+export interface JobPostingDto {
+  id: string;
+  companyId: string;
+  companyName: string;
+  companySlug: string;
+  companyLogoUrl: string | null;
+  isCompanyVerified: boolean;
+  recruiterId: string;
+  title: string;
+  slug: string;
+  description: string;
+  requirements: string;
+  skillsRequired: string[];
+  minRatingRequired: number;
+  minAssessmentScore: number;
+  jobType: JobType;
+  workplaceType: WorkplaceType;
+  location: string;
+  minSalary: number | null;
+  maxSalary: number | null;
+  currency: string;
+  experienceLevel: string;
+  status: JobStatus;
+  applicantCount?: number;
+  matchScore?: number;
+  matchCategory?: MatchCategory;
+  expiresAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateJobPostingDto {
+  title: string;
+  description: string;
+  requirements: string;
+  skillsRequired: string[];
+  minRatingRequired?: number;
+  minAssessmentScore?: number;
+  jobType: JobType;
+  workplaceType: WorkplaceType;
+  location: string;
+  minSalary?: number;
+  maxSalary?: number;
+  currency?: string;
+  experienceLevel: string;
+  expiresAt?: string;
+}
+
+export interface UpdateJobPostingDto extends Partial<CreateJobPostingDto> {
+  status?: JobStatus;
+}
+
+export interface JobFilterQueryDto {
+  search?: string;
+  jobType?: JobType;
+  workplaceType?: WorkplaceType;
+  location?: string;
+  skills?: string[];
+  minSalary?: number;
+  experienceLevel?: string;
+  companyId?: string;
+  status?: JobStatus;
+  minMatchScore?: number;
+  limit?: number;
+  offset?: number;
+  sortBy?: 'createdAt' | 'salary' | 'matchScore' | 'rating';
+  sortOrder?: 'asc' | 'desc';
+}
+
+export interface JobMatchScoreDto {
+  jobId: string;
+  candidateId: string;
+  overallScore: number;
+  category: MatchCategory;
+  breakdown: {
+    skillScore: number;
+    ratingScore: number;
+    assessmentScore: number;
+    careerGoalScore: number;
+    portfolioScore: number;
+    resumeScore: number;
+  };
+  matchedSkills: string[];
+  missingSkills: string[];
+  insights: string[];
+}
+
+export interface JobRecommendationDto {
+  job: JobPostingDto;
+  match: JobMatchScoreDto;
+}
+
+export interface JobApplicationDto {
+  id: string;
+  jobId: string;
+  jobTitle: string;
+  companyId: string;
+  companyName: string;
+  companyLogoUrl: string | null;
+  candidateId: string;
+  candidateName: string;
+  candidateUsername: string;
+  candidateAvatarUrl: string | null;
+  candidateRating: number;
+  candidateEmail: string;
+  resumeId: string | null;
+  portfolioId: string | null;
+  stage: ApplicationStage;
+  matchScore: number;
+  matchCategory: MatchCategory;
+  coverLetter: string | null;
+  recruiterNotes: string | null;
+  rejectionReason: string | null;
+  appliedAt: string;
+  updatedAt: string;
+  timeline?: ApplicationStageHistoryDto[];
+  interviews?: HiringInterviewDto[];
+}
+
+export interface CreateApplicationDto {
+  jobId: string;
+  resumeId?: string;
+  portfolioId?: string;
+  coverLetter?: string;
+}
+
+export interface UpdateApplicationStageDto {
+  stage: ApplicationStage;
+  notes?: string;
+  rejectionReason?: string;
+}
+
+export interface ApplicationStageHistoryDto {
+  id: string;
+  applicationId: string;
+  fromStage: ApplicationStage | null;
+  toStage: ApplicationStage;
+  notes: string | null;
+  changedByUserId: string;
+  changedByUsername?: string;
+  changedAt: string;
+}
+
+export interface CareerAdvisorAnalysisDto {
+  candidateId: string;
+  targetRole: string;
+  currentLevel: string;
+  interviewReadinessScore: number;
+  placementProbability: number;
+  salaryEstimation: {
+    minAnnual: number;
+    maxAnnual: number;
+    medianAnnual: number;
+    currency: string;
+    percentileRank: number;
+  };
+  skillGaps: {
+    skill: string;
+    importance: 'critical' | 'important' | 'nice_to_have';
+    currentProficiency: number;
+    targetProficiency: number;
+  }[];
+  careerTrajectory: {
+    stage: string;
+    timeline: string;
+    targetRoles: string[];
+    milestones: string[];
+  }[];
+  personalizedRoadmap: {
+    step: number;
+    title: string;
+    description: string;
+    recommendedProblemIds: string[];
+    recommendedTopics: string[];
+    estimatedWeeks: number;
+  }[];
+}
+
+export interface ReferralDto {
+  id: string;
+  companyId: string;
+  companyName: string;
+  referrerId: string;
+  referrerName: string;
+  candidateId: string;
+  candidateName: string;
+  candidateEmail: string;
+  jobId: string | null;
+  jobTitle: string | null;
+  status: ReferralStatus;
+  notes: string | null;
+  bonusAmount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateReferralDto {
+  candidateEmail: string;
+  candidateName: string;
+  companyId: string;
+  jobId?: string;
+  notes?: string;
+}
+
+export interface ReferralRequestDto {
+  id: string;
+  candidateId: string;
+  candidateName: string;
+  jobId: string;
+  jobTitle: string;
+  targetCompanyId: string;
+  targetCompanyName: string;
+  message: string;
+  status: ReferralStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateReferralRequestDto {
+  jobId: string;
+  message: string;
+}
+
+export interface HiringChallengeDto {
+  id: string;
+  companyId: string;
+  companyName: string;
+  companyLogoUrl: string | null;
+  recruiterId: string;
+  contestId: string;
+  title: string;
+  description: string;
+  minScoreThreshold: number;
+  autoShortlist: boolean;
+  targetRole: string;
+  startsAt: string;
+  endsAt: string;
+  participantCount: number;
+  shortlistedCount: number;
+  createdAt: string;
+}
+
+export interface CreateHiringChallengeDto {
+  title: string;
+  description: string;
+  contestId: string;
+  minScoreThreshold: number;
+  autoShortlist: boolean;
+  targetRole: string;
+  startsAt: string;
+  endsAt: string;
+}
+
+export interface HiringChallengeStandingDto {
+  rank: number;
+  userId: string;
+  username: string;
+  fullName: string;
+  avatarUrl: string | null;
+  score: number;
+  penaltyTimeMinutes: number;
+  isShortlisted: boolean;
+  rating: number;
+  skills: string[];
+}
+
+export interface HiringInterviewDto {
+  id: string;
+  applicationId: string;
+  candidateId: string;
+  candidateName: string;
+  jobId: string;
+  jobTitle: string;
+  companyId: string;
+  interviewerId: string;
+  interviewerName: string;
+  interviewType: HiringInterviewType;
+  scheduledAt: string;
+  durationMinutes: number;
+  meetingUrl: string | null;
+  status: HiringInterviewStatus;
+  feedbackNotes: string | null;
+  technicalScore: number | null;
+  communicationScore: number | null;
+  problemSolvingScore: number | null;
+  recommendation: OfferRecommendation | null;
+  completedAt: string | null;
+  createdAt: string;
+}
+
+export interface ScheduleInterviewDto {
+  applicationId: string;
+  interviewType: HiringInterviewType;
+  scheduledAt: string;
+  durationMinutes: number;
+  meetingUrl?: string;
+  interviewerId?: string;
+}
+
+export interface SubmitInterviewFeedbackDto {
+  feedbackNotes: string;
+  technicalScore: number;
+  communicationScore: number;
+  problemSolvingScore: number;
+  recommendation: OfferRecommendation;
+}
+
+export interface TalentAnalyticsDto {
+  companyId: string;
+  totalJobPostings: number;
+  activeJobs: number;
+  totalApplicants: number;
+  shortlistedCandidates: number;
+  interviewsConducted: number;
+  offersExtended: number;
+  hiresMade: number;
+  funnel: {
+    stage: ApplicationStage;
+    count: number;
+    conversionRate: number;
+  }[];
+  skillHeatmap: {
+    skill: string;
+    candidateCount: number;
+    averageScore: number;
+    demandCount: number;
+  }[];
+  topPerformingCollegesOrTags: {
+    name: string;
+    hireCount: number;
+  }[];
+  timeToHireDays: number;
 }

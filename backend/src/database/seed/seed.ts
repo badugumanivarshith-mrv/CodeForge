@@ -19,6 +19,7 @@ import {
   contestProblems,
   forumTags,
   languageRuntimes,
+  companies,
 } from '../schema';
 import { eq, and } from 'drizzle-orm';
 import { seedLanguages } from './data/languages';
@@ -32,6 +33,7 @@ import { SEED_ASSESSMENT_QUESTIONS } from './data/assessments';
 import { SEED_CONTESTS } from './data/contests';
 import { SEED_FORUM_TAGS } from './data/community';
 import { SEED_LANGUAGE_RUNTIMES } from './data/runtimes';
+import { SEED_COMPANIES } from './data/companies';
 import { logger } from '../../core/utils/logger';
 
 
@@ -492,6 +494,39 @@ export const runSeed = async () => {
         });
     }
     logger.info(`  ✓ Successfully seeded ${SEED_LANGUAGE_RUNTIMES.length} Language Runtimes.`);
+
+    // 11. Seed Companies
+    logger.info('  -> Seeding Companies & Verified Enterprises...');
+    for (const comp of SEED_COMPANIES) {
+      await db
+        .insert(companies)
+        .values({
+          name: comp.name,
+          slug: comp.slug,
+          website: comp.website,
+          logoUrl: comp.logoUrl,
+          description: comp.description,
+          industry: comp.industry,
+          size: comp.size,
+          location: comp.location,
+          isVerified: comp.isVerified,
+          verifiedAt: new Date(),
+        })
+        .onConflictDoUpdate({
+          target: companies.slug,
+          set: {
+            name: comp.name,
+            website: comp.website,
+            logoUrl: comp.logoUrl,
+            description: comp.description,
+            industry: comp.industry,
+            size: comp.size,
+            location: comp.location,
+            isVerified: comp.isVerified,
+          },
+        });
+    }
+    logger.info(`  ✓ Successfully seeded ${SEED_COMPANIES.length} Verified Companies.`);
 
     logger.info('🎉 Database seeding completed successfully!');
 

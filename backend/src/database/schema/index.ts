@@ -21,3 +21,4 @@ export * from './careers';
 export * from './interviews';
 export * from './resumes';
 export * from './activity_feed';
+export * from './placement';

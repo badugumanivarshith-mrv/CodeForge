@@ -42,6 +42,15 @@ import { ProblemWorkspacePage } from '../pages/ProblemWorkspacePage';
 import { SubmissionHistoryPage } from '../pages/SubmissionHistoryPage';
 import { SubmissionDetailPage } from '../pages/SubmissionDetailPage';
 
+// Phase 10 Pages
+import { JobBoardPage } from '../pages/JobBoardPage';
+import { JobDetailPage } from '../pages/JobDetailPage';
+import { CandidateApplicationsPage } from '../pages/CandidateApplicationsPage';
+import { AiCareerAdvisorPage } from '../pages/AiCareerAdvisorPage';
+import { ReferralNetworkPage } from '../pages/ReferralNetworkPage';
+import { HiringChallengesPage } from '../pages/HiringChallengesPage';
+import { RecruiterPortalPage } from '../pages/RecruiterPortalPage';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -120,6 +129,26 @@ export const router = createBrowserRouter([
         element: <ActivityFeedPage />,
       },
       {
+        path: 'jobs',
+        element: <JobBoardPage />,
+      },
+      {
+        path: 'jobs/:idOrSlug',
+        element: <JobDetailPage />,
+      },
+      {
+        path: 'advisor',
+        element: <AiCareerAdvisorPage />,
+      },
+      {
+        path: 'referrals',
+        element: <ReferralNetworkPage />,
+      },
+      {
+        path: 'hiring-challenges',
+        element: <HiringChallengesPage />,
+      },
+      {
         element: <ProtectedRoute />,
         children: [
           {
@@ -177,6 +206,14 @@ export const router = createBrowserRouter([
           {
             path: 'resumes',
             element: <ResumeBuilderPage />,
+          },
+          {
+            path: 'my-applications',
+            element: <CandidateApplicationsPage />,
+          },
+          {
+            path: 'recruiter',
+            element: <RecruiterPortalPage />,
           },
         ],
       },

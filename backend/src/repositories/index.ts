@@ -20,3 +20,4 @@ export * from './CareerRepository';
 export * from './InterviewRepository';
 export * from './ResumeRepository';
 export * from './ActivityFeedRepository';
+export * from './PlacementRepository';

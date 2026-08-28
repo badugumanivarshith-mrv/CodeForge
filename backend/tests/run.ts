@@ -33,6 +33,15 @@ async function main() {
   await import('./integration/aiAnalysis.integration.test');
   await import('./security/judgeSecurity.test');
 
+  // Phase 10: AI Placement & Hiring Ecosystem Test Suites
+  await import('./unit/jobMatching.test');
+  await import('./unit/careerAdvisor.test');
+  await import('./integration/recruiters.integration.test');
+  await import('./integration/jobs.integration.test');
+  await import('./integration/ats.integration.test');
+  await import('./integration/placementReferralsAndChallenges.integration.test');
+  await import('./security/placementSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {
@@ -42,9 +51,7 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 24000);
-
-
+  }, 45000);
 }
 
 main().catch(err => {

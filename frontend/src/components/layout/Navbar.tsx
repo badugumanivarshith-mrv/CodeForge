@@ -163,6 +163,19 @@ export const Navbar: React.FC = () => {
             Talent
           </Link>
           <Link
+            to="/jobs"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'var(--color-brand-primary, #6366f1)',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-brand-primary, #6366f1)')}
+          >
+            Jobs & Hiring
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',

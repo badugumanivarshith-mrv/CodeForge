@@ -33,14 +33,22 @@ import {
   InterviewStatus,
   ActivityType,
   JudgeVerdict,
+  JobType,
+  WorkplaceType,
+  JobStatus,
+  ApplicationStage,
+  MatchCategory,
+  ReferralStatus,
+  HiringInterviewType,
+  HiringInterviewStatus,
+  OfferRecommendation,
 } from '@codeforge/shared';
-
-
 
 export const userRoleEnum = pgEnum('user_role', [
   UserRole.STUDENT,
   UserRole.EDUCATOR,
   UserRole.ADMIN,
+  UserRole.RECRUITER,
 ]);
 
 export const userStatusEnum = pgEnum('user_status', [
@@ -294,4 +302,74 @@ export const activityTypeEnum = pgEnum('activity_type', [
   ActivityType.SKILL_PROMOTED,
   ActivityType.INTERVIEW_COMPLETED,
   ActivityType.FORUM_ACCEPTED_ANSWER,
+  ActivityType.JOB_APPLICATION_SUBMITTED,
+  ActivityType.HIRED,
+]);
+
+export const jobTypeEnum = pgEnum('job_type', [
+  JobType.FULL_TIME,
+  JobType.PART_TIME,
+  JobType.INTERNSHIP,
+  JobType.CONTRACT,
+]);
+
+export const workplaceTypeEnum = pgEnum('workplace_type', [
+  WorkplaceType.REMOTE,
+  WorkplaceType.HYBRID,
+  WorkplaceType.ON_SITE,
+]);
+
+export const jobStatusEnum = pgEnum('job_status', [
+  JobStatus.DRAFT,
+  JobStatus.ACTIVE,
+  JobStatus.PAUSED,
+  JobStatus.CLOSED,
+]);
+
+export const applicationStageEnum = pgEnum('application_stage', [
+  ApplicationStage.APPLIED,
+  ApplicationStage.SCREENING,
+  ApplicationStage.INTERVIEW,
+  ApplicationStage.TECHNICAL_ROUND,
+  ApplicationStage.HR_ROUND,
+  ApplicationStage.OFFER,
+  ApplicationStage.REJECTED,
+  ApplicationStage.HIRED,
+]);
+
+export const matchCategoryEnum = pgEnum('match_category', [
+  MatchCategory.STRONG_MATCH,
+  MatchCategory.GOOD_MATCH,
+  MatchCategory.PARTIAL_MATCH,
+  MatchCategory.WEAK_MATCH,
+]);
+
+export const referralStatusEnum = pgEnum('referral_status', [
+  ReferralStatus.PENDING,
+  ReferralStatus.ACCEPTED,
+  ReferralStatus.REJECTED,
+  ReferralStatus.HIRED,
+]);
+
+export const hiringInterviewTypeEnum = pgEnum('hiring_interview_type', [
+  HiringInterviewType.SCREENING,
+  HiringInterviewType.TECHNICAL,
+  HiringInterviewType.SYSTEM_DESIGN,
+  HiringInterviewType.BEHAVIORAL,
+  HiringInterviewType.HR,
+]);
+
+export const hiringInterviewStatusEnum = pgEnum('hiring_interview_status', [
+  HiringInterviewStatus.SCHEDULED,
+  HiringInterviewStatus.COMPLETED,
+  HiringInterviewStatus.CANCELLED,
+  HiringInterviewStatus.NO_SHOW,
+]);
+
+export const offerRecommendationEnum = pgEnum('offer_recommendation', [
+  OfferRecommendation.STRONG_HIRE,
+  OfferRecommendation.HIRE,
+  OfferRecommendation.LEAN_HIRE,
+  OfferRecommendation.LEAN_NO_HIRE,
+  OfferRecommendation.NO_HIRE,
 ]);
