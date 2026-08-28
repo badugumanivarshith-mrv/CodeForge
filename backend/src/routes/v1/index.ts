@@ -27,6 +27,7 @@ import { interviewRouter } from './interview.routes';
 import { resumeRouter } from './resume.routes';
 import { talentRouter } from './talent.routes';
 import { activityRouter } from './activity.routes';
+import { judgeRouter } from './judge.routes';
 
 export const v1Router = Router();
 
@@ -38,6 +39,7 @@ v1Router.use('/quizzes', quizzesRouter);
 v1Router.use('/problems', problemsRouter);
 v1Router.use('/assignments', assignmentsRouter);
 v1Router.use('/submissions', submissionsRouter);
+v1Router.use('/judge', judgeRouter);
 v1Router.use('/ai', aiRouter);
 v1Router.use('/progress', progressRouter);
 v1Router.use('/gamification', gamificationRouter);

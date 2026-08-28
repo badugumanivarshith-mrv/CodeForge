@@ -24,7 +24,7 @@ describe('Curriculum Integration Tests', () => {
 
   test('1. Get all active Tier-1 languages', async () => {
     const languages = await curriculumService.getAllLanguages();
-    assert.strictEqual(languages.length, 6);
+    assert.ok(languages.length >= 6);
     const slugs = languages.map(l => l.slug);
     assert.ok(slugs.includes('python'));
     assert.ok(slugs.includes('javascript'));

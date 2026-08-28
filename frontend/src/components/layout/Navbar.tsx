@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
             Curriculum
           </Link>
           <Link
-            to="/workspace"
+            to="/arena"
             style={{
               fontSize: '13px',
               fontWeight: 600,
@@ -82,7 +82,7 @@ export const Navbar: React.FC = () => {
             onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
             onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
           >
-            Workspace
+            Arena
           </Link>
           <Link
             to="/contests"

@@ -25,6 +25,14 @@ async function main() {
   await import('./integration/resume.integration.test');
   await import('./integration/talent.integration.test');
 
+  // Phase 9: Online Judge & Competitive Arena Test Suites
+  await import('./unit/judge.test');
+  await import('./unit/analytics.test');
+  await import('./integration/submissions.integration.test');
+  await import('./integration/contestJudge.integration.test');
+  await import('./integration/aiAnalysis.integration.test');
+  await import('./security/judgeSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {
@@ -34,7 +42,7 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 12000);
+  }, 24000);
 
 
 }

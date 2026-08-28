@@ -1,17 +1,27 @@
-import { Router, Request, Response } from 'express';
-import { sendSuccess } from '../../core/utils/response';
+import { Router } from 'express';
+import { JudgeController } from '../../controllers/judge.controller';
 import { authGuard } from '../../middleware/authMiddleware';
 
 export const submissionsRouter = Router();
+const judgeController = new JudgeController();
 
-submissionsRouter.post('/run', authGuard, (_req: Request, res: Response) => {
-  return sendSuccess(res, { message: 'Code execution run queued' });
+// Execution & judging endpoints
+submissionsRouter.post('/run', authGuard, judgeController.runCode);
+submissionsRouter.post('/submit', authGuard, judgeController.submitSolution);
+submissionsRouter.post('/', authGuard, judgeController.submitSolution);
+
+// Analytics endpoint (before :submissionId to avoid param collision)
+submissionsRouter.get('/analytics/me', authGuard, judgeController.getPerformanceAnalytics);
+submissionsRouter.get('/me', authGuard, (req, res, next) => {
+  req.query.userOnly = 'true';
+  return judgeController.listSubmissions(req, res, next);
 });
 
-submissionsRouter.post('/submit', authGuard, (_req: Request, res: Response) => {
-  return sendSuccess(res, { message: 'Code submission queued for judging' });
-});
+// Listing & lookups
+submissionsRouter.get('/', authGuard, judgeController.listSubmissions);
+submissionsRouter.get('/problem/:problemId', authGuard, judgeController.getProblemSubmissions);
+submissionsRouter.get('/contest/:contestId', authGuard, judgeController.getContestSubmissions);
 
-submissionsRouter.get('/:submissionId', authGuard, (req: Request, res: Response) => {
-  return sendSuccess(res, { submissionId: req.params.submissionId, status: 'queued' });
-});
+// Single submission & AI failure analysis
+submissionsRouter.get('/:submissionId', authGuard, judgeController.getSubmission);
+submissionsRouter.get('/:submissionId/analysis', authGuard, judgeController.getSubmissionAnalysis);

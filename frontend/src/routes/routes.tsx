@@ -36,6 +36,12 @@ import { ResumeBuilderPage } from '../pages/ResumeBuilderPage';
 import { TalentDiscoveryPage } from '../pages/TalentDiscoveryPage';
 import { ActivityFeedPage } from '../pages/ActivityFeedPage';
 
+// Phase 9 Pages
+import { ArenaPage } from '../pages/ArenaPage';
+import { ProblemWorkspacePage } from '../pages/ProblemWorkspacePage';
+import { SubmissionHistoryPage } from '../pages/SubmissionHistoryPage';
+import { SubmissionDetailPage } from '../pages/SubmissionDetailPage';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -56,6 +62,22 @@ export const router = createBrowserRouter([
       {
         path: 'learn/:languageSlug/:topicSlug',
         element: <LearnPage />,
+      },
+      {
+        path: 'arena',
+        element: <ArenaPage />,
+      },
+      {
+        path: 'problems/:problemSlug',
+        element: <ProblemWorkspacePage />,
+      },
+      {
+        path: 'submissions',
+        element: <SubmissionHistoryPage />,
+      },
+      {
+        path: 'submissions/:submissionId',
+        element: <SubmissionDetailPage />,
       },
       {
         path: 'workspace',

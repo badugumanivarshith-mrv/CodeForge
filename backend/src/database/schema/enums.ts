@@ -32,6 +32,7 @@ import {
   InterviewType,
   InterviewStatus,
   ActivityType,
+  JudgeVerdict,
 } from '@codeforge/shared';
 
 
@@ -55,6 +56,8 @@ export const languageIdEnum = pgEnum('language_id', [
   LanguageId.CPP,
   LanguageId.JAVASCRIPT,
   LanguageId.TYPESCRIPT,
+  LanguageId.GO,
+  LanguageId.RUST,
 ]);
 
 export const topicDifficultyEnum = pgEnum('topic_difficulty', [
@@ -95,9 +98,21 @@ export const submissionStatusEnum = pgEnum('submission_status', [
   SubmissionStatus.WRONG_ANSWER,
   SubmissionStatus.TIME_LIMIT_EXCEEDED,
   SubmissionStatus.MEMORY_LIMIT_EXCEEDED,
+  SubmissionStatus.OUTPUT_LIMIT_EXCEEDED,
   SubmissionStatus.RUNTIME_ERROR,
   SubmissionStatus.COMPILATION_ERROR,
   SubmissionStatus.INTERNAL_ERROR,
+]);
+
+export const judgeVerdictEnum = pgEnum('judge_verdict', [
+  JudgeVerdict.ACCEPTED,
+  JudgeVerdict.WRONG_ANSWER,
+  JudgeVerdict.COMPILATION_ERROR,
+  JudgeVerdict.RUNTIME_ERROR,
+  JudgeVerdict.TIME_LIMIT_EXCEEDED,
+  JudgeVerdict.MEMORY_LIMIT_EXCEEDED,
+  JudgeVerdict.OUTPUT_LIMIT_EXCEEDED,
+  JudgeVerdict.INTERNAL_ERROR,
 ]);
 
 export const assignmentStatusEnum = pgEnum('assignment_status', [

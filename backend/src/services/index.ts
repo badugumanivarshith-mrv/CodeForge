@@ -23,4 +23,5 @@ export * from './interview.service';
 export * from './resume.service';
 export * from './talent.service';
 export * from './activityFeed.service';
+export * from './analytics.service';
 export * from './ai';

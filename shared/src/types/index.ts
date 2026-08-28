@@ -29,6 +29,7 @@ import {
   InterviewType,
   InterviewStatus,
   ActivityType,
+  JudgeVerdict,
 } from '../enums/index.js';
 
 
@@ -433,9 +434,13 @@ export interface AssignmentSubmissionDto {
 export interface SubmissionTestCaseResultDto {
   id: string;
   submissionId: string;
-  testCaseId: string;
-  status: SubmissionStatus;
+  testCaseId?: string;
+  sequence?: number;
+  status: SubmissionStatus | JudgeVerdict;
+  isSample?: boolean;
   actualOutput: string | null;
+  expectedOutput?: string | null;
+  inputData?: string | null;
   executionTimeMs: number;
   memoryKb: number;
   errorMessage?: string | null;
@@ -445,15 +450,21 @@ export interface SubmissionDto {
   id: string;
   userId: string;
   problemId: string;
+  contestId?: string;
   languageId: LanguageId;
   sourceCode: string;
-  status: SubmissionStatus;
+  status: SubmissionStatus | JudgeVerdict;
+  verdict?: JudgeVerdict;
   executionTimeMs: number | null;
   memoryUsedKb: number | null;
   passedTestCases: number;
   totalTestCases: number;
   compileOutput: string | null;
   createdAt: string;
+  judgedAt?: string | null;
+  username?: string;
+  problemTitle?: string;
+  problemSlug?: string;
   testResults?: SubmissionTestCaseResultDto[];
 }
 
@@ -1690,4 +1701,142 @@ export interface CreateStudyGoalDto {
   targetDate?: string;
   targetTopicId?: string;
   targetContestId?: string;
+}
+
+// ==========================================
+// PHASE 9: ONLINE JUDGE & COMPETITIVE CODING ARENA DTOs
+// ==========================================
+
+export interface LanguageRuntimeDto {
+  id: string;
+  languageId: LanguageId;
+  displayName: string;
+  version: string;
+  compilerPath?: string;
+  runtimePath?: string;
+  compileCommand?: string;
+  runCommand?: string;
+  timeLimitMultiplier: number;
+  memoryLimitMultiplier: number;
+  isCompiled: boolean;
+  isActive: boolean;
+}
+
+export interface SubmitSolutionDto {
+  problemId: string;
+  languageId: LanguageId;
+  sourceCode: string;
+  contestId?: string;
+}
+
+export interface RunCodeDto {
+  problemId: string;
+  languageId: LanguageId;
+  sourceCode: string;
+  customInput?: string;
+}
+
+export type SubmissionTestResultDto = SubmissionTestCaseResultDto;
+
+export interface SubmissionResultDto {
+  id: string;
+  submissionId: string;
+  status: SubmissionStatus | JudgeVerdict;
+  verdict: JudgeVerdict;
+  totalRuntimeMs: number;
+  peakMemoryKb: number;
+  passedTestCases: number;
+  totalTestCases: number;
+  compileOutput?: string | null;
+  testResults: SubmissionTestResultDto[];
+}
+
+export interface SubmissionDetailDto extends SubmissionDto {
+  result?: SubmissionResultDto;
+}
+
+export interface JudgeRunResultDto {
+  status: SubmissionStatus | JudgeVerdict;
+  verdict: JudgeVerdict;
+  executionTimeMs: number;
+  memoryKb: number;
+  compileOutput?: string;
+  sampleResults: {
+    sequence: number;
+    inputData: string;
+    expectedOutput: string;
+    actualOutput: string;
+    isPassed: boolean;
+    executionTimeMs: number;
+    memoryKb: number;
+    errorMessage?: string;
+  }[];
+}
+
+export interface SubmissionAnalysisDto {
+  submissionId: string;
+  verdict: JudgeVerdict;
+  probableBugCategory: string;
+  likelyRootCause: string;
+  missedEdgeCases: string[];
+  complexityConcerns: {
+    estimatedTimeComplexity?: string;
+    estimatedSpaceComplexity?: string;
+    analysis: string;
+  };
+  recommendedLearningTopics: {
+    topicId?: string;
+    title: string;
+    reason: string;
+  }[];
+  suggestedNextProblems: {
+    problemId?: string;
+    slug?: string;
+    title: string;
+    difficulty: ProblemDifficulty | string;
+  }[];
+}
+
+export interface PerformanceAnalyticsDto {
+  userId: string;
+  totalSubmissions: number;
+  acceptedSubmissions: number;
+  acceptanceRate: number;
+  averageRuntimeMs: number;
+  averageMemoryKb: number;
+  languageUsage: {
+    languageId: LanguageId;
+    count: number;
+    percentage: number;
+  }[];
+  solvedByDifficulty: {
+    easy: number;
+    medium: number;
+    difficult: number;
+    total: number;
+  };
+  verdictDistribution: Record<string, number>;
+  recentTrend: {
+    date: string;
+    submissionsCount: number;
+    acceptedCount: number;
+  }[];
+  topicMasteryIndicators: {
+    topicId: string;
+    topicName: string;
+    masteryScore: number;
+    solvedCount: number;
+  }[];
+}
+
+export interface SubmissionFilterQueryDto {
+  userId?: string;
+  problemId?: string;
+  contestId?: string;
+  languageId?: LanguageId;
+  status?: SubmissionStatus | JudgeVerdict;
+  limit?: number;
+  offset?: number;
+  sortBy?: 'createdAt' | 'runtime' | 'memory';
+  sortOrder?: 'asc' | 'desc';
 }

@@ -18,6 +18,7 @@ import {
   contests,
   contestProblems,
   forumTags,
+  languageRuntimes,
 } from '../schema';
 import { eq, and } from 'drizzle-orm';
 import { seedLanguages } from './data/languages';
@@ -30,6 +31,7 @@ import { SEED_PROBLEMS } from './data/problems';
 import { SEED_ASSESSMENT_QUESTIONS } from './data/assessments';
 import { SEED_CONTESTS } from './data/contests';
 import { SEED_FORUM_TAGS } from './data/community';
+import { SEED_LANGUAGE_RUNTIMES } from './data/runtimes';
 import { logger } from '../../core/utils/logger';
 
 
@@ -466,6 +468,30 @@ export const runSeed = async () => {
         });
     }
     logger.info(`  ✓ Successfully seeded ${SEED_FORUM_TAGS.length} Forum Tags.`);
+
+    // 10. Seed Language Runtimes
+    logger.info('  -> Seeding Language Runtimes...');
+    for (const runtime of SEED_LANGUAGE_RUNTIMES) {
+      await db
+        .insert(languageRuntimes)
+        .values(runtime)
+        .onConflictDoUpdate({
+          target: languageRuntimes.languageId,
+          set: {
+            displayName: runtime.displayName,
+            version: runtime.version,
+            compilerPath: runtime.compilerPath,
+            runtimePath: runtime.runtimePath,
+            compileCommand: runtime.compileCommand,
+            runCommand: runtime.runCommand,
+            timeLimitMultiplier: runtime.timeLimitMultiplier,
+            memoryLimitMultiplier: runtime.memoryLimitMultiplier,
+            isCompiled: runtime.isCompiled,
+            isActive: runtime.isActive,
+          },
+        });
+    }
+    logger.info(`  ✓ Successfully seeded ${SEED_LANGUAGE_RUNTIMES.length} Language Runtimes.`);
 
     logger.info('🎉 Database seeding completed successfully!');
 

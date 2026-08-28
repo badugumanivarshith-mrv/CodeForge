@@ -17,6 +17,8 @@ export enum LanguageId {
   CPP = 'cpp',
   JAVASCRIPT = 'javascript',
   TYPESCRIPT = 'typescript',
+  GO = 'go',
+  RUST = 'rust',
 }
 
 export enum TopicDifficulty {
@@ -58,9 +60,21 @@ export enum SubmissionStatus {
   WRONG_ANSWER = 'wrong_answer',
   TIME_LIMIT_EXCEEDED = 'time_limit_exceeded',
   MEMORY_LIMIT_EXCEEDED = 'memory_limit_exceeded',
+  OUTPUT_LIMIT_EXCEEDED = 'output_limit_exceeded',
   RUNTIME_ERROR = 'runtime_error',
   COMPILATION_ERROR = 'compilation_error',
   INTERNAL_ERROR = 'internal_error',
+}
+
+export enum JudgeVerdict {
+  ACCEPTED = 'ACCEPTED',
+  WRONG_ANSWER = 'WRONG_ANSWER',
+  COMPILATION_ERROR = 'COMPILATION_ERROR',
+  RUNTIME_ERROR = 'RUNTIME_ERROR',
+  TIME_LIMIT_EXCEEDED = 'TIME_LIMIT_EXCEEDED',
+  MEMORY_LIMIT_EXCEEDED = 'MEMORY_LIMIT_EXCEEDED',
+  OUTPUT_LIMIT_EXCEEDED = 'OUTPUT_LIMIT_EXCEEDED',
+  INTERNAL_ERROR = 'INTERNAL_ERROR',
 }
 
 export enum AssignmentStatus {
