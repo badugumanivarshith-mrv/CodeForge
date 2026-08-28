@@ -131,6 +131,18 @@ import {
   PlanetaryTwinPage,
 } from '../pages/planetary-network';
 
+// Phase 18 Cognitive Operating System & Superintelligence Core Pages
+import {
+  CognitiveOSPage,
+  DigitalBrainPage,
+  MemoryEvolutionPage,
+  AgentCouncilPage,
+  PredictiveIntelligencePage,
+  StrategyCenterPage,
+  SelfReflectionPage,
+  AutonomousExecutionPage,
+} from '../pages/cognitive-os';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -530,6 +542,40 @@ export const router = createBrowserRouter([
           {
             path: 'planetary-twins',
             element: <PlanetaryTwinPage />,
+          },
+
+          // Phase 18 Cognitive Operating System & Superintelligence Core Routes
+          {
+            path: 'cognitive-os',
+            element: <CognitiveOSPage />,
+          },
+          {
+            path: 'digital-brain',
+            element: <DigitalBrainPage />,
+          },
+          {
+            path: 'memory-evolution',
+            element: <MemoryEvolutionPage />,
+          },
+          {
+            path: 'agent-council',
+            element: <AgentCouncilPage />,
+          },
+          {
+            path: 'predictive-intelligence',
+            element: <PredictiveIntelligencePage />,
+          },
+          {
+            path: 'strategy-center',
+            element: <StrategyCenterPage />,
+          },
+          {
+            path: 'self-reflection',
+            element: <SelfReflectionPage />,
+          },
+          {
+            path: 'autonomous-execution',
+            element: <AutonomousExecutionPage />,
           },
         ],
       },

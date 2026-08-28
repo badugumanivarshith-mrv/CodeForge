@@ -120,6 +120,17 @@ async function main() {
   await import('./unit/strategicForesight.test');
   await import('./security/planetarySecurity.test');
 
+  // Phase 18: Autonomous Superintelligence Core & Cognitive Operating System Test Suites
+  await import('./unit/cognitiveEngine.test');
+  await import('./unit/reasoningEngine.test');
+  await import('./unit/memoryEvolution.test');
+  await import('./unit/digitalBrain.test');
+  await import('./unit/agentCouncil.test');
+  await import('./unit/predictiveIntelligence.test');
+  await import('./unit/strategyEngine.test');
+  await import('./unit/selfImprovement.test');
+  await import('./security/cognitiveSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

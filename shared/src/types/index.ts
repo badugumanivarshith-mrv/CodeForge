@@ -111,6 +111,16 @@ import {
   EconomicSignalType,
   ForesightHorizon,
   PlanetaryEventCategory,
+  CognitiveGoalStatus,
+  ReasoningStrategy,
+  CognitiveMemoryType,
+  AgentCouncilType,
+  ConsensusStatus,
+  PredictionHorizon,
+  ExecutionLoopState,
+  SelfImprovementDomain,
+  MetacognitionConfidence,
+  StrategicPriority,
 } from '../enums/index.js';
 
 
@@ -5129,4 +5139,240 @@ export interface PlanetaryCommandCenterOverviewDto {
   topOpportunities: CivilizationOpportunityDto[];
   systemicRisks: CivilizationRiskDto[];
   strategicForecastsCount: number;
+}
+
+// ============================================================================
+// PHASE 18: AUTONOMOUS SUPERINTELLIGENCE CORE & COGNITIVE OPERATING SYSTEM
+// ============================================================================
+
+// Module 1: Cognitive Core & Reasoning Engine
+export interface CognitiveGoalDto {
+  id: string;
+  userId: string;
+  title: string;
+  description: string;
+  status: CognitiveGoalStatus;
+  priority: StrategicPriority;
+  targetHorizon: PredictionHorizon;
+  completionScore: number;
+  subgoalsCount: number;
+  activeTracesCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CognitiveSubgoalDto {
+  id: string;
+  goalId: string;
+  title: string;
+  description: string;
+  sequenceOrder: number;
+  status: CognitiveGoalStatus;
+  estimatedComplexity: number;
+  assignedAgentId?: string;
+  createdAt: string;
+}
+
+export interface ReasoningTraceDto {
+  id: string;
+  goalId?: string;
+  strategy: ReasoningStrategy;
+  inputPrompt: string;
+  hypothesisTree: Array<{ step: number; thought: string; confidence: number; branchingFactor?: number }>;
+  synthesis: string;
+  confidenceScore: number;
+  biasAudits: string[];
+  executionTimeMs: number;
+  createdAt: string;
+}
+
+export interface MetacognitiveEvaluationDto {
+  id: string;
+  traceId: string;
+  confidenceTier: MetacognitionConfidence;
+  epistemicUncertainty: number;
+  heuristicBiasesIdentified: string[];
+  suggestedMitigations: string[];
+  calibrationScore: number;
+  createdAt: string;
+}
+
+export interface SelfReflectionReportDto {
+  id: string;
+  entityType: 'agent' | 'user' | 'workflow' | 'council';
+  entityId: string;
+  observations: string[];
+  identifiedStrengths: string[];
+  identifiedDeficiencies: string[];
+  lessonsLearned: string[];
+  actionableAdjustments: string[];
+  impactScore: number;
+  createdAt: string;
+}
+
+// Module 2: Autonomous Learning & Self-Improvement
+export interface LearningEvolutionRecordDto {
+  id: string;
+  domain: SelfImprovementDomain;
+  targetEntityId: string;
+  preAdaptationPerformance: number;
+  postAdaptationPerformance: number;
+  performanceDelta: number;
+  reinforcementIterations: number;
+  adaptationSummary: string;
+  appliedAt: string;
+}
+
+export interface SelfImprovementRecordDto {
+  id: string;
+  domain: SelfImprovementDomain;
+  componentName: string;
+  optimizationType: string;
+  improvementScore: number;
+  accuracyDelta: number;
+  latencyReductionPercent: number;
+  status: 'applied' | 'testing' | 'rolled_back';
+  createdAt: string;
+}
+
+// Module 3: Memory Evolution System
+export interface MemoryRecordDto {
+  id: string;
+  userId: string;
+  memoryType: CognitiveMemoryType;
+  conceptKey: string;
+  content: string;
+  contextSummary: string;
+  importanceWeight: number;
+  accessCount: number;
+  decayRate: number;
+  lastRecalledAt: string;
+  createdAt: string;
+}
+
+export interface MemoryConsolidationReportDto {
+  id: string;
+  userId: string;
+  consolidatedCount: number;
+  forgottenCount: number;
+  synthesizedConcepts: string[];
+  compressionRatio: number;
+  knowledgeCoherenceScore: number;
+  createdAt: string;
+}
+
+// Module 4: Multi-Agent Collaborative Councils
+export interface AgentCouncilDto {
+  id: string;
+  councilType: AgentCouncilType;
+  councilName: string;
+  leadAgentId: string;
+  participatingAgentIds: string[];
+  activeDebatesCount: number;
+  consensusRatio: number;
+  charterStatement: string;
+  createdAt: string;
+}
+
+export interface CouncilDebateDto {
+  id: string;
+  councilId: string;
+  topic: string;
+  status: ConsensusStatus;
+  perspectives: Array<{ agentId: string; role: string; argument: string; confidence: number }>;
+  contradictionsDetected: string[];
+  convergedSynthesis?: string;
+  consensusScore?: number;
+  createdAt: string;
+  resolvedAt?: string;
+}
+
+export interface CouncilVoteDto {
+  id: string;
+  debateId: string;
+  agentId: string;
+  voteOption: string;
+  rationale: string;
+  weight: number;
+  createdAt: string;
+}
+
+// Module 5: Autonomous Execution Fabric
+export interface ExecutionLoopRecordDto {
+  id: string;
+  goalId: string;
+  currentState: ExecutionLoopState;
+  iteration: number;
+  maxIterations: number;
+  observations: string[];
+  reflectionSummary?: string;
+  appliedImprovements?: string[];
+  hasSucceeded: boolean;
+  durationMs: number;
+  createdAt: string;
+}
+
+// Module 6: Predictive Intelligence Engine
+export interface PredictiveForecastDto {
+  id: string;
+  targetScope: 'user' | 'project' | 'organization' | 'planetary';
+  targetId: string;
+  horizon: PredictionHorizon;
+  successProbability: number;
+  expectedOutcomes: Array<{ metric: string; projectedValue: number; unit: string; trend: 'up' | 'down' | 'stable' }>;
+  riskFactors: string[];
+  predictiveConfidence: number;
+  actionableRecommendations: string[];
+  createdAt: string;
+}
+
+// Module 7: Personal Digital Brain
+export interface DigitalBrainProfileDto {
+  id: string;
+  userId: string;
+  totalMemoriesCount: number;
+  knowledgeNodesCount: number;
+  cognitiveEfficiencyScore: number;
+  dominantThinkingPatterns: string[];
+  recentSyntheses: string[];
+  activeGoalsSummary: string[];
+  updatedAt: string;
+}
+
+export interface KnowledgeGraphNodeDto {
+  id: string;
+  brainId: string;
+  label: string;
+  nodeType: string;
+  properties: Record<string, any>;
+  connectedEdgeCount: number;
+}
+
+// Module 8: AI Strategy Engine
+export interface StrategicPlanDto {
+  id: string;
+  scope: string;
+  priority: StrategicPriority;
+  horizon: PredictionHorizon;
+  title: string;
+  strategicNarrative: string;
+  resourceAllocationMap: Record<string, number>;
+  milestones: Array<{ title: string; targetQuarter: string; expectedOutcome: string }>;
+  riskAssessments: Array<{ risk: string; severity: 'low' | 'medium' | 'high' | 'critical'; mitigation: string }>;
+  expectedRoiScore: number;
+  createdAt: string;
+}
+
+// Module 9: Executive Command Center 2.0 Overview
+export interface ExecutiveCommandCenterOverviewDto {
+  cognitiveHealthScore: number;
+  metacognitiveEfficiency: number;
+  activeGoalsCount: number;
+  totalMemoriesSynthesized: number;
+  activeCouncilDebatesCount: number;
+  activeExecutionLoopsCount: number;
+  predictiveForesightAccuracy: number;
+  selfImprovementVelocity: number;
+  topStrategicOpportunities: Array<{ title: string; priority: StrategicPriority; potentialImpact: number }>;
+  recentSelfReflections: SelfReflectionReportDto[];
 }

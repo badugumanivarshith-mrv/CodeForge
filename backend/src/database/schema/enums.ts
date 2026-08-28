@@ -114,6 +114,16 @@ import {
   EconomicSignalType,
   ForesightHorizon,
   PlanetaryEventCategory,
+  CognitiveGoalStatus,
+  ReasoningStrategy,
+  CognitiveMemoryType,
+  AgentCouncilType,
+  ConsensusStatus,
+  PredictionHorizon,
+  ExecutionLoopState,
+  SelfImprovementDomain,
+  MetacognitionConfidence,
+  StrategicPriority,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1065,4 +1075,91 @@ export const planetaryEventCategoryEnum = pgEnum('planetary_event_category', [
   PlanetaryEventCategory.INNOVATION_PATENTED,
   PlanetaryEventCategory.FEDERATION_FORMED,
   PlanetaryEventCategory.FORESIGHT_UPDATED,
+]);
+
+// Phase 18 Cognitive OS & Autonomous Superintelligence Core pgEnums
+export const cognitiveGoalStatusEnum = pgEnum('cognitive_goal_status', [
+  CognitiveGoalStatus.PENDING,
+  CognitiveGoalStatus.PLANNING,
+  CognitiveGoalStatus.EXECUTING,
+  CognitiveGoalStatus.EVALUATING,
+  CognitiveGoalStatus.COMPLETED,
+  CognitiveGoalStatus.FAILED,
+  CognitiveGoalStatus.ABANDONED,
+]);
+
+export const reasoningStrategyEnum = pgEnum('reasoning_strategy', [
+  ReasoningStrategy.DEDUCTIVE,
+  ReasoningStrategy.INDUCTIVE,
+  ReasoningStrategy.ABDUCTIVE,
+  ReasoningStrategy.ANALOGICAL,
+  ReasoningStrategy.DIALECTIC,
+  ReasoningStrategy.FIRST_PRINCIPLES,
+  ReasoningStrategy.MONTE_CARLO_TREE,
+]);
+
+export const cognitiveMemoryTypeEnum = pgEnum('cognitive_memory_type', [
+  CognitiveMemoryType.WORKING,
+  CognitiveMemoryType.EPISODIC,
+  CognitiveMemoryType.SEMANTIC,
+  CognitiveMemoryType.PROCEDURAL,
+  CognitiveMemoryType.STRATEGIC,
+]);
+
+export const agentCouncilTypeEnum = pgEnum('agent_council_type', [
+  AgentCouncilType.ENGINEERING_COUNCIL,
+  AgentCouncilType.RESEARCH_COUNCIL,
+  AgentCouncilType.CAREER_COUNCIL,
+  AgentCouncilType.EDUCATION_COUNCIL,
+  AgentCouncilType.EXECUTIVE_COUNCIL,
+]);
+
+export const consensusStatusEnum = pgEnum('consensus_status', [
+  ConsensusStatus.DELIBERATING,
+  ConsensusStatus.CONVERGED,
+  ConsensusStatus.DEADLOCKED,
+  ConsensusStatus.OVERRIDDEN,
+  ConsensusStatus.RATIFIED,
+]);
+
+export const predictionHorizonEnum = pgEnum('prediction_horizon', [
+  PredictionHorizon.SEVEN_DAYS,
+  PredictionHorizon.THIRTY_DAYS,
+  PredictionHorizon.NINETY_DAYS,
+  PredictionHorizon.ONE_YEAR,
+  PredictionHorizon.THREE_YEARS,
+  PredictionHorizon.FIVE_YEARS,
+]);
+
+export const executionLoopStateEnum = pgEnum('execution_loop_state', [
+  ExecutionLoopState.EXECUTE,
+  ExecutionLoopState.OBSERVE,
+  ExecutionLoopState.REFLECT,
+  ExecutionLoopState.IMPROVE,
+  ExecutionLoopState.RETRY,
+  ExecutionLoopState.TERMINATED,
+]);
+
+export const selfImprovementDomainEnum = pgEnum('self_improvement_domain', [
+  SelfImprovementDomain.AGENT_WEIGHTS,
+  SelfImprovementDomain.PROMPT_TOPOLOGY,
+  SelfImprovementDomain.WORKFLOW_ROUTING,
+  SelfImprovementDomain.KNOWLEDGE_INDEX,
+  SelfImprovementDomain.LATENCY_TUNING,
+]);
+
+export const metacognitionConfidenceEnum = pgEnum('metacognition_confidence', [
+  MetacognitionConfidence.VERY_LOW,
+  MetacognitionConfidence.LOW,
+  MetacognitionConfidence.MODERATE,
+  MetacognitionConfidence.HIGH,
+  MetacognitionConfidence.CERTAIN,
+]);
+
+export const strategicPriorityEnum = pgEnum('strategic_priority', [
+  StrategicPriority.CRITICAL,
+  StrategicPriority.HIGH,
+  StrategicPriority.MEDIUM,
+  StrategicPriority.LOW,
+  StrategicPriority.EXPLORATORY,
 ]);

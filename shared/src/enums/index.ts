@@ -959,3 +959,90 @@ export enum PlanetaryEventCategory {
   FEDERATION_FORMED = 'federation_formed',
   FORESIGHT_UPDATED = 'foresight_updated',
 }
+
+// Phase 18 Cognitive Operating System & Autonomous Superintelligence Core Enums
+export enum CognitiveGoalStatus {
+  PENDING = 'pending',
+  PLANNING = 'planning',
+  EXECUTING = 'executing',
+  EVALUATING = 'evaluating',
+  COMPLETED = 'completed',
+  FAILED = 'failed',
+  ABANDONED = 'abandoned',
+}
+
+export enum ReasoningStrategy {
+  DEDUCTIVE = 'deductive',
+  INDUCTIVE = 'inductive',
+  ABDUCTIVE = 'abductive',
+  ANALOGICAL = 'analogical',
+  DIALECTIC = 'dialectic',
+  FIRST_PRINCIPLES = 'first_principles',
+  MONTE_CARLO_TREE = 'monte_carlo_tree',
+}
+
+export enum CognitiveMemoryType {
+  WORKING = 'working',
+  EPISODIC = 'episodic',
+  SEMANTIC = 'semantic',
+  PROCEDURAL = 'procedural',
+  STRATEGIC = 'strategic',
+}
+
+export enum AgentCouncilType {
+  ENGINEERING_COUNCIL = 'engineering_council',
+  RESEARCH_COUNCIL = 'research_council',
+  CAREER_COUNCIL = 'career_council',
+  EDUCATION_COUNCIL = 'education_council',
+  EXECUTIVE_COUNCIL = 'executive_council',
+}
+
+export enum ConsensusStatus {
+  DELIBERATING = 'deliberating',
+  CONVERGED = 'converged',
+  DEADLOCKED = 'deadlocked',
+  OVERRIDDEN = 'overridden',
+  RATIFIED = 'ratified',
+}
+
+export enum PredictionHorizon {
+  SEVEN_DAYS = 'seven_days',
+  THIRTY_DAYS = 'thirty_days',
+  NINETY_DAYS = 'ninety_days',
+  ONE_YEAR = 'one_year',
+  THREE_YEARS = 'three_years',
+  FIVE_YEARS = 'five_years',
+}
+
+export enum ExecutionLoopState {
+  EXECUTE = 'execute',
+  OBSERVE = 'observe',
+  REFLECT = 'reflect',
+  IMPROVE = 'improve',
+  RETRY = 'retry',
+  TERMINATED = 'terminated',
+}
+
+export enum SelfImprovementDomain {
+  AGENT_WEIGHTS = 'agent_weights',
+  PROMPT_TOPOLOGY = 'prompt_topology',
+  WORKFLOW_ROUTING = 'workflow_routing',
+  KNOWLEDGE_INDEX = 'knowledge_index',
+  LATENCY_TUNING = 'latency_tuning',
+}
+
+export enum MetacognitionConfidence {
+  VERY_LOW = 'very_low',
+  LOW = 'low',
+  MODERATE = 'moderate',
+  HIGH = 'high',
+  CERTAIN = 'certain',
+}
+
+export enum StrategicPriority {
+  CRITICAL = 'critical',
+  HIGH = 'high',
+  MEDIUM = 'medium',
+  LOW = 'low',
+  EXPLORATORY = 'exploratory',
+}

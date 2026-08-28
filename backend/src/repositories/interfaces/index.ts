@@ -27,3 +27,4 @@ export * from './IEcosystemRepository';
 export * from './IAgentCloudRepository';
 export * from './IGlobalEcosystemRepository';
 export * from './IPlanetaryIntelligenceRepository';
+export * from './ICognitiveCoreRepository';
