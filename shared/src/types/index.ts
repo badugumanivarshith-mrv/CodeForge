@@ -79,6 +79,18 @@ import {
   SubscriptionStatus,
   TransactionType,
   WebhookEvent,
+  AgentCloudState,
+  DistributedWorkflowType,
+  WorkflowRunStatus,
+  WorkflowStepStatus,
+  GlobalEventType,
+  WorkforceAgentRole,
+  TaskOSPriority,
+  TaskOSStatus,
+  MemoryFabricType,
+  KnowledgeGraphDomain,
+  DecisionCenterStatus,
+  TelemetryMetricType,
 } from '../enums/index.js';
 
 
@@ -3996,4 +4008,543 @@ export interface MarketplaceFilterParamsDto {
   featuredOnly?: boolean;
   search?: string;
   sortBy?: 'popular' | 'rating' | 'newest' | 'price_low' | 'price_high';
+}
+
+// ==========================================
+// PHASE 15: AI OPERATING SYSTEM DTOs
+// ==========================================
+
+// Module 1: Persistent Agent Cloud
+export interface AgentInstanceDto {
+  id: string;
+  userId: string;
+  name: string;
+  slug: string;
+  description: string;
+  role: WorkforceAgentRole;
+  state: AgentCloudState;
+  systemPrompt: string;
+  capabilities: string[];
+  assignedTools: string[];
+  isAlwaysOn: boolean;
+  scheduleCron?: string | null;
+  config: Record<string, any>;
+  lastHeartbeatAt?: string | null;
+  errorCount: number;
+  totalRuns: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateAgentInstanceDto {
+  name: string;
+  description: string;
+  role: WorkforceAgentRole;
+  systemPrompt: string;
+  capabilities?: string[];
+  assignedTools?: string[];
+  isAlwaysOn?: boolean;
+  scheduleCron?: string | null;
+  config?: Record<string, any>;
+}
+
+export interface AgentRunDto {
+  id: string;
+  agentId: string;
+  userId: string;
+  state: AgentCloudState;
+  inputPayload: Record<string, any>;
+  outputPayload?: Record<string, any> | null;
+  errorMessage?: string | null;
+  executionTimeMs: number;
+  tokensConsumed: number;
+  startedAt: string;
+  completedAt?: string | null;
+}
+
+export interface AgentCloudTaskDto {
+  id: string;
+  agentId: string;
+  userId: string;
+  title: string;
+  priority: TaskOSPriority;
+  status: TaskOSStatus;
+  payload: Record<string, any>;
+  result?: Record<string, any> | null;
+  retryCount: number;
+  maxRetries: number;
+  deadline?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AgentScheduleDto {
+  id: string;
+  agentId: string;
+  userId: string;
+  cronExpression: string;
+  isActive: boolean;
+  lastExecutedAt?: string | null;
+  nextExecutionAt?: string | null;
+  createdAt: string;
+}
+
+export interface AgentHealthStatusDto {
+  agentId: string;
+  name: string;
+  state: AgentCloudState;
+  isHealthy: boolean;
+  uptimeSeconds: number;
+  lastHeartbeat: string;
+  errorRate: number;
+  activeRuns: number;
+}
+
+// Module 2: Distributed Workflow Engine
+export interface WorkflowDefinitionDto {
+  id: string;
+  userId: string;
+  title: string;
+  slug: string;
+  description: string;
+  workflowType: DistributedWorkflowType;
+  version: number;
+  isEnterprise: boolean;
+  steps: {
+    stepId: string;
+    name: string;
+    agentRole?: WorkforceAgentRole;
+    actionType: string;
+    dependsOn?: string[];
+    condition?: string;
+    retryLimit?: number;
+    timeoutSeconds?: number;
+    config?: Record<string, any>;
+  }[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateWorkflowDefinitionDto {
+  title: string;
+  description: string;
+  workflowType: DistributedWorkflowType;
+  isEnterprise?: boolean;
+  steps: {
+    stepId: string;
+    name: string;
+    agentRole?: WorkforceAgentRole;
+    actionType: string;
+    dependsOn?: string[];
+    condition?: string;
+    retryLimit?: number;
+    timeoutSeconds?: number;
+    config?: Record<string, any>;
+  }[];
+}
+
+export interface WorkflowRunDto {
+  id: string;
+  workflowId: string;
+  userId: string;
+  status: WorkflowRunStatus;
+  triggerEvent?: string | null;
+  currentStepIndex: number;
+  totalSteps: number;
+  contextData: Record<string, any>;
+  errorLog?: string | null;
+  startedAt: string;
+  completedAt?: string | null;
+}
+
+export interface DistributedWorkflowStepDto {
+  id: string;
+  workflowRunId: string;
+  stepId: string;
+  name: string;
+  status: WorkflowStepStatus;
+  inputPayload: Record<string, any>;
+  outputPayload?: Record<string, any> | null;
+  retryAttempts: number;
+  durationMs: number;
+  errorMessage?: string | null;
+  executedAt: string;
+}
+
+export interface WorkflowEventDto {
+  id: string;
+  workflowRunId: string;
+  eventType: string;
+  payload: Record<string, any>;
+  timestamp: string;
+}
+
+// Module 3: Event Bus & Automation Engine
+export interface EventStreamDto {
+  id: string;
+  userId?: string | null;
+  eventType: GlobalEventType;
+  payload: Record<string, any>;
+  source: string;
+  timestamp: string;
+}
+
+export interface PublishEventDto {
+  eventType: GlobalEventType;
+  payload: Record<string, any>;
+  source?: string;
+}
+
+export interface AutomationRuleDto {
+  id: string;
+  userId: string;
+  name: string;
+  description: string;
+  triggerEvent: GlobalEventType;
+  conditionExpression?: string | null;
+  actionWorkflowId?: string | null;
+  targetAgentId?: string | null;
+  isActive: boolean;
+  executionCount: number;
+  lastTriggeredAt?: string | null;
+  createdAt: string;
+}
+
+export interface CreateAutomationRuleDto {
+  name: string;
+  description: string;
+  triggerEvent: GlobalEventType;
+  conditionExpression?: string | null;
+  actionWorkflowId?: string | null;
+  targetAgentId?: string | null;
+}
+
+// Module 4: Execution Fabric
+export interface ToolInvocationDto {
+  toolName: string;
+  agentId: string;
+  userId: string;
+  parameters: Record<string, any>;
+  executionTimeoutMs?: number;
+}
+
+export interface ExecutionTaskDto {
+  id: string;
+  queueName: string;
+  priority: number;
+  payload: Record<string, any>;
+  status: 'queued' | 'running' | 'completed' | 'failed';
+  assignedNode?: string | null;
+  enqueuedAt: string;
+  processedAt?: string | null;
+}
+
+export interface ExecutionResourceQuotaDto {
+  userId: string;
+  maxConcurrentAgents: number;
+  maxDailyRuns: number;
+  maxMonthlyTokens: number;
+  usedDailyRuns: number;
+  usedMonthlyTokens: number;
+  allocatedCpuPercent: number;
+  allocatedMemoryMb: number;
+}
+
+// Module 5: Organizational AI Workforces
+export interface WorkforceTeamAgentDto {
+  id: string;
+  teamId: string;
+  agentId: string;
+  role: WorkforceAgentRole;
+  assignedWorkflows: string[];
+  permissions: string[];
+  createdAt: string;
+}
+
+export interface WorkforceOrgAgentDto {
+  id: string;
+  organizationId: string;
+  agentId: string;
+  department: string;
+  role: WorkforceAgentRole;
+  isEnterpriseShared: boolean;
+  createdAt: string;
+}
+
+export interface WorkforceOptimizationReportDto {
+  scopeId: string;
+  totalAgents: number;
+  activeAgents: number;
+  workforceEfficiencyScore: number;
+  agentRoleDistribution: { role: WorkforceAgentRole; count: number }[];
+  bottlenecksIdentified: string[];
+  recommendations: string[];
+}
+
+// Module 6: Task Operating System
+export interface TaskGraphNodeDto {
+  id: string;
+  userId: string;
+  title: string;
+  description: string;
+  priority: TaskOSPriority;
+  status: TaskOSStatus;
+  estimatedHours: number;
+  predictedDeadline?: string | null;
+  assignedAgentId?: string | null;
+  dependencies: string[];
+  goalAlignmentScore: number;
+  tags: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateTaskNodeDto {
+  title: string;
+  description: string;
+  priority?: TaskOSPriority;
+  estimatedHours?: number;
+  assignedAgentId?: string | null;
+  dependencies?: string[];
+  tags?: string[];
+}
+
+export interface TaskGraphEdgeDto {
+  fromNodeId: string;
+  toNodeId: string;
+  dependencyType: 'blocks' | 'relates_to' | 'enhances';
+}
+
+export interface TaskOSPlanDto {
+  nodes: TaskGraphNodeDto[];
+  edges: TaskGraphEdgeDto[];
+  criticalPath: string[];
+  totalEstimatedHours: number;
+  completionRate: number;
+  urgentDeadlines: TaskGraphNodeDto[];
+}
+
+// Module 7: Memory Fabric 2.0
+export interface MemoryFabricRecordDto {
+  id: string;
+  userId: string;
+  agentId?: string | null;
+  memoryType: MemoryFabricType;
+  key: string;
+  content: string;
+  vectorSummary?: string | null;
+  importance: number;
+  accessCount: number;
+  metadata: Record<string, any>;
+  lastAccessedAt: string;
+  createdAt: string;
+}
+
+export interface StoreMemoryDto {
+  agentId?: string | null;
+  memoryType: MemoryFabricType;
+  key: string;
+  content: string;
+  importance?: number;
+  metadata?: Record<string, any>;
+}
+
+export interface SharedMemoryDto {
+  id: string;
+  scopeType: 'team' | 'organization' | 'global';
+  scopeId: string;
+  memoryKey: string;
+  memoryValue: string;
+  contributors: string[];
+  updatedAt: string;
+}
+
+export interface SemanticQueryDto {
+  query: string;
+  memoryType?: MemoryFabricType;
+  topK?: number;
+}
+
+// Module 8: Knowledge Fabric
+export interface KnowledgeFabricEntityDto {
+  id: string;
+  domain: KnowledgeGraphDomain;
+  name: string;
+  entityType: string;
+  description: string;
+  properties: Record<string, any>;
+  centralityScore: number;
+  createdAt: string;
+}
+
+export interface KnowledgeFabricEdgeDto {
+  id: string;
+  sourceEntityId: string;
+  targetEntityId: string;
+  relationType: string;
+  weight: number;
+  metadata: Record<string, any>;
+  createdAt: string;
+}
+
+export interface KnowledgeDiscoveryDto {
+  domain: KnowledgeGraphDomain;
+  entities: KnowledgeFabricEntityDto[];
+  edges: KnowledgeFabricEdgeDto[];
+  density: number;
+  discoveredConcepts: string[];
+  recommendedPaths: { from: string; to: string; relationChain: string[] }[];
+}
+
+export interface KnowledgeGapDto {
+  domain: KnowledgeGraphDomain;
+  missingSkillOrConcept: string;
+  suggestedAction: string;
+  impactScore: number;
+}
+
+// Module 9: AI Decision Center
+export interface DecisionRecordDto {
+  id: string;
+  userId: string;
+  title: string;
+  context: string;
+  status: DecisionCenterStatus;
+  options: {
+    optionId: string;
+    title: string;
+    description: string;
+    riskScore: number;
+    successProbability: number;
+    pros: string[];
+    cons: string[];
+  }[];
+  recommendedOptionId?: string | null;
+  confidenceScore: number;
+  strategicRoadmap: { phase: string; actions: string[]; timeframe: string }[];
+  executedOptionId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateDecisionDto {
+  title: string;
+  context: string;
+  options: {
+    title: string;
+    description: string;
+    pros?: string[];
+    cons?: string[];
+  }[];
+}
+
+export interface ScenarioSimulationDto {
+  decisionId: string;
+  scenarioName: string;
+  simulatedOutcomes: {
+    metric: string;
+    expectedChangePercent: number;
+    confidenceInterval: [number, number];
+  }[];
+  riskAssessment: string;
+}
+
+// Module 10: Real-Time Collaboration Platform
+export interface CollaborativeWorkspaceDto {
+  id: string;
+  name: string;
+  ownerId: string;
+  memberIds: string[];
+  activeAgentIds: string[];
+  livePresence: PresenceUserDto[];
+  sharedNotes: SharedNoteDto[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PresenceUserDto {
+  userId: string;
+  username: string;
+  currentView: string;
+  lastActiveAt: string;
+}
+
+export interface SharedNoteDto {
+  id: string;
+  authorId: string;
+  content: string;
+  createdAt: string;
+}
+
+// Module 11: AI Observability & Telemetry
+export interface TelemetryMetricDto {
+  id: string;
+  userId?: string | null;
+  agentId?: string | null;
+  metricType: TelemetryMetricType;
+  value: number;
+  unit: string;
+  tags: Record<string, string>;
+  recordedAt: string;
+}
+
+export interface AgentHealthMetricDto {
+  agentId: string;
+  name: string;
+  avgLatencyMs: number;
+  errorRate: number;
+  successRate: number;
+  totalTokensConsumed: number;
+  totalCostUsd: number;
+}
+
+export interface CostBreakdownDto {
+  totalCostUsd: number;
+  agentExecutionCostUsd: number;
+  toolInvocationCostUsd: number;
+  storageAndMemoryCostUsd: number;
+  byAgent: { agentId: string; name: string; costUsd: number }[];
+}
+
+export interface TelemetryDashboardDto {
+  totalAgentsOnline: number;
+  totalWorkflowRuns24h: number;
+  averageExecutionLatencyMs: number;
+  totalTokensConsumed24h: number;
+  totalCost24hUsd: number;
+  systemErrorRatePercent: number;
+  agentMetrics: AgentHealthMetricDto[];
+  costBreakdown: CostBreakdownDto;
+}
+
+// Module 12: Governance, Security & Compliance
+export interface AgentGovernancePermissionDto {
+  id: string;
+  agentId: string;
+  grantedToUserId?: string | null;
+  grantedToOrgId?: string | null;
+  canExecute: boolean;
+  canModifyPrompt: boolean;
+  canAccessMemory: boolean;
+  canInvokeTools: boolean;
+  createdAt: string;
+}
+
+export interface AgentAuditLogDto {
+  id: string;
+  agentId: string;
+  actorUserId: string;
+  action: string;
+  details: Record<string, any>;
+  ipAddress?: string | null;
+  timestamp: string;
+}
+
+export interface ComplianceReportDto {
+  auditPeriod: string;
+  totalEventsAudited: number;
+  isolatedTenantsCount: number;
+  securityViolationsCount: number;
+  policyViolations: { rule: string; severity: 'low' | 'medium' | 'high'; timestamp: string }[];
+  complianceScorePercent: number;
 }

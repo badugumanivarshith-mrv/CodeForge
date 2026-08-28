@@ -87,6 +87,19 @@ async function main() {
   await import('./integration/ecosystem.integration.test');
   await import('./security/ecosystemSecurity.test');
 
+  // Phase 15: Autonomous Multi-Agent Cloud Platform & AI Operating System Infrastructure Test Suites
+  await import('./unit/agentCloud.test');
+  await import('./unit/distributedWorkflowEngine.test');
+  await import('./unit/eventBus.test');
+  await import('./unit/automationEngine.test');
+  await import('./unit/executionFabric.test');
+  await import('./unit/workforce.test');
+  await import('./unit/taskOperatingSystem.test');
+  await import('./unit/memoryFabric.test');
+  await import('./unit/knowledgeFabric.test');
+  await import('./unit/decisionCenter.test');
+  await import('./unit/telemetryAndGovernance.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

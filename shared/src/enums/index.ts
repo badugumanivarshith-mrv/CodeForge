@@ -671,5 +671,118 @@ export enum WebhookEvent {
   PAYMENT_SUCCEEDED = 'payment_succeeded',
 }
 
+// ==========================================
+// PHASE 15: AI OPERATING SYSTEM ENUMS
+// ==========================================
 
+export enum AgentCloudState {
+  CREATED = 'created',
+  QUEUED = 'queued',
+  RUNNING = 'running',
+  PAUSED = 'paused',
+  WAITING = 'waiting',
+  FAILED = 'failed',
+  COMPLETED = 'completed',
+  TERMINATED = 'terminated',
+}
 
+export enum DistributedWorkflowType {
+  CAREER_WORKFLOW = 'career_workflow',
+  LEARNING_WORKFLOW = 'learning_workflow',
+  HIRING_WORKFLOW = 'hiring_workflow',
+  RESEARCH_WORKFLOW = 'research_workflow',
+  PROJECT_WORKFLOW = 'project_workflow',
+  ENTERPRISE_WORKFLOW = 'enterprise_workflow',
+}
+
+export enum WorkflowRunStatus {
+  PENDING = 'pending',
+  RUNNING = 'running',
+  PAUSED = 'paused',
+  FAILED = 'failed',
+  COMPLETED = 'completed',
+  CANCELLED = 'cancelled',
+}
+
+export enum WorkflowStepStatus {
+  PENDING = 'pending',
+  RUNNING = 'running',
+  SKIPPED = 'skipped',
+  FAILED = 'failed',
+  COMPLETED = 'completed',
+}
+
+export enum GlobalEventType {
+  USER_ACTION = 'user_action',
+  PROJECT_UPDATED = 'project_updated',
+  COURSE_COMPLETED = 'course_completed',
+  ASSESSMENT_COMPLETED = 'assessment_completed',
+  JOB_APPLIED = 'job_applied',
+  INTERVIEW_SCHEDULED = 'interview_scheduled',
+  CERTIFICATION_EARNED = 'certification_earned',
+  WORKFLOW_COMPLETED = 'workflow_completed',
+  AGENT_COMPLETED = 'agent_completed',
+  PLUGIN_INSTALLED = 'plugin_installed',
+}
+
+export enum WorkforceAgentRole {
+  CAREER_AGENT = 'career_agent',
+  RESEARCH_AGENT = 'research_agent',
+  RECRUITER_AGENT = 'recruiter_agent',
+  FACULTY_AGENT = 'faculty_agent',
+  MENTOR_AGENT = 'mentor_agent',
+  ANALYTICS_AGENT = 'analytics_agent',
+  PROJECT_MANAGER_AGENT = 'project_manager_agent',
+  EXECUTIVE_AGENT = 'executive_agent',
+}
+
+export enum TaskOSPriority {
+  CRITICAL = 'critical',
+  HIGH = 'high',
+  MEDIUM = 'medium',
+  LOW = 'low',
+}
+
+export enum TaskOSStatus {
+  BACKLOG = 'backlog',
+  TODO = 'todo',
+  IN_PROGRESS = 'in_progress',
+  IN_REVIEW = 'in_review',
+  DONE = 'done',
+  BLOCKED = 'blocked',
+}
+
+export enum MemoryFabricType {
+  CROSS_AGENT = 'cross_agent',
+  ORGANIZATIONAL = 'organizational',
+  TEAM = 'team',
+  LONG_TERM = 'long_term',
+  EPISODIC = 'episodic',
+  SEMANTIC = 'semantic',
+}
+
+export enum KnowledgeGraphDomain {
+  GLOBAL = 'global',
+  CAREER = 'career',
+  LEARNING = 'learning',
+  ENTERPRISE = 'enterprise',
+  RESEARCH = 'research',
+}
+
+export enum DecisionCenterStatus {
+  DRAFT = 'draft',
+  ANALYZING = 'analyzing',
+  RECOMMENDED = 'recommended',
+  APPROVED = 'approved',
+  EXECUTED = 'executed',
+  DISMISSED = 'dismissed',
+}
+
+export enum TelemetryMetricType {
+  EXECUTION_TIME = 'execution_time',
+  TOKEN_USAGE = 'token_usage',
+  ERROR_RATE = 'error_rate',
+  CPU_UTILIZATION = 'cpu_utilization',
+  MEMORY_USAGE = 'memory_usage',
+  COST_USD = 'cost_usd',
+}

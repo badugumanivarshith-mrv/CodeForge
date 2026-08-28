@@ -82,6 +82,18 @@ import {
   SubscriptionStatus,
   TransactionType,
   WebhookEvent,
+  AgentCloudState,
+  DistributedWorkflowType,
+  WorkflowRunStatus,
+  WorkflowStepStatus,
+  GlobalEventType,
+  WorkforceAgentRole,
+  TaskOSPriority,
+  TaskOSStatus,
+  MemoryFabricType,
+  KnowledgeGraphDomain,
+  DecisionCenterStatus,
+  TelemetryMetricType,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -746,5 +758,118 @@ export const webhookEventEnum = pgEnum('webhook_event', [
   WebhookEvent.PAYMENT_SUCCEEDED,
 ]);
 
+// ==========================================
+// PHASE 15: AI OPERATING SYSTEM pgEnums
+// ==========================================
 
+export const agentCloudStateEnum = pgEnum('agent_cloud_state', [
+  AgentCloudState.CREATED,
+  AgentCloudState.QUEUED,
+  AgentCloudState.RUNNING,
+  AgentCloudState.PAUSED,
+  AgentCloudState.WAITING,
+  AgentCloudState.FAILED,
+  AgentCloudState.COMPLETED,
+  AgentCloudState.TERMINATED,
+]);
 
+export const distributedWorkflowTypeEnum = pgEnum('distributed_workflow_type', [
+  DistributedWorkflowType.CAREER_WORKFLOW,
+  DistributedWorkflowType.LEARNING_WORKFLOW,
+  DistributedWorkflowType.HIRING_WORKFLOW,
+  DistributedWorkflowType.RESEARCH_WORKFLOW,
+  DistributedWorkflowType.PROJECT_WORKFLOW,
+  DistributedWorkflowType.ENTERPRISE_WORKFLOW,
+]);
+
+export const workflowRunStatusEnum = pgEnum('workflow_run_status', [
+  WorkflowRunStatus.PENDING,
+  WorkflowRunStatus.RUNNING,
+  WorkflowRunStatus.PAUSED,
+  WorkflowRunStatus.FAILED,
+  WorkflowRunStatus.COMPLETED,
+  WorkflowRunStatus.CANCELLED,
+]);
+
+export const workflowStepStatusEnum = pgEnum('workflow_step_status', [
+  WorkflowStepStatus.PENDING,
+  WorkflowStepStatus.RUNNING,
+  WorkflowStepStatus.SKIPPED,
+  WorkflowStepStatus.FAILED,
+  WorkflowStepStatus.COMPLETED,
+]);
+
+export const globalEventTypeEnum = pgEnum('global_event_type', [
+  GlobalEventType.USER_ACTION,
+  GlobalEventType.PROJECT_UPDATED,
+  GlobalEventType.COURSE_COMPLETED,
+  GlobalEventType.ASSESSMENT_COMPLETED,
+  GlobalEventType.JOB_APPLIED,
+  GlobalEventType.INTERVIEW_SCHEDULED,
+  GlobalEventType.CERTIFICATION_EARNED,
+  GlobalEventType.WORKFLOW_COMPLETED,
+  GlobalEventType.AGENT_COMPLETED,
+  GlobalEventType.PLUGIN_INSTALLED,
+]);
+
+export const workforceAgentRoleEnum = pgEnum('workforce_agent_role', [
+  WorkforceAgentRole.CAREER_AGENT,
+  WorkforceAgentRole.RESEARCH_AGENT,
+  WorkforceAgentRole.RECRUITER_AGENT,
+  WorkforceAgentRole.FACULTY_AGENT,
+  WorkforceAgentRole.MENTOR_AGENT,
+  WorkforceAgentRole.ANALYTICS_AGENT,
+  WorkforceAgentRole.PROJECT_MANAGER_AGENT,
+  WorkforceAgentRole.EXECUTIVE_AGENT,
+]);
+
+export const taskOSPriorityEnum = pgEnum('task_os_priority', [
+  TaskOSPriority.CRITICAL,
+  TaskOSPriority.HIGH,
+  TaskOSPriority.MEDIUM,
+  TaskOSPriority.LOW,
+]);
+
+export const taskOSStatusEnum = pgEnum('task_os_status', [
+  TaskOSStatus.BACKLOG,
+  TaskOSStatus.TODO,
+  TaskOSStatus.IN_PROGRESS,
+  TaskOSStatus.IN_REVIEW,
+  TaskOSStatus.DONE,
+  TaskOSStatus.BLOCKED,
+]);
+
+export const memoryFabricTypeEnum = pgEnum('memory_fabric_type', [
+  MemoryFabricType.CROSS_AGENT,
+  MemoryFabricType.ORGANIZATIONAL,
+  MemoryFabricType.TEAM,
+  MemoryFabricType.LONG_TERM,
+  MemoryFabricType.EPISODIC,
+  MemoryFabricType.SEMANTIC,
+]);
+
+export const knowledgeGraphDomainEnum = pgEnum('knowledge_graph_domain', [
+  KnowledgeGraphDomain.GLOBAL,
+  KnowledgeGraphDomain.CAREER,
+  KnowledgeGraphDomain.LEARNING,
+  KnowledgeGraphDomain.ENTERPRISE,
+  KnowledgeGraphDomain.RESEARCH,
+]);
+
+export const decisionCenterStatusEnum = pgEnum('decision_center_status', [
+  DecisionCenterStatus.DRAFT,
+  DecisionCenterStatus.ANALYZING,
+  DecisionCenterStatus.RECOMMENDED,
+  DecisionCenterStatus.APPROVED,
+  DecisionCenterStatus.EXECUTED,
+  DecisionCenterStatus.DISMISSED,
+]);
+
+export const telemetryMetricTypeEnum = pgEnum('telemetry_metric_type', [
+  TelemetryMetricType.EXECUTION_TIME,
+  TelemetryMetricType.TOKEN_USAGE,
+  TelemetryMetricType.ERROR_RATE,
+  TelemetryMetricType.CPU_UTILIZATION,
+  TelemetryMetricType.MEMORY_USAGE,
+  TelemetryMetricType.COST_USD,
+]);

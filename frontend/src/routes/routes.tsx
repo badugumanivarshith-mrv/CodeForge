@@ -95,6 +95,19 @@ import {
   CreatorDashboardPage,
 } from '../pages/marketplace';
 
+// Phase 15 AI Operating System & Agent Cloud Pages
+import {
+  AgentCloudPage,
+  WorkflowStudioPage,
+  AutomationCenterPage,
+  TaskOSPage,
+  MemoryFabricPage,
+  KnowledgeFabricPage,
+  DecisionCenterPage,
+  TelemetryDashboardPage,
+  GovernancePage,
+} from '../pages/agent-cloud';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -392,6 +405,44 @@ export const router = createBrowserRouter([
           {
             path: 'marketplace/creator',
             element: <CreatorDashboardPage />,
+          },
+
+          // Phase 15: Agent Cloud & AI Operating System
+          {
+            path: 'agent-cloud',
+            element: <AgentCloudPage />,
+          },
+          {
+            path: 'agent-cloud/workflows',
+            element: <WorkflowStudioPage />,
+          },
+          {
+            path: 'agent-cloud/automation',
+            element: <AutomationCenterPage />,
+          },
+          {
+            path: 'agent-cloud/task-os',
+            element: <TaskOSPage />,
+          },
+          {
+            path: 'agent-cloud/memory',
+            element: <MemoryFabricPage />,
+          },
+          {
+            path: 'agent-cloud/knowledge',
+            element: <KnowledgeFabricPage />,
+          },
+          {
+            path: 'agent-cloud/decisions',
+            element: <DecisionCenterPage />,
+          },
+          {
+            path: 'agent-cloud/telemetry',
+            element: <TelemetryDashboardPage />,
+          },
+          {
+            path: 'agent-cloud/governance',
+            element: <GovernancePage />,
           },
         ],
       },

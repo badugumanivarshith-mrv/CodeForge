@@ -284,6 +284,29 @@ export const Navbar: React.FC = () => {
             🛒 Marketplace
           </Link>
           <Link
+            to="/agent-cloud"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#ec4899',
+              background: 'rgba(236, 72, 153, 0.12)',
+              padding: '4px 8px',
+              borderRadius: '6px',
+              border: '1px solid rgba(236, 72, 153, 0.35)',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.background = 'rgba(236, 72, 153, 0.28)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#ec4899';
+              e.currentTarget.style.background = 'rgba(236, 72, 153, 0.12)';
+            }}
+          >
+            🌐 AI Cloud & OS
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',
