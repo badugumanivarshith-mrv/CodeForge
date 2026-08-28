@@ -24,4 +24,5 @@ export * from './PlacementRepository';
 export * from './EnterpriseRepository';
 export * from './CareerOsRepository';
 export * from './AgenticWorkspaceRepository';
+export * from './EcosystemRepository';
 

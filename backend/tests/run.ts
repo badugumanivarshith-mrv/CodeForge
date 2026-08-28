@@ -75,6 +75,18 @@ async function main() {
   await import('./integration/agenticWorkspace.integration.test');
   await import('./security/agenticSecurity.test');
 
+  // Phase 14: Agent Marketplace, Plugin Ecosystem & External Integrations Platform Test Suites
+  await import('./unit/marketplace.test');
+  await import('./unit/pluginEngine.test');
+  await import('./unit/integrationHub.test');
+  await import('./unit/workflowMarketplace.test');
+  await import('./unit/agentBuilder.test');
+  await import('./unit/developerPortal.test');
+  await import('./unit/monetization.test');
+  await import('./unit/ecosystemAnalytics.test');
+  await import('./integration/ecosystem.integration.test');
+  await import('./security/ecosystemSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {
@@ -84,7 +96,7 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 35000);
+  }, 90000);
 }
 
 main().catch(err => {

@@ -261,6 +261,29 @@ export const Navbar: React.FC = () => {
             ⚡ AI Command Center
           </Link>
           <Link
+            to="/marketplace"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#f59e0b',
+              background: 'rgba(245, 158, 11, 0.12)',
+              padding: '4px 8px',
+              borderRadius: '6px',
+              border: '1px solid rgba(245, 158, 11, 0.35)',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.background = 'rgba(245, 158, 11, 0.28)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#f59e0b';
+              e.currentTarget.style.background = 'rgba(245, 158, 11, 0.12)';
+            }}
+          >
+            🛒 Marketplace
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',

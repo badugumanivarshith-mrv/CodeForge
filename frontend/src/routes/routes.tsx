@@ -83,6 +83,18 @@ import {
   ProductivityAnalyticsPage,
 } from '../pages/agents';
 
+// Phase 14 Agent Marketplace & Plugin Ecosystem Pages
+import {
+  MarketplacePage,
+  AgentDetailsPage,
+  PluginMarketplacePage,
+  IntegrationHubPage,
+  WorkflowMarketplacePage,
+  AgentBuilderPage,
+  DeveloperPortalPage,
+  CreatorDashboardPage,
+} from '../pages/marketplace';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -347,6 +359,39 @@ export const router = createBrowserRouter([
           {
             path: 'ai-workspace/analytics',
             element: <ProductivityAnalyticsPage />,
+          },
+          // Phase 14: Agent Marketplace & Plugin Ecosystem Routes
+          {
+            path: 'marketplace',
+            element: <MarketplacePage />,
+          },
+          {
+            path: 'marketplace/agents/:id',
+            element: <AgentDetailsPage />,
+          },
+          {
+            path: 'marketplace/plugins',
+            element: <PluginMarketplacePage />,
+          },
+          {
+            path: 'marketplace/integrations',
+            element: <IntegrationHubPage />,
+          },
+          {
+            path: 'marketplace/workflows',
+            element: <WorkflowMarketplacePage />,
+          },
+          {
+            path: 'marketplace/builder',
+            element: <AgentBuilderPage />,
+          },
+          {
+            path: 'marketplace/developer',
+            element: <DeveloperPortalPage />,
+          },
+          {
+            path: 'marketplace/creator',
+            element: <CreatorDashboardPage />,
           },
         ],
       },

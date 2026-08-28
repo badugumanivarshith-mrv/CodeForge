@@ -68,6 +68,17 @@ import {
   KnowledgeRelationType,
   DocumentType,
   DecisionType,
+  MarketplaceCategory,
+  PricingModel,
+  AgentVerificationStatus,
+  PluginType,
+  PluginPermission,
+  IntegrationProvider,
+  IntegrationStatus,
+  WorkflowCategory,
+  SubscriptionStatus,
+  TransactionType,
+  WebhookEvent,
 } from '../enums/index.js';
 
 
@@ -3596,5 +3607,393 @@ export interface CommandCenterOverviewDto {
   recentActivities: { timestamp: string; message: string; type: string }[];
 }
 
+// ==========================================
+// Phase 14: Agent Marketplace & Plugin Ecosystem DTOs
+// ==========================================
 
+export interface MarketplaceAgentDto {
+  id: string;
+  creatorId: string;
+  creatorName?: string;
+  creatorAvatar?: string | null;
+  name: string;
+  slug: string;
+  description: string;
+  category: MarketplaceCategory;
+  verificationStatus: AgentVerificationStatus;
+  pricingModel: PricingModel;
+  priceCents: number;
+  capabilities: string[];
+  systemPrompt: string;
+  configSchema: Record<string, unknown>;
+  downloadCount: number;
+  ratingAverage: number;
+  ratingCount: number;
+  isFeatured: boolean;
+  isEnterpriseApproved: boolean;
+  organizationId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
 
+export interface CreateMarketplaceAgentDto {
+  name: string;
+  slug?: string;
+  description: string;
+  category: MarketplaceCategory;
+  pricingModel?: PricingModel;
+  priceCents?: number;
+  capabilities: string[];
+  systemPrompt: string;
+  configSchema?: Record<string, unknown>;
+  organizationId?: string | null;
+}
+
+export interface UpdateMarketplaceAgentDto {
+  name?: string;
+  description?: string;
+  category?: MarketplaceCategory;
+  pricingModel?: PricingModel;
+  priceCents?: number;
+  capabilities?: string[];
+  systemPrompt?: string;
+  configSchema?: Record<string, unknown>;
+  verificationStatus?: AgentVerificationStatus;
+  isFeatured?: boolean;
+  isEnterpriseApproved?: boolean;
+}
+
+export interface AgentReviewDto {
+  id: string;
+  agentId: string;
+  userId: string;
+  username?: string;
+  userAvatar?: string | null;
+  rating: number; // 1 - 5
+  reviewText: string;
+  isVerifiedBuyer: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateAgentReviewDto {
+  agentId: string;
+  rating: number;
+  reviewText: string;
+}
+
+export interface AgentDownloadDto {
+  id: string;
+  agentId: string;
+  userId: string;
+  version: string;
+  createdAt: string;
+}
+
+export interface PluginDto {
+  id: string;
+  creatorId: string;
+  creatorName?: string;
+  name: string;
+  slug: string;
+  description: string;
+  pluginType: PluginType;
+  requiredPermissions: PluginPermission[];
+  repositoryUrl?: string | null;
+  isVerified: boolean;
+  downloadCount: number;
+  ratingAverage: number;
+  ratingCount: number;
+  latestVersion?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreatePluginDto {
+  name: string;
+  slug?: string;
+  description: string;
+  pluginType: PluginType;
+  requiredPermissions: PluginPermission[];
+  repositoryUrl?: string | null;
+  initialVersion?: string;
+}
+
+export interface UpdatePluginDto {
+  name?: string;
+  description?: string;
+  requiredPermissions?: PluginPermission[];
+  repositoryUrl?: string | null;
+  isVerified?: boolean;
+}
+
+export interface PluginVersionDto {
+  id: string;
+  pluginId: string;
+  version: string;
+  changelog: string;
+  bundleUrl: string;
+  permissions: PluginPermission[];
+  status: 'active' | 'deprecated' | 'revoked';
+  createdAt: string;
+}
+
+export interface CreatePluginVersionDto {
+  pluginId: string;
+  version: string;
+  changelog: string;
+  bundleUrl: string;
+  permissions: PluginPermission[];
+}
+
+export interface PluginInstallDto {
+  id: string;
+  pluginId: string;
+  plugin?: PluginDto;
+  userId: string;
+  organizationId?: string | null;
+  installedVersion: string;
+  isEnabled: boolean;
+  configuration: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface InstallPluginDto {
+  pluginId: string;
+  organizationId?: string | null;
+  configuration?: Record<string, unknown>;
+}
+
+export interface IntegrationDto {
+  id: string;
+  userId: string;
+  organizationId?: string | null;
+  provider: IntegrationProvider;
+  status: IntegrationStatus;
+  config: Record<string, unknown>;
+  lastSyncedAt: string | null;
+  errorLog?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ConnectIntegrationDto {
+  provider: IntegrationProvider;
+  credentials?: Record<string, unknown>;
+  config?: Record<string, unknown>;
+  organizationId?: string | null;
+}
+
+export interface SyncIntegrationResultDto {
+  provider: IntegrationProvider;
+  status: IntegrationStatus;
+  itemsSynced: number;
+  details: string;
+  syncedAt: string;
+}
+
+export interface WorkflowTemplateDto {
+  id: string;
+  creatorId: string;
+  creatorName?: string;
+  title: string;
+  slug: string;
+  description: string;
+  category: WorkflowCategory;
+  triggerType: WorkflowTriggerType;
+  steps: {
+    stepId: string;
+    stepNumber: number;
+    agentType: AgentType;
+    action: string;
+    inputTemplate: string;
+    dependencies: string[];
+  }[];
+  isEnterprise: boolean;
+  ratingAverage: number;
+  ratingCount: number;
+  downloadCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateWorkflowTemplateDto {
+  title: string;
+  slug?: string;
+  description: string;
+  category: WorkflowCategory;
+  triggerType: WorkflowTriggerType;
+  steps: {
+    stepId: string;
+    stepNumber: number;
+    agentType: AgentType;
+    action: string;
+    inputTemplate: string;
+    dependencies: string[];
+  }[];
+  isEnterprise?: boolean;
+}
+
+export interface DeveloperAppDto {
+  id: string;
+  userId: string;
+  organizationId?: string | null;
+  appName: string;
+  description: string;
+  appType: 'public' | 'confidential' | 'internal';
+  redirectUris: string[];
+  rateLimitTier: 'free' | 'growth' | 'enterprise';
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateDeveloperAppDto {
+  appName: string;
+  description: string;
+  appType?: 'public' | 'confidential' | 'internal';
+  redirectUris?: string[];
+  rateLimitTier?: 'free' | 'growth' | 'enterprise';
+  organizationId?: string | null;
+}
+
+export interface ApiKeyDto {
+  id: string;
+  userId: string;
+  organizationId?: string | null;
+  developerAppId?: string | null;
+  keyPrefix: string;
+  name: string;
+  permissions: string[];
+  usageCount: number;
+  lastUsedAt: string | null;
+  expiresAt: string | null;
+  isActive: boolean;
+  createdAt: string;
+  rawKey?: string; // Only returned once on creation
+}
+
+export interface CreateApiKeyDto {
+  name: string;
+  developerAppId?: string | null;
+  permissions?: string[];
+  expiresInDays?: number;
+  organizationId?: string | null;
+}
+
+export interface WebhookDto {
+  id: string;
+  userId: string;
+  organizationId?: string | null;
+  developerAppId?: string | null;
+  targetUrl: string;
+  subscribedEvents: WebhookEvent[];
+  isActive: boolean;
+  failureCount: number;
+  createdAt: string;
+  updatedAt: string;
+  secret?: string; // Only returned once on creation
+}
+
+export interface CreateWebhookDto {
+  targetUrl: string;
+  subscribedEvents: WebhookEvent[];
+  developerAppId?: string | null;
+  organizationId?: string | null;
+}
+
+export interface WebhookDeliveryDto {
+  webhookId: string;
+  event: WebhookEvent;
+  payload: Record<string, unknown>;
+  statusCode: number;
+  deliveredAt: string;
+  success: boolean;
+}
+
+export interface SubscriptionDto {
+  id: string;
+  userId: string;
+  organizationId?: string | null;
+  itemType: 'agent' | 'plugin' | 'platform_tier';
+  itemId: string;
+  tier: string;
+  status: SubscriptionStatus;
+  amountCents: number;
+  currentPeriodStart: string;
+  currentPeriodEnd: string;
+  cancelAtPeriodEnd: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateSubscriptionDto {
+  itemType: 'agent' | 'plugin' | 'platform_tier';
+  itemId: string;
+  tier?: string;
+  amountCents?: number;
+  organizationId?: string | null;
+}
+
+export interface TransactionDto {
+  id: string;
+  userId: string;
+  organizationId?: string | null;
+  transactionType: TransactionType;
+  referenceId: string;
+  amountCents: number;
+  feeCents: number;
+  netCents: number;
+  currency: string;
+  status: 'succeeded' | 'pending' | 'failed' | 'refunded';
+  paymentMethod: string;
+  createdAt: string;
+}
+
+export interface CreatorPayoutDto {
+  id: string;
+  creatorId: string;
+  amountCents: number;
+  status: 'pending' | 'approved' | 'paid' | 'rejected';
+  payoutMethod: string;
+  processedAt: string | null;
+  createdAt: string;
+}
+
+export interface CreatorAnalyticsDto {
+  creatorId: string;
+  totalAgentsPublished: number;
+  totalPluginsPublished: number;
+  totalWorkflowsPublished: number;
+  totalDownloads: number;
+  activeSubscribers: number;
+  grossRevenueUsd: number;
+  platformFeesUsd: number;
+  netEarningsUsd: number;
+  pendingPayoutUsd: number;
+  monthlyRevenueHistory: { month: string; amountUsd: number; downloads: number }[];
+  topPerformingItems: { id: string; title: string; type: string; downloads: number; revenueUsd: number; rating: number }[];
+}
+
+export interface MarketplaceOverviewDto {
+  featuredAgents: MarketplaceAgentDto[];
+  popularPlugins: PluginDto[];
+  trendingWorkflows: WorkflowTemplateDto[];
+  stats: {
+    totalAgents: number;
+    totalPlugins: number;
+    totalWorkflows: number;
+    totalInstalls: number;
+    activeCreators: number;
+  };
+  categories: { category: MarketplaceCategory; count: number; icon: string }[];
+}
+
+export interface MarketplaceFilterParamsDto {
+  category?: MarketplaceCategory;
+  pricing?: PricingModel;
+  verifiedOnly?: boolean;
+  featuredOnly?: boolean;
+  search?: string;
+  sortBy?: 'popular' | 'rating' | 'newest' | 'price_low' | 'price_high';
+}

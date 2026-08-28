@@ -572,5 +572,104 @@ export enum DecisionType {
   SKILL_UPGRADE = 'skill_upgrade',
 }
 
+// Phase 14: Agent Marketplace & Plugin Ecosystem Enums
+export enum MarketplaceCategory {
+  CAREER = 'career',
+  CODING = 'coding',
+  LEARNING = 'learning',
+  RESEARCH = 'research',
+  HIRING = 'hiring',
+  PRODUCTIVITY = 'productivity',
+  ENTERPRISE = 'enterprise',
+  ANALYTICS = 'analytics',
+}
+
+export enum PricingModel {
+  FREE = 'free',
+  FREEMIUM = 'freemium',
+  PAID_ONE_TIME = 'paid_one_time',
+  SUBSCRIPTION = 'subscription',
+}
+
+export enum AgentVerificationStatus {
+  UNVERIFIED = 'unverified',
+  COMMUNITY = 'community',
+  VERIFIED = 'verified',
+  OFFICIAL_FEATURED = 'official_featured',
+  ENTERPRISE_APPROVED = 'enterprise_approved',
+}
+
+export enum PluginType {
+  AI_TOOL = 'ai_tool',
+  INTEGRATION = 'integration',
+  WORKFLOW_EXTENSION = 'workflow_extension',
+  ANALYTICS_EXTENSION = 'analytics_extension',
+  ENTERPRISE_EXTENSION = 'enterprise_extension',
+}
+
+export enum PluginPermission {
+  READ_WORKSPACE = 'read_workspace',
+  WRITE_WORKSPACE = 'write_workspace',
+  NETWORK_ACCESS = 'network_access',
+  EXECUTE_CODE = 'execute_code',
+  ACCESS_MEMORY = 'access_memory',
+  DATABASE_ACCESS = 'database_access',
+  WEBHOOK_SEND = 'webhook_send',
+}
+
+export enum IntegrationProvider {
+  GITHUB = 'github',
+  GITLAB = 'gitlab',
+  JIRA = 'jira',
+  NOTION = 'notion',
+  SLACK = 'slack',
+  DISCORD = 'discord',
+  GOOGLE_DRIVE = 'google_drive',
+  GOOGLE_CALENDAR = 'google_calendar',
+  MS_TEAMS = 'ms_teams',
+  LINKEDIN = 'linkedin',
+}
+
+export enum IntegrationStatus {
+  CONNECTED = 'connected',
+  DISCONNECTED = 'disconnected',
+  SYNCING = 'syncing',
+  ERROR = 'error',
+}
+
+export enum WorkflowCategory {
+  INTERVIEW_PREP = 'interview_prep',
+  PLACEMENT_READINESS = 'placement_readiness',
+  CAREER_PLANNING = 'career_planning',
+  LEARNING_ROADMAP = 'learning_roadmap',
+  SPRINT_PLANNING = 'sprint_planning',
+  SECURITY_AUDIT = 'security_audit',
+  DEVOPS_AUTOMATION = 'devops_automation',
+}
+
+export enum SubscriptionStatus {
+  ACTIVE = 'active',
+  CANCELED = 'canceled',
+  PAST_DUE = 'past_due',
+  EXPIRED = 'expired',
+}
+
+export enum TransactionType {
+  AGENT_PURCHASE = 'agent_purchase',
+  PLUGIN_PURCHASE = 'plugin_purchase',
+  SUBSCRIPTION_RENEWAL = 'subscription_renewal',
+  CREATOR_PAYOUT = 'creator_payout',
+  API_USAGE_CHARGE = 'api_usage_charge',
+}
+
+export enum WebhookEvent {
+  AGENT_EXECUTED = 'agent_executed',
+  WORKFLOW_TRIGGERED = 'workflow_triggered',
+  TASK_COMPLETED = 'task_completed',
+  JOB_APPLIED = 'job_applied',
+  CERT_ISSUED = 'cert_issued',
+  PAYMENT_SUCCEEDED = 'payment_succeeded',
+}
+
 
 

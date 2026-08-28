@@ -71,6 +71,17 @@ import {
   KnowledgeRelationType,
   DocumentType,
   DecisionType,
+  MarketplaceCategory,
+  PricingModel,
+  AgentVerificationStatus,
+  PluginType,
+  PluginPermission,
+  IntegrationProvider,
+  IntegrationStatus,
+  WorkflowCategory,
+  SubscriptionStatus,
+  TransactionType,
+  WebhookEvent,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -634,6 +645,105 @@ export const decisionTypeEnum = pgEnum('decision_type', [
   DecisionType.LEARNING_ROI,
   DecisionType.SALARY_NEGOTIATION,
   DecisionType.SKILL_UPGRADE,
+]);
+
+// Phase 14 pgEnums
+export const marketplaceCategoryEnum = pgEnum('marketplace_category', [
+  MarketplaceCategory.CAREER,
+  MarketplaceCategory.CODING,
+  MarketplaceCategory.LEARNING,
+  MarketplaceCategory.RESEARCH,
+  MarketplaceCategory.HIRING,
+  MarketplaceCategory.PRODUCTIVITY,
+  MarketplaceCategory.ENTERPRISE,
+  MarketplaceCategory.ANALYTICS,
+]);
+
+export const pricingModelEnum = pgEnum('pricing_model', [
+  PricingModel.FREE,
+  PricingModel.FREEMIUM,
+  PricingModel.PAID_ONE_TIME,
+  PricingModel.SUBSCRIPTION,
+]);
+
+export const agentVerificationStatusEnum = pgEnum('agent_verification_status', [
+  AgentVerificationStatus.UNVERIFIED,
+  AgentVerificationStatus.COMMUNITY,
+  AgentVerificationStatus.VERIFIED,
+  AgentVerificationStatus.OFFICIAL_FEATURED,
+  AgentVerificationStatus.ENTERPRISE_APPROVED,
+]);
+
+export const pluginTypeEnum = pgEnum('plugin_type', [
+  PluginType.AI_TOOL,
+  PluginType.INTEGRATION,
+  PluginType.WORKFLOW_EXTENSION,
+  PluginType.ANALYTICS_EXTENSION,
+  PluginType.ENTERPRISE_EXTENSION,
+]);
+
+export const pluginPermissionEnum = pgEnum('plugin_permission', [
+  PluginPermission.READ_WORKSPACE,
+  PluginPermission.WRITE_WORKSPACE,
+  PluginPermission.NETWORK_ACCESS,
+  PluginPermission.EXECUTE_CODE,
+  PluginPermission.ACCESS_MEMORY,
+  PluginPermission.DATABASE_ACCESS,
+  PluginPermission.WEBHOOK_SEND,
+]);
+
+export const integrationProviderEnum = pgEnum('integration_provider', [
+  IntegrationProvider.GITHUB,
+  IntegrationProvider.GITLAB,
+  IntegrationProvider.JIRA,
+  IntegrationProvider.NOTION,
+  IntegrationProvider.SLACK,
+  IntegrationProvider.DISCORD,
+  IntegrationProvider.GOOGLE_DRIVE,
+  IntegrationProvider.GOOGLE_CALENDAR,
+  IntegrationProvider.MS_TEAMS,
+  IntegrationProvider.LINKEDIN,
+]);
+
+export const integrationStatusEnum = pgEnum('integration_status', [
+  IntegrationStatus.CONNECTED,
+  IntegrationStatus.DISCONNECTED,
+  IntegrationStatus.SYNCING,
+  IntegrationStatus.ERROR,
+]);
+
+export const workflowCategoryEnum = pgEnum('workflow_category', [
+  WorkflowCategory.INTERVIEW_PREP,
+  WorkflowCategory.PLACEMENT_READINESS,
+  WorkflowCategory.CAREER_PLANNING,
+  WorkflowCategory.LEARNING_ROADMAP,
+  WorkflowCategory.SPRINT_PLANNING,
+  WorkflowCategory.SECURITY_AUDIT,
+  WorkflowCategory.DEVOPS_AUTOMATION,
+]);
+
+export const subscriptionStatusEnum = pgEnum('subscription_status', [
+  SubscriptionStatus.ACTIVE,
+  SubscriptionStatus.CANCELED,
+  SubscriptionStatus.PAST_DUE,
+  SubscriptionStatus.EXPIRED,
+]);
+
+export const transactionTypeEnum = pgEnum('transaction_type', [
+  TransactionType.AGENT_PURCHASE,
+  TransactionType.PLUGIN_PURCHASE,
+  TransactionType.SUBSCRIPTION_RENEWAL,
+  TransactionType.CREATOR_PAYOUT,
+  TransactionType.API_USAGE_CHARGE,
+]);
+
+export const webhookEventEnum = pgEnum('webhook_event', [
+  WebhookEvent.AGENT_EXECUTED,
+  WebhookEvent.WORKFLOW_TRIGGERED,
+  WebhookEvent.TASK_COMPLETED,
+  WebhookEvent.JOB_APPLIED,
+  WebhookEvent.CERT_ISSUED,
+  WebhookEvent.PAYMENT_SUCCEEDED,
 ]);
 
 

@@ -23,4 +23,5 @@ export * from './IPlacementRepository';
 export * from './IEnterpriseRepository';
 export * from './ICareerOsRepository';
 export * from './IAgenticWorkspaceRepository';
+export * from './IEcosystemRepository';
 
