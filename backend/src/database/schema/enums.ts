@@ -42,6 +42,17 @@ import {
   HiringInterviewType,
   HiringInterviewStatus,
   OfferRecommendation,
+  OrgMemberRole,
+  OrgPlan,
+  CohortStatus,
+  CourseLevel,
+  CourseStatus,
+  CourseEnrollmentStatus,
+  MentorSessionStatus,
+  StudentPlacementStatus,
+  CertificationStatus,
+  RiskLevel,
+  RecommendationCategory,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -373,3 +384,83 @@ export const offerRecommendationEnum = pgEnum('offer_recommendation', [
   OfferRecommendation.LEAN_NO_HIRE,
   OfferRecommendation.NO_HIRE,
 ]);
+
+export const orgMemberRoleEnum = pgEnum('org_member_role', [
+  OrgMemberRole.OWNER,
+  OrgMemberRole.ADMIN,
+  OrgMemberRole.MANAGER,
+  OrgMemberRole.FACULTY,
+  OrgMemberRole.MENTOR,
+  OrgMemberRole.STUDENT,
+  OrgMemberRole.RECRUITER,
+  OrgMemberRole.MEMBER,
+]);
+
+export const orgPlanEnum = pgEnum('org_plan', [
+  OrgPlan.STARTER,
+  OrgPlan.PROFESSIONAL,
+  OrgPlan.ENTERPRISE,
+  OrgPlan.UNIVERSITY,
+]);
+
+export const cohortStatusEnum = pgEnum('cohort_status', [
+  CohortStatus.UPCOMING,
+  CohortStatus.ACTIVE,
+  CohortStatus.COMPLETED,
+  CohortStatus.ARCHIVED,
+]);
+
+export const courseLevelEnum = pgEnum('course_level', [
+  CourseLevel.BEGINNER,
+  CourseLevel.INTERMEDIATE,
+  CourseLevel.ADVANCED,
+]);
+
+export const courseStatusEnum = pgEnum('course_status', [
+  CourseStatus.DRAFT,
+  CourseStatus.PUBLISHED,
+  CourseStatus.ARCHIVED,
+]);
+
+export const courseEnrollmentStatusEnum = pgEnum('course_enrollment_status', [
+  CourseEnrollmentStatus.ENROLLED,
+  CourseEnrollmentStatus.IN_PROGRESS,
+  CourseEnrollmentStatus.COMPLETED,
+  CourseEnrollmentStatus.DROPPED,
+]);
+
+export const mentorSessionStatusEnum = pgEnum('mentor_session_status', [
+  MentorSessionStatus.SCHEDULED,
+  MentorSessionStatus.COMPLETED,
+  MentorSessionStatus.CANCELLED,
+  MentorSessionStatus.NO_SHOW,
+]);
+
+export const studentPlacementStatusEnum = pgEnum('student_placement_status', [
+  StudentPlacementStatus.UNPLACED,
+  StudentPlacementStatus.IN_PROCESS,
+  StudentPlacementStatus.PLACED,
+  StudentPlacementStatus.OPTED_OUT,
+]);
+
+export const certificationStatusEnum = pgEnum('certification_status', [
+  CertificationStatus.ACTIVE,
+  CertificationStatus.EXPIRED,
+  CertificationStatus.REVOKED,
+]);
+
+export const riskLevelEnum = pgEnum('risk_level', [
+  RiskLevel.LOW,
+  RiskLevel.MEDIUM,
+  RiskLevel.HIGH,
+  RiskLevel.CRITICAL,
+]);
+
+export const recommendationCategoryEnum = pgEnum('recommendation_category', [
+  RecommendationCategory.CURRICULUM,
+  RecommendationCategory.STUDENT_INTERVENTION,
+  RecommendationCategory.FACULTY_ALLOCATION,
+  RecommendationCategory.PLACEMENT_PIPELINE,
+  RecommendationCategory.RESOURCE_SCALING,
+]);
+

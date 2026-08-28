@@ -176,6 +176,45 @@ export const Navbar: React.FC = () => {
             Jobs & Hiring
           </Link>
           <Link
+            to="/university"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#38bdf8',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = '#38bdf8')}
+          >
+            University
+          </Link>
+          <Link
+            to="/organization"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#a78bfa',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = '#a78bfa')}
+          >
+            Enterprise
+          </Link>
+          <Link
+            to="/workforce-intelligence"
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#34d399',
+              transition: 'color var(--transition-fast)',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
+            onMouseLeave={e => (e.currentTarget.style.color = '#34d399')}
+          >
+            Intelligence
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',

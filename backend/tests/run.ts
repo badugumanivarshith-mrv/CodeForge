@@ -42,6 +42,16 @@ async function main() {
   await import('./integration/placementReferralsAndChallenges.integration.test');
   await import('./security/placementSecurity.test');
 
+  // Phase 11: Enterprise University, LMS & Workforce Intelligence Test Suites
+  await import('./unit/workforceIntelligence.test');
+  await import('./unit/adminCopilot.test');
+  await import('./integration/organizations.integration.test');
+  await import('./integration/universities.integration.test');
+  await import('./integration/facultyMentors.integration.test');
+  await import('./integration/lmsAndCertifications.integration.test');
+  await import('./integration/executiveAnalytics.integration.test');
+  await import('./security/enterpriseSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {
@@ -51,7 +61,7 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 45000);
+  }, 80000);
 }
 
 main().catch(err => {

@@ -39,6 +39,17 @@ import {
   HiringInterviewType,
   HiringInterviewStatus,
   OfferRecommendation,
+  OrgMemberRole,
+  OrgPlan,
+  CohortStatus,
+  CourseLevel,
+  CourseStatus,
+  CourseEnrollmentStatus,
+  MentorSessionStatus,
+  StudentPlacementStatus,
+  CertificationStatus,
+  RiskLevel,
+  RecommendationCategory,
 } from '../enums/index.js';
 
 
@@ -2247,3 +2258,612 @@ export interface TalentAnalyticsDto {
   }[];
   timeToHireDays: number;
 }
+
+// ==========================================
+// Phase 11: Enterprise, University & LMS Types
+// ==========================================
+
+export interface OrganizationDto {
+  id: string;
+  name: string;
+  slug: string;
+  logoUrl: string | null;
+  domain: string | null;
+  themeConfig?: Record<string, any> | null;
+  plan: OrgPlan;
+  isVerified: boolean;
+  memberCount?: number;
+  departmentCount?: number;
+  cohortCount?: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateOrganizationDto {
+  name: string;
+  domain?: string;
+  logoUrl?: string;
+  plan?: OrgPlan;
+  themeConfig?: Record<string, any>;
+}
+
+export interface UpdateOrganizationDto {
+  name?: string;
+  domain?: string;
+  logoUrl?: string;
+  plan?: OrgPlan;
+  themeConfig?: Record<string, any>;
+}
+
+export interface OrganizationMemberDto {
+  id: string;
+  organizationId: string;
+  userId: string;
+  username: string;
+  fullName: string;
+  email: string;
+  avatarUrl?: string | null;
+  role: OrgMemberRole;
+  department?: string | null;
+  title?: string | null;
+  createdAt: string;
+}
+
+export interface AddOrgMemberDto {
+  userId?: string;
+  email?: string;
+  role: OrgMemberRole;
+  department?: string;
+  title?: string;
+}
+
+export interface DepartmentDto {
+  id: string;
+  organizationId: string;
+  name: string;
+  code: string;
+  headUserId?: string | null;
+  headUserName?: string | null;
+  budget?: number | null;
+  studentOrMemberCount?: number;
+  createdAt: string;
+}
+
+export interface CreateDepartmentDto {
+  name: string;
+  code: string;
+  headUserId?: string;
+  budget?: number;
+}
+
+export interface TeamDto {
+  id: string;
+  organizationId: string;
+  departmentId?: string | null;
+  name: string;
+  description?: string | null;
+  leadUserId?: string | null;
+  leadUserName?: string | null;
+  memberCount?: number;
+  createdAt: string;
+}
+
+export interface CreateTeamDto {
+  name: string;
+  description?: string;
+  departmentId?: string;
+  leadUserId?: string;
+}
+
+export interface CohortDto {
+  id: string;
+  organizationId: string;
+  name: string;
+  code: string;
+  startDate: string;
+  endDate: string;
+  capacity: number;
+  enrolledCount?: number;
+  status: CohortStatus;
+  createdAt: string;
+}
+
+export interface CreateCohortDto {
+  name: string;
+  code: string;
+  startDate: string;
+  endDate: string;
+  capacity?: number;
+  status?: CohortStatus;
+}
+
+export interface UniversityDto {
+  id: string;
+  name: string;
+  slug: string;
+  logoUrl?: string | null;
+  website?: string | null;
+  state?: string | null;
+  country?: string | null;
+  accreditationGrade?: string | null;
+  ranking?: number | null;
+  isVerified: boolean;
+  totalStudents?: number;
+  totalDepartments?: number;
+  placementRate?: number;
+  createdAt: string;
+}
+
+export interface CreateUniversityDto {
+  name: string;
+  website?: string;
+  logoUrl?: string;
+  state?: string;
+  country?: string;
+  accreditationGrade?: string;
+  ranking?: number;
+}
+
+export interface UpdateUniversityDto extends Partial<CreateUniversityDto> {
+  isVerified?: boolean;
+}
+
+export interface BatchDto {
+  id: string;
+  universityId: string;
+  departmentId?: string | null;
+  departmentName?: string | null;
+  name: string;
+  graduationYear: number;
+  totalStudents: number;
+  placedCount?: number;
+  averageCgpa?: number;
+  createdAt: string;
+}
+
+export interface CreateBatchDto {
+  departmentId?: string;
+  name: string;
+  graduationYear: number;
+  totalStudents?: number;
+}
+
+export interface StudentProfileDto {
+  id: string;
+  userId: string;
+  username: string;
+  fullName: string;
+  email: string;
+  universityId: string;
+  universityName?: string;
+  departmentId?: string | null;
+  departmentName?: string | null;
+  batchId?: string | null;
+  batchName?: string | null;
+  studentRollNumber: string;
+  cgpa: number;
+  semester: number;
+  placementStatus: StudentPlacementStatus;
+  rating?: number;
+  ranking?: number;
+  createdAt: string;
+}
+
+export interface RegisterStudentDto {
+  universityId: string;
+  departmentId?: string;
+  batchId?: string;
+  studentRollNumber: string;
+  cgpa?: number;
+  semester?: number;
+}
+
+export interface AcademicRecordDto {
+  id: string;
+  studentId: string;
+  semester: number;
+  sgpa: number;
+  creditsCompleted: number;
+  backlogCount: number;
+  termDate: string;
+}
+
+export interface PlacementRecordDto {
+  id: string;
+  studentId: string;
+  studentName?: string;
+  universityId: string;
+  companyName: string;
+  role: string;
+  packageLpa: number;
+  offerDate: string;
+  status: string;
+}
+
+export interface CreatePlacementRecordDto {
+  studentId: string;
+  universityId: string;
+  companyName: string;
+  role: string;
+  packageLpa: number;
+  offerDate: string;
+  status?: string;
+}
+
+export interface UniversityAnalyticsDto {
+  universityId: string;
+  universityName: string;
+  totalStudents: number;
+  placedStudents: number;
+  placementRatePercentage: number;
+  averagePackageLpa: number;
+  highestPackageLpa: number;
+  departmentPerformance: {
+    departmentId: string;
+    departmentName: string;
+    studentCount: number;
+    placedCount: number;
+    averageCgpa: number;
+    averageRating: number;
+  }[];
+  batchComparison: {
+    batchName: string;
+    graduationYear: number;
+    totalStudents: number;
+    placementRate: number;
+  }[];
+  topHiringPartners: {
+    companyName: string;
+    hiredCount: number;
+    avgPackageLpa: number;
+  }[];
+}
+
+export interface MentorProfileDto {
+  id: string;
+  userId: string;
+  username: string;
+  fullName: string;
+  email: string;
+  avatarUrl?: string | null;
+  organizationId?: string | null;
+  organizationName?: string | null;
+  specialization: string[];
+  bio: string;
+  hourlyRate: number;
+  rating: number;
+  totalSessions: number;
+  isAvailable: boolean;
+  createdAt: string;
+}
+
+export interface RegisterMentorDto {
+  organizationId?: string;
+  specialization: string[];
+  bio: string;
+  hourlyRate?: number;
+  isAvailable?: boolean;
+}
+
+export interface FacultyMentorSessionDto {
+  id: string;
+  mentorId: string;
+  mentorName?: string;
+  menteeUserId: string;
+  menteeName?: string;
+  topic: string;
+  scheduledAt: string;
+  durationMinutes: number;
+  meetingUrl?: string | null;
+  status: MentorSessionStatus;
+  notes?: string | null;
+  rating?: number | null;
+  feedback?: string | null;
+  createdAt: string;
+}
+
+export type FacultySessionDto = FacultyMentorSessionDto;
+
+export interface BookMentorSessionDto {
+  mentorId: string;
+  topic: string;
+  scheduledAt: string;
+  durationMinutes?: number;
+  notes?: string;
+}
+
+export interface SubmitSessionFeedbackDto {
+  rating: number;
+  feedback: string;
+}
+
+export interface StudentMentorshipDto {
+  id: string;
+  mentorId: string;
+  mentorName?: string;
+  studentId: string;
+  studentName?: string;
+  startDate: string;
+  status: string;
+  goals: string[];
+}
+
+export interface CourseDto {
+  id: string;
+  organizationId?: string | null;
+  title: string;
+  slug: string;
+  description: string;
+  level: CourseLevel;
+  price: number;
+  status: CourseStatus;
+  thumbnailUrl?: string | null;
+  modulesCount?: number;
+  enrolledCount?: number;
+  rating?: number;
+  createdAt: string;
+}
+
+export interface CreateCourseDto {
+  organizationId?: string;
+  title: string;
+  description: string;
+  level?: CourseLevel;
+  price?: number;
+  thumbnailUrl?: string;
+  status?: CourseStatus;
+}
+
+export interface UpdateCourseDto extends Partial<CreateCourseDto> {}
+
+export interface CourseModuleDto {
+  id: string;
+  courseId: string;
+  title: string;
+  sequence: number;
+  durationMinutes: number;
+  lessonsCount?: number;
+}
+
+export interface CreateCourseModuleDto {
+  title: string;
+  sequence?: number;
+  durationMinutes?: number;
+}
+
+export interface CourseEnrollmentDto {
+  id: string;
+  courseId: string;
+  courseTitle?: string;
+  userId: string;
+  userName?: string;
+  cohortId?: string | null;
+  progressPercentage: number;
+  status: CourseEnrollmentStatus;
+  enrolledAt: string;
+  completedAt?: string | null;
+}
+
+export interface LearningPathDto {
+  id: string;
+  organizationId?: string | null;
+  title: string;
+  slug: string;
+  description: string;
+  targetRole: string;
+  courseIds: string[];
+  courses?: CourseDto[];
+  estimatedHours: number;
+  status: string;
+  enrolledCount?: number;
+  createdAt: string;
+}
+
+export interface CreateLearningPathDto {
+  organizationId?: string;
+  title: string;
+  description: string;
+  targetRole: string;
+  courseIds: string[];
+  estimatedHours?: number;
+}
+
+export interface CertificateTemplateDto {
+  id: string;
+  organizationId?: string | null;
+  name: string;
+  templateHtml?: string | null;
+  badgeImageUrl?: string | null;
+  issuerName: string;
+  criteriaJson?: Record<string, any> | null;
+}
+
+export interface CreateCertificateTemplateDto {
+  organizationId?: string;
+  name: string;
+  templateHtml?: string;
+  badgeImageUrl?: string;
+  issuerName: string;
+  criteriaJson?: Record<string, any>;
+}
+
+export interface CertificationDto {
+  id: string;
+  certificateNumber: string;
+  recipientUserId: string;
+  recipientName?: string;
+  recipientEmail?: string;
+  organizationId?: string | null;
+  organizationName?: string | null;
+  templateId?: string | null;
+  courseId?: string | null;
+  courseTitle?: string | null;
+  skillName: string;
+  score: number;
+  issueDate: string;
+  expiryDate?: string | null;
+  qrCodeUrl: string;
+  verificationHash: string;
+  isRevoked: boolean;
+  status: CertificationStatus;
+}
+
+export interface IssueCertificationDto {
+  recipientUserId: string;
+  organizationId?: string;
+  templateId?: string;
+  courseId?: string;
+  skillName: string;
+  score?: number;
+  expiresInDays?: number;
+}
+
+export interface CertificateVerificationResultDto {
+  isValid: boolean;
+  certificate?: CertificationDto;
+  reason?: string;
+  verifiedAt: string;
+}
+
+export interface SkillDemandForecastDto {
+  skill: string;
+  category: string;
+  demandScore: number; // 0 - 100
+  growthRatePercentage: number;
+  hiringVolume: number;
+  avgSalaryUsd: number;
+  projectedDemand2027: number;
+}
+
+export interface SalaryIntelligenceDto {
+  role: string;
+  experienceLevel: string;
+  medianSalaryUsd: number;
+  percentile25th: number;
+  percentile75th: number;
+  percentile90th: number;
+  salaryGrowthYoY: number;
+}
+
+export interface TechAdoptionTrendDto {
+  technology: string;
+  ecosystem: string;
+  adoptionScore: number;
+  momentum: 'ACCELERATING' | 'STEADY' | 'MATURE' | 'DECLINING';
+  recommendedForCurriculum: boolean;
+}
+
+export interface WorkforceReadinessDto {
+  overallReadinessIndex: number; // 0 - 100
+  industryBenchmark: number;
+  activeLearnersCount: number;
+  jobReadyTalentCount: number;
+  topTalentClusters: {
+    domain: string;
+    candidateCount: number;
+    readinessScore: number;
+  }[];
+}
+
+export interface WorkforceIntelligenceDto {
+  forecastDate: string;
+  workforceReadiness: WorkforceReadinessDto;
+  topDemandedSkills: SkillDemandForecastDto[];
+  salaryIntelligence: SalaryIntelligenceDto[];
+  techTrends: TechAdoptionTrendDto[];
+}
+
+export interface ExecutiveKPIRollupDto {
+  totalInstitutions: number;
+  totalOrganizations: number;
+  totalStudentsEnrolled: number;
+  overallPlacementRate: number;
+  averageStartingSalaryLpa: number;
+  coursesCompleted: number;
+  certificationsIssued: number;
+  activeMentorshipSessions: number;
+}
+
+export interface ExecutiveAnalyticsDto {
+  kpis: ExecutiveKPIRollupDto;
+  institutionalLeaderboard: {
+    institutionId: string;
+    institutionName: string;
+    studentCount: number;
+    placementRate: number;
+    avgRating: number;
+  }[];
+  workforcePipelineTrend: {
+    month: string;
+    studentsEnrolled: number;
+    certificationsEarned: number;
+    placementsConducted: number;
+  }[];
+  curriculumEffectiveness: {
+    courseTitle: string;
+    completionRate: number;
+    avgAssessmentScore: number;
+    industryHiringCorrelation: number;
+  }[];
+}
+
+export interface StudentRiskAlertDto {
+  studentId: string;
+  studentName: string;
+  rollNumber: string;
+  universityName: string;
+  departmentName: string;
+  riskLevel: RiskLevel;
+  riskFactors: string[];
+  recommendedAction: string;
+  cgpa: number;
+  backlogCount: number;
+  platformActivityScore: number;
+}
+
+export interface ExecutiveRecommendationDto {
+  id: string;
+  category: RecommendationCategory;
+  title: string;
+  impactScore: number; // 1 - 10
+  urgency: 'HIGH' | 'MEDIUM' | 'LOW';
+  description: string;
+  actionPayload?: Record<string, any>;
+}
+
+export interface AdminCopilotInsightsDto {
+  timestamp: string;
+  studentRiskAlerts: StudentRiskAlertDto[];
+  recommendations: ExecutiveRecommendationDto[];
+  placementForecasts: {
+    cohortName: string;
+    expectedPlacementRate: number;
+    projectedTopRecruiters: string[];
+  }[];
+  curriculumGaps: {
+    topic: string;
+    industryDemandGap: string;
+    actionableProposal: string;
+  }[];
+}
+
+export interface WhiteLabelConfigDto {
+  organizationId: string;
+  organizationName: string;
+  primaryColor: string;
+  secondaryColor: string;
+  logoUrl: string | null;
+  faviconUrl: string | null;
+  customDomain: string | null;
+  portalTitle: string;
+}
+
+export interface UpdateWhiteLabelDto {
+  primaryColor?: string;
+  secondaryColor?: string;
+  logoUrl?: string;
+  faviconUrl?: string;
+  customDomain?: string;
+  portalTitle?: string;
+}
+

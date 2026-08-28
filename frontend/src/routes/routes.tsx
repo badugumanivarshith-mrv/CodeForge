@@ -51,6 +51,18 @@ import { ReferralNetworkPage } from '../pages/ReferralNetworkPage';
 import { HiringChallengesPage } from '../pages/HiringChallengesPage';
 import { RecruiterPortalPage } from '../pages/RecruiterPortalPage';
 
+// Phase 11 Enterprise University & Workforce Intelligence Pages
+import { UniversityDashboardPage } from '../pages/UniversityDashboardPage';
+import { OrganizationDashboardPage } from '../pages/OrganizationDashboardPage';
+import { FacultyPortalPage } from '../pages/FacultyPortalPage';
+import { MentorPortalPage } from '../pages/MentorPortalPage';
+import { CourseBuilderPage } from '../pages/CourseBuilderPage';
+import { LearningPathPage } from '../pages/LearningPathPage';
+import { CertificationPage } from '../pages/CertificationPage';
+import { ExecutiveAnalyticsPage } from '../pages/ExecutiveAnalyticsPage';
+import { WorkforceIntelligencePage } from '../pages/WorkforceIntelligencePage';
+import { AdminCopilotPage } from '../pages/AdminCopilotPage';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -148,6 +160,49 @@ export const router = createBrowserRouter([
         path: 'hiring-challenges',
         element: <HiringChallengesPage />,
       },
+
+      // Phase 11 Public Accessible Portals
+      {
+        path: 'university',
+        element: <UniversityDashboardPage />,
+      },
+      {
+        path: 'organization',
+        element: <OrganizationDashboardPage />,
+      },
+      {
+        path: 'faculty',
+        element: <FacultyPortalPage />,
+      },
+      {
+        path: 'mentors-portal',
+        element: <MentorPortalPage />,
+      },
+      {
+        path: 'lms/courses',
+        element: <CourseBuilderPage />,
+      },
+      {
+        path: 'lms/paths',
+        element: <LearningPathPage />,
+      },
+      {
+        path: 'certifications',
+        element: <CertificationPage />,
+      },
+      {
+        path: 'executive-analytics',
+        element: <ExecutiveAnalyticsPage />,
+      },
+      {
+        path: 'workforce-intelligence',
+        element: <WorkforceIntelligencePage />,
+      },
+      {
+        path: 'admin-copilot',
+        element: <AdminCopilotPage />,
+      },
+
       {
         element: <ProtectedRoute />,
         children: [

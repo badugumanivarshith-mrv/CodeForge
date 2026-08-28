@@ -20,3 +20,5 @@ export * from './IInterviewRepository';
 export * from './IResumeRepository';
 export * from './IActivityFeedRepository';
 export * from './IPlacementRepository';
+export * from './IEnterpriseRepository';
+

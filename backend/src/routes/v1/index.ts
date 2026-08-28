@@ -35,6 +35,14 @@ import { careerAdvisorRouter } from './careerAdvisor.routes';
 import { referralRouter } from './referral.routes';
 import { hiringChallengesRouter } from './hiringChallenges.routes';
 import { interviewsPipelineRouter } from './interviewsPipeline.routes';
+import { organizationsRouter } from './organizations.routes';
+import { universitiesRouter } from './universities.routes';
+import { facultyMentorsRouter } from './facultyMentors.routes';
+import { lmsRouter } from './lms.routes';
+import { certificationsRouter } from './certifications.routes';
+import { workforceIntelligenceRouter } from './workforceIntelligence.routes';
+import { analyticsExecutiveRouter } from './analyticsExecutive.routes';
+import { adminCopilotRouter } from './adminCopilot.routes';
 
 export const v1Router = Router();
 
@@ -74,3 +82,12 @@ v1Router.use('/advisor', careerAdvisorRouter);
 v1Router.use('/referrals', referralRouter);
 v1Router.use('/hiring-challenges', hiringChallengesRouter);
 v1Router.use('/pipeline', interviewsPipelineRouter);
+v1Router.use('/organizations', organizationsRouter);
+v1Router.use('/universities', universitiesRouter);
+v1Router.use('/faculty-mentors', facultyMentorsRouter);
+v1Router.use('/lms', lmsRouter);
+v1Router.use('/certifications', certificationsRouter);
+v1Router.use('/workforce-intelligence', workforceIntelligenceRouter);
+v1Router.use('/analytics-executive', analyticsExecutiveRouter);
+v1Router.use('/admin-copilot', adminCopilotRouter);
+

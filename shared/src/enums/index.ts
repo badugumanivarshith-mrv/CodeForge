@@ -337,3 +337,84 @@ export enum OfferRecommendation {
   LEAN_NO_HIRE = 'lean_no_hire',
   NO_HIRE = 'no_hire',
 }
+
+// Phase 11: Enterprise, University & LMS Enums
+export enum OrgMemberRole {
+  OWNER = 'owner',
+  ADMIN = 'admin',
+  MANAGER = 'manager',
+  FACULTY = 'faculty',
+  MENTOR = 'mentor',
+  STUDENT = 'student',
+  RECRUITER = 'recruiter',
+  MEMBER = 'member',
+}
+
+export enum OrgPlan {
+  STARTER = 'starter',
+  PROFESSIONAL = 'professional',
+  ENTERPRISE = 'enterprise',
+  UNIVERSITY = 'university',
+}
+
+export enum CohortStatus {
+  UPCOMING = 'upcoming',
+  ACTIVE = 'active',
+  COMPLETED = 'completed',
+  ARCHIVED = 'archived',
+}
+
+export enum CourseLevel {
+  BEGINNER = 'beginner',
+  INTERMEDIATE = 'intermediate',
+  ADVANCED = 'advanced',
+}
+
+export enum CourseStatus {
+  DRAFT = 'draft',
+  PUBLISHED = 'published',
+  ARCHIVED = 'archived',
+}
+
+export enum CourseEnrollmentStatus {
+  ENROLLED = 'enrolled',
+  IN_PROGRESS = 'in_progress',
+  COMPLETED = 'completed',
+  DROPPED = 'dropped',
+}
+
+export enum MentorSessionStatus {
+  SCHEDULED = 'scheduled',
+  COMPLETED = 'completed',
+  CANCELLED = 'cancelled',
+  NO_SHOW = 'no_show',
+}
+
+export enum StudentPlacementStatus {
+  UNPLACED = 'unplaced',
+  IN_PROCESS = 'in_process',
+  PLACED = 'placed',
+  OPTED_OUT = 'opted_out',
+}
+
+export enum CertificationStatus {
+  ACTIVE = 'active',
+  EXPIRED = 'expired',
+  REVOKED = 'revoked',
+}
+
+export enum RiskLevel {
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HIGH = 'high',
+  CRITICAL = 'critical',
+}
+
+export enum RecommendationCategory {
+  CURRICULUM = 'curriculum',
+  STUDENT_INTERVENTION = 'student_intervention',
+  FACULTY_ALLOCATION = 'faculty_allocation',
+  PLACEMENT_PIPELINE = 'placement_pipeline',
+  RESOURCE_SCALING = 'resource_scaling',
+}
+

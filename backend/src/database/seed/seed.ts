@@ -20,6 +20,9 @@ import {
   forumTags,
   languageRuntimes,
   companies,
+  universities,
+  organizations,
+  certificateTemplates,
 } from '../schema';
 import { eq, and } from 'drizzle-orm';
 import { seedLanguages } from './data/languages';
@@ -34,6 +37,7 @@ import { SEED_CONTESTS } from './data/contests';
 import { SEED_FORUM_TAGS } from './data/community';
 import { SEED_LANGUAGE_RUNTIMES } from './data/runtimes';
 import { SEED_COMPANIES } from './data/companies';
+import { SEED_UNIVERSITIES, SEED_ORGANIZATIONS, SEED_CERTIFICATE_TEMPLATES } from './data/enterprise';
 import { logger } from '../../core/utils/logger';
 
 
@@ -527,6 +531,81 @@ export const runSeed = async () => {
         });
     }
     logger.info(`  ✓ Successfully seeded ${SEED_COMPANIES.length} Verified Companies.`);
+
+    // 12. Seed Universities
+    logger.info('  -> Seeding Universities & Institutes...');
+    for (const uni of SEED_UNIVERSITIES) {
+      await db
+        .insert(universities)
+        .values({
+          name: uni.name,
+          slug: uni.slug,
+          website: uni.website,
+          logoUrl: uni.logoUrl,
+          state: uni.state,
+          country: uni.country,
+          accreditationGrade: uni.accreditationGrade,
+          ranking: uni.ranking,
+          isVerified: uni.isVerified,
+        })
+        .onConflictDoUpdate({
+          target: universities.slug,
+          set: {
+            name: uni.name,
+            website: uni.website,
+            logoUrl: uni.logoUrl,
+            state: uni.state,
+            country: uni.country,
+            accreditationGrade: uni.accreditationGrade,
+            ranking: uni.ranking,
+            isVerified: uni.isVerified,
+          },
+        });
+    }
+    logger.info(`  ✓ Successfully seeded ${SEED_UNIVERSITIES.length} Top Universities.`);
+
+    // 13. Seed Enterprise Organizations
+    logger.info('  -> Seeding Enterprise Organizations & Bootcamps...');
+    for (const org of SEED_ORGANIZATIONS) {
+      await db
+        .insert(organizations)
+        .values({
+          name: org.name,
+          slug: org.slug,
+          domain: org.domain,
+          logoUrl: org.logoUrl,
+          plan: org.plan,
+          isVerified: org.isVerified,
+          themeConfig: org.themeConfig,
+        })
+        .onConflictDoUpdate({
+          target: organizations.slug,
+          set: {
+            name: org.name,
+            domain: org.domain,
+            logoUrl: org.logoUrl,
+            plan: org.plan,
+            isVerified: org.isVerified,
+            themeConfig: org.themeConfig,
+          },
+        });
+    }
+    logger.info(`  ✓ Successfully seeded ${SEED_ORGANIZATIONS.length} Enterprise Organizations.`);
+
+    // 14. Seed Certificate Templates
+    logger.info('  -> Seeding Certificate Templates...');
+    for (const tmpl of SEED_CERTIFICATE_TEMPLATES) {
+      await db
+        .insert(certificateTemplates)
+        .values({
+          name: tmpl.name,
+          issuerName: tmpl.issuerName,
+          badgeImageUrl: tmpl.badgeImageUrl,
+          templateHtml: tmpl.templateHtml,
+          criteriaJson: tmpl.criteriaJson,
+        });
+    }
+    logger.info(`  ✓ Successfully seeded ${SEED_CERTIFICATE_TEMPLATES.length} Certificate Templates.`);
 
     logger.info('🎉 Database seeding completed successfully!');
 
