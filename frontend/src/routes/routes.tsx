@@ -72,6 +72,17 @@ import { PersonalBrandPage } from '../pages/career-os/PersonalBrandPage';
 import { CareerTimelinePage } from '../pages/career-os/CareerTimelinePage';
 import { CareerPredictionsPage } from '../pages/career-os/CareerPredictionsPage';
 
+// Phase 13 Agentic AI Workspace Pages
+import {
+  AICommandCenterPage,
+  AgentWorkflowsPage,
+  AutonomousProjectsPage,
+  ResearchCopilotPage,
+  KnowledgeGraphPage,
+  DocumentIntelligencePage,
+  ProductivityAnalyticsPage,
+} from '../pages/agents';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -307,6 +318,35 @@ export const router = createBrowserRouter([
           {
             path: 'career-os/predictions',
             element: <CareerPredictionsPage />,
+          },
+          // Phase 13 Agentic AI Workspace & Command Center Routes
+          {
+            path: 'ai-command-center',
+            element: <AICommandCenterPage />,
+          },
+          {
+            path: 'ai-workspace/workflows',
+            element: <AgentWorkflowsPage />,
+          },
+          {
+            path: 'ai-workspace/projects',
+            element: <AutonomousProjectsPage />,
+          },
+          {
+            path: 'ai-workspace/research',
+            element: <ResearchCopilotPage />,
+          },
+          {
+            path: 'ai-workspace/knowledge-graph',
+            element: <KnowledgeGraphPage />,
+          },
+          {
+            path: 'ai-workspace/documents',
+            element: <DocumentIntelligencePage />,
+          },
+          {
+            path: 'ai-workspace/analytics',
+            element: <ProductivityAnalyticsPage />,
           },
         ],
       },

@@ -44,6 +44,7 @@ import { workforceIntelligenceRouter } from './workforceIntelligence.routes';
 import { analyticsExecutiveRouter } from './analyticsExecutive.routes';
 import { adminCopilotRouter } from './adminCopilot.routes';
 import { careerOsRouter } from './careerOs.routes';
+import { agenticWorkspaceRouter } from './agenticWorkspace.routes';
 
 export const v1Router = Router();
 
@@ -92,5 +93,6 @@ v1Router.use('/workforce-intelligence', workforceIntelligenceRouter);
 v1Router.use('/analytics-executive', analyticsExecutiveRouter);
 v1Router.use('/admin-copilot', adminCopilotRouter);
 v1Router.use('/career-os', careerOsRouter);
+v1Router.use('/ai-workspace', agenticWorkspaceRouter);
 
 

@@ -61,6 +61,16 @@ import {
   NetworkRelationType,
   CoachingFrequency,
   CareerRiskAlertLevel,
+  AgentType,
+  AgentStatus,
+  AgentTaskPriority,
+  WorkflowStatus,
+  WorkflowTriggerType,
+  MemoryType,
+  KnowledgeNodeType,
+  KnowledgeRelationType,
+  DocumentType,
+  DecisionType,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -538,5 +548,93 @@ export const careerRiskAlertLevelEnum = pgEnum('career_risk_alert_level', [
   CareerRiskAlertLevel.HIGH,
   CareerRiskAlertLevel.CRITICAL,
 ]);
+
+// Phase 13: Agentic AI Workspace pgEnums
+export const agentTypeEnum = pgEnum('agent_type', [
+  AgentType.CAREER_AGENT,
+  AgentType.CODING_AGENT,
+  AgentType.RESEARCH_AGENT,
+  AgentType.LEARNING_AGENT,
+  AgentType.PLACEMENT_AGENT,
+  AgentType.INTERVIEW_AGENT,
+  AgentType.MENTOR_AGENT,
+  AgentType.EXECUTIVE_ANALYTICS_AGENT,
+]);
+
+export const agentStatusEnum = pgEnum('agent_status', [
+  AgentStatus.IDLE,
+  AgentStatus.PLANNING,
+  AgentStatus.EXECUTING,
+  AgentStatus.WAITING,
+  AgentStatus.COMPLETED,
+  AgentStatus.PAUSED,
+  AgentStatus.FAILED,
+]);
+
+export const agentTaskPriorityEnum = pgEnum('agent_task_priority', [
+  AgentTaskPriority.LOW,
+  AgentTaskPriority.MEDIUM,
+  AgentTaskPriority.HIGH,
+  AgentTaskPriority.CRITICAL,
+]);
+
+export const workflowStatusEnum = pgEnum('workflow_status', [
+  WorkflowStatus.ACTIVE,
+  WorkflowStatus.PAUSED,
+  WorkflowStatus.RUNNING,
+  WorkflowStatus.COMPLETED,
+  WorkflowStatus.CANCELLED,
+]);
+
+export const workflowTriggerTypeEnum = pgEnum('workflow_trigger_type', [
+  WorkflowTriggerType.MANUAL,
+  WorkflowTriggerType.SCHEDULED_CRON,
+  WorkflowTriggerType.EVENT_DRIVEN,
+  WorkflowTriggerType.GOAL_BASED,
+]);
+
+export const memoryTypeEnum = pgEnum('memory_type', [
+  MemoryType.LONG_TERM,
+  MemoryType.EPISODIC,
+  MemoryType.SEMANTIC,
+  MemoryType.CAREER,
+  MemoryType.LEARNING,
+]);
+
+export const knowledgeNodeTypeEnum = pgEnum('knowledge_node_type', [
+  KnowledgeNodeType.CONCEPT,
+  KnowledgeNodeType.SKILL,
+  KnowledgeNodeType.PROJECT,
+  KnowledgeNodeType.COMPANY,
+  KnowledgeNodeType.ROLE,
+  KnowledgeNodeType.CERTIFICATION,
+  KnowledgeNodeType.RESEARCH_PAPER,
+]);
+
+export const knowledgeRelationTypeEnum = pgEnum('knowledge_relation_type', [
+  KnowledgeRelationType.REQUIRES,
+  KnowledgeRelationType.ENABLES,
+  KnowledgeRelationType.COMPLEMENTS,
+  KnowledgeRelationType.APPLIED_IN,
+  KnowledgeRelationType.HIRED_FOR,
+  KnowledgeRelationType.AUTHORED_IN,
+]);
+
+export const documentTypeEnum = pgEnum('document_type', [
+  DocumentType.RESUME,
+  DocumentType.RESEARCH_PAPER,
+  DocumentType.COURSE_MATERIAL,
+  DocumentType.INTERVIEW_NOTES,
+  DocumentType.ENTERPRISE_REPORT,
+]);
+
+export const decisionTypeEnum = pgEnum('decision_type', [
+  DecisionType.CAREER_TRANSITION,
+  DecisionType.JOB_OFFER_EVALUATION,
+  DecisionType.LEARNING_ROI,
+  DecisionType.SALARY_NEGOTIATION,
+  DecisionType.SKILL_UPGRADE,
+]);
+
 
 

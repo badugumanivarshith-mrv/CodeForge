@@ -63,6 +63,18 @@ async function main() {
   await import('./integration/careerOs.integration.test');
   await import('./security/careerSecurity.test');
 
+  // Phase 13: Agentic AI Workspace & Autonomous Productivity Platform Test Suites
+  await import('./unit/agentOrchestrator.test');
+  await import('./unit/agentMemory.test');
+  await import('./unit/researchCopilot.test');
+  await import('./unit/workflowEngine.test');
+  await import('./unit/knowledgeGraph.test');
+  await import('./unit/productivityAnalytics.test');
+  await import('./unit/documentIntelligence.test');
+  await import('./unit/decisionEngine.test');
+  await import('./integration/agenticWorkspace.integration.test');
+  await import('./security/agenticSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {
@@ -72,7 +84,7 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 80000);
+  }, 35000);
 }
 
 main().catch(err => {

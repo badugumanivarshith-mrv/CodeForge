@@ -485,4 +485,92 @@ export enum CareerRiskAlertLevel {
   CRITICAL = 'critical',
 }
 
+// Phase 13: Agentic AI Workspace & Autonomous Productivity Enums
+export enum AgentType {
+  CAREER_AGENT = 'career_agent',
+  CODING_AGENT = 'coding_agent',
+  RESEARCH_AGENT = 'research_agent',
+  LEARNING_AGENT = 'learning_agent',
+  PLACEMENT_AGENT = 'placement_agent',
+  INTERVIEW_AGENT = 'interview_agent',
+  MENTOR_AGENT = 'mentor_agent',
+  EXECUTIVE_ANALYTICS_AGENT = 'executive_analytics_agent',
+}
+
+export enum AgentStatus {
+  IDLE = 'idle',
+  PLANNING = 'planning',
+  EXECUTING = 'executing',
+  WAITING = 'waiting',
+  COMPLETED = 'completed',
+  PAUSED = 'paused',
+  FAILED = 'failed',
+}
+
+export enum AgentTaskPriority {
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HIGH = 'high',
+  CRITICAL = 'critical',
+}
+
+export enum WorkflowStatus {
+  ACTIVE = 'active',
+  PAUSED = 'paused',
+  RUNNING = 'running',
+  COMPLETED = 'completed',
+  CANCELLED = 'cancelled',
+}
+
+export enum WorkflowTriggerType {
+  MANUAL = 'manual',
+  SCHEDULED_CRON = 'scheduled_cron',
+  EVENT_DRIVEN = 'event_driven',
+  GOAL_BASED = 'goal_based',
+}
+
+export enum MemoryType {
+  LONG_TERM = 'long_term',
+  EPISODIC = 'episodic',
+  SEMANTIC = 'semantic',
+  CAREER = 'career',
+  LEARNING = 'learning',
+}
+
+export enum KnowledgeNodeType {
+  CONCEPT = 'concept',
+  SKILL = 'skill',
+  PROJECT = 'project',
+  COMPANY = 'company',
+  ROLE = 'role',
+  CERTIFICATION = 'certification',
+  RESEARCH_PAPER = 'research_paper',
+}
+
+export enum KnowledgeRelationType {
+  REQUIRES = 'requires',
+  ENABLES = 'enables',
+  COMPLEMENTS = 'complements',
+  APPLIED_IN = 'applied_in',
+  HIRED_FOR = 'hired_for',
+  AUTHORED_IN = 'authored_in',
+}
+
+export enum DocumentType {
+  RESUME = 'resume',
+  RESEARCH_PAPER = 'research_paper',
+  COURSE_MATERIAL = 'course_material',
+  INTERVIEW_NOTES = 'interview_notes',
+  ENTERPRISE_REPORT = 'enterprise_report',
+}
+
+export enum DecisionType {
+  CAREER_TRANSITION = 'career_transition',
+  JOB_OFFER_EVALUATION = 'job_offer_evaluation',
+  LEARNING_ROI = 'learning_roi',
+  SALARY_NEGOTIATION = 'salary_negotiation',
+  SKILL_UPGRADE = 'skill_upgrade',
+}
+
+
 

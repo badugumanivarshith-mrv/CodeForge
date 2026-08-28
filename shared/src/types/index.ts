@@ -58,6 +58,16 @@ import {
   NetworkRelationType,
   CoachingFrequency,
   CareerRiskAlertLevel,
+  AgentType,
+  AgentStatus,
+  AgentTaskPriority,
+  WorkflowStatus,
+  WorkflowTriggerType,
+  MemoryType,
+  KnowledgeNodeType,
+  KnowledgeRelationType,
+  DocumentType,
+  DecisionType,
 } from '../enums/index.js';
 
 
@@ -3243,5 +3253,348 @@ export interface CareerPredictionReportDto {
   topRecommendations: string[];
   fastestPathToTarget: string;
 }
+
+// Phase 13: Agentic AI Workspace & Autonomous Productivity Types
+
+export interface AgentDto {
+  id: string;
+  userId: string;
+  name: string;
+  type: AgentType;
+  status: AgentStatus;
+  capabilities: string[];
+  systemPrompt: string;
+  configuration: Record<string, unknown>;
+  stats: {
+    tasksCompleted: number;
+    successRate: number;
+    avgExecutionTimeMs: number;
+    lastActiveAt?: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateAgentDto {
+  name: string;
+  type: AgentType;
+  capabilities?: string[];
+  systemPrompt?: string;
+  configuration?: Record<string, unknown>;
+}
+
+export interface UpdateAgentDto {
+  name?: string;
+  status?: AgentStatus;
+  capabilities?: string[];
+  systemPrompt?: string;
+  configuration?: Record<string, unknown>;
+}
+
+export interface AgentTaskDto {
+  id: string;
+  agentId: string;
+  userId: string;
+  title: string;
+  description?: string;
+  priority: AgentTaskPriority;
+  status: AgentStatus;
+  inputPayload: Record<string, unknown>;
+  outputResult?: Record<string, unknown> | null;
+  dependencies: string[];
+  toolsUsed: string[];
+  executionTimeMs?: number;
+  createdAt: string;
+  completedAt?: string | null;
+}
+
+export interface CreateAgentTaskDto {
+  agentId: string;
+  title: string;
+  description?: string;
+  priority?: AgentTaskPriority;
+  inputPayload?: Record<string, unknown>;
+  dependencies?: string[];
+  toolsUsed?: string[];
+}
+
+export interface WorkflowStepDto {
+  stepId: string;
+  stepNumber: number;
+  agentType: AgentType;
+  action: string;
+  inputTemplate: string;
+  dependencies: string[];
+  status?: AgentStatus;
+  outputSummary?: string;
+}
+
+export interface AgentWorkflowDto {
+  id: string;
+  userId: string;
+  title: string;
+  description?: string;
+  triggerType: WorkflowTriggerType;
+  status: WorkflowStatus;
+  steps: WorkflowStepDto[];
+  scheduleCron?: string | null;
+  lastRunAt?: string | null;
+  nextRunAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateAgentWorkflowDto {
+  title: string;
+  description?: string;
+  triggerType: WorkflowTriggerType;
+  steps: WorkflowStepDto[];
+  scheduleCron?: string;
+}
+
+export interface UpdateAgentWorkflowDto {
+  title?: string;
+  description?: string;
+  status?: WorkflowStatus;
+  steps?: WorkflowStepDto[];
+  scheduleCron?: string;
+}
+
+export interface AgentMemoryDto {
+  id: string;
+  userId: string;
+  agentId?: string | null;
+  memoryType: MemoryType;
+  content: string;
+  importanceScore: number; // 0 - 100
+  contextKey: string;
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+  lastAccessedAt: string;
+}
+
+export interface CreateAgentMemoryDto {
+  agentId?: string;
+  memoryType: MemoryType;
+  content: string;
+  importanceScore?: number;
+  contextKey: string;
+  metadata?: Record<string, unknown>;
+}
+
+export interface ProjectSprintDto {
+  sprintNumber: number;
+  name: string;
+  startDate: string;
+  endDate: string;
+  deliverables: string[];
+  status: 'pending' | 'in_progress' | 'completed';
+}
+
+export interface ProjectObjectiveDto {
+  weekNumber: number;
+  objective: string;
+  keyResults: string[];
+  completed: boolean;
+}
+
+export interface ProjectRoadmapDto {
+  phase: string;
+  estimatedWeeks: number;
+  milestones: string[];
+  dependencies: string[];
+}
+
+export interface AutonomousProjectDto {
+  id: string;
+  userId: string;
+  title: string;
+  description?: string;
+  goal: string;
+  status: 'planning' | 'active' | 'in_progress' | 'completed' | 'paused';
+  roadmap: ProjectRoadmapDto[];
+  sprintPlan: ProjectSprintDto[];
+  weeklyObjectives: ProjectObjectiveDto[];
+  resourceAllocation: {
+    recommendedHoursPerWeek: number;
+    primaryTools: string[];
+    suggestedLibraries: string[];
+  };
+  riskFactors: string[];
+  progressPercentage: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateAutonomousProjectDto {
+  title: string;
+  description?: string;
+  goal: string;
+  targetTimelineWeeks?: number;
+  preferredTechStack?: string[];
+}
+
+export interface SwotAnalysisDto {
+  strengths: string[];
+  weaknesses: string[];
+  opportunities: string[];
+  threats: string[];
+}
+
+export interface ResearchReportDto {
+  id: string;
+  userId: string;
+  topic: string;
+  category: string;
+  executiveSummary: string;
+  reportContent: string;
+  swotAnalysis: SwotAnalysisDto;
+  opportunityMatrix: {
+    opportunity: string;
+    impactScore: number; // 0 - 100
+    feasibilityScore: number; // 0 - 100
+    recommendation: string;
+  }[];
+  keyTrends: string[];
+  recommendations: string[];
+  sources: { title: string; url?: string; credibilityScore: number }[];
+  createdAt: string;
+}
+
+export interface CreateResearchReportDto {
+  topic: string;
+  category?: string;
+  depth?: 'brief' | 'standard' | 'comprehensive';
+  focusAreas?: string[];
+}
+
+export interface KnowledgeNodeDto {
+  id: string;
+  userId: string;
+  name: string;
+  nodeType: KnowledgeNodeType;
+  category: string;
+  properties: Record<string, unknown>;
+  confidenceScore: number;
+  createdAt: string;
+}
+
+export interface KnowledgeEdgeDto {
+  id: string;
+  userId: string;
+  sourceNodeId: string;
+  targetNodeId: string;
+  relationType: KnowledgeRelationType;
+  weight: number;
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+}
+
+export interface KnowledgeGraphDto {
+  nodes: KnowledgeNodeDto[];
+  edges: KnowledgeEdgeDto[];
+  stats: {
+    totalNodes: number;
+    totalEdges: number;
+    density: number;
+    topConcepts: string[];
+  };
+}
+
+export interface WorkspaceDocumentDto {
+  id: string;
+  userId: string;
+  title: string;
+  documentType: DocumentType;
+  summary: string;
+  extractedSkills: string[];
+  extractedActions: string[];
+  flashcards: { question: string; answer: string; tag: string }[];
+  keyFindings: string[];
+  metadata?: Record<string, unknown>;
+  createdAt: string;
+}
+
+export interface CreateWorkspaceDocumentDto {
+  title: string;
+  documentType: DocumentType;
+  rawTextContent: string;
+  metadata?: Record<string, unknown>;
+}
+
+export interface DecisionOptionDto {
+  optionId: string;
+  title: string;
+  pros: string[];
+  cons: string[];
+  alignmentScore: number; // 0 - 100
+  projectedOutcome: string;
+}
+
+export interface ExecutiveDecisionDto {
+  id: string;
+  userId: string;
+  decisionType: DecisionType;
+  title: string;
+  contextData: Record<string, unknown>;
+  optionsEvaluated: DecisionOptionDto[];
+  recommendedAction: string;
+  riskScore: number; // 0 - 100
+  confidenceScore: number; // 0 - 100
+  expectedOutcomes: string[];
+  createdAt: string;
+}
+
+export interface CreateExecutiveDecisionDto {
+  decisionType: DecisionType;
+  title: string;
+  contextData?: Record<string, unknown>;
+  options?: { title: string; description?: string }[];
+}
+
+export interface FocusMetricDto {
+  focusScore: number; // 0 - 100
+  deepWorkHours: number;
+  distractionScore: number; // 0 - 100
+  peakProductivityHours: string;
+}
+
+export interface AgentEffectivenessMetricDto {
+  agentType: AgentType;
+  tasksCompleted: number;
+  hoursSaved: number;
+  qualityScore: number; // 0 - 100
+}
+
+export interface ProductivityAnalyticsDto {
+  id: string;
+  userId: string;
+  timeframe: 'daily' | 'weekly' | 'monthly' | 'quarterly';
+  periodDate: string;
+  focusMetrics: FocusMetricDto;
+  learningVelocity: number;
+  careerGrowthVelocity: number;
+  tasksCompleted: number;
+  agentEffectivenessScore: number;
+  agentBreakdown: AgentEffectivenessMetricDto[];
+  recommendations: string[];
+  createdAt: string;
+}
+
+export interface CommandCenterOverviewDto {
+  activeAgentsCount: number;
+  runningTasksCount: number;
+  activeWorkflowsCount: number;
+  productivityScore: number;
+  todayPriorities: { id: string; title: string; priority: AgentTaskPriority; completed: boolean }[];
+  aiRecommendations: string[];
+  alerts: {
+    careerAlerts: string[];
+    learningAlerts: string[];
+    hiringAlerts: string[];
+  };
+  recentActivities: { timestamp: string; message: string; type: string }[];
+}
+
 
 

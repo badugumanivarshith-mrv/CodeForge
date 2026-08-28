@@ -23,4 +23,5 @@ export * from './ActivityFeedRepository';
 export * from './PlacementRepository';
 export * from './EnterpriseRepository';
 export * from './CareerOsRepository';
+export * from './AgenticWorkspaceRepository';
 

@@ -22,4 +22,5 @@ export * from './IActivityFeedRepository';
 export * from './IPlacementRepository';
 export * from './IEnterpriseRepository';
 export * from './ICareerOsRepository';
+export * from './IAgenticWorkspaceRepository';
 

@@ -238,6 +238,29 @@ export const Navbar: React.FC = () => {
             ✦ Career OS
           </Link>
           <Link
+            to="/ai-command-center"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#34d399',
+              background: 'rgba(16, 185, 129, 0.12)',
+              padding: '4px 8px',
+              borderRadius: '6px',
+              border: '1px solid rgba(16, 185, 129, 0.35)',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.background = 'rgba(16, 185, 129, 0.28)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#34d399';
+              e.currentTarget.style.background = 'rgba(16, 185, 129, 0.12)';
+            }}
+          >
+            ⚡ AI Command Center
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',
