@@ -786,3 +786,94 @@ export enum TelemetryMetricType {
   MEMORY_USAGE = 'memory_usage',
   COST_USD = 'cost_usd',
 }
+
+// ==========================================
+// PHASE 16: GLOBAL AI ECOSYSTEM ENUMS
+// ==========================================
+
+export enum GlobalNodeType {
+  USER = 'user',
+  ORGANIZATION = 'organization',
+  UNIVERSITY = 'university',
+  AGENT = 'agent',
+  TALENT = 'talent',
+  RESEARCH_LAB = 'research_lab',
+  STARTUP = 'startup',
+}
+
+export enum GlobalEdgeType {
+  COLLABORATES_WITH = 'collaborates_with',
+  EMPLOYS = 'employs',
+  AFFILIATED_WITH = 'affiliated_with',
+  CITES = 'cites',
+  MENTORS = 'mentors',
+  INVESTS_IN = 'invests_in',
+  DEPLOYS = 'deploys',
+}
+
+export enum VerificationStatus {
+  PENDING = 'pending',
+  VERIFIED = 'verified',
+  REJECTED = 'rejected',
+  EXPIRED = 'expired',
+}
+
+export enum PublicationStatus {
+  DRAFT = 'draft',
+  SUBMITTED = 'submitted',
+  PEER_REVIEWED = 'peer_reviewed',
+  PUBLISHED = 'published',
+  ARCHIVED = 'archived',
+}
+
+export enum DigitalTwinType {
+  USER_TWIN = 'user_twin',
+  CAREER_TWIN = 'career_twin',
+  LEARNING_TWIN = 'learning_twin',
+  ENTERPRISE_TWIN = 'enterprise_twin',
+  ORGANIZATION_TWIN = 'organization_twin',
+  AGENT_TWIN = 'agent_twin',
+}
+
+export enum ReputationTier {
+  NOVICE = 'novice',
+  CONTRIBUTOR = 'contributor',
+  EXPERT = 'expert',
+  MASTER = 'master',
+  FELLOW = 'fellow',
+  LUMINARY = 'luminary',
+}
+
+export enum VentureStage {
+  IDEA = 'idea',
+  PROTOTYPE = 'prototype',
+  MVP = 'mvp',
+  SEED = 'seed',
+  SERIES_A = 'series_a',
+  ENTERPRISE = 'enterprise',
+}
+
+export enum SuperintelligenceScope {
+  ECOSYSTEM = 'ecosystem',
+  STRATEGIC = 'strategic',
+  TALENT = 'talent',
+  RESEARCH = 'research',
+  VENTURE = 'venture',
+  RISK = 'risk',
+}
+
+export enum TrendCategory {
+  SKILL_DEMAND = 'skill_demand',
+  EMERGING_TECH = 'emerging_tech',
+  HIRING_VELOCITY = 'hiring_velocity',
+  RESEARCH_BREAKTHROUGH = 'research_breakthrough',
+  STARTUP_TREND = 'startup_trend',
+}
+
+export enum EcosystemEventCategory {
+  CONSENSUS_REACHED = 'consensus_reached',
+  TWIN_SIMULATION = 'twin_simulation',
+  SKILL_VERIFIED = 'skill_verified',
+  VENTURE_LAUNCHED = 'venture_launched',
+  RESEARCH_PUBLISHED = 'research_published',
+}

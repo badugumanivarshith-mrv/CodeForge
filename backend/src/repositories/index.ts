@@ -26,3 +26,4 @@ export * from './CareerOsRepository';
 export * from './AgenticWorkspaceRepository';
 export * from './EcosystemRepository';
 export * from './AgentCloudRepository';
+export * from './GlobalEcosystemRepository';

@@ -108,6 +108,17 @@ import {
   GovernancePage,
 } from '../pages/agent-cloud';
 
+// Phase 16 Global AI Ecosystem Pages
+import {
+  GlobalCommandCenterPage,
+  GlobalNetworkPage,
+  TalentCloudPage,
+  ResearchNetworkPage,
+  StartupBuilderPage,
+  DigitalTwinPage,
+  EcosystemAnalyticsPage,
+} from '../pages/global-network';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -443,6 +454,36 @@ export const router = createBrowserRouter([
           {
             path: 'agent-cloud/governance',
             element: <GovernancePage />,
+          },
+
+          // Phase 16: Global AI Ecosystem Routes
+          {
+            path: 'global-command-center',
+            element: <GlobalCommandCenterPage />,
+          },
+          {
+            path: 'global-network',
+            element: <GlobalNetworkPage />,
+          },
+          {
+            path: 'talent-cloud',
+            element: <TalentCloudPage />,
+          },
+          {
+            path: 'research-network',
+            element: <ResearchNetworkPage />,
+          },
+          {
+            path: 'startup-builder',
+            element: <StartupBuilderPage />,
+          },
+          {
+            path: 'digital-twins',
+            element: <DigitalTwinPage />,
+          },
+          {
+            path: 'ecosystem-analytics',
+            element: <EcosystemAnalyticsPage />,
           },
         ],
       },

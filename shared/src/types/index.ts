@@ -91,6 +91,16 @@ import {
   KnowledgeGraphDomain,
   DecisionCenterStatus,
   TelemetryMetricType,
+  GlobalNodeType,
+  GlobalEdgeType,
+  VerificationStatus,
+  PublicationStatus,
+  DigitalTwinType,
+  ReputationTier,
+  VentureStage,
+  SuperintelligenceScope,
+  TrendCategory,
+  EcosystemEventCategory,
 } from '../enums/index.js';
 
 
@@ -4547,4 +4557,321 @@ export interface ComplianceReportDto {
   securityViolationsCount: number;
   policyViolations: { rule: string; severity: 'low' | 'medium' | 'high'; timestamp: string }[];
   complianceScorePercent: number;
+}
+
+// ==========================================
+// PHASE 16: GLOBAL AI ECOSYSTEM DTOs
+// ==========================================
+
+// Module 1: Global AI Network
+export interface GlobalNetworkNodeDto {
+  id: string;
+  entityId: string;
+  nodeType: GlobalNodeType;
+  label: string;
+  score: number;
+  metadata: Record<string, any>;
+  tenantId?: string | null;
+  createdAt: string;
+}
+
+export interface GlobalNetworkEdgeDto {
+  id: string;
+  sourceNodeId: string;
+  targetNodeId: string;
+  edgeType: GlobalEdgeType;
+  weight: number;
+  metadata: Record<string, any>;
+  createdAt: string;
+}
+
+export interface GlobalGraphDto {
+  nodes: GlobalNetworkNodeDto[];
+  edges: GlobalNetworkEdgeDto[];
+}
+
+export interface GlobalNetworkRecommendationDto {
+  targetNodeId: string;
+  label: string;
+  nodeType: GlobalNodeType;
+  relevanceScore: number;
+  reason: string;
+  commonConnectionsCount: number;
+}
+
+export interface GlobalRankingDto {
+  rank: number;
+  entityId: string;
+  label: string;
+  nodeType: GlobalNodeType;
+  ecosystemScore: number;
+  percentile: number;
+}
+
+// Module 2: Collective Intelligence Engine
+export interface CollectiveConsensusDto {
+  id: string;
+  topic: string;
+  consensusScore: number;
+  agreementPercentage: number;
+  sampleSize: number;
+  verifiedByExpertsCount: number;
+  synthesizedInsight: string;
+  bestPractices: string[];
+  keyTakeaways: string[];
+  generatedAt: string;
+}
+
+export interface CrowdKnowledgeSubmissionDto {
+  topic: string;
+  insight: string;
+  sourceEntityType?: string;
+  confidenceRating?: number;
+  tags?: string[];
+}
+
+export interface TrendSignalDto {
+  trendName: string;
+  category: TrendCategory;
+  momentumScore: number;
+  growthRatePercent: number;
+  demandScore: number;
+  occurrences: number;
+}
+
+// Module 3: Autonomous Enterprise Platform
+export interface AutonomousDepartmentDto {
+  id: string;
+  orgId: string;
+  name: string;
+  headAgentId?: string | null;
+  activeTeamCount: number;
+  activeProjectCount: number;
+  budgetAllocatedUsd: number;
+  budgetSpentUsd: number;
+  efficiencyScore: number;
+  automatedWorkflowsCount: number;
+}
+
+export interface AutonomousEnterpriseProjectDto {
+  id: string;
+  departmentId: string;
+  title: string;
+  objective: string;
+  status: string;
+  priority: string;
+  estimatedDurationDays: number;
+  progressPercent: number;
+  assignedAgentIds: string[];
+  allocatedResources: Record<string, any>;
+}
+
+export interface AutonomousOptimizationReportDto {
+  orgId: string;
+  departmentId?: string;
+  efficiencyGainPercent: number;
+  resourceReallocations: { resource: string; from: string; to: string; rationale: string }[];
+  recommendedAutomations: string[];
+}
+
+// Module 4: Global Talent Cloud
+export interface TalentProfileDto {
+  id: string;
+  userId: string;
+  fullName: string;
+  title: string;
+  bio: string;
+  hourlyRateUsd: number;
+  availabilityStatus: string;
+  globalRank: number;
+  verifiedSkillsCount: number;
+  reputationScore: number;
+  reputationTier: ReputationTier;
+  portfolioScore: number;
+  location: string;
+  createdAt: string;
+}
+
+export interface VerifiedSkillDto {
+  id: string;
+  talentProfileId: string;
+  skillName: string;
+  proficiencyLevel: string;
+  score: number;
+  status: VerificationStatus;
+  verifiedAt?: string | null;
+  verifierBadge?: string | null;
+}
+
+export interface SkillVerificationRequestDto {
+  skillName: string;
+  evidenceLinks: string[];
+  assessmentScore?: number;
+}
+
+export interface TalentMatchScoreDto {
+  talent: TalentProfileDto;
+  matchScore: number;
+  matchingSkills: string[];
+  missingSkills: string[];
+  fitSummary: string;
+}
+
+// Module 5: AI Entrepreneurship Platform
+export interface StartupProfileDto {
+  id: string;
+  founderUserId: string;
+  name: string;
+  tagline: string;
+  description: string;
+  stage: VentureStage;
+  industry: string;
+  targetMarket: string;
+  businessModel: string;
+  fundingGoalUsd: number;
+  raisedAmountUsd: number;
+  teamMemberUserIds: string[];
+  marketValidationScore: number;
+  createdAt: string;
+}
+
+export interface FounderMatchDto {
+  id: string;
+  startupId: string;
+  matchedUserId: string;
+  matchScore: number;
+  complementarySkills: string[];
+  roleFit: string;
+  status: string;
+}
+
+export interface VentureIntelligenceReportDto {
+  startupId: string;
+  marketViabilityScore: number;
+  competitionRiskScore: number;
+  growthTrajectory: string;
+  strategicRoadmapSteps: string[];
+  unitEconomicsModel: { cacUsd: number; ltvUsd: number; grossMarginPercent: number };
+}
+
+// Module 6: Global Research Network
+export interface ResearchPublicationDto {
+  id: string;
+  authorUserId: string;
+  orgId?: string | null;
+  title: string;
+  abstract: string;
+  domain: string;
+  status: PublicationStatus;
+  peerReviewScore: number;
+  citationsCount: number;
+  downloadCount: number;
+  fullTextUrl?: string | null;
+  publishedAt: string;
+}
+
+export interface ResearchCitationDto {
+  id: string;
+  sourcePublicationId: string;
+  targetPublicationId: string;
+  contextSnippet: string;
+  citationWeight: number;
+  createdAt: string;
+}
+
+export interface ResearchTrendDto {
+  domain: string;
+  breakthroughTopics: string[];
+  publicationGrowthPercent: number;
+  citationVelocity?: number;
+  topCitingLabs: string[];
+}
+
+// Module 7: Digital Twin Ecosystem
+export interface DigitalTwinDto {
+  id: string;
+  entityId: string;
+  twinType: DigitalTwinType;
+  name: string;
+  stateSnapshot: Record<string, any>;
+  behavioralModel: Record<string, any>;
+  accuracyRating: number;
+  lastSimulatedAt?: string | null;
+  createdAt: string;
+}
+
+export interface SimulationScenarioDto {
+  twinId: string;
+  scenarioTitle: string;
+  inputParameters: Record<string, any>;
+  simulatedOutcomes: { milestone: string; probability: number; expectedImpact: string }[];
+  riskScore: number;
+  confidenceInterval: { min: number; max: number };
+}
+
+// Module 8: AI Economy & Token System
+export interface EcosystemReputationDto {
+  userId: string;
+  score: number;
+  tier: ReputationTier;
+  totalContributions: number;
+  upvotesReceived: number;
+  skillCreditsBalance: number;
+  badgesEarned: string[];
+  rankPercentile: number;
+}
+
+export interface EcosystemRewardDto {
+  id: string;
+  userId: string;
+  rewardType: string;
+  skillCreditsAwarded: number;
+  reason: string;
+  transactionReference: string;
+  awardedAt: string;
+}
+
+// Module 9: Self-Improving AI Ecosystem
+export interface EcosystemLearningMetricDto {
+  moduleName: string;
+  baselinePerformance: number;
+  currentPerformance: number;
+  optimizationGenerations: number;
+  selfTunedPromptVersion: string;
+  lastImprovedAt: string;
+}
+
+export interface WorkflowOptimizationRecommendationDto {
+  workflowId: string;
+  currentStepCount: number;
+  optimizedStepCount: number;
+  estimatedSpeedupPercent: number;
+  recommendedRefactor: string;
+}
+
+// Module 10: Global Command Center & Executive Superintelligence
+export interface GlobalCommandCenterOverviewDto {
+  totalNetworkNodes: number;
+  activeAutonomousAgents: number;
+  liveWorkflowsCount: number;
+  globalTalentRegistered: number;
+  activeEnterprises: number;
+  publishedResearchCount: number;
+  ventureStartupsCount: number;
+  ecosystemConsensusTopicsCount: number;
+  networkHealthScore: number;
+  trends: TrendSignalDto[];
+}
+
+export interface SuperintelligenceInsightDto {
+  id: string;
+  scope: SuperintelligenceScope;
+  title: string;
+  executiveSummary: string;
+  opportunityScore: number;
+  riskScore: number;
+  confidenceScore: number;
+  strategicActions: { step: number; action: string; priority: string }[];
+  projectedEcosystemImpact: string;
+  generatedAt: string;
 }

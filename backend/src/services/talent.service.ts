@@ -58,7 +58,7 @@ export class TalentService {
     }
 
     if (query.role) {
-      conditions.push(ilike(portfolioSettings.headline, `%${query.role}%`));
+      conditions.push(sql`COALESCE(${portfolioSettings.headline}, 'Full Stack Software Engineer') ILIKE ${'%' + query.role + '%'}`);
     }
 
 
@@ -67,7 +67,7 @@ export class TalentService {
     }
 
     const rows = await baseQuery
-      .orderBy(desc(skillRatings.currentRating))
+      .orderBy(desc(users.createdAt))
       .limit(limit)
       .offset(offset);
 

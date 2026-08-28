@@ -94,6 +94,16 @@ import {
   KnowledgeGraphDomain,
   DecisionCenterStatus,
   TelemetryMetricType,
+  GlobalNodeType,
+  GlobalEdgeType,
+  VerificationStatus,
+  PublicationStatus,
+  DigitalTwinType,
+  ReputationTier,
+  VentureStage,
+  SuperintelligenceScope,
+  TrendCategory,
+  EcosystemEventCategory,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -872,4 +882,95 @@ export const telemetryMetricTypeEnum = pgEnum('telemetry_metric_type', [
   TelemetryMetricType.CPU_UTILIZATION,
   TelemetryMetricType.MEMORY_USAGE,
   TelemetryMetricType.COST_USD,
+]);
+
+// ==========================================
+// PHASE 16: GLOBAL AI ECOSYSTEM pgEnums
+// ==========================================
+
+export const globalNodeTypeEnum = pgEnum('global_node_type', [
+  GlobalNodeType.USER,
+  GlobalNodeType.ORGANIZATION,
+  GlobalNodeType.UNIVERSITY,
+  GlobalNodeType.AGENT,
+  GlobalNodeType.TALENT,
+  GlobalNodeType.RESEARCH_LAB,
+  GlobalNodeType.STARTUP,
+]);
+
+export const globalEdgeTypeEnum = pgEnum('global_edge_type', [
+  GlobalEdgeType.COLLABORATES_WITH,
+  GlobalEdgeType.EMPLOYS,
+  GlobalEdgeType.AFFILIATED_WITH,
+  GlobalEdgeType.CITES,
+  GlobalEdgeType.MENTORS,
+  GlobalEdgeType.INVESTS_IN,
+  GlobalEdgeType.DEPLOYS,
+]);
+
+export const verificationStatusEnum = pgEnum('verification_status', [
+  VerificationStatus.PENDING,
+  VerificationStatus.VERIFIED,
+  VerificationStatus.REJECTED,
+  VerificationStatus.EXPIRED,
+]);
+
+export const publicationStatusEnum = pgEnum('publication_status', [
+  PublicationStatus.DRAFT,
+  PublicationStatus.SUBMITTED,
+  PublicationStatus.PEER_REVIEWED,
+  PublicationStatus.PUBLISHED,
+  PublicationStatus.ARCHIVED,
+]);
+
+export const digitalTwinTypeEnum = pgEnum('digital_twin_type', [
+  DigitalTwinType.USER_TWIN,
+  DigitalTwinType.CAREER_TWIN,
+  DigitalTwinType.LEARNING_TWIN,
+  DigitalTwinType.ENTERPRISE_TWIN,
+  DigitalTwinType.ORGANIZATION_TWIN,
+  DigitalTwinType.AGENT_TWIN,
+]);
+
+export const reputationTierEnum = pgEnum('reputation_tier', [
+  ReputationTier.NOVICE,
+  ReputationTier.CONTRIBUTOR,
+  ReputationTier.EXPERT,
+  ReputationTier.MASTER,
+  ReputationTier.FELLOW,
+  ReputationTier.LUMINARY,
+]);
+
+export const ventureStageEnum = pgEnum('venture_stage', [
+  VentureStage.IDEA,
+  VentureStage.PROTOTYPE,
+  VentureStage.MVP,
+  VentureStage.SEED,
+  VentureStage.SERIES_A,
+  VentureStage.ENTERPRISE,
+]);
+
+export const superintelligenceScopeEnum = pgEnum('superintelligence_scope', [
+  SuperintelligenceScope.ECOSYSTEM,
+  SuperintelligenceScope.STRATEGIC,
+  SuperintelligenceScope.TALENT,
+  SuperintelligenceScope.RESEARCH,
+  SuperintelligenceScope.VENTURE,
+  SuperintelligenceScope.RISK,
+]);
+
+export const trendCategoryEnum = pgEnum('trend_category', [
+  TrendCategory.SKILL_DEMAND,
+  TrendCategory.EMERGING_TECH,
+  TrendCategory.HIRING_VELOCITY,
+  TrendCategory.RESEARCH_BREAKTHROUGH,
+  TrendCategory.STARTUP_TREND,
+]);
+
+export const ecosystemEventCategoryEnum = pgEnum('ecosystem_event_category', [
+  EcosystemEventCategory.CONSENSUS_REACHED,
+  EcosystemEventCategory.TWIN_SIMULATION,
+  EcosystemEventCategory.SKILL_VERIFIED,
+  EcosystemEventCategory.VENTURE_LAUNCHED,
+  EcosystemEventCategory.RESEARCH_PUBLISHED,
 ]);

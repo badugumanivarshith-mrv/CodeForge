@@ -25,3 +25,4 @@ export * from './ICareerOsRepository';
 export * from './IAgenticWorkspaceRepository';
 export * from './IEcosystemRepository';
 export * from './IAgentCloudRepository';
+export * from './IGlobalEcosystemRepository';

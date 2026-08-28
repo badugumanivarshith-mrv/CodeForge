@@ -47,6 +47,7 @@ import { careerOsRouter } from './careerOs.routes';
 import { agenticWorkspaceRouter } from './agenticWorkspace.routes';
 import ecosystemRouter from './ecosystem.routes';
 import agentCloudRouter from './agentCloud.routes';
+import globalEcosystemRouter from './globalEcosystem.routes';
 
 export const v1Router = Router();
 
@@ -98,5 +99,6 @@ v1Router.use('/career-os', careerOsRouter);
 v1Router.use('/ai-workspace', agenticWorkspaceRouter);
 v1Router.use('/ecosystem', ecosystemRouter);
 v1Router.use('/agent-cloud', agentCloudRouter);
+v1Router.use('/global-ecosystem', globalEcosystemRouter);
 
 

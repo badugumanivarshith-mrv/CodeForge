@@ -100,6 +100,16 @@ async function main() {
   await import('./unit/decisionCenter.test');
   await import('./unit/telemetryAndGovernance.test');
 
+  // Phase 16: Global AI Ecosystem, Autonomous Enterprise Network & Collective Intelligence Platform Test Suites
+  await import('./unit/collectiveIntelligence.test');
+  await import('./unit/talentCloud.test');
+  await import('./unit/digitalTwin.test');
+  await import('./unit/startupBuilder.test');
+  await import('./unit/researchNetwork.test');
+  await import('./unit/superIntelligence.test');
+  await import('./unit/ecosystemEconomyAndEvolution.test');
+  await import('./security/globalEcosystemSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {
@@ -109,7 +119,7 @@ async function main() {
     }
     console.log('✅ All CodeForge V2 tests completed successfully!');
     process.exit(0);
-  }, 90000);
+  }, 10000);
 }
 
 main().catch(err => {

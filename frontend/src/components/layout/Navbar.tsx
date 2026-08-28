@@ -304,7 +304,30 @@ export const Navbar: React.FC = () => {
               e.currentTarget.style.background = 'rgba(236, 72, 153, 0.12)';
             }}
           >
-            🌐 AI Cloud & OS
+            🤖 AI Cloud & OS
+          </Link>
+          <Link
+            to="/global-command-center"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#38bdf8',
+              background: 'rgba(56, 189, 248, 0.12)',
+              padding: '4px 8px',
+              borderRadius: '6px',
+              border: '1px solid rgba(56, 189, 248, 0.35)',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.background = 'rgba(56, 189, 248, 0.28)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#38bdf8';
+              e.currentTarget.style.background = 'rgba(56, 189, 248, 0.12)';
+            }}
+          >
+            🌐 Global Ecosystem
           </Link>
           <Link
             to="/feed"
