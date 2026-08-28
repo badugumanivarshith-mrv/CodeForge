@@ -52,6 +52,17 @@ async function main() {
   await import('./integration/executiveAnalytics.integration.test');
   await import('./security/enterpriseSecurity.test');
 
+  // Phase 12: AI Career Operating System (Career OS) Test Suites
+  await import('./unit/careerTwin.test');
+  await import('./unit/careerCoach.test');
+  await import('./unit/skillIntelligence.test');
+  await import('./unit/salaryIntelligence.test');
+  await import('./unit/personalBrand.test');
+  await import('./unit/networkIntelligence.test');
+  await import('./unit/careerPrediction.test');
+  await import('./integration/careerOs.integration.test');
+  await import('./security/careerSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

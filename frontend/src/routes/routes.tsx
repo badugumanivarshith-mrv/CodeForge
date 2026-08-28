@@ -63,6 +63,15 @@ import { ExecutiveAnalyticsPage } from '../pages/ExecutiveAnalyticsPage';
 import { WorkforceIntelligencePage } from '../pages/WorkforceIntelligencePage';
 import { AdminCopilotPage } from '../pages/AdminCopilotPage';
 
+// Phase 12 AI Career Operating System (Career OS) Pages
+import { CareerOSDashboardPage } from '../pages/career-os/CareerOSDashboardPage';
+import { CareerTwinPage } from '../pages/career-os/CareerTwinPage';
+import { CareerInsightsPage } from '../pages/career-os/CareerInsightsPage';
+import { SalaryIntelligencePage } from '../pages/career-os/SalaryIntelligencePage';
+import { PersonalBrandPage } from '../pages/career-os/PersonalBrandPage';
+import { CareerTimelinePage } from '../pages/career-os/CareerTimelinePage';
+import { CareerPredictionsPage } from '../pages/career-os/CareerPredictionsPage';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -269,6 +278,35 @@ export const router = createBrowserRouter([
           {
             path: 'recruiter',
             element: <RecruiterPortalPage />,
+          },
+          // Phase 12 Career OS Routes
+          {
+            path: 'career-os',
+            element: <CareerOSDashboardPage />,
+          },
+          {
+            path: 'career-os/twin',
+            element: <CareerTwinPage />,
+          },
+          {
+            path: 'career-os/insights',
+            element: <CareerInsightsPage />,
+          },
+          {
+            path: 'career-os/salary',
+            element: <SalaryIntelligencePage />,
+          },
+          {
+            path: 'career-os/brand',
+            element: <PersonalBrandPage />,
+          },
+          {
+            path: 'career-os/timeline',
+            element: <CareerTimelinePage />,
+          },
+          {
+            path: 'career-os/predictions',
+            element: <CareerPredictionsPage />,
           },
         ],
       },

@@ -418,3 +418,71 @@ export enum RecommendationCategory {
   RESOURCE_SCALING = 'resource_scaling',
 }
 
+// Phase 12: AI Career Operating System (Career OS)
+export enum SkillDemandCategory {
+  EXPLODING = 'exploding',
+  GROWING = 'growing',
+  STABLE = 'stable',
+  DECLINING = 'declining',
+  OBSOLETE = 'obsolete',
+}
+
+export enum ForecastHorizon {
+  MONTHS_6 = '6_months',
+  YEAR_1 = '1_year',
+  YEARS_3 = '3_years',
+  YEARS_5 = '5_years',
+}
+
+export enum CareerGoalType {
+  SHORT_TERM = 'short_term',
+  MID_TERM = 'mid_term',
+  LONG_TERM = 'long_term',
+  PROMOTION = 'promotion',
+  SALARY = 'salary',
+  LEARNING = 'learning',
+  LEADERSHIP = 'leadership',
+}
+
+export enum CareerGoalStatus {
+  IN_PROGRESS = 'in_progress',
+  ACHIEVED = 'achieved',
+  PAUSED = 'paused',
+  ABANDONED = 'abandoned',
+}
+
+export enum CareerEventType {
+  PROMOTION = 'promotion',
+  CERTIFICATION = 'certification',
+  INTERVIEW = 'interview',
+  JOB_CHANGE = 'job_change',
+  LEARNING_ACHIEVEMENT = 'learning_achievement',
+  CONTEST_ACHIEVEMENT = 'contest_achievement',
+  PLACEMENT_MILESTONE = 'placement_milestone',
+  ASSESSMENT = 'assessment',
+  SALARY_UPDATE = 'salary_update',
+}
+
+export enum NetworkRelationType {
+  MENTOR = 'mentor',
+  RECRUITER = 'recruiter',
+  HIRING_MANAGER = 'hiring_manager',
+  ALUMNI = 'alumni',
+  PEER_ENGINEER = 'peer_engineer',
+  COLLABORATOR = 'collaborator',
+}
+
+export enum CoachingFrequency {
+  WEEKLY = 'weekly',
+  MONTHLY = 'monthly',
+  QUARTERLY = 'quarterly',
+}
+
+export enum CareerRiskAlertLevel {
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HIGH = 'high',
+  CRITICAL = 'critical',
+}
+
+

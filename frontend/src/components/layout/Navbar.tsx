@@ -215,6 +215,29 @@ export const Navbar: React.FC = () => {
             Intelligence
           </Link>
           <Link
+            to="/career-os"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#818cf8',
+              background: 'rgba(99, 102, 241, 0.1)',
+              padding: '4px 8px',
+              borderRadius: '6px',
+              border: '1px solid rgba(99, 102, 241, 0.3)',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.background = 'rgba(99, 102, 241, 0.25)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#818cf8';
+              e.currentTarget.style.background = 'rgba(99, 102, 241, 0.1)';
+            }}
+          >
+            ✦ Career OS
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',

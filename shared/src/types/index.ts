@@ -50,6 +50,14 @@ import {
   CertificationStatus,
   RiskLevel,
   RecommendationCategory,
+  SkillDemandCategory,
+  ForecastHorizon,
+  CareerGoalType,
+  CareerGoalStatus,
+  CareerEventType,
+  NetworkRelationType,
+  CoachingFrequency,
+  CareerRiskAlertLevel,
 } from '../enums/index.js';
 
 
@@ -2866,4 +2874,374 @@ export interface UpdateWhiteLabelDto {
   customDomain?: string;
   portalTitle?: string;
 }
+
+// ==========================================
+// PHASE 12: AI CAREER OPERATING SYSTEM (CAREER OS) DTOs
+// ==========================================
+
+export interface CareerHealthMetricsDto {
+  healthScore: number; // 0 - 100
+  learningVelocity: number; // 0 - 100
+  careerMomentum: number; // 0 - 100
+  marketCompetitiveness: number; // 0 - 100
+  interviewReadiness: number; // 0 - 100
+  salaryPositioning: number; // 0 - 100
+  leadershipPotential: number; // 0 - 100
+}
+
+export interface CareerTwinDto {
+  id: string;
+  userId: string;
+  healthScore: number;
+  learningVelocity: number;
+  careerMomentum: number;
+  marketCompetitiveness: number;
+  interviewReadiness: number;
+  salaryPositioning: number;
+  leadershipPotential: number;
+  currentRole: string;
+  targetRole: string;
+  currentLevel: string;
+  targetLevel: string;
+  currentSalaryUsd?: number | null;
+  targetSalaryUsd?: number | null;
+  yearsOfExperience: number;
+  primarySkills: string[];
+  topStrengths: string[];
+  growthAreas: string[];
+  metadata?: Record<string, any>;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateCareerTwinDto {
+  currentRole: string;
+  targetRole: string;
+  currentLevel?: string;
+  targetLevel?: string;
+  currentSalaryUsd?: number;
+  targetSalaryUsd?: number;
+  yearsOfExperience?: number;
+  primarySkills?: string[];
+}
+
+export interface UpdateCareerTwinDto {
+  currentRole?: string;
+  targetRole?: string;
+  currentLevel?: string;
+  targetLevel?: string;
+  currentSalaryUsd?: number;
+  targetSalaryUsd?: number;
+  yearsOfExperience?: number;
+  primarySkills?: string[];
+  topStrengths?: string[];
+  growthAreas?: string[];
+  metadata?: Record<string, any>;
+}
+
+export interface CareerSnapshotDto {
+  id: string;
+  twinId: string;
+  userId: string;
+  healthScore: number;
+  metrics: CareerHealthMetricsDto;
+  snapshotDate: string;
+  createdAt: string;
+}
+
+export interface CareerEventDto {
+  id: string;
+  twinId: string;
+  userId: string;
+  eventType: CareerEventType;
+  title: string;
+  description: string;
+  company?: string | null;
+  role?: string | null;
+  salaryUsd?: number | null;
+  eventDate: string;
+  isVerified: boolean;
+  metadata?: Record<string, any>;
+  createdAt: string;
+}
+
+export interface CreateCareerEventDto {
+  eventType: CareerEventType;
+  title: string;
+  description: string;
+  company?: string;
+  role?: string;
+  salaryUsd?: number;
+  eventDate?: string;
+  metadata?: Record<string, any>;
+}
+
+export interface CareerMilestoneDto {
+  id: string;
+  twinId: string;
+  userId: string;
+  title: string;
+  description: string;
+  category: string;
+  isAchieved: boolean;
+  targetDate?: string | null;
+  achievedDate?: string | null;
+  xpEarned: number;
+  createdAt: string;
+}
+
+export interface CareerOsGoalDto {
+  id: string;
+  twinId: string;
+  userId: string;
+  type: CareerGoalType;
+  title: string;
+  description: string;
+  targetRole?: string | null;
+  targetSalaryUsd?: number | null;
+  progressPercentage: number; // 0 - 100
+  status: CareerGoalStatus;
+  targetDate?: string | null;
+  achievedDate?: string | null;
+  milestones: { title: string; completed: boolean; dueDate?: string }[];
+  riskFactors: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateCareerOsGoalDto {
+  type: CareerGoalType;
+  title: string;
+  description: string;
+  targetRole?: string;
+  targetSalaryUsd?: number;
+  targetDate?: string;
+  milestones?: { title: string; completed: boolean; dueDate?: string }[];
+}
+
+export interface UpdateCareerOsGoalDto {
+  title?: string;
+  description?: string;
+  targetRole?: string;
+  targetSalaryUsd?: number;
+  progressPercentage?: number;
+  status?: CareerGoalStatus;
+  targetDate?: string;
+  achievedDate?: string;
+  milestones?: { title: string; completed: boolean; dueDate?: string }[];
+  riskFactors?: string[];
+}
+
+export interface CareerOsRoadmapDto {
+  userId: string;
+  currentRole: string;
+  targetRole: string;
+  overallProgress: number;
+  estimatedMonthsToTarget: number;
+  goals: CareerOsGoalDto[];
+  criticalPath: string[];
+  riskMitigationTips: string[];
+}
+
+export interface CareerRiskAlertDto {
+  id: string;
+  level: CareerRiskAlertLevel;
+  category: string;
+  title: string;
+  description: string;
+  suggestedAction: string;
+  identifiedAt: string;
+}
+
+export interface PromotionPlanDto {
+  targetRole: string;
+  currentReadinessScore: number; // 0 - 100
+  estimatedHorizonMonths: number;
+  keyCompetencyGaps: string[];
+  leadershipProofPoints: string[];
+  recommendedSponsors: string[];
+}
+
+export interface JobSwitchPlanDto {
+  targetRole: string;
+  marketDemandScore: number;
+  targetSalaryRange: { min: number; median: number; max: number };
+  interviewReadiness: number;
+  recommendedPrepTimeWeeks: number;
+  targetCompanies: string[];
+}
+
+export interface CareerCoachingReportDto {
+  id: string;
+  twinId: string;
+  userId: string;
+  frequency: CoachingFrequency;
+  summary: string;
+  healthMetrics: CareerHealthMetricsDto;
+  strengths: string[];
+  riskAlerts: CareerRiskAlertDto[];
+  actionItems: { priority: 'HIGH' | 'MEDIUM' | 'LOW'; action: string; category: string }[];
+  promotionReadiness: number;
+  burnoutRiskScore: number;
+  promotionPlan?: PromotionPlanDto;
+  jobSwitchPlan?: JobSwitchPlanDto;
+  generatedAt: string;
+}
+
+export interface SkillMarketDemandForecastDto {
+  skill: string;
+  category: string;
+  demandCategory: SkillDemandCategory;
+  demandScore: number; // 0 - 100
+  growthRatePercentage: number;
+  forecast6Months: number;
+  forecast1Year: number;
+  forecast3Years: number;
+  forecast5Years: number;
+  isEmerging: boolean;
+  isRecommended: boolean;
+}
+
+export interface SkillMarketIntelligenceDto {
+  asOf: string;
+  topInDemandSkills: SkillMarketDemandForecastDto[];
+  explodingSkills: SkillMarketDemandForecastDto[];
+  decliningSkills: SkillMarketDemandForecastDto[];
+  emergingTechnologies: { tech: string; domain: string; adoptionVelocity: string }[];
+  recommendedLearningFocus: string[];
+}
+
+export interface SalaryBenchmarkDto {
+  role: string;
+  level: string;
+  region: string;
+  p25SalaryUsd: number;
+  p50SalaryUsd: number;
+  p75SalaryUsd: number;
+  p90SalaryUsd: number;
+  currency: string;
+  annualBonusAvgUsd: number;
+  equityAvgUsd: number;
+}
+
+export interface SkillSalaryPremiumDto {
+  skill: string;
+  salaryPremiumPercentage: number;
+  avgEstimatedBoostUsd: number;
+  highDemandSectors: string[];
+}
+
+export interface SalaryIntelligenceReportDto {
+  userRole: string;
+  currentEstimatedP50: number;
+  userPositionPercentile: number;
+  benchmarks: SalaryBenchmarkDto[];
+  promotionSalaryForecastUsd: number;
+  jobSwitchSalaryForecastUsd: number;
+  skillSalaryPremiums: SkillSalaryPremiumDto[];
+  compensationRecommendations: string[];
+}
+
+export interface PersonalBrandScoreDto {
+  brandScore: number; // 0 - 100
+  githubScore: number;
+  portfolioScore: number;
+  linkedinScore: number;
+  contentScore: number;
+  ossScore: number;
+  brandTier: 'AUTHORITY' | 'STRONG' | 'DEVELOPING' | 'EMERGING';
+}
+
+export interface ContentPlanDto {
+  title: string;
+  platform: 'BLOG' | 'LINKEDIN' | 'GITHUB' | 'TALK';
+  targetAudience: string;
+  recommendedKeywords: string[];
+  estimatedReachScore: number;
+}
+
+export interface PersonalBrandProfileDto {
+  userId: string;
+  brandScore: PersonalBrandScoreDto;
+  recommendations: string[];
+  contentPlans: ContentPlanDto[];
+  speakingOpportunities: { eventName: string; topic: string; deadline: string }[];
+  openSourceRecommendations: { repoName: string; tech: string; difficulty: string }[];
+  updatedAt: string;
+}
+
+export interface NetworkConnectionDto {
+  id: string;
+  userId: string;
+  connectedUserId?: string | null;
+  contactName: string;
+  contactRole: string;
+  contactCompany: string;
+  relationType: NetworkRelationType;
+  strengthScore: number; // 0 - 100
+  notes?: string | null;
+  lastInteractionAt?: string | null;
+  createdAt: string;
+}
+
+export interface NetworkRecommendationDto {
+  name: string;
+  role: string;
+  company: string;
+  relationType: NetworkRelationType;
+  matchReason: string;
+  actionUrl?: string;
+}
+
+export interface NetworkIntelligenceDto {
+  networkStrengthScore: number; // 0 - 100
+  totalConnections: number;
+  distributionByType: Record<string, number>;
+  mentorRecommendations: NetworkRecommendationDto[];
+  recruiterRecommendations: NetworkRecommendationDto[];
+  industryEvents: { eventName: string; date: string; relevanceScore: number }[];
+  recommendedCommunities: { communityName: string; focus: string; memberCount: number }[];
+}
+
+export interface CareerTimelineDto {
+  userId: string;
+  currentStanding: {
+    role: string;
+    level: string;
+    company?: string;
+    yearsOfExperience: number;
+    healthScore: number;
+  };
+  historicalEvents: CareerEventDto[];
+  milestones: CareerMilestoneDto[];
+  futureMilestones: {
+    title: string;
+    expectedDate: string;
+    category: string;
+    associatedGoalTitle?: string;
+  }[];
+}
+
+export interface CareerPredictionDto {
+  horizon: ForecastHorizon;
+  promotionProbability: number; // 0 - 100
+  salaryGrowthProbability: number; // 0 - 100
+  jobSwitchProbability: number; // 0 - 100
+  leadershipReadiness: number; // 0 - 100
+  skillRelevanceScore: number; // 0 - 100
+  careerRiskScore: number; // 0 - 100
+  confidenceScore: number; // 0 - 100
+  predictedRoles: string[];
+  growthDrivers: string[];
+  riskFactors: string[];
+}
+
+export interface CareerPredictionReportDto {
+  userId: string;
+  generatedAt: string;
+  predictions: CareerPredictionDto[];
+  topRecommendations: string[];
+  fastestPathToTarget: string;
+}
+
 

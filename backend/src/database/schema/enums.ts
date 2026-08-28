@@ -53,6 +53,14 @@ import {
   CertificationStatus,
   RiskLevel,
   RecommendationCategory,
+  SkillDemandCategory,
+  ForecastHorizon,
+  CareerGoalType,
+  CareerGoalStatus,
+  CareerEventType,
+  NetworkRelationType,
+  CoachingFrequency,
+  CareerRiskAlertLevel,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -463,4 +471,72 @@ export const recommendationCategoryEnum = pgEnum('recommendation_category', [
   RecommendationCategory.PLACEMENT_PIPELINE,
   RecommendationCategory.RESOURCE_SCALING,
 ]);
+
+// Phase 12: AI Career Operating System (Career OS) pgEnums
+export const skillDemandCategoryEnum = pgEnum('skill_demand_category', [
+  SkillDemandCategory.EXPLODING,
+  SkillDemandCategory.GROWING,
+  SkillDemandCategory.STABLE,
+  SkillDemandCategory.DECLINING,
+  SkillDemandCategory.OBSOLETE,
+]);
+
+export const forecastHorizonEnum = pgEnum('forecast_horizon', [
+  ForecastHorizon.MONTHS_6,
+  ForecastHorizon.YEAR_1,
+  ForecastHorizon.YEARS_3,
+  ForecastHorizon.YEARS_5,
+]);
+
+export const careerGoalTypeEnum = pgEnum('career_goal_type', [
+  CareerGoalType.SHORT_TERM,
+  CareerGoalType.MID_TERM,
+  CareerGoalType.LONG_TERM,
+  CareerGoalType.PROMOTION,
+  CareerGoalType.SALARY,
+  CareerGoalType.LEARNING,
+  CareerGoalType.LEADERSHIP,
+]);
+
+export const careerGoalStatusEnum = pgEnum('career_goal_status', [
+  CareerGoalStatus.IN_PROGRESS,
+  CareerGoalStatus.ACHIEVED,
+  CareerGoalStatus.PAUSED,
+  CareerGoalStatus.ABANDONED,
+]);
+
+export const careerEventTypeEnum = pgEnum('career_event_type', [
+  CareerEventType.PROMOTION,
+  CareerEventType.CERTIFICATION,
+  CareerEventType.INTERVIEW,
+  CareerEventType.JOB_CHANGE,
+  CareerEventType.LEARNING_ACHIEVEMENT,
+  CareerEventType.CONTEST_ACHIEVEMENT,
+  CareerEventType.PLACEMENT_MILESTONE,
+  CareerEventType.ASSESSMENT,
+  CareerEventType.SALARY_UPDATE,
+]);
+
+export const networkRelationTypeEnum = pgEnum('network_relation_type', [
+  NetworkRelationType.MENTOR,
+  NetworkRelationType.RECRUITER,
+  NetworkRelationType.HIRING_MANAGER,
+  NetworkRelationType.ALUMNI,
+  NetworkRelationType.PEER_ENGINEER,
+  NetworkRelationType.COLLABORATOR,
+]);
+
+export const coachingFrequencyEnum = pgEnum('coaching_frequency', [
+  CoachingFrequency.WEEKLY,
+  CoachingFrequency.MONTHLY,
+  CoachingFrequency.QUARTERLY,
+]);
+
+export const careerRiskAlertLevelEnum = pgEnum('career_risk_alert_level', [
+  CareerRiskAlertLevel.LOW,
+  CareerRiskAlertLevel.MEDIUM,
+  CareerRiskAlertLevel.HIGH,
+  CareerRiskAlertLevel.CRITICAL,
+]);
+
 
