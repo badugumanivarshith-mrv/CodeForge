@@ -330,6 +330,29 @@ export const Navbar: React.FC = () => {
             🌐 Global Ecosystem
           </Link>
           <Link
+            to="/planetary-command-center"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#a855f7',
+              background: 'rgba(168, 85, 247, 0.12)',
+              padding: '4px 8px',
+              borderRadius: '6px',
+              border: '1px solid rgba(168, 85, 247, 0.35)',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.background = 'rgba(168, 85, 247, 0.28)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#a855f7';
+              e.currentTarget.style.background = 'rgba(168, 85, 247, 0.12)';
+            }}
+          >
+            🪐 Planetary Civilization
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',

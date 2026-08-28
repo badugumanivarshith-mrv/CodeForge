@@ -119,6 +119,18 @@ import {
   EcosystemAnalyticsPage,
 } from '../pages/global-network';
 
+// Phase 17 Planetary Intelligence Pages
+import {
+  PlanetaryCommandCenterPage,
+  CivilizationDashboardPage,
+  InnovationNetworkPage,
+  ResearchCivilizationPage,
+  EconomicIntelligencePage,
+  AgentFederationPage,
+  StrategicForesightPage,
+  PlanetaryTwinPage,
+} from '../pages/planetary-network';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -484,6 +496,40 @@ export const router = createBrowserRouter([
           {
             path: 'ecosystem-analytics',
             element: <EcosystemAnalyticsPage />,
+          },
+
+          // Phase 17 Planetary Intelligence Infrastructure Routes
+          {
+            path: 'planetary-command-center',
+            element: <PlanetaryCommandCenterPage />,
+          },
+          {
+            path: 'civilization',
+            element: <CivilizationDashboardPage />,
+          },
+          {
+            path: 'innovation-network',
+            element: <InnovationNetworkPage />,
+          },
+          {
+            path: 'research-civilization',
+            element: <ResearchCivilizationPage />,
+          },
+          {
+            path: 'economic-intelligence',
+            element: <EconomicIntelligencePage />,
+          },
+          {
+            path: 'agent-federation',
+            element: <AgentFederationPage />,
+          },
+          {
+            path: 'strategic-foresight',
+            element: <StrategicForesightPage />,
+          },
+          {
+            path: 'planetary-twins',
+            element: <PlanetaryTwinPage />,
           },
         ],
       },

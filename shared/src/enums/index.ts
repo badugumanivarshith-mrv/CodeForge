@@ -877,3 +877,85 @@ export enum EcosystemEventCategory {
   VENTURE_LAUNCHED = 'venture_launched',
   RESEARCH_PUBLISHED = 'research_published',
 }
+
+// Phase 17: Planetary Intelligence Infrastructure Enums
+export enum PlanetaryTwinType {
+  GLOBAL_ECONOMY = 'global_economy',
+  EDUCATION = 'education',
+  WORKFORCE = 'workforce',
+  RESEARCH = 'research',
+  ENTERPRISE = 'enterprise',
+  INNOVATION = 'innovation',
+}
+
+export enum CivilizationHealthTier {
+  PRISTINE = 'pristine',
+  ADVANCING = 'advancing',
+  STABLE = 'stable',
+  AT_RISK = 'at_risk',
+  CRITICAL = 'critical',
+}
+
+export enum GovernanceCouncilType {
+  ETHICAL_AI = 'ethical_ai',
+  SECURITY_COMPLIANCE = 'security_compliance',
+  DATA_SOVEREIGNTY = 'data_sovereignty',
+  RESEARCH_INTEGRITY = 'research_integrity',
+  ECONOMIC_STABILITY = 'economic_stability',
+}
+
+export enum PolicyStatus {
+  PROPOSED = 'proposed',
+  SIMULATED = 'simulated',
+  ACTIVE = 'active',
+  REVISED = 'revised',
+  DEPRECATED = 'deprecated',
+}
+
+export enum InnovationDomain {
+  AI_REASONING = 'ai_reasoning',
+  QUANTUM_COMPUTE = 'quantum_compute',
+  AUTONOMOUS_SYSTEMS = 'autonomous_systems',
+  CLEANTECH = 'cleantech',
+  BIOTECH = 'biotech',
+  CYBERSECURITY = 'cybersecurity',
+  DISTRIBUTED_SYSTEMS = 'distributed_systems',
+}
+
+export enum FederationProtocol {
+  MULTI_AGENT_CONSENSUS = 'multi_agent_consensus',
+  SECURE_RPC = 'secure_rpc',
+  DECENTRALIZED_KNOWLEDGE = 'decentralized_knowledge',
+  CROSS_CLUSTER_REPLICATION = 'cross_cluster_replication',
+}
+
+export enum AgentFederationStatus {
+  ONLINE = 'online',
+  NEGOTIATING = 'negotiating',
+  SYNCING = 'syncing',
+  DELEGATING = 'delegating',
+  ISOLATED = 'isolated',
+}
+
+export enum EconomicSignalType {
+  TALENT_INFLOW = 'talent_inflow',
+  SKILL_PREMIUM = 'skill_premium',
+  COMPUTE_DEMAND = 'compute_demand',
+  STARTUP_CAPITAL = 'startup_capital',
+  CREATOR_YIELD = 'creator_yield',
+}
+
+export enum ForesightHorizon {
+  ONE_YEAR = 'one_year',
+  FIVE_YEAR = 'five_year',
+  TEN_YEAR = 'ten_year',
+}
+
+export enum PlanetaryEventCategory {
+  CIVILIZATION_PULSE = 'civilization_pulse',
+  POLICY_ENACTED = 'policy_enacted',
+  TWIN_CALIBRATED = 'twin_calibrated',
+  INNOVATION_PATENTED = 'innovation_patented',
+  FEDERATION_FORMED = 'federation_formed',
+  FORESIGHT_UPDATED = 'foresight_updated',
+}

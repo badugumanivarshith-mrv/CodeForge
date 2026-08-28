@@ -101,6 +101,16 @@ import {
   SuperintelligenceScope,
   TrendCategory,
   EcosystemEventCategory,
+  PlanetaryTwinType,
+  CivilizationHealthTier,
+  GovernanceCouncilType,
+  PolicyStatus,
+  InnovationDomain,
+  FederationProtocol,
+  AgentFederationStatus,
+  EconomicSignalType,
+  ForesightHorizon,
+  PlanetaryEventCategory,
 } from '../enums/index.js';
 
 
@@ -4874,4 +4884,249 @@ export interface SuperintelligenceInsightDto {
   strategicActions: { step: number; action: string; priority: string }[];
   projectedEcosystemImpact: string;
   generatedAt: string;
+}
+
+// ==========================================
+// PHASE 17: PLANETARY INTELLIGENCE INFRASTRUCTURE DTOs
+// ==========================================
+
+// Module 1: Planetary Intelligence Network
+export interface PlanetaryClusterNodeDto {
+  id: string;
+  clusterName: string;
+  region: string;
+  activeAgentsCount: number;
+  workforceCount: number;
+  knowledgeNodeCount: number;
+  syncLatencyMs: number;
+  status: string;
+  lastHeartbeat: string;
+}
+
+export interface PlanetaryCollaborationMeshDto {
+  meshId: string;
+  primaryClusterId: string;
+  federatedClusterIds: string[];
+  totalBandwidthThroughputGbps: number;
+  activeSharedMemories: number;
+  federatedConsensusScore: number;
+}
+
+// Module 2: Digital Civilization Engine
+export interface CivilizationMetricsDto {
+  id: string;
+  civilizationHealthScore: number;
+  healthTier: CivilizationHealthTier;
+  innovationIndex: number;
+  knowledgeGrowthIndex: number;
+  economicActivityIndex: number;
+  workforceReadinessIndex: number;
+  researchProductivityIndex: number;
+  recordedAt: string;
+}
+
+export interface CivilizationOpportunityDto {
+  id: string;
+  domain: InnovationDomain;
+  title: string;
+  description: string;
+  projectedGdpImpactScore: number;
+  feasibilityScore: number;
+  readinessTimeMonths: number;
+}
+
+export interface CivilizationRiskDto {
+  id: string;
+  riskName: string;
+  severity: 'low' | 'medium' | 'high' | 'critical';
+  mitigationStrategy: string;
+  probability: number;
+}
+
+export interface CivilizationReportDto {
+  id: string;
+  title: string;
+  summary: string;
+  metrics: CivilizationMetricsDto;
+  growthForecasts: { sector: string; projectedGrowthPercent: number }[];
+  opportunityMap: CivilizationOpportunityDto[];
+  riskMap: CivilizationRiskDto[];
+  generatedAt: string;
+}
+
+// Module 3: Autonomous Governance Platform
+export interface GovernancePolicyDto {
+  id: string;
+  title: string;
+  councilType: GovernanceCouncilType;
+  description: string;
+  rules: string[];
+  status: PolicyStatus;
+  enactedBy: string;
+  complianceScore: number;
+  ethicalReviewNotes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PolicySimulationDto {
+  id: string;
+  policyId: string;
+  simulationName: string;
+  complianceProjectedPercent: number;
+  economicFrictionScore: number;
+  ethicalAlignmentScore: number;
+  stakeholderImpacts: { stakeholder: string; impactScore: number; sentiment: string }[];
+  forecastedOutcome: string;
+  simulatedAt: string;
+}
+
+// Module 4: Planetary Digital Twins
+export interface PlanetaryTwinDto {
+  id: string;
+  twinType: PlanetaryTwinType;
+  entityName: string;
+  stateSnapshot: Record<string, any>;
+  fidelityScore: number;
+  lastSimulatedAt?: string;
+  syncFrequencySeconds: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface PlanetarySimulationDto {
+  id: string;
+  twinId: string;
+  scenarioName: string;
+  horizonDays: number;
+  parameters: Record<string, any>;
+  projectedOutcomes: { milestone: string; probability: number; impact: string }[];
+  monteCarloConfidence: number;
+  optimizedInterventions: string[];
+  simulatedAt: string;
+}
+
+// Module 5: Global Innovation Network
+export interface InnovationRecordDto {
+  id: string;
+  title: string;
+  domain: InnovationDomain;
+  inventorOrganizationId: string;
+  patentStatus: 'filed' | 'approved' | 'commercialized' | 'open_source';
+  commercialReadinessScore: number;
+  adoptionForecastPercent: number;
+  technologyMaturityLevel: number;
+  createdAt: string;
+}
+
+export interface InnovationRankingDto {
+  domain: InnovationDomain;
+  topInnovations: InnovationRecordDto[];
+  velocityScore: number;
+  leadingRegion: string;
+}
+
+// Module 6: AI Research Civilization
+export interface ResearchFederationDto {
+  id: string;
+  federationName: string;
+  leadInstitutionId: string;
+  memberInstitutionIds: string[];
+  focusArea: string;
+  activeCollaborationsCount: number;
+  sharedDatasetsCount: number;
+  status: string;
+  createdAt: string;
+}
+
+export interface ResearchCollaborationDto {
+  id: string;
+  federationId: string;
+  title: string;
+  principalInvestigator: string;
+  milestones: { title: string; completed: boolean }[];
+  impactScore: number;
+  validationProof: string;
+  createdAt: string;
+}
+
+// Module 7: Global Economic Intelligence
+export interface EconomicSignalDto {
+  id: string;
+  signalType: EconomicSignalType;
+  sector: string;
+  intensityScore: number;
+  region: string;
+  metadata: Record<string, any>;
+  detectedAt: string;
+}
+
+export interface EconomicForecastDto {
+  id: string;
+  horizonMonths: number;
+  talentDemandGrowth: number;
+  skillPremiumTrends: { skill: string; changePercent: number }[];
+  macroEconomicHealthScore: number;
+  forecastSummary: string;
+  createdAt: string;
+}
+
+// Module 8: Autonomous Agent Federation
+export interface AgentFederationDto {
+  id: string;
+  federationName: string;
+  organizationId: string;
+  protocol: FederationProtocol;
+  status: AgentFederationStatus;
+  participatingAgentCount: number;
+  totalNegotiationsHandled: number;
+  cooperationIndex: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AgentFederationReputationDto {
+  agentId: string;
+  federationId: string;
+  trustScore: number;
+  successfulDelegations: number;
+  disputeRate: number;
+  reputationBadge: string;
+}
+
+export interface AgentDelegationPlanDto {
+  planId: string;
+  sourceFederationId: string;
+  targetFederationId: string;
+  taskPayload: Record<string, any>;
+  negotiatedBountyCredits: number;
+  slaTimeoutSeconds: number;
+  status: 'negotiating' | 'accepted' | 'executing' | 'completed' | 'rejected';
+}
+
+// Module 9: Strategic Foresight Engine
+export interface StrategicForecastDto {
+  id: string;
+  horizon: ForesightHorizon;
+  domain: InnovationDomain;
+  title: string;
+  forecastNarrative: string;
+  opportunityRank: number;
+  riskRank: number;
+  confidenceScore: number;
+  recommendedPlaybook: string[];
+  createdAt: string;
+}
+
+// Module 10: Planetary Command Center
+export interface PlanetaryCommandCenterOverviewDto {
+  civilizationMetrics: CivilizationMetricsDto;
+  activePlanetaryTwinsCount: number;
+  activeFederationsCount: number;
+  activeResearchCollaborationsCount: number;
+  activeGovernancePoliciesCount: number;
+  liveEconomicSignalsCount: number;
+  topOpportunities: CivilizationOpportunityDto[];
+  systemicRisks: CivilizationRiskDto[];
+  strategicForecastsCount: number;
 }

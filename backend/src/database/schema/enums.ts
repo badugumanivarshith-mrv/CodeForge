@@ -104,6 +104,16 @@ import {
   SuperintelligenceScope,
   TrendCategory,
   EcosystemEventCategory,
+  PlanetaryTwinType,
+  CivilizationHealthTier,
+  GovernanceCouncilType,
+  PolicyStatus,
+  InnovationDomain,
+  FederationProtocol,
+  AgentFederationStatus,
+  EconomicSignalType,
+  ForesightHorizon,
+  PlanetaryEventCategory,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -973,4 +983,86 @@ export const ecosystemEventCategoryEnum = pgEnum('ecosystem_event_category', [
   EcosystemEventCategory.SKILL_VERIFIED,
   EcosystemEventCategory.VENTURE_LAUNCHED,
   EcosystemEventCategory.RESEARCH_PUBLISHED,
+]);
+
+// Phase 17: Planetary Intelligence pgEnums
+export const planetaryTwinTypeEnum = pgEnum('planetary_twin_type', [
+  PlanetaryTwinType.GLOBAL_ECONOMY,
+  PlanetaryTwinType.EDUCATION,
+  PlanetaryTwinType.WORKFORCE,
+  PlanetaryTwinType.RESEARCH,
+  PlanetaryTwinType.ENTERPRISE,
+  PlanetaryTwinType.INNOVATION,
+]);
+
+export const civilizationHealthTierEnum = pgEnum('civilization_health_tier', [
+  CivilizationHealthTier.PRISTINE,
+  CivilizationHealthTier.ADVANCING,
+  CivilizationHealthTier.STABLE,
+  CivilizationHealthTier.AT_RISK,
+  CivilizationHealthTier.CRITICAL,
+]);
+
+export const governanceCouncilTypeEnum = pgEnum('governance_council_type', [
+  GovernanceCouncilType.ETHICAL_AI,
+  GovernanceCouncilType.SECURITY_COMPLIANCE,
+  GovernanceCouncilType.DATA_SOVEREIGNTY,
+  GovernanceCouncilType.RESEARCH_INTEGRITY,
+  GovernanceCouncilType.ECONOMIC_STABILITY,
+]);
+
+export const policyStatusEnum = pgEnum('policy_status', [
+  PolicyStatus.PROPOSED,
+  PolicyStatus.SIMULATED,
+  PolicyStatus.ACTIVE,
+  PolicyStatus.REVISED,
+  PolicyStatus.DEPRECATED,
+]);
+
+export const innovationDomainEnum = pgEnum('innovation_domain', [
+  InnovationDomain.AI_REASONING,
+  InnovationDomain.QUANTUM_COMPUTE,
+  InnovationDomain.AUTONOMOUS_SYSTEMS,
+  InnovationDomain.CLEANTECH,
+  InnovationDomain.BIOTECH,
+  InnovationDomain.CYBERSECURITY,
+  InnovationDomain.DISTRIBUTED_SYSTEMS,
+]);
+
+export const federationProtocolEnum = pgEnum('federation_protocol', [
+  FederationProtocol.MULTI_AGENT_CONSENSUS,
+  FederationProtocol.SECURE_RPC,
+  FederationProtocol.DECENTRALIZED_KNOWLEDGE,
+  FederationProtocol.CROSS_CLUSTER_REPLICATION,
+]);
+
+export const agentFederationStatusEnum = pgEnum('agent_federation_status', [
+  AgentFederationStatus.ONLINE,
+  AgentFederationStatus.NEGOTIATING,
+  AgentFederationStatus.SYNCING,
+  AgentFederationStatus.DELEGATING,
+  AgentFederationStatus.ISOLATED,
+]);
+
+export const economicSignalTypeEnum = pgEnum('economic_signal_type', [
+  EconomicSignalType.TALENT_INFLOW,
+  EconomicSignalType.SKILL_PREMIUM,
+  EconomicSignalType.COMPUTE_DEMAND,
+  EconomicSignalType.STARTUP_CAPITAL,
+  EconomicSignalType.CREATOR_YIELD,
+]);
+
+export const foresightHorizonEnum = pgEnum('foresight_horizon', [
+  ForesightHorizon.ONE_YEAR,
+  ForesightHorizon.FIVE_YEAR,
+  ForesightHorizon.TEN_YEAR,
+]);
+
+export const planetaryEventCategoryEnum = pgEnum('planetary_event_category', [
+  PlanetaryEventCategory.CIVILIZATION_PULSE,
+  PlanetaryEventCategory.POLICY_ENACTED,
+  PlanetaryEventCategory.TWIN_CALIBRATED,
+  PlanetaryEventCategory.INNOVATION_PATENTED,
+  PlanetaryEventCategory.FEDERATION_FORMED,
+  PlanetaryEventCategory.FORESIGHT_UPDATED,
 ]);

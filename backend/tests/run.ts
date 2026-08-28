@@ -110,6 +110,16 @@ async function main() {
   await import('./unit/ecosystemEconomyAndEvolution.test');
   await import('./security/globalEcosystemSecurity.test');
 
+  // Phase 17: Planetary Intelligence Infrastructure & Autonomous Digital Civilization Test Suites
+  await import('./unit/civilizationEngine.test');
+  await import('./unit/planetaryTwin.test');
+  await import('./unit/innovationNetwork.test');
+  await import('./unit/researchCivilization.test');
+  await import('./unit/economicIntelligence.test');
+  await import('./unit/agentFederation.test');
+  await import('./unit/strategicForesight.test');
+  await import('./security/planetarySecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {
