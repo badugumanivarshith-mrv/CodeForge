@@ -131,6 +131,16 @@ async function main() {
   await import('./unit/selfImprovement.test');
   await import('./security/cognitiveSecurity.test');
 
+  // Phase 19: Autonomous Enterprise Civilization & AI Workforce Operating System Test Suites
+  await import('./unit/organizationEngine.test');
+  await import('./unit/digitalEmployee.test');
+  await import('./unit/companyBuilder.test');
+  await import('./unit/productFactory.test');
+  await import('./unit/enterpriseFederation.test');
+  await import('./unit/investmentIntelligence.test');
+  await import('./unit/executionNetwork.test');
+  await import('./security/enterpriseCivilizationSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

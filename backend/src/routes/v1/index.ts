@@ -50,6 +50,7 @@ import agentCloudRouter from './agentCloud.routes';
 import globalEcosystemRouter from './globalEcosystem.routes';
 import planetaryIntelligenceRouter from './planetaryIntelligence.routes';
 import cognitiveCoreRouter from './cognitiveCore.routes';
+import enterpriseCivilizationRouter from './enterpriseCivilization.routes';
 
 export const v1Router = Router();
 
@@ -104,5 +105,4 @@ v1Router.use('/agent-cloud', agentCloudRouter);
 v1Router.use('/global-ecosystem', globalEcosystemRouter);
 v1Router.use('/planetary-intelligence', planetaryIntelligenceRouter);
 v1Router.use('/cognitive-core', cognitiveCoreRouter);
-
-
+v1Router.use('/enterprise-civilization', enterpriseCivilizationRouter);

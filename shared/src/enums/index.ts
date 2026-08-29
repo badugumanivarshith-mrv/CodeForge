@@ -1046,3 +1046,88 @@ export enum StrategicPriority {
   LOW = 'low',
   EXPLORATORY = 'exploratory',
 }
+
+// Phase 19 Autonomous Enterprise Civilization & AI Workforce Enums
+export enum OrganizationCivilizationType {
+  ENTERPRISE = 'enterprise',
+  STARTUP = 'startup',
+  RESEARCH_LAB = 'research_lab',
+  VENTURE_STUDIO = 'venture_studio',
+  DAO = 'dao',
+  CIVILIZATION_NODE = 'civilization_node',
+}
+
+export enum DigitalEmployeeRole {
+  AI_ENGINEER = 'ai_engineer',
+  AI_RESEARCHER = 'ai_researcher',
+  AI_PRODUCT_MANAGER = 'ai_product_manager',
+  AI_DESIGNER = 'ai_designer',
+  AI_ANALYST = 'ai_analyst',
+  AI_EXECUTIVE = 'ai_executive',
+}
+
+export enum EmployeeEmploymentStatus {
+  ACTIVE = 'active',
+  PROVISIONING = 'provisioning',
+  REALLOCATED = 'reallocated',
+  BENCH = 'bench',
+  DECOMMISSIONED = 'decommissioned',
+}
+
+export enum CompanyStage {
+  IDEATION = 'ideation',
+  PRE_SEED = 'pre_seed',
+  SEED = 'seed',
+  SERIES_A = 'series_a',
+  GROWTH = 'growth',
+  EXPANSION = 'expansion',
+  AUTONOMOUS = 'autonomous',
+}
+
+export enum ProductLifecycleStage {
+  DISCOVERY = 'discovery',
+  VALIDATION = 'validation',
+  ALPHA = 'alpha',
+  BETA = 'beta',
+  GENERAL_AVAILABILITY = 'general_availability',
+  DEPRECATED = 'deprecated',
+}
+
+export enum EnterpriseFederationType {
+  RESOURCE_SHARING = 'resource_sharing',
+  TALENT_EXCHANGE = 'talent_exchange',
+  JOINT_VENTURE = 'joint_venture',
+  RESEARCH_CONSORTIUM = 'research_consortium',
+  STRATEGIC_ALLIANCE = 'strategic_alliance',
+}
+
+export enum InvestmentReadinessTier {
+  TIER_1_EXEMPLARY = 'tier_1_exemplary',
+  TIER_2_INVESTABLE = 'tier_2_investable',
+  TIER_3_INCUBATING = 'tier_3_incubating',
+  TIER_4_NEEDS_VALIDATION = 'tier_4_needs_validation',
+}
+
+export enum ExecutionNetworkTaskPriority {
+  CRITICAL_PATH = 'critical_path',
+  HIGH = 'high',
+  NORMAL = 'normal',
+  SPECULATIVE = 'speculative',
+}
+
+export enum ExecutionNetworkTaskStatus {
+  QUEUED = 'queued',
+  DELEGATED = 'delegated',
+  EXECUTING = 'executing',
+  VERIFYING = 'verifying',
+  COMPLETED = 'completed',
+  FAILED = 'failed',
+}
+
+export enum EconomicSimulationScenario {
+  BULL_MARKET = 'bull_market',
+  BEAR_MARKET = 'bear_market',
+  DISRUPTIVE_SHOCK = 'disruptive_shock',
+  RESOURCE_SCARCITY = 'resource_scarcity',
+  EQUILIBRIUM = 'equilibrium',
+}

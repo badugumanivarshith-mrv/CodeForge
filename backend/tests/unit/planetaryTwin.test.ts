@@ -14,7 +14,7 @@ function createMockTwinRepo() {
       return list;
     },
     async createPlanetaryTwin(data: any) {
-      const twin = { ...data, id: `twin-${Date.now()}` };
+      const twin = { ...data, id: `twin-${Date.now()}-${Math.random().toString(36).slice(2)}` };
       twins.set(twin.id, twin);
       return twin;
     },

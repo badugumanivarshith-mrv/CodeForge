@@ -28,3 +28,4 @@ export * from './IAgentCloudRepository';
 export * from './IGlobalEcosystemRepository';
 export * from './IPlanetaryIntelligenceRepository';
 export * from './ICognitiveCoreRepository';
+export * from './IEnterpriseCivilizationRepository';

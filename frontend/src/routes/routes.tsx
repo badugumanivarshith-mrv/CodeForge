@@ -143,6 +143,18 @@ import {
   AutonomousExecutionPage,
 } from '../pages/cognitive-os';
 
+// Phase 19 Autonomous Enterprise Civilization Pages
+import {
+  EnterpriseCommandCenterPage,
+  OrganizationEnginePage,
+  DigitalWorkforcePage,
+  CompanyBuilderPage,
+  ProductFactoryPage,
+  InvestmentIntelligencePage,
+  EconomicSimulationPage,
+  EnterpriseFederationPage,
+} from '../pages/enterprise-civilization';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -576,6 +588,40 @@ export const router = createBrowserRouter([
           {
             path: 'autonomous-execution',
             element: <AutonomousExecutionPage />,
+          },
+
+          // Phase 19 Autonomous Enterprise Civilization Routes
+          {
+            path: 'enterprise-civilization',
+            element: <EnterpriseCommandCenterPage />,
+          },
+          {
+            path: 'organization-engine',
+            element: <OrganizationEnginePage />,
+          },
+          {
+            path: 'digital-workforce',
+            element: <DigitalWorkforcePage />,
+          },
+          {
+            path: 'company-builder',
+            element: <CompanyBuilderPage />,
+          },
+          {
+            path: 'product-factory',
+            element: <ProductFactoryPage />,
+          },
+          {
+            path: 'investment-intelligence',
+            element: <InvestmentIntelligencePage />,
+          },
+          {
+            path: 'economic-simulation',
+            element: <EconomicSimulationPage />,
+          },
+          {
+            path: 'enterprise-federation',
+            element: <EnterpriseFederationPage />,
           },
         ],
       },

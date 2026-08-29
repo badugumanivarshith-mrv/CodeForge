@@ -9,7 +9,7 @@ function createMockInnovationRepo() {
 
   return {
     async createInnovationRecord(data: any) {
-      const item = { ...data, id: `inv-${Date.now()}` };
+      const item = { ...data, id: `inv-${Date.now()}-${Math.random().toString(36).slice(2)}` };
       records.set(item.id, item);
       return item;
     },

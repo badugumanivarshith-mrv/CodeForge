@@ -124,6 +124,16 @@ import {
   SelfImprovementDomain,
   MetacognitionConfidence,
   StrategicPriority,
+  OrganizationCivilizationType,
+  DigitalEmployeeRole,
+  EmployeeEmploymentStatus,
+  CompanyStage,
+  ProductLifecycleStage,
+  EnterpriseFederationType,
+  InvestmentReadinessTier,
+  ExecutionNetworkTaskPriority,
+  ExecutionNetworkTaskStatus,
+  EconomicSimulationScenario,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1162,4 +1172,89 @@ export const strategicPriorityEnum = pgEnum('strategic_priority', [
   StrategicPriority.MEDIUM,
   StrategicPriority.LOW,
   StrategicPriority.EXPLORATORY,
+]);
+
+// Phase 19 Autonomous Enterprise Civilization & AI Workforce pgEnums
+export const organizationCivilizationTypeEnum = pgEnum('organization_civilization_type', [
+  OrganizationCivilizationType.ENTERPRISE,
+  OrganizationCivilizationType.STARTUP,
+  OrganizationCivilizationType.RESEARCH_LAB,
+  OrganizationCivilizationType.VENTURE_STUDIO,
+  OrganizationCivilizationType.DAO,
+  OrganizationCivilizationType.CIVILIZATION_NODE,
+]);
+
+export const digitalEmployeeRoleEnum = pgEnum('digital_employee_role', [
+  DigitalEmployeeRole.AI_ENGINEER,
+  DigitalEmployeeRole.AI_RESEARCHER,
+  DigitalEmployeeRole.AI_PRODUCT_MANAGER,
+  DigitalEmployeeRole.AI_DESIGNER,
+  DigitalEmployeeRole.AI_ANALYST,
+  DigitalEmployeeRole.AI_EXECUTIVE,
+]);
+
+export const employeeEmploymentStatusEnum = pgEnum('employee_employment_status', [
+  EmployeeEmploymentStatus.ACTIVE,
+  EmployeeEmploymentStatus.PROVISIONING,
+  EmployeeEmploymentStatus.REALLOCATED,
+  EmployeeEmploymentStatus.BENCH,
+  EmployeeEmploymentStatus.DECOMMISSIONED,
+]);
+
+export const companyStageEnum = pgEnum('company_stage', [
+  CompanyStage.IDEATION,
+  CompanyStage.PRE_SEED,
+  CompanyStage.SEED,
+  CompanyStage.SERIES_A,
+  CompanyStage.GROWTH,
+  CompanyStage.EXPANSION,
+  CompanyStage.AUTONOMOUS,
+]);
+
+export const productLifecycleStageEnum = pgEnum('product_lifecycle_stage', [
+  ProductLifecycleStage.DISCOVERY,
+  ProductLifecycleStage.VALIDATION,
+  ProductLifecycleStage.ALPHA,
+  ProductLifecycleStage.BETA,
+  ProductLifecycleStage.GENERAL_AVAILABILITY,
+  ProductLifecycleStage.DEPRECATED,
+]);
+
+export const enterpriseFederationTypeEnum = pgEnum('enterprise_federation_type', [
+  EnterpriseFederationType.RESOURCE_SHARING,
+  EnterpriseFederationType.TALENT_EXCHANGE,
+  EnterpriseFederationType.JOINT_VENTURE,
+  EnterpriseFederationType.RESEARCH_CONSORTIUM,
+  EnterpriseFederationType.STRATEGIC_ALLIANCE,
+]);
+
+export const investmentReadinessTierEnum = pgEnum('investment_readiness_tier', [
+  InvestmentReadinessTier.TIER_1_EXEMPLARY,
+  InvestmentReadinessTier.TIER_2_INVESTABLE,
+  InvestmentReadinessTier.TIER_3_INCUBATING,
+  InvestmentReadinessTier.TIER_4_NEEDS_VALIDATION,
+]);
+
+export const executionNetworkTaskPriorityEnum = pgEnum('execution_network_task_priority', [
+  ExecutionNetworkTaskPriority.CRITICAL_PATH,
+  ExecutionNetworkTaskPriority.HIGH,
+  ExecutionNetworkTaskPriority.NORMAL,
+  ExecutionNetworkTaskPriority.SPECULATIVE,
+]);
+
+export const executionNetworkTaskStatusEnum = pgEnum('execution_network_task_status', [
+  ExecutionNetworkTaskStatus.QUEUED,
+  ExecutionNetworkTaskStatus.DELEGATED,
+  ExecutionNetworkTaskStatus.EXECUTING,
+  ExecutionNetworkTaskStatus.VERIFYING,
+  ExecutionNetworkTaskStatus.COMPLETED,
+  ExecutionNetworkTaskStatus.FAILED,
+]);
+
+export const economicSimulationScenarioEnum = pgEnum('economic_simulation_scenario', [
+  EconomicSimulationScenario.BULL_MARKET,
+  EconomicSimulationScenario.BEAR_MARKET,
+  EconomicSimulationScenario.DISRUPTIVE_SHOCK,
+  EconomicSimulationScenario.RESOURCE_SCARCITY,
+  EconomicSimulationScenario.EQUILIBRIUM,
 ]);

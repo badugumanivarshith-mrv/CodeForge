@@ -13,7 +13,7 @@ describe('Phase 16: Digital Twin Ecosystem Unit Tests', () => {
       simulations,
       async createDigitalTwin(entityId: string, twinType: DigitalTwinType, name: string, snapshot: any, model: any) {
         const twin = {
-          id: `dt-${Date.now()}`,
+          id: `dt-${Date.now()}-${Math.random().toString(36).slice(2)}`,
           entityId,
           twinType,
           name,

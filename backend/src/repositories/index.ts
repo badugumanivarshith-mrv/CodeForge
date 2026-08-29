@@ -29,3 +29,4 @@ export * from './AgentCloudRepository';
 export * from './GlobalEcosystemRepository';
 export * from './PlanetaryIntelligenceRepository';
 export * from './CognitiveCoreRepository';
+export * from './EnterpriseCivilizationRepository';

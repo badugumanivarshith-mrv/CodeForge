@@ -121,6 +121,16 @@ import {
   SelfImprovementDomain,
   MetacognitionConfidence,
   StrategicPriority,
+  OrganizationCivilizationType,
+  DigitalEmployeeRole,
+  EmployeeEmploymentStatus,
+  CompanyStage,
+  ProductLifecycleStage,
+  EnterpriseFederationType,
+  InvestmentReadinessTier,
+  ExecutionNetworkTaskPriority,
+  ExecutionNetworkTaskStatus,
+  EconomicSimulationScenario,
 } from '../enums/index.js';
 
 
@@ -5375,4 +5385,194 @@ export interface ExecutiveCommandCenterOverviewDto {
   selfImprovementVelocity: number;
   topStrategicOpportunities: Array<{ title: string; priority: StrategicPriority; potentialImpact: number }>;
   recentSelfReflections: SelfReflectionReportDto[];
+}
+
+// ============================================================================
+// PHASE 19: AUTONOMOUS ENTERPRISE CIVILIZATION & AI WORKFORCE OPERATING SYSTEM
+// ============================================================================
+
+// Module 1: AI Organization Engine
+export interface OrganizationCivilizationDto {
+  id: string;
+  creatorUserId: string;
+  name: string;
+  slug: string;
+  organizationType: OrganizationCivilizationType;
+  missionStatement: string;
+  headquartersRegion: string;
+  autonomousOperatingStatus: string;
+  totalDepartmentsCount: number;
+  totalWorkforceHeadcount: number;
+  organizationalEfficiencyScore: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CivilizationDepartmentDto {
+  id: string;
+  organizationId: string;
+  name: string;
+  charter: string;
+  leadEmployeeId?: string;
+  allocatedBudgetTokens: number;
+  efficiencyRating: number;
+  teamsCount: number;
+  createdAt: string;
+}
+
+export interface CivilizationTeamDto {
+  id: string;
+  departmentId: string;
+  organizationId: string;
+  name: string;
+  focusArea: string;
+  leadEmployeeId?: string;
+  memberCount: number;
+  activeProjectsCount: number;
+  createdAt: string;
+}
+
+export interface WorkforcePlanningDto {
+  organizationId: string;
+  currentHeadcount: number;
+  optimalHeadcount: number;
+  capacityUtilizationScore: number;
+  criticalSkillGaps: string[];
+  recommendedAllocations: Array<{ departmentName: string; suggestedHires: number; roleType: DigitalEmployeeRole }>;
+}
+
+// Module 2: Digital Employee System
+export interface DigitalEmployeeDto {
+  id: string;
+  organizationId: string;
+  departmentId?: string;
+  teamId?: string;
+  name: string;
+  role: DigitalEmployeeRole;
+  status: EmployeeEmploymentStatus;
+  seniorityTier: string;
+  capabilities: string[];
+  primarySpecialization: string;
+  activeAssignedTaskId?: string;
+  completedTasksCount: number;
+  velocityScore: number;
+  accuracyScore: number;
+  collaborationIndex: number;
+  createdAt: string;
+}
+
+// Module 3: Autonomous Company Builder
+export interface CompanyBlueprintDto {
+  id: string;
+  creatorUserId: string;
+  companyName: string;
+  tagline: string;
+  stage: CompanyStage;
+  targetMarket: string;
+  valueProposition: string;
+  businessModelCanvas: {
+    keyPartners: string[];
+    keyActivities: string[];
+    valuePropositions: string[];
+    customerRelationships: string[];
+    customerSegments: string[];
+    costStructure: string[];
+    revenueStreams: string[];
+  };
+  projectedAnnualRunRateUsd: number;
+  breakEvenTimelineMonths: number;
+  readinessTier: InvestmentReadinessTier;
+  createdAt: string;
+}
+
+// Module 4: Multi-Enterprise Coordination & Federation
+export interface EnterpriseFederationDto {
+  id: string;
+  initiatorOrgId: string;
+  partnerOrgId: string;
+  federationType: EnterpriseFederationType;
+  treatyTitle: string;
+  sharedResourcesDescription: string;
+  governanceTerms: string;
+  activeStatus: boolean;
+  jointProjectsCount: number;
+  createdAt: string;
+}
+
+// Module 5: Autonomous Product Factory
+export interface ProductPortfolioDto {
+  id: string;
+  organizationId: string;
+  productName: string;
+  lifecycleStage: ProductLifecycleStage;
+  targetPersona: string;
+  coreDifferentiator: string;
+  monthlyActiveUsersEstimate: number;
+  productHealthScore: number;
+  featuresRoadmap: Array<{ title: string; releaseTarget: string; status: string }>;
+  createdAt: string;
+}
+
+// Module 6: Economic Simulation Engine
+export interface EconomicSimulationDto {
+  id: string;
+  organizationId?: string;
+  scenario: EconomicSimulationScenario;
+  inflationPressureIndex: number;
+  talentMarketTightnessIndex: number;
+  liquidityAvailabilityIndex: number;
+  projectedMarketGrowthRate: number;
+  simulatedShockImpactSummary: string;
+  stressTestScore: number;
+  createdAt: string;
+}
+
+// Module 7: Capital & Investment Intelligence
+export interface InvestmentRecordDto {
+  id: string;
+  companyBlueprintId: string;
+  fundingRound: string;
+  targetAmountUsd: number;
+  committedAmountUsd: number;
+  preMoneyValuationUsd: number;
+  leadInvestorEntity: string;
+  investorPitchDeckSummary: string;
+  readinessTier: InvestmentReadinessTier;
+  createdAt: string;
+}
+
+// Module 8: Autonomous Execution Network
+export interface ExecutionNetworkTaskDto {
+  id: string;
+  organizationId: string;
+  projectId?: string;
+  taskTitle: string;
+  assignedEmployeeId?: string;
+  priority: ExecutionNetworkTaskPriority;
+  status: ExecutionNetworkTaskStatus;
+  dependencyTaskIds: string[];
+  payloadSpec: Record<string, any>;
+  verificationProofHash?: string;
+  executionDurationMs?: number;
+  retryCount: number;
+  createdAt: string;
+}
+
+// Module 9: Enterprise Command Center Dashboard Overview
+export interface EnterpriseCommandCenterOverviewDto {
+  totalActiveOrganizations: number;
+  totalDigitalWorkforceHeadcount: number;
+  averageOrganizationalEfficiency: number;
+  activeProductPortfoliosCount: number;
+  totalCapitalCommittedUsd: number;
+  activeFederationsCount: number;
+  networkTasksExecutionRate: number;
+  workforceHealthMetrics: {
+    utilizationRate: number;
+    velocityAverage: number;
+    accuracyAverage: number;
+    benchCount: number;
+  };
+  topEnterprises: OrganizationCivilizationDto[];
+  recentCompanyBlueprints: CompanyBlueprintDto[];
 }

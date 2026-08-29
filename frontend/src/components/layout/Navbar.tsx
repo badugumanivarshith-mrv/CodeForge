@@ -376,6 +376,29 @@ export const Navbar: React.FC = () => {
             🧠 Cognitive OS
           </Link>
           <Link
+            to="/enterprise-civilization"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#06b6d4',
+              background: 'rgba(6, 182, 212, 0.15)',
+              padding: '4px 8px',
+              borderRadius: '6px',
+              border: '1px solid rgba(6, 182, 212, 0.4)',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.background = 'rgba(6, 182, 212, 0.3)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#06b6d4';
+              e.currentTarget.style.background = 'rgba(6, 182, 212, 0.15)';
+            }}
+          >
+            🏢 Enterprise Civilization
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',

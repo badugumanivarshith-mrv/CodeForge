@@ -30,3 +30,4 @@ export * from './agent_cloud';
 export * from './global_ecosystem';
 export * from './planetary_intelligence';
 export * from './cognitive_core';
+export * from './enterprise_civilization';
