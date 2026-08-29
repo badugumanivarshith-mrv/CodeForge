@@ -168,6 +168,19 @@ import {
   FundraisingPage,
 } from '../pages/startup-builder';
 
+// Phase 21 Venture Capital Intelligence Pages
+import {
+  VCCommandCenterPage,
+  DealFlowPage,
+  DueDiligencePage,
+  InvestmentCommitteePage,
+  FundManagementPage,
+  PortfolioIntelligencePage,
+  ExitStrategyPage,
+  InvestorNetworkPage,
+} from '../pages/venture-capital';
+
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -672,6 +685,39 @@ export const router = createBrowserRouter([
           {
             path: 'fundraising',
             element: <FundraisingPage />,
+          },
+          // Phase 21 Venture Capital Intelligence & Autonomous Investment Network Routes
+          {
+            path: 'vc-command-center',
+            element: <VCCommandCenterPage />,
+          },
+          {
+            path: 'deal-flow',
+            element: <DealFlowPage />,
+          },
+          {
+            path: 'due-diligence',
+            element: <DueDiligencePage />,
+          },
+          {
+            path: 'investment-committee',
+            element: <InvestmentCommitteePage />,
+          },
+          {
+            path: 'fund-management',
+            element: <FundManagementPage />,
+          },
+          {
+            path: 'portfolio-intelligence',
+            element: <PortfolioIntelligencePage />,
+          },
+          {
+            path: 'exit-strategy',
+            element: <ExitStrategyPage />,
+          },
+          {
+            path: 'investor-network',
+            element: <InvestorNetworkPage />,
           },
         ],
       },

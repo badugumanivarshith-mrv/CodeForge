@@ -141,6 +141,19 @@ import {
   StartupFundingStage,
   InvestorType,
   StartupEventType,
+  DealStage,
+  DealPriority,
+  DiligenceCategory,
+  DiligenceRiskSeverity,
+  InvestmentRecommendation,
+  CommitteeType,
+  CommitteeVoteType,
+  FundType,
+  FundStatus,
+  ExitType,
+  ExitStatus,
+  AllocationStrategy,
+  SyndicateRole,
 } from '../enums/index.js';
 
 
@@ -5625,6 +5638,8 @@ export interface CreateStartupDto {
   solutionDescription?: string;
   targetMarket?: string;
   businessPlanSummary?: string;
+  valuationUsd?: number;
+  totalRaisedUsd?: number;
 }
 
 export interface StartupIdeaDto {
@@ -5717,6 +5732,7 @@ export interface ProductIncubationDto {
 export interface CreateProductIncubationDto {
   startupId: string;
   productName: string;
+  phase?: IncubationPhase;
   conceptSummary?: string;
   mvpFeatureSet?: Array<{ featureName: string; priority: 'must_have' | 'should_have' | 'nice_to_have'; complexity: 'low' | 'medium' | 'high'; status: string }>;
 }
@@ -5861,4 +5877,370 @@ export interface StartupCommandCenterOverviewDto {
     needsAttention: number;
   };
 }
+
+// ============================================================================
+// Phase 21: Venture Capital Intelligence & Autonomous Investment Network DTOs
+// ============================================================================
+
+// Module 1: Deal Sourcing & Pipeline
+export interface DealFlowDto {
+  id: string;
+  startupId?: string;
+  startupName: string;
+  tagline: string;
+  category: StartupCategory;
+  stage: DealStage;
+  priority: DealPriority;
+  source: string;
+  sourceUrl?: string;
+  initialValuationUsd: number;
+  targetRaiseUsd: number;
+  tractionSummary: string;
+  fitScore: number;
+  leadPartnerUserId?: string;
+  tags: string[];
+  assignedAnalyst?: string;
+  notes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateDealFlowDto {
+  startupId?: string;
+  startupName: string;
+  tagline?: string;
+  category: StartupCategory;
+  stage?: DealStage;
+  priority?: DealPriority;
+  source?: string;
+  sourceUrl?: string;
+  initialValuationUsd?: number;
+  targetRaiseUsd?: number;
+  tractionSummary?: string;
+  fitScore?: number;
+  tags?: string[];
+  notes?: string;
+}
+
+export interface FounderScoreDto {
+  id: string;
+  startupId: string;
+  founderName: string;
+  technicalDepthScore: number;
+  convictionScore: number;
+  executionVelocityScore: number;
+  domainExpertiseScore: number;
+  resilienceScore: number;
+  compositeScore: number;
+  strengths: string[];
+  growthAreas: string[];
+  assessmentNarrative: string;
+  evaluatedAt: string;
+}
+
+export interface OpportunityScoreDto {
+  id: string;
+  startupId: string;
+  marketTamScore: number;
+  timingMoatScore: number;
+  competitiveAdvantageScore: number;
+  unitEconomicsPotentialScore: number;
+  scalabilityScore: number;
+  compositeScore: number;
+  keyDrivers: string[];
+  majorRisks: string[];
+  scoredAt: string;
+}
+
+// Module 2: Autonomous Due Diligence
+export interface DiligenceDimensionDto {
+  category: DiligenceCategory;
+  score: number;
+  weight: number;
+  findings: string[];
+  strengths: string[];
+  concerns: string[];
+}
+
+export interface RiskDetectionDto {
+  category: DiligenceCategory;
+  severity: DiligenceRiskSeverity;
+  riskTitle: string;
+  description: string;
+  mitigationRecommendation: string;
+}
+
+export interface DueDiligenceReportDto {
+  id: string;
+  dealId?: string;
+  startupId: string;
+  overallScore: number;
+  recommendation: InvestmentRecommendation;
+  executiveSummary: string;
+  dimensions: DiligenceDimensionDto[];
+  detectedRisks: RiskDetectionDto[];
+  redFlags: string[];
+  greenLights: string[];
+  completedAt: string;
+  createdAt: string;
+}
+
+// Module 3: Investment Committee AI
+export interface CommitteeVoteDto {
+  committeeType: CommitteeType;
+  agentName: string;
+  role: string;
+  vote: CommitteeVoteType;
+  convictionScore: number;
+  rationale: string;
+  conditions?: string[];
+}
+
+export interface CommitteeDebateDto {
+  committeeType: CommitteeType;
+  topic: string;
+  argumentsPro: string[];
+  argumentsContra: string[];
+  agentPerspectives: Array<{ agent: string; perspective: string }>;
+  synthesis: string;
+}
+
+export interface InvestmentDecisionDto {
+  id: string;
+  dealId?: string;
+  startupId: string;
+  fundId?: string;
+  recommendation: InvestmentRecommendation;
+  quorumMet: boolean;
+  totalVotes: number;
+  yesVotes: number;
+  noVotes: number;
+  conditionalVotes: number;
+  abstainVotes: number;
+  convictionScore: number;
+  proposedInvestmentUsd: number;
+  proposedValuationUsd: number;
+  keyDebatePoints: string[];
+  contradictionsDetected: string[];
+  consensusRationale: string;
+  votes: CommitteeVoteDto[];
+  decidedAt: string;
+}
+
+// Module 4: Fund Management System
+export interface FundDto {
+  id: string;
+  fundName: string;
+  fundType: FundType;
+  status: FundStatus;
+  targetSizeUsd: number;
+  committedCapitalUsd: number;
+  deployedCapitalUsd: number;
+  reserveCapitalUsd: number;
+  vintageYear: number;
+  managementFeePercent: number;
+  carriedInterestPercent: number;
+  hurdleRatePercent: number;
+  totalInvestments: number;
+  activeHoldingsCount: number;
+  exitCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateFundDto {
+  fundName: string;
+  fundType?: FundType;
+  targetSizeUsd: number;
+  vintageYear?: number;
+  managementFeePercent?: number;
+  carriedInterestPercent?: number;
+}
+
+export interface PortfolioHoldingDto {
+  id: string;
+  fundId: string;
+  startupId: string;
+  startupName: string;
+  category: StartupCategory;
+  stage: StartupStage;
+  initialInvestedUsd: number;
+  followOnInvestedUsd: number;
+  totalInvestedUsd: number;
+  ownershipPercent: number;
+  currentValuationUsd: number;
+  holdingValueUsd: number;
+  moic: number;
+  irr: number;
+  healthStatus: VentureHealthStatus;
+  boardSeat: boolean;
+  proRataRights: boolean;
+  acquiredAt: string;
+  updatedAt: string;
+}
+
+export interface FundMetricsDto {
+  fundId: string;
+  totalCommittedUsd: number;
+  totalCalledUsd: number;
+  totalDistributedUsd: number;
+  navUsd: number;
+  dpi: number;
+  rvpi: number;
+  tvpi: number;
+  grossIrrPercent: number;
+  netIrrPercent: number;
+  moic: number;
+  calculatedAt: string;
+}
+
+// Module 5: Portfolio Intelligence
+export interface CorrelationMatrixDto {
+  sectors: string[];
+  matrix: Record<string, Record<string, number>>;
+  maxConcentrationRiskSector: string;
+  diversificationRating: string;
+}
+
+export interface HealthRiskRadarDto {
+  holdingId: string;
+  startupName: string;
+  overallHealth: number;
+  runwayRisk: number;
+  competitionRisk: number;
+  executionRisk: number;
+  marketRisk: number;
+}
+
+export interface PortfolioIntelligenceDto {
+  fundId: string;
+  portfolioHealthScore: number;
+  diversificationScore: number;
+  riskAdjustedReturnScore: number;
+  sharpeRatio: number;
+  sortinoRatio: number;
+  topPerformers: Array<{ startupName: string; moic: number; irr: number }>;
+  laggingHoldings: Array<{ startupName: string; issue: string; action: string }>;
+  sectorExposure: Record<string, number>;
+  stageExposure: Record<string, number>;
+  recommendations: string[];
+  analyzedAt: string;
+}
+
+// Module 6: Exit Strategy & Liquidity
+export interface ExitSimulationDto {
+  id: string;
+  fundId: string;
+  startupId: string;
+  startupName: string;
+  exitType: ExitType;
+  targetAcquirerOrExchange: string;
+  simulatedExitValuationUsd: number;
+  expectedProceedsUsd: number;
+  fundReturnMultiple: number;
+  netProfitUsd: number;
+  carryGeneratedUsd: number;
+  timelineMonths: number;
+  confidenceRating: number;
+  waterfallSummary: Array<{ tier: string; amountUsd: number; percentage: number }>;
+  simulatedAt: string;
+}
+
+export interface LiquidityForecastDto {
+  fundId: string;
+  twelveMonthLiquidityUsd: number;
+  twentyFourMonthLiquidityUsd: number;
+  expectedExitsCount: number;
+  projectedDpiIncrease: number;
+  quarterlyForecasts: Array<{ quarter: string; projectedProceedsUsd: number; exitCandidates: string[] }>;
+}
+
+export interface MnaTargetMatchDto {
+  startupId: string;
+  potentialAcquirer: string;
+  strategicFitScore: number;
+  rationale: string;
+  estimatedDealSizeRangeUsd: { min: number; target: number; max: number };
+  recentComparableDeals: string[];
+}
+
+// Module 7: Investor Network & Syndicates
+export interface LpProfileDto {
+  id: string;
+  lpName: string;
+  lpType: 'INSTITUTIONAL' | 'FAMILY_OFFICE' | 'SOVEREIGN_WEALTH' | 'FUND_OF_FUNDS' | 'HIGH_NET_WORTH';
+  committedTotalUsd: number;
+  activeFunds: string[];
+  preferredSectors: StartupCategory[];
+  coInvestmentAppetite: boolean;
+  relationshipHealth: number;
+}
+
+export interface SyndicateMemberDto {
+  userId: string;
+  investorName: string;
+  role: SyndicateRole;
+  committedUsd: number;
+  joinedAt: string;
+}
+
+export interface SyndicateGroupDto {
+  id: string;
+  dealId?: string;
+  startupId: string;
+  syndicateName: string;
+  leadInvestorId: string;
+  targetRaiseUsd: number;
+  committedUsd: number;
+  committedTotalUsd?: number;
+  allocationSpots: number;
+  carryPercent: number;
+  leadCarryPercent?: number;
+  members: SyndicateMemberDto[];
+  status: 'OPEN' | 'OVERSUBSCRIBED' | 'CLOSED' | 'ALLOCATED';
+  createdAt: string;
+}
+
+// Module 8: Capital Allocation Engine
+export interface ScenarioSensitivityDto {
+  scenarioName: string;
+  description: string;
+  marketCondition: 'BULL' | 'BASE' | 'BEAR' | 'STAGFLATION';
+  simulatedTvpi: number;
+  simulatedGrossIrr: number;
+  defaultRatePercent: number;
+}
+
+export interface CapitalAllocationPlanDto {
+  fundId: string;
+  strategy: AllocationStrategy;
+  targetFundSizeUsd?: number;
+  availableCapitalUsd: number;
+  newDealsAllocationUsd: number;
+  followOnReserveUsd: number;
+  contingencyBufferUsd: number;
+  allocationsByStage: Record<string, number>;
+  allocationsBySector: Record<string, number>;
+  scenarioSensitivities: ScenarioSensitivityDto[];
+  optimizedAt: string;
+}
+
+// Module 9: VC Command Center Overview
+export interface VCCommandCenterOverviewDto {
+  totalAumUsd: number;
+  activeFundsCount: number;
+  totalPortfolioCompanies: number;
+  aggregatePortfolioNavUsd: number;
+  averageTvpi: number;
+  averageDpi: number;
+  grossIrrWeighted: number;
+  activeDealFlowCount: number;
+  pendingDueDiligenceCount: number;
+  committeeDecisionsCount: number;
+  recentDeals: DealFlowDto[];
+  topFunds: FundDto[];
+  recentExits: ExitSimulationDto[];
+  riskAlerts: RiskDetectionDto[];
+}
+
 

@@ -1230,3 +1230,116 @@ export enum StartupEventType {
   SCALE_MILESTONE = 'scale_milestone',
 }
 
+// Phase 21: Venture Capital Intelligence & Autonomous Investment Network
+export enum DealStage {
+  INBOX = 'inbox',
+  SCREENING = 'screening',
+  FIRST_CALL = 'first_call',
+  DUE_DILIGENCE = 'due_diligence',
+  PARTNER_MEETING = 'partner_meeting',
+  TERM_SHEET = 'term_sheet',
+  LEGAL_CLOSING = 'legal_closing',
+  PASSED = 'passed',
+  INVESTED = 'invested',
+}
+
+export enum DealPriority {
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HIGH = 'high',
+  URGENT = 'urgent',
+  HYPER_PRIORITY = 'hyper_priority',
+}
+
+export enum DiligenceCategory {
+  TEAM_EVALUATION = 'team_evaluation',
+  PRODUCT_DEFENSIBILITY = 'product_defensibility',
+  MARKET_VALIDATION = 'market_validation',
+  TECH_ARCHITECTURE = 'tech_architecture',
+  FINANCIAL_MODEL = 'financial_model',
+  LEGAL_RISK = 'legal_risk',
+}
+
+export enum DiligenceRiskSeverity {
+  LOW = 'low',
+  MODERATE = 'moderate',
+  HIGH = 'high',
+  CRITICAL = 'critical',
+}
+
+export enum InvestmentRecommendation {
+  STRONG_INVEST = 'strong_invest',
+  INVEST = 'invest',
+  NEUTRAL = 'neutral',
+  PASS = 'pass',
+  STRONG_PASS = 'strong_pass',
+}
+
+export enum CommitteeType {
+  PARTNER_COMMITTEE = 'partner_committee',
+  TECHNICAL_COMMITTEE = 'technical_committee',
+  MARKET_COMMITTEE = 'market_committee',
+  FINANCIAL_COMMITTEE = 'financial_committee',
+}
+
+export enum CommitteeVoteType {
+  YES = 'yes',
+  NO = 'no',
+  ABSTAIN = 'abstain',
+  CONDITIONAL_YES = 'conditional_yes',
+}
+
+export enum FundType {
+  VENTURE_FUND = 'venture_fund',
+  ANGEL_SYNDICATE = 'angel_syndicate',
+  ACCELERATOR_FUND = 'accelerator_fund',
+  GROWTH_EQUITY = 'growth_equity',
+  OPPORTUNITY_FUND = 'opportunity_fund',
+}
+
+export enum FundStatus {
+  FUNDRAISING = 'fundraising',
+  ACTIVELY_DEPLOYING = 'actively_deploying',
+  HARVESTING = 'harvesting',
+  FULLY_DEPLOYED = 'fully_deployed',
+  CLOSED = 'closed',
+}
+
+export enum ExitType {
+  IPO = 'ipo',
+  STRATEGIC_ACQUISITION = 'strategic_acquisition',
+  SECONDARY_SALE = 'secondary_sale',
+  BUYBACK = 'buyback',
+  TOKEN_LIQUIDITY = 'token_liquidity',
+}
+
+export enum ExitStatus {
+  PROPOSED = 'proposed',
+  NEGOTIATING = 'negotiating',
+  IN_ESCROW = 'in_escrow',
+  COMPLETED = 'completed',
+  ABORTED = 'aborted',
+}
+
+export enum AllocationStrategy {
+  CONVICTION_WEIGHTED = 'conviction_weighted',
+  EQUAL_WEIGHTED = 'equal_weighted',
+  BARBELL_STRATEGY = 'barbell_strategy',
+  STAGE_GRADUATED = 'stage_graduated',
+  DYNAMIC_RESERVE = 'dynamic_reserve',
+  BALANCED = 'balanced',
+  GROWTH_FOCUSED = 'growth_focused',
+  RESERVE_HEAVY = 'reserve_heavy',
+}
+
+export enum SyndicateRole {
+  LEAD_INVESTOR = 'lead_investor',
+  CO_INVESTOR = 'co_investor',
+  SYNDICATE_LP = 'syndicate_lp',
+  STRATEGIC_PARTNER = 'strategic_partner',
+  OBSERVER = 'observer',
+  CO_LEAD = 'co_lead',
+  PARTICIPANT = 'participant',
+}
+
+

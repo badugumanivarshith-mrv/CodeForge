@@ -158,9 +158,11 @@ export class StartupGenerationService {
       [StartupCategory.ENTERPRISE_INFRA]: 'AxiomGrid',
       [StartupCategory.FINTECH]: 'QuantAutonomous',
       [StartupCategory.CYBERSECURITY]: 'ZeroTrustSentinel',
+      [StartupCategory.CYBERSECURITY_AI]: 'SentinelAI',
       [StartupCategory.HEALTH_AI]: 'BioSynthetix',
       [StartupCategory.DEVELOPER_PLATFORM]: 'CodeHorizon',
       [StartupCategory.KNOWLEDGE_TECH]: 'OmniGraph',
+      [StartupCategory.DATA_INTELLIGENCE]: 'DataMatrix',
     };
 
     const prefix = prefixes[category] || 'AgentCore';

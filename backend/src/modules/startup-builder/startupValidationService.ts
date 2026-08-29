@@ -12,10 +12,13 @@ export class StartupValidationService {
    */
   async validateStartupViability(startupId: string): Promise<{
     startupId: string;
+    viabilityScore?: number;
     validationScore: number;
     isValidated: boolean;
     marketAttractivenessScore: number;
     technicalFeasibilityScore: number;
+    riskLevel?: MarketRiskLevel;
+    defensibilityMoats?: string[];
     defensibilityMoatRating: string;
     riskSummary: { riskLevel: MarketRiskLevel; primaryThreats: string[]; mitigations: string[] };
     recommendations: string[];

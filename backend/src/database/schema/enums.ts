@@ -144,6 +144,19 @@ import {
   StartupFundingStage,
   InvestorType,
   StartupEventType,
+  DealStage,
+  DealPriority,
+  DiligenceCategory,
+  DiligenceRiskSeverity,
+  InvestmentRecommendation,
+  CommitteeType,
+  CommitteeVoteType,
+  FundType,
+  FundStatus,
+  ExitType,
+  ExitStatus,
+  AllocationStrategy,
+  SyndicateRole,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1366,4 +1379,117 @@ export const startupEventTypeEnum = pgEnum('startup_event_type', [
   StartupEventType.STAGE_TRANSITION,
   StartupEventType.SCALE_MILESTONE,
 ]);
+
+// Phase 21: Venture Capital Intelligence & Autonomous Investment Network
+export const dealStageEnum = pgEnum('deal_stage', [
+  DealStage.INBOX,
+  DealStage.SCREENING,
+  DealStage.FIRST_CALL,
+  DealStage.DUE_DILIGENCE,
+  DealStage.PARTNER_MEETING,
+  DealStage.TERM_SHEET,
+  DealStage.LEGAL_CLOSING,
+  DealStage.PASSED,
+  DealStage.INVESTED,
+]);
+
+export const dealPriorityEnum = pgEnum('deal_priority', [
+  DealPriority.LOW,
+  DealPriority.MEDIUM,
+  DealPriority.HIGH,
+  DealPriority.URGENT,
+  DealPriority.HYPER_PRIORITY,
+]);
+
+export const diligenceCategoryEnum = pgEnum('diligence_category', [
+  DiligenceCategory.TEAM_EVALUATION,
+  DiligenceCategory.PRODUCT_DEFENSIBILITY,
+  DiligenceCategory.MARKET_VALIDATION,
+  DiligenceCategory.TECH_ARCHITECTURE,
+  DiligenceCategory.FINANCIAL_MODEL,
+  DiligenceCategory.LEGAL_RISK,
+]);
+
+export const diligenceRiskSeverityEnum = pgEnum('diligence_risk_severity', [
+  DiligenceRiskSeverity.LOW,
+  DiligenceRiskSeverity.MODERATE,
+  DiligenceRiskSeverity.HIGH,
+  DiligenceRiskSeverity.CRITICAL,
+]);
+
+export const investmentRecommendationEnum = pgEnum('investment_recommendation', [
+  InvestmentRecommendation.STRONG_INVEST,
+  InvestmentRecommendation.INVEST,
+  InvestmentRecommendation.NEUTRAL,
+  InvestmentRecommendation.PASS,
+  InvestmentRecommendation.STRONG_PASS,
+]);
+
+export const committeeTypeEnum = pgEnum('committee_type', [
+  CommitteeType.PARTNER_COMMITTEE,
+  CommitteeType.TECHNICAL_COMMITTEE,
+  CommitteeType.MARKET_COMMITTEE,
+  CommitteeType.FINANCIAL_COMMITTEE,
+]);
+
+export const committeeVoteTypeEnum = pgEnum('committee_vote_type', [
+  CommitteeVoteType.YES,
+  CommitteeVoteType.NO,
+  CommitteeVoteType.ABSTAIN,
+  CommitteeVoteType.CONDITIONAL_YES,
+]);
+
+export const fundTypeEnum = pgEnum('fund_type', [
+  FundType.VENTURE_FUND,
+  FundType.ANGEL_SYNDICATE,
+  FundType.ACCELERATOR_FUND,
+  FundType.GROWTH_EQUITY,
+  FundType.OPPORTUNITY_FUND,
+]);
+
+export const fundStatusEnum = pgEnum('fund_status', [
+  FundStatus.FUNDRAISING,
+  FundStatus.ACTIVELY_DEPLOYING,
+  FundStatus.HARVESTING,
+  FundStatus.FULLY_DEPLOYED,
+  FundStatus.CLOSED,
+]);
+
+export const exitTypeEnum = pgEnum('exit_type', [
+  ExitType.IPO,
+  ExitType.STRATEGIC_ACQUISITION,
+  ExitType.SECONDARY_SALE,
+  ExitType.BUYBACK,
+  ExitType.TOKEN_LIQUIDITY,
+]);
+
+export const exitStatusEnum = pgEnum('exit_status', [
+  ExitStatus.PROPOSED,
+  ExitStatus.NEGOTIATING,
+  ExitStatus.IN_ESCROW,
+  ExitStatus.COMPLETED,
+  ExitStatus.ABORTED,
+]);
+
+export const allocationStrategyEnum = pgEnum('allocation_strategy', [
+  AllocationStrategy.CONVICTION_WEIGHTED,
+  AllocationStrategy.EQUAL_WEIGHTED,
+  AllocationStrategy.BARBELL_STRATEGY,
+  AllocationStrategy.STAGE_GRADUATED,
+  AllocationStrategy.DYNAMIC_RESERVE,
+  AllocationStrategy.BALANCED,
+  AllocationStrategy.GROWTH_FOCUSED,
+  AllocationStrategy.RESERVE_HEAVY,
+]);
+
+export const syndicateRoleEnum = pgEnum('syndicate_role', [
+  SyndicateRole.LEAD_INVESTOR,
+  SyndicateRole.CO_INVESTOR,
+  SyndicateRole.SYNDICATE_LP,
+  SyndicateRole.STRATEGIC_PARTNER,
+  SyndicateRole.OBSERVER,
+  SyndicateRole.CO_LEAD,
+  SyndicateRole.PARTICIPANT,
+]);
+
 
