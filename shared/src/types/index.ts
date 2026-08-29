@@ -131,6 +131,16 @@ import {
   ExecutionNetworkTaskPriority,
   ExecutionNetworkTaskStatus,
   EconomicSimulationScenario,
+  StartupStage,
+  StartupCategory,
+  MarketRiskLevel,
+  IncubationPhase,
+  CustomerPersonaType,
+  GrowthChannel,
+  VentureHealthStatus,
+  StartupFundingStage,
+  InvestorType,
+  StartupEventType,
 } from '../enums/index.js';
 
 
@@ -5576,3 +5586,278 @@ export interface EnterpriseCommandCenterOverviewDto {
   topEnterprises: OrganizationCivilizationDto[];
   recentCompanyBlueprints: CompanyBlueprintDto[];
 }
+
+// ============================================================================
+// PHASE 20: AUTONOMOUS STARTUP BUILDER & VENTURE CREATION PLATFORM
+// ============================================================================
+
+// Module 1: Autonomous Startup Generator
+export interface StartupDto {
+  id: string;
+  creatorUserId: string;
+  name: string;
+  slug: string;
+  tagline: string;
+  category: StartupCategory;
+  stage: StartupStage;
+  problemStatement: string;
+  solutionDescription: string;
+  targetMarket: string;
+  viabilityScore: number;
+  innovationScore: number;
+  readinessScore: number;
+  businessPlanSummary: string;
+  currentFundingStage: StartupFundingStage;
+  totalRaisedUsd: number;
+  valuationUsd: number;
+  monthlyBurnRateUsd: number;
+  runwayMonths: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateStartupDto {
+  name: string;
+  tagline?: string;
+  category?: StartupCategory;
+  stage?: StartupStage;
+  problemStatement?: string;
+  solutionDescription?: string;
+  targetMarket?: string;
+  businessPlanSummary?: string;
+}
+
+export interface StartupIdeaDto {
+  id: string;
+  creatorUserId?: string;
+  title: string;
+  category: StartupCategory;
+  problemStatement: string;
+  proposedSolution: string;
+  marketOpportunity: string;
+  differentiationMoat: string;
+  viabilityScore: number;
+  marketSizeEstimate: string;
+  competitors: string[];
+  suggestedMonetization: string[];
+  createdAt: string;
+}
+
+export interface GenerateStartupIdeaDto {
+  category: StartupCategory;
+  domainKeywords?: string[];
+  targetAudience?: string;
+}
+
+// Module 2: Market Intelligence Engine
+export interface MarketReportDto {
+  id: string;
+  startupId?: string;
+  sector: StartupCategory;
+  tamUsd: number;
+  samUsd: number;
+  somUsd: number;
+  cagrPercent: number;
+  marketTrends: string[];
+  competitiveLandscape: Array<{ competitorName: string; marketSharePercent: number; strengths: string[]; weaknesses: string[] }>;
+  opportunityGaps: string[];
+  riskLevel: MarketRiskLevel;
+  confidenceScore: number;
+  createdAt: string;
+}
+
+export interface GenerateMarketReportDto {
+  sector: StartupCategory;
+  startupId?: string;
+  targetGeography?: string;
+}
+
+// Module 3: AI Founder Operating System
+export interface AIFounderDecisionDto {
+  id: string;
+  startupId: string;
+  decisionTitle: string;
+  context: string;
+  simulatedScenarios: Array<{ option: string; riskFactor: number; projectedImpactScore: number; outcomeNarrative: string }>;
+  recommendedOption: string;
+  strategicRationale: string;
+  confidenceScore: number;
+  createdAt: string;
+}
+
+export interface StrategicPlanReportDto {
+  startupId: string;
+  visionStatement: string;
+  topPriorities: Array<{ priorityTitle: string; horizonMonths: number; ownerRole: string; impactWeight: number }>;
+  resourceAllocations: Record<string, number>;
+  riskMitigationMatrix: Array<{ risk: string; severity: MarketRiskLevel; mitigationStrategy: string }>;
+  createdAt: string;
+}
+
+// Module 4: Product Incubation Engine
+export interface ProductIncubationDto {
+  id: string;
+  startupId: string;
+  productName: string;
+  phase: IncubationPhase;
+  conceptSummary: string;
+  mvpFeatureSet: Array<{ featureName: string; priority: 'must_have' | 'should_have' | 'nice_to_have'; complexity: 'low' | 'medium' | 'high'; status: string }>;
+  validationMetrics: {
+    userInterviewsConducted: number;
+    prototypeTestCount: number;
+    earlyAccessSignups: number;
+  };
+  productMarketFitScore: number;
+  retentionEstimatePercent: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateProductIncubationDto {
+  startupId: string;
+  productName: string;
+  conceptSummary?: string;
+  mvpFeatureSet?: Array<{ featureName: string; priority: 'must_have' | 'should_have' | 'nice_to_have'; complexity: 'low' | 'medium' | 'high'; status: string }>;
+}
+
+// Module 5: Customer Discovery System
+export interface CustomerPersonaDto {
+  id: string;
+  startupId?: string;
+  personaType: CustomerPersonaType;
+  title: string;
+  demographics: { roleTitle: string; companySize: string; budgetAuthorityUsd: number };
+  painPoints: string[];
+  buyingMotivations: string[];
+  willingnessToPayMonthlyUsd: number;
+  userJourneyStages: Array<{ stage: string; touchpoint: string; frictionPoint: string; delightMoment: string }>;
+  createdAt: string;
+}
+
+export interface CustomerValidationReportDto {
+  startupId: string;
+  totalInterviewsAnalyzed: number;
+  problemResonanceScore: number;
+  willingnessToBuyPercent: number;
+  topRequestedFeatures: string[];
+  demandProjectionScore: number;
+}
+
+// Module 6: Growth Engine
+export interface GrowthForecastDto {
+  id: string;
+  startupId: string;
+  primaryChannel: GrowthChannel;
+  monthlyActiveUsersForecast: Array<{ month: number; mau: number }>;
+  customerAcquisitionCostUsd: number;
+  customerLifetimeValueUsd: number;
+  ltvCacRatio: number;
+  monthlyChurnPercent: number;
+  monthlyRevenueForecastUsd: Array<{ month: number; mrr: number }>;
+  viralCoefficient: number;
+  overallGrowthScore: number;
+  createdAt: string;
+}
+
+// Module 7: Venture Portfolio Management
+export interface VenturePortfolioDto {
+  id: string;
+  creatorUserId: string;
+  portfolioName: string;
+  description: string;
+  totalVentureCount: number;
+  aggregateValuationUsd: number;
+  totalCapitalDeployedUsd: number;
+  overallHealthScore: number;
+  ventures: Array<{ startupId: string; startupName: string; stage: StartupStage; healthStatus: VentureHealthStatus; valuationUsd: number }>;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateVenturePortfolioDto {
+  portfolioName: string;
+  description?: string;
+  initialStartupIds?: string[];
+}
+
+// Module 8: Fundraising & Investor Network
+export interface FundraisingRoundDto {
+  id: string;
+  startupId: string;
+  roundName: string;
+  stage: StartupFundingStage;
+  targetRaiseUsd: number;
+  committedUsd: number;
+  preMoneyValuationUsd: number;
+  postMoneyValuationUsd: number;
+  leadInvestorId?: string;
+  pitchDeckUrl?: string;
+  readinessScore: number;
+  isClosed: boolean;
+  createdAt: string;
+  closedAt?: string;
+}
+
+export interface CreateFundraisingRoundDto {
+  startupId: string;
+  roundName: string;
+  stage?: StartupFundingStage;
+  targetRaiseUsd: number;
+  preMoneyValuationUsd?: number;
+  pitchDeckUrl?: string;
+}
+
+export interface InvestorProfileDto {
+  id: string;
+  investorName: string;
+  investorType: InvestorType;
+  investmentThesis: string;
+  sweetSpotCheckSizeUsd: number;
+  preferredStages: StartupFundingStage[];
+  preferredCategories: StartupCategory[];
+  portfolioCompanyCount: number;
+  matchScore?: number;
+}
+
+// Module 9: Startup Metrics & Events
+export interface StartupMetricsDto {
+  id: string;
+  startupId: string;
+  mrrUsd: number;
+  arrUsd: number;
+  burnRateMonthlyUsd: number;
+  runwayMonths: number;
+  activeUsers: number;
+  churnRatePercent: number;
+  healthStatus: VentureHealthStatus;
+  recordedAt: string;
+}
+
+export interface StartupEventDto {
+  id: string;
+  startupId: string;
+  eventType: StartupEventType;
+  title: string;
+  description: string;
+  metadata: Record<string, any>;
+  createdAt: string;
+}
+
+// Module 10: Startup Command Center Dashboard Overview
+export interface StartupCommandCenterOverviewDto {
+  totalStartupsCount: number;
+  totalIdeasGenerated: number;
+  activeIncubationsCount: number;
+  totalCapitalRaisedUsd: number;
+  aggregatePortfolioValuationUsd: number;
+  averageMarketFitScore: number;
+  topStartups: StartupDto[];
+  recentMarketReports: MarketReportDto[];
+  recentFundraisingRounds: FundraisingRoundDto[];
+  portfolioHealthSummary: {
+    thriving: number;
+    onTrack: number;
+    needsAttention: number;
+  };
+}
+

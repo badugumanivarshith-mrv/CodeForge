@@ -134,6 +134,16 @@ import {
   ExecutionNetworkTaskPriority,
   ExecutionNetworkTaskStatus,
   EconomicSimulationScenario,
+  StartupStage,
+  StartupCategory,
+  MarketRiskLevel,
+  IncubationPhase,
+  CustomerPersonaType,
+  GrowthChannel,
+  VentureHealthStatus,
+  StartupFundingStage,
+  InvestorType,
+  StartupEventType,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1258,3 +1268,95 @@ export const economicSimulationScenarioEnum = pgEnum('economic_simulation_scenar
   EconomicSimulationScenario.RESOURCE_SCARCITY,
   EconomicSimulationScenario.EQUILIBRIUM,
 ]);
+
+// Phase 20 Autonomous Startup Builder & Venture Creation pgEnums
+export const startupStageEnum = pgEnum('startup_stage', [
+  StartupStage.IDEATION,
+  StartupStage.VALIDATION,
+  StartupStage.PROTOTYPE,
+  StartupStage.MVP,
+  StartupStage.GROWTH,
+  StartupStage.SCALE,
+]);
+
+export const startupCategoryEnum = pgEnum('startup_category', [
+  StartupCategory.AI_DEVTOOLS,
+  StartupCategory.ENTERPRISE_INFRA,
+  StartupCategory.FINTECH,
+  StartupCategory.CYBERSECURITY,
+  StartupCategory.HEALTH_AI,
+  StartupCategory.AUTONOMOUS_AGENTS,
+  StartupCategory.DEVELOPER_PLATFORM,
+  StartupCategory.KNOWLEDGE_TECH,
+]);
+
+export const marketRiskLevelEnum = pgEnum('market_risk_level', [
+  MarketRiskLevel.LOW,
+  MarketRiskLevel.MODERATE,
+  MarketRiskLevel.HIGH,
+  MarketRiskLevel.CRITICAL,
+]);
+
+export const incubationPhaseEnum = pgEnum('incubation_phase', [
+  IncubationPhase.IDEA,
+  IncubationPhase.VALIDATION,
+  IncubationPhase.PROTOTYPE,
+  IncubationPhase.MVP,
+  IncubationPhase.GROWTH,
+  IncubationPhase.SCALE,
+]);
+
+export const customerPersonaTypeEnum = pgEnum('customer_persona_type', [
+  CustomerPersonaType.ENTERPRISE_ARCHITECT,
+  CustomerPersonaType.STARTUP_CTO,
+  CustomerPersonaType.INDIE_DEVELOPER,
+  CustomerPersonaType.DEVSECOPS_LEAD,
+  CustomerPersonaType.RESEARCH_SCIENTIST,
+  CustomerPersonaType.ENGINEERING_VP,
+]);
+
+export const growthChannelEnum = pgEnum('growth_channel', [
+  GrowthChannel.PRODUCT_LED,
+  GrowthChannel.COMMUNITY,
+  GrowthChannel.DIRECT_SALES,
+  GrowthChannel.DEVELOPER_ECOSYSTEM,
+  GrowthChannel.PARTNERSHIPS,
+  GrowthChannel.VIRAL_REFERRAL,
+]);
+
+export const ventureHealthStatusEnum = pgEnum('venture_health_status', [
+  VentureHealthStatus.THRIVING,
+  VentureHealthStatus.ON_TRACK,
+  VentureHealthStatus.NEEDS_ATTENTION,
+  VentureHealthStatus.PIVOT_REQUIRED,
+  VentureHealthStatus.DISTRESSED,
+]);
+
+export const startupFundingStageEnum = pgEnum('startup_funding_stage', [
+  StartupFundingStage.PRE_SEED,
+  StartupFundingStage.SEED,
+  StartupFundingStage.SERIES_A,
+  StartupFundingStage.SERIES_B,
+  StartupFundingStage.SERIES_C,
+  StartupFundingStage.GROWTH,
+]);
+
+export const investorTypeEnum = pgEnum('investor_type', [
+  InvestorType.ANGEL,
+  InvestorType.VENTURE_CAPITAL,
+  InvestorType.SOVEREIGN_FUND,
+  InvestorType.CORPORATE_VC,
+  InvestorType.SYNDICATE,
+]);
+
+export const startupEventTypeEnum = pgEnum('startup_event_type', [
+  StartupEventType.IDEA_CREATED,
+  StartupEventType.MARKET_VALIDATED,
+  StartupEventType.MVP_LAUNCHED,
+  StartupEventType.PMF_ACHIEVED,
+  StartupEventType.FUNDING_ROUND_OPENED,
+  StartupEventType.FUNDING_CLOSED,
+  StartupEventType.PIVOT_EXECUTED,
+  StartupEventType.SCALE_MILESTONE,
+]);
+

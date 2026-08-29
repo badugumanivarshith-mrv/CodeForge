@@ -141,6 +141,17 @@ async function main() {
   await import('./unit/executionNetwork.test');
   await import('./security/enterpriseCivilizationSecurity.test');
 
+  // Phase 20: Autonomous Startup Builder & Venture Creation Platform Test Suites
+  await import('./unit/startupGenerator.test');
+  await import('./unit/marketIntelligence.test');
+  await import('./unit/aiFounder.test');
+  await import('./unit/incubationEngine.test');
+  await import('./unit/customerDiscovery.test');
+  await import('./unit/growthEngine.test');
+  await import('./unit/venturePortfolio.test');
+  await import('./unit/fundraising.test');
+  await import('./security/startupSecurity.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

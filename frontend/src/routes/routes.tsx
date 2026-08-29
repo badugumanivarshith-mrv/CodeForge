@@ -155,6 +155,19 @@ import {
   EnterpriseFederationPage,
 } from '../pages/enterprise-civilization';
 
+// Phase 20 Autonomous Startup Builder Pages
+import {
+  StartupCommandCenterPage,
+  StartupGeneratorPage,
+  MarketIntelligencePage,
+  AIFounderPage,
+  IncubationEnginePage,
+  CustomerDiscoveryPage,
+  GrowthEnginePage,
+  VenturePortfolioPage,
+  FundraisingPage,
+} from '../pages/startup-builder';
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -622,6 +635,43 @@ export const router = createBrowserRouter([
           {
             path: 'enterprise-federation',
             element: <EnterpriseFederationPage />,
+          },
+          // Phase 20 Autonomous Startup Builder Routes
+          {
+            path: 'startup-command-center',
+            element: <StartupCommandCenterPage />,
+          },
+          {
+            path: 'startup-generator',
+            element: <StartupGeneratorPage />,
+          },
+          {
+            path: 'market-intelligence',
+            element: <MarketIntelligencePage />,
+          },
+          {
+            path: 'ai-founder',
+            element: <AIFounderPage />,
+          },
+          {
+            path: 'incubation-engine',
+            element: <IncubationEnginePage />,
+          },
+          {
+            path: 'customer-discovery',
+            element: <CustomerDiscoveryPage />,
+          },
+          {
+            path: 'growth-engine',
+            element: <GrowthEnginePage />,
+          },
+          {
+            path: 'venture-portfolio',
+            element: <VenturePortfolioPage />,
+          },
+          {
+            path: 'fundraising',
+            element: <FundraisingPage />,
           },
         ],
       },

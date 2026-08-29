@@ -1131,3 +1131,95 @@ export enum EconomicSimulationScenario {
   RESOURCE_SCARCITY = 'resource_scarcity',
   EQUILIBRIUM = 'equilibrium',
 }
+
+// Phase 20 Autonomous Startup Builder & Venture Creation Platform Enums
+export enum StartupStage {
+  IDEATION = 'ideation',
+  VALIDATION = 'validation',
+  PROTOTYPE = 'prototype',
+  MVP = 'mvp',
+  GROWTH = 'growth',
+  SCALE = 'scale',
+}
+
+export enum StartupCategory {
+  AI_DEVTOOLS = 'ai_devtools',
+  ENTERPRISE_INFRA = 'enterprise_infra',
+  FINTECH = 'fintech',
+  CYBERSECURITY = 'cybersecurity',
+  HEALTH_AI = 'health_ai',
+  AUTONOMOUS_AGENTS = 'autonomous_agents',
+  DEVELOPER_PLATFORM = 'developer_platform',
+  KNOWLEDGE_TECH = 'knowledge_tech',
+}
+
+export enum MarketRiskLevel {
+  LOW = 'low',
+  MODERATE = 'moderate',
+  HIGH = 'high',
+  CRITICAL = 'critical',
+}
+
+export enum IncubationPhase {
+  IDEA = 'idea',
+  VALIDATION = 'validation',
+  PROTOTYPE = 'prototype',
+  MVP = 'mvp',
+  GROWTH = 'growth',
+  SCALE = 'scale',
+}
+
+export enum CustomerPersonaType {
+  ENTERPRISE_ARCHITECT = 'enterprise_architect',
+  STARTUP_CTO = 'startup_cto',
+  INDIE_DEVELOPER = 'indie_developer',
+  DEVSECOPS_LEAD = 'devsecops_lead',
+  RESEARCH_SCIENTIST = 'research_scientist',
+  ENGINEERING_VP = 'engineering_vp',
+}
+
+export enum GrowthChannel {
+  PRODUCT_LED = 'product_led',
+  COMMUNITY = 'community',
+  DIRECT_SALES = 'direct_sales',
+  DEVELOPER_ECOSYSTEM = 'developer_ecosystem',
+  PARTNERSHIPS = 'partnerships',
+  VIRAL_REFERRAL = 'viral_referral',
+}
+
+export enum VentureHealthStatus {
+  THRIVING = 'thriving',
+  ON_TRACK = 'on_track',
+  NEEDS_ATTENTION = 'needs_attention',
+  PIVOT_REQUIRED = 'pivot_required',
+  DISTRESSED = 'distressed',
+}
+
+export enum StartupFundingStage {
+  PRE_SEED = 'pre_seed',
+  SEED = 'seed',
+  SERIES_A = 'series_a',
+  SERIES_B = 'series_b',
+  SERIES_C = 'series_c',
+  GROWTH = 'growth',
+}
+
+export enum InvestorType {
+  ANGEL = 'angel',
+  VENTURE_CAPITAL = 'venture_capital',
+  SOVEREIGN_FUND = 'sovereign_fund',
+  CORPORATE_VC = 'corporate_vc',
+  SYNDICATE = 'syndicate',
+}
+
+export enum StartupEventType {
+  IDEA_CREATED = 'idea_created',
+  MARKET_VALIDATED = 'market_validated',
+  MVP_LAUNCHED = 'mvp_launched',
+  PMF_ACHIEVED = 'pmf_achieved',
+  FUNDING_ROUND_OPENED = 'funding_round_opened',
+  FUNDING_CLOSED = 'funding_closed',
+  PIVOT_EXECUTED = 'pivot_executed',
+  SCALE_MILESTONE = 'scale_milestone',
+}
+

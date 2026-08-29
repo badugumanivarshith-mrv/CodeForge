@@ -399,6 +399,29 @@ export const Navbar: React.FC = () => {
             🏢 Enterprise Civilization
           </Link>
           <Link
+            to="/startup-command-center"
+            style={{
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#f43f5e',
+              background: 'rgba(244, 63, 94, 0.15)',
+              padding: '4px 8px',
+              borderRadius: '6px',
+              border: '1px solid rgba(244, 63, 94, 0.4)',
+              transition: 'all var(--transition-fast)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.background = 'rgba(244, 63, 94, 0.3)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = '#f43f5e';
+              e.currentTarget.style.background = 'rgba(244, 63, 94, 0.15)';
+            }}
+          >
+            🚀 Startup Builder
+          </Link>
+          <Link
             to="/feed"
             style={{
               fontSize: '13px',
