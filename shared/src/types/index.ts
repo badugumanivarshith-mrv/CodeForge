@@ -5640,6 +5640,7 @@ export interface StartupIdeaDto {
   marketSizeEstimate: string;
   competitors: string[];
   suggestedMonetization: string[];
+  leanCanvasKeywords?: string[];
   createdAt: string;
 }
 

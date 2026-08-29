@@ -1047,7 +1047,7 @@ export class StartupBuilderRepository implements IStartupBuilderRepository {
   async listStartupEvents(startupId?: string): Promise<StartupEventDto[]> {
     let list = Array.from(this.memStartupEvents.values());
     if (startupId) list = list.filter((e) => e.startupId === startupId);
-    return list;
+    return list.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 
   // 11. Command Center Dashboard

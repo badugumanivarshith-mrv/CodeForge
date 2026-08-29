@@ -1147,10 +1147,12 @@ export enum StartupCategory {
   ENTERPRISE_INFRA = 'enterprise_infra',
   FINTECH = 'fintech',
   CYBERSECURITY = 'cybersecurity',
+  CYBERSECURITY_AI = 'cybersecurity_ai',
   HEALTH_AI = 'health_ai',
   AUTONOMOUS_AGENTS = 'autonomous_agents',
   DEVELOPER_PLATFORM = 'developer_platform',
   KNOWLEDGE_TECH = 'knowledge_tech',
+  DATA_INTELLIGENCE = 'data_intelligence',
 }
 
 export enum MarketRiskLevel {
@@ -1162,6 +1164,7 @@ export enum MarketRiskLevel {
 
 export enum IncubationPhase {
   IDEA = 'idea',
+  CONCEPT = 'concept',
   VALIDATION = 'validation',
   PROTOTYPE = 'prototype',
   MVP = 'mvp',
@@ -1175,6 +1178,7 @@ export enum CustomerPersonaType {
   INDIE_DEVELOPER = 'indie_developer',
   DEVSECOPS_LEAD = 'devsecops_lead',
   RESEARCH_SCIENTIST = 'research_scientist',
+  SECURITY_OFFICER = 'security_officer',
   ENGINEERING_VP = 'engineering_vp',
 }
 
@@ -1214,12 +1218,15 @@ export enum InvestorType {
 
 export enum StartupEventType {
   IDEA_CREATED = 'idea_created',
+  CREATED = 'created',
   MARKET_VALIDATED = 'market_validated',
   MVP_LAUNCHED = 'mvp_launched',
   PMF_ACHIEVED = 'pmf_achieved',
   FUNDING_ROUND_OPENED = 'funding_round_opened',
   FUNDING_CLOSED = 'funding_closed',
   PIVOT_EXECUTED = 'pivot_executed',
+  PIVOT = 'pivot',
+  STAGE_TRANSITION = 'stage_transition',
   SCALE_MILESTONE = 'scale_milestone',
 }
 

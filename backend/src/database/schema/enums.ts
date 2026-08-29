@@ -1284,10 +1284,12 @@ export const startupCategoryEnum = pgEnum('startup_category', [
   StartupCategory.ENTERPRISE_INFRA,
   StartupCategory.FINTECH,
   StartupCategory.CYBERSECURITY,
+  StartupCategory.CYBERSECURITY_AI,
   StartupCategory.HEALTH_AI,
   StartupCategory.AUTONOMOUS_AGENTS,
   StartupCategory.DEVELOPER_PLATFORM,
   StartupCategory.KNOWLEDGE_TECH,
+  StartupCategory.DATA_INTELLIGENCE,
 ]);
 
 export const marketRiskLevelEnum = pgEnum('market_risk_level', [
@@ -1299,6 +1301,7 @@ export const marketRiskLevelEnum = pgEnum('market_risk_level', [
 
 export const incubationPhaseEnum = pgEnum('incubation_phase', [
   IncubationPhase.IDEA,
+  IncubationPhase.CONCEPT,
   IncubationPhase.VALIDATION,
   IncubationPhase.PROTOTYPE,
   IncubationPhase.MVP,
@@ -1312,6 +1315,7 @@ export const customerPersonaTypeEnum = pgEnum('customer_persona_type', [
   CustomerPersonaType.INDIE_DEVELOPER,
   CustomerPersonaType.DEVSECOPS_LEAD,
   CustomerPersonaType.RESEARCH_SCIENTIST,
+  CustomerPersonaType.SECURITY_OFFICER,
   CustomerPersonaType.ENGINEERING_VP,
 ]);
 
@@ -1351,12 +1355,15 @@ export const investorTypeEnum = pgEnum('investor_type', [
 
 export const startupEventTypeEnum = pgEnum('startup_event_type', [
   StartupEventType.IDEA_CREATED,
+  StartupEventType.CREATED,
   StartupEventType.MARKET_VALIDATED,
   StartupEventType.MVP_LAUNCHED,
   StartupEventType.PMF_ACHIEVED,
   StartupEventType.FUNDING_ROUND_OPENED,
   StartupEventType.FUNDING_CLOSED,
   StartupEventType.PIVOT_EXECUTED,
+  StartupEventType.PIVOT,
+  StartupEventType.STAGE_TRANSITION,
   StartupEventType.SCALE_MILESTONE,
 ]);
 

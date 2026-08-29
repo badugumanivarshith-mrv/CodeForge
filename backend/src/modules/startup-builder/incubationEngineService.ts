@@ -27,7 +27,7 @@ export class IncubationEngineService {
     const incubation = await this.repo.createProductIncubation({
       startupId: input.startupId,
       productName: input.productName,
-      phase: IncubationPhase.MVP,
+      phase: input.phase || IncubationPhase.CONCEPT,
       conceptSummary: input.conceptSummary || `Autonomous product incubation for ${input.productName}`,
       mvpFeatureSet: input.mvpFeatureSet || defaultFeatures,
       validationMetrics: {
@@ -77,6 +77,13 @@ export class IncubationEngineService {
         'Add interactive terminal UI for live proof debugging',
       ],
     };
+  }
+
+  /**
+   * Alias for evaluateProductMarketFit
+   */
+  async getProductMarketFit(incubationId: string) {
+    return this.evaluateProductMarketFit(incubationId);
   }
 
   /**

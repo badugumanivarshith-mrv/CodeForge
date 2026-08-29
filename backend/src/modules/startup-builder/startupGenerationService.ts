@@ -43,6 +43,7 @@ export class StartupGenerationService {
         'Tiered Enterprise Seat Licensing',
         'Usage-based Execution Compute Metering',
       ],
+      leanCanvasKeywords: ['PLG', 'DevSecOps', 'Formal Verification', ...keywords],
     });
 
     return idea;
@@ -73,9 +74,18 @@ export class StartupGenerationService {
       businessPlanSummary: input.businessPlanSummary || 'High-margin B2B SaaS with land-and-expand product-led growth model.',
       currentFundingStage: StartupFundingStage.PRE_SEED,
       totalRaisedUsd: 0,
-      valuationUsd: 3000000,
+      valuationUsd: input.valuationUsd || 3500000,
       monthlyBurnRateUsd: 20000,
       runwayMonths: 18,
+    });
+
+    // Record creation event
+    await this.repo.createStartupEvent({
+      startupId: startup.id,
+      eventType: 'CREATED' as any,
+      title: 'Startup Created',
+      description: `Autonomous venture ${startup.name} initialized.`,
+      metadata: { initialStage: startup.stage, valuationUsd: startup.valuationUsd },
     });
 
     return startup;
@@ -89,7 +99,12 @@ export class StartupGenerationService {
     viabilityScore: number;
     innovationScore: number;
     recommendedFirstQuarterGoals: string[];
-    riskAssessment: { technicalRisk: number; marketRisk: number; executionRisk: number };
+    riskAssessment: {
+      technicalRisk: number;
+      marketRisk: number;
+      executionRisk: number;
+      identifiedRisks: string[];
+    };
     businessModelCanvas: {
       keyPartners: string[];
       keyActivities: string[];
@@ -118,6 +133,11 @@ export class StartupGenerationService {
         technicalRisk: 18.5,
         marketRisk: 22.0,
         executionRisk: 15.0,
+        identifiedRisks: [
+          'Emergence of foundational model capabilities encroaching on developer tools',
+          'High inference compute cost requiring custom quantized runtime models',
+          'Enterprise compliance lead time for security certifications',
+        ],
       },
       businessModelCanvas: {
         keyPartners: ['Cloud GPU Infrastructure Providers', 'Developer Communities', 'Enterprise Security Alliances'],

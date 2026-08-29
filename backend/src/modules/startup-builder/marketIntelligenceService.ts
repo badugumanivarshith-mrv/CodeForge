@@ -17,7 +17,7 @@ export class MarketIntelligenceService {
     const { tam, sam, som, cagr } = this.calculateMarketSizing(sector);
 
     const trends = this.getSectorTrends(sector);
-    const competitiveLandscape = this.getCompetitiveLandscape(sector);
+    const competitiveLandscape = this.getSectorCompetitors(sector);
     const opportunityGaps = this.getOpportunityGaps(sector);
 
     const report = await this.repo.createMarketReport({
@@ -38,6 +38,59 @@ export class MarketIntelligenceService {
   }
 
   /**
+   * Returns competitive landscape data, concentration index, and barrier to entry
+   */
+  async getCompetitiveLandscape(sector: StartupCategory): Promise<{
+    sector: StartupCategory;
+    competitors: Array<{
+      competitorName: string;
+      marketSharePercent: number;
+      strengths: string[];
+      weaknesses: string[];
+    }>;
+    marketConcentrationIndex: string;
+    barrierToEntryLevel: string;
+  }> {
+    const competitors = this.getSectorCompetitors(sector);
+    return {
+      sector,
+      competitors,
+      marketConcentrationIndex: 'MODERATE_CONCENTRATION_HERFINDAHL_1650',
+      barrierToEntryLevel: 'HIGH_BARRIER_TO_ENTRY',
+    };
+  }
+
+  /**
+   * Detects top opportunity white-space sectors and ranks them by CAGR / opportunity score
+   */
+  async getTopOpportunitySectors(): Promise<Array<{
+    sector: StartupCategory;
+    opportunityScore: number;
+    tamUsd: number;
+    cagrPercent: number;
+    rationale: string;
+  }>> {
+    const sectors = [
+      StartupCategory.AUTONOMOUS_AGENTS,
+      StartupCategory.AI_DEVTOOLS,
+      StartupCategory.CYBERSECURITY,
+      StartupCategory.ENTERPRISE_INFRA,
+      StartupCategory.FINTECH,
+    ];
+
+    return sectors.map((sector, idx) => {
+      const sizing = this.calculateMarketSizing(sector);
+      return {
+        sector,
+        opportunityScore: 95.0 - idx * 4.5,
+        tamUsd: sizing.tam,
+        cagrPercent: sizing.cagr,
+        rationale: `Rapid expansion and high-margin whitespace in ${sector}.`,
+      };
+    });
+  }
+
+  /**
    * Maps competitive landscape and identifies white space opportunities
    */
   async mapCompetitiveLandscape(sector: StartupCategory): Promise<{
@@ -46,7 +99,7 @@ export class MarketIntelligenceService {
     opportunityRankings: Array<{ opportunity: string; marketDemandScore: number; barrierToEntry: string }>;
     strategicRecommendation: string;
   }> {
-    const competitiveData = this.getCompetitiveLandscape(sector);
+    const competitiveData = this.getSectorCompetitors(sector);
     const topCompetitors = competitiveData.map((c) => ({
       competitorName: c.competitorName,
       marketSharePercent: c.marketSharePercent,
@@ -79,14 +132,16 @@ export class MarketIntelligenceService {
 
   private calculateMarketSizing(sector: StartupCategory): { tam: number; sam: number; som: number; cagr: number } {
     const sectorSizes: Record<StartupCategory, { tam: number; sam: number; som: number; cagr: number }> = {
-      [StartupCategory.AI_DEVTOOLS]: { tam: 65000000000, sam: 14000000000, som: 2800000000, cagr: 28.5 },
+      [StartupCategory.AI_DEVTOOLS]: { tam: 45000000000, sam: 12500000000, som: 1800000000, cagr: 34.8 },
       [StartupCategory.AUTONOMOUS_AGENTS]: { tam: 92000000000, sam: 22000000000, som: 4500000000, cagr: 38.2 },
       [StartupCategory.ENTERPRISE_INFRA]: { tam: 120000000000, sam: 30000000000, som: 5000000000, cagr: 19.4 },
       [StartupCategory.FINTECH]: { tam: 85000000000, sam: 18000000000, som: 3200000000, cagr: 22.0 },
       [StartupCategory.CYBERSECURITY]: { tam: 110000000000, sam: 26000000000, som: 4800000000, cagr: 24.8 },
+      [StartupCategory.CYBERSECURITY_AI]: { tam: 110000000000, sam: 26000000000, som: 4800000000, cagr: 24.8 },
       [StartupCategory.HEALTH_AI]: { tam: 75000000000, sam: 16000000000, som: 2900000000, cagr: 31.0 },
       [StartupCategory.DEVELOPER_PLATFORM]: { tam: 55000000000, sam: 12000000000, som: 2200000000, cagr: 21.5 },
       [StartupCategory.KNOWLEDGE_TECH]: { tam: 48000000000, sam: 10000000000, som: 1800000000, cagr: 26.0 },
+      [StartupCategory.DATA_INTELLIGENCE]: { tam: 68000000000, sam: 15000000000, som: 2500000000, cagr: 29.0 },
     };
 
     return sectorSizes[sector] || { tam: 50000000000, sam: 10000000000, som: 2000000000, cagr: 25.0 };
@@ -101,7 +156,7 @@ export class MarketIntelligenceService {
     ];
   }
 
-  private getCompetitiveLandscape(sector: StartupCategory): Array<{
+  private getSectorCompetitors(sector: StartupCategory): Array<{
     competitorName: string;
     marketSharePercent: number;
     strengths: string[];

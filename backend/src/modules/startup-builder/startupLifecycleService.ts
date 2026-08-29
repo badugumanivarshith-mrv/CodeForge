@@ -11,7 +11,7 @@ export class StartupLifecycleService {
   /**
    * Advances the startup to the next lifecycle stage if criteria are met
    */
-  async advanceStartupStage(startupId: string, targetStage: StartupStage): Promise<{
+  async advanceStartupStage(startupId: string, targetStage: StartupStage, reason?: string): Promise<StartupDto & {
     startup: StartupDto;
     previousStage: StartupStage;
     currentStage: StartupStage;
@@ -26,7 +26,7 @@ export class StartupLifecycleService {
     const isEligible = startup.viabilityScore >= 75.0 && startup.readinessScore >= 70.0;
 
     if (!isEligible) {
-      return {
+      return Object.assign({}, startup, {
         startup,
         previousStage,
         currentStage: previousStage,
@@ -35,7 +35,7 @@ export class StartupLifecycleService {
           criteriaMet: ['Basic ideation formulation completed'],
           missingCriteria: ['Viability score must exceed 75.0', 'Readiness score must exceed 70.0'],
         },
-      };
+      });
     }
 
     const updated = await this.repo.updateStartup(startupId, { stage: targetStage });
@@ -46,13 +46,20 @@ export class StartupLifecycleService {
     // Record lifecycle transition event
     await this.repo.createStartupEvent({
       startupId,
-      eventType: StartupEventType.SCALE_MILESTONE,
+      eventType: StartupEventType.STAGE_TRANSITION,
       title: `Startup Advanced to ${targetStage}`,
-      description: `Venture stage successfully advanced from ${previousStage} to ${targetStage}.`,
-      metadata: { previousStage, currentStage: targetStage, transitionTimestamp: new Date().toISOString() },
+      description: reason || `Venture stage successfully advanced from ${previousStage} to ${targetStage}.`,
+      metadata: {
+        fromStage: previousStage,
+        toStage: targetStage,
+        previousStage,
+        currentStage: targetStage,
+        reason,
+        transitionTimestamp: new Date().toISOString(),
+      },
     });
 
-    return {
+    return Object.assign({}, updated, {
       startup: updated,
       previousStage,
       currentStage: targetStage,
@@ -65,7 +72,34 @@ export class StartupLifecycleService {
         ],
         missingCriteria: [],
       },
-    };
+    });
+  }
+
+  /**
+   * Records a strategic pivot event in the startup audit log
+   */
+  async recordVenturePivot(startupId: string, pivotSummary: string, rationale: string) {
+    const startup = await this.repo.getStartupById(startupId);
+    if (!startup) {
+      throw new Error(`Startup not found with id: ${startupId}`);
+    }
+
+    const event = await this.repo.createStartupEvent({
+      startupId,
+      eventType: StartupEventType.PIVOT,
+      title: 'Strategic Venture Pivot',
+      description: pivotSummary,
+      metadata: { pivotSummary, rationale, timestamp: new Date().toISOString() },
+    });
+
+    return event;
+  }
+
+  /**
+   * Returns all lifecycle milestone and audit events for a startup
+   */
+  async getStartupEvents(startupId: string) {
+    return this.repo.listStartupEvents(startupId);
   }
 
   /**
