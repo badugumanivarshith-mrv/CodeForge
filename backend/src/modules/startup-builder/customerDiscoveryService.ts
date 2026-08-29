@@ -59,6 +59,13 @@ export class CustomerDiscoveryService {
         buyingMotivations: ['Formal proof tracking of agent reasoning steps', 'Deep telemetry introspection'],
         willingnessToPayMonthlyUsd: 600,
       },
+      [CustomerPersonaType.SECURITY_OFFICER]: {
+        title: 'Chief Information Security Officer',
+        demographics: { roleTitle: 'CISO / VP Security', companySize: '500 - 5,000 employees', budgetAuthorityUsd: 150000 },
+        painPoints: ['Zero-day vulnerabilities in third-party packages', 'Audit failure penalties'],
+        buyingMotivations: ['Autonomous threat modeling and automated patching', 'Provable cryptographic verification'],
+        willingnessToPayMonthlyUsd: 3500,
+      },
       [CustomerPersonaType.ENGINEERING_VP]: {
         title: 'VP of Software Engineering',
         demographics: { roleTitle: 'VP of Engineering', companySize: '200 - 2,000 employees', budgetAuthorityUsd: 500000 },
@@ -104,6 +111,48 @@ export class CustomerDiscoveryService {
   }
 
   /**
+   * Generates a 5-stage customer user journey map with friction and delight moments
+   */
+  async getUserJourneyMap(startupId: string, personaType: CustomerPersonaType) {
+    return {
+      startupId,
+      personaType,
+      journeyStages: [
+        {
+          stage: 'DISCOVERY',
+          touchpoint: 'Developer community / GitHub trending',
+          frictionPoint: 'Skepticism around autonomous AI code guarantees',
+          delightMoment: 'Instant one-click demo without signup required',
+        },
+        {
+          stage: 'EVALUATION',
+          touchpoint: 'CLI integration into test pipeline',
+          frictionPoint: 'Integrating with legacy monolith test runners',
+          delightMoment: 'Found 3 critical concurrency bugs in seconds',
+        },
+        {
+          stage: 'ADOPTION',
+          touchpoint: 'Team onboarding and CI/CD hook setup',
+          frictionPoint: 'Managing team role-based access controls',
+          delightMoment: 'Automated Slack verification notifications',
+        },
+        {
+          stage: 'RETENTION',
+          touchpoint: 'Weekly automated code quality audits',
+          frictionPoint: 'Sprint schedule pressure',
+          delightMoment: '100% zero-regression releases',
+        },
+        {
+          stage: 'EXPANSION',
+          touchpoint: 'Enterprise wide deployment',
+          frictionPoint: 'Procurement and custom SLA negotiation',
+          delightMoment: 'Enterprise volume discount and priority GPU cluster',
+        },
+      ],
+    };
+  }
+
+  /**
    * Aggregates customer discovery interviews and computes validation resonance score
    */
   async synthesizeDiscoveryFeedback(startupId: string): Promise<CustomerValidationReportDto> {
@@ -124,5 +173,12 @@ export class CustomerDiscoveryService {
       ],
       demandProjectionScore: 94.0,
     };
+  }
+
+  /**
+   * Alias for synthesized discovery feedback report
+   */
+  async getInterviewFeedbackSynthesis(startupId: string): Promise<CustomerValidationReportDto> {
+    return this.synthesizeDiscoveryFeedback(startupId);
   }
 }

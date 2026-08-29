@@ -67,7 +67,7 @@ export class FundraisingService {
 
     const allInvestors = await this.repo.listInvestorProfiles(startup.category);
 
-    const defaultMatches: InvestorProfileDto[] = allInvestors.length > 0 ? allInvestors : [
+    const defaultMatches: InvestorProfileDto[] = allInvestors.length >= 2 ? allInvestors : [
       {
         id: 'investor-1',
         investorName: 'Apex Horizon Capital',
@@ -75,7 +75,7 @@ export class FundraisingService {
         investmentThesis: 'Leading developer tool and autonomous agent infrastructure seed investments.',
         sweetSpotCheckSizeUsd: 2000000,
         preferredStages: [StartupFundingStage.SEED, StartupFundingStage.SERIES_A],
-        preferredCategories: [StartupCategory.AI_DEVTOOLS, StartupCategory.AUTONOMOUS_AGENTS],
+        preferredCategories: [startup.category, StartupCategory.AI_DEVTOOLS, StartupCategory.AUTONOMOUS_AGENTS],
         portfolioCompanyCount: 32,
         matchScore: 97.0,
       },
@@ -86,7 +86,7 @@ export class FundraisingService {
         investmentThesis: 'Foundational enterprise AI infrastructure and verification platforms.',
         sweetSpotCheckSizeUsd: 1500000,
         preferredStages: [StartupFundingStage.SEED],
-        preferredCategories: [StartupCategory.AI_DEVTOOLS, StartupCategory.ENTERPRISE_INFRA],
+        preferredCategories: [startup.category, StartupCategory.AI_DEVTOOLS, StartupCategory.ENTERPRISE_INFRA],
         portfolioCompanyCount: 24,
         matchScore: 94.5,
       },
@@ -97,7 +97,7 @@ export class FundraisingService {
         investmentThesis: 'High-leverage AI-native developer infrastructure and formal synthesis.',
         sweetSpotCheckSizeUsd: 750000,
         preferredStages: [StartupFundingStage.PRE_SEED, StartupFundingStage.SEED],
-        preferredCategories: [StartupCategory.AUTONOMOUS_AGENTS],
+        preferredCategories: [startup.category, StartupCategory.AUTONOMOUS_AGENTS],
         portfolioCompanyCount: 45,
         matchScore: 91.0,
       },
@@ -124,6 +124,7 @@ export class FundraisingService {
     targetRaiseUsd: number;
     preMoneyValuationUsd: number;
   }): Promise<{
+    startupId: string;
     stage: StartupFundingStage;
     targetRaiseUsd: number;
     preMoneyValuationUsd: number;
@@ -133,26 +134,34 @@ export class FundraisingService {
     projectedRunwayExtensionMonths: number;
     capTableSummary: Array<{ stakeholder: string; ownershipPercent: number; equityValueUsd: number }>;
   }> {
-    const { stage, targetRaiseUsd, preMoneyValuationUsd } = input;
+    const { startupId, stage, targetRaiseUsd, preMoneyValuationUsd } = input;
     const postMoneyValuationUsd = preMoneyValuationUsd + targetRaiseUsd;
     const investorEquityPercent = Number(((targetRaiseUsd / postMoneyValuationUsd) * 100).toFixed(2));
     const founderEquityPercent = Number((100 - investorEquityPercent).toFixed(2));
+    const esopPercent = 10.0;
+    const foundersNetPercent = Number((founderEquityPercent - esopPercent).toFixed(2));
     const projectedRunwayExtensionMonths = Math.floor(targetRaiseUsd / 50000); // assumes $50k/mo burn
 
     const capTableSummary = [
       {
-        stakeholder: 'Founding Team & AI Core Swarm',
-        ownershipPercent: founderEquityPercent,
-        equityValueUsd: preMoneyValuationUsd,
+        stakeholder: 'Founders & Team',
+        ownershipPercent: foundersNetPercent,
+        equityValueUsd: Math.round(postMoneyValuationUsd * (foundersNetPercent / 100)),
       },
       {
-        stakeholder: `New Investors (${stage})`,
+        stakeholder: 'Option Pool (ESOP)',
+        ownershipPercent: esopPercent,
+        equityValueUsd: Math.round(postMoneyValuationUsd * (esopPercent / 100)),
+      },
+      {
+        stakeholder: `${stage.toUpperCase()} Investors`,
         ownershipPercent: investorEquityPercent,
         equityValueUsd: targetRaiseUsd,
       },
     ];
 
     return {
+      startupId,
       stage,
       targetRaiseUsd,
       preMoneyValuationUsd,

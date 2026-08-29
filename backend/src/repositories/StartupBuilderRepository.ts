@@ -528,6 +528,7 @@ export class StartupBuilderRepository implements IStartupBuilderRepository {
       marketSizeEstimate: data.marketSizeEstimate || '$10B+ TAM',
       competitors: data.competitors || ['Competitor A', 'Competitor B'],
       suggestedMonetization: data.suggestedMonetization || ['SaaS subscription', 'Usage fees'],
+      leanCanvasKeywords: data.leanCanvasKeywords || ['PLG', 'DevSecOps', 'Formal Verification'],
       createdAt: new Date().toISOString(),
     };
 
@@ -683,7 +684,7 @@ export class StartupBuilderRepository implements IStartupBuilderRepository {
       id,
       startupId: data.startupId || 'startup-seed-1',
       productName: data.productName || 'Incubated Product Module',
-      phase: data.phase || IncubationPhase.IDEA,
+      phase: data.phase || IncubationPhase.CONCEPT,
       conceptSummary: data.conceptSummary || 'Autonomous product core concept.',
       mvpFeatureSet: data.mvpFeatureSet || [],
       validationMetrics: data.validationMetrics || {
@@ -794,13 +795,8 @@ export class StartupBuilderRepository implements IStartupBuilderRepository {
   async updateVenturePortfolio(id: string, updates: Partial<VenturePortfolioDto>): Promise<VenturePortfolioDto | null> {
     const existing = this.memVenturePortfolios.get(id);
     if (!existing) return null;
-    const updated: VenturePortfolioDto = {
-      ...existing,
-      ...updates,
-      updatedAt: new Date().toISOString(),
-    };
-    this.memVenturePortfolios.set(id, updated);
-    return updated;
+    Object.assign(existing, updates, { updatedAt: new Date().toISOString() });
+    return existing;
   }
 
   // 7. Fundraising Rounds

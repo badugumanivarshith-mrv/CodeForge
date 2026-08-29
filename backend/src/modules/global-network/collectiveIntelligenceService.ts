@@ -122,8 +122,10 @@ export class CollectiveIntelligenceService {
       },
     ];
 
-    for (const t of trends) {
-      await this.repo.recordTrend(t.trendName, t.category, t.momentumScore, t.growthRatePercent, t.demandScore);
+    if (typeof this.repo?.recordTrend === 'function') {
+      for (const t of trends) {
+        await this.repo.recordTrend(t.trendName, t.category, t.momentumScore, t.growthRatePercent, t.demandScore);
+      }
     }
 
     return trends;

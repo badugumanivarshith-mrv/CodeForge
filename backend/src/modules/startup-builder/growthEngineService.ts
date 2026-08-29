@@ -105,4 +105,11 @@ export class GrowthEngineService {
       viralK: stats.viralK,
     };
   }
+
+  /**
+   * Alias for unit economics evaluation model
+   */
+  async getUnitEconomicsModel(startupId: string) {
+    return this.evaluateUnitEconomics(startupId);
+  }
 }

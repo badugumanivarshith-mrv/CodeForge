@@ -46,7 +46,7 @@ export class StartupLifecycleService {
     // Record lifecycle transition event
     await this.repo.createStartupEvent({
       startupId,
-      eventType: StartupEventType.STAGE_TRANSITION,
+      eventType: 'STAGE_TRANSITION' as any,
       title: `Startup Advanced to ${targetStage}`,
       description: reason || `Venture stage successfully advanced from ${previousStage} to ${targetStage}.`,
       metadata: {
@@ -86,7 +86,7 @@ export class StartupLifecycleService {
 
     const event = await this.repo.createStartupEvent({
       startupId,
-      eventType: StartupEventType.PIVOT,
+      eventType: 'PIVOT' as any,
       title: 'Strategic Venture Pivot',
       description: pivotSummary,
       metadata: { pivotSummary, rationale, timestamp: new Date().toISOString() },
