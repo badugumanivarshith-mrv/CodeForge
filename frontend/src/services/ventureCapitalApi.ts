@@ -13,6 +13,7 @@ import {
   FundType,
   FundStatus,
   ExitType,
+  ExitStatus,
   InvestmentRecommendation,
 } from '@codeforge/shared';
 
@@ -103,6 +104,7 @@ export const ventureCapitalApi = {
           startupId: 's-1',
           startupName: 'AgentForge Studio',
           exitType: ExitType.STRATEGIC_ACQUISITION,
+          status: ExitStatus.COMPLETED,
           targetAcquirerOrExchange: 'OmniCloud Titan Corp',
           simulatedExitValuationUsd: 180000000,
           expectedProceedsUsd: 33300000,

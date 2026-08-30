@@ -32,4 +32,5 @@ export * from './CognitiveCoreRepository';
 export * from './EnterpriseCivilizationRepository';
 export * from './StartupBuilderRepository';
 export * from './VentureCapitalRepository';
+export * from './ResearchUniversityRepository';
 

@@ -545,6 +545,11 @@ export enum KnowledgeNodeType {
   ROLE = 'role',
   CERTIFICATION = 'certification',
   RESEARCH_PAPER = 'research_paper',
+  THEORY = 'theory',
+  ALGORITHM = 'algorithm',
+  DATASET = 'dataset',
+  BENCHMARK = 'benchmark',
+  THEOREM = 'theorem',
 }
 
 export enum KnowledgeRelationType {
@@ -821,8 +826,11 @@ export enum VerificationStatus {
 export enum PublicationStatus {
   DRAFT = 'draft',
   SUBMITTED = 'submitted',
+  UNDER_REVIEW = 'under_review',
   PEER_REVIEWED = 'peer_reviewed',
+  ACCEPTED = 'accepted',
   PUBLISHED = 'published',
+  REJECTED = 'rejected',
   ARCHIVED = 'archived',
 }
 
@@ -1241,6 +1249,7 @@ export enum DealStage {
   LEGAL_CLOSING = 'legal_closing',
   PASSED = 'passed',
   INVESTED = 'invested',
+  LOST = 'lost',
 }
 
 export enum DealPriority {
@@ -1315,6 +1324,7 @@ export enum ExitType {
 
 export enum ExitStatus {
   PROPOSED = 'proposed',
+  SIMULATED = 'simulated',
   NEGOTIATING = 'negotiating',
   IN_ESCROW = 'in_escrow',
   COMPLETED = 'completed',
@@ -1341,5 +1351,104 @@ export enum SyndicateRole {
   CO_LEAD = 'co_lead',
   PARTICIPANT = 'participant',
 }
+
+// ============================================================================
+// Phase 22: Autonomous Research University & Scientific Knowledge Civilization
+// ============================================================================
+
+export enum AcademicDepartment {
+  COMPUTER_SCIENCE = 'computer_science',
+  ARTIFICIAL_INTELLIGENCE = 'artificial_intelligence',
+  ENGINEERING = 'engineering',
+  MATHEMATICS = 'mathematics',
+  BUSINESS = 'business',
+  ECONOMICS = 'economics',
+  HEALTHCARE = 'healthcare',
+  SOCIAL_SCIENCES = 'social_sciences',
+}
+
+export enum ResearchProgramStatus {
+  PROPOSED = 'proposed',
+  ACTIVE = 'active',
+  PEER_REVIEW = 'peer_review',
+  PUBLISHED = 'published',
+  ARCHIVED = 'archived',
+}
+
+export enum LabType {
+  AI_RESEARCH_LAB = 'ai_research_lab',
+  SYSTEMS_LAB = 'systems_lab',
+  DATA_SCIENCE_LAB = 'data_science_lab',
+  ROBOTICS_LAB = 'robotics_lab',
+  FUTURE_TECHNOLOGIES_LAB = 'future_technologies_lab',
+}
+
+export enum LabStatus {
+  OPERATIONAL = 'operational',
+  MAINTENANCE = 'maintenance',
+  UPGRADING = 'upgrading',
+  OFFLINE = 'offline',
+}
+
+export enum ExperimentStatus {
+  QUEUED = 'queued',
+  RUNNING = 'running',
+  COMPLETED = 'completed',
+  FAILED = 'failed',
+  VERIFIED = 'verified',
+}
+
+export enum HypothesisStatus {
+  FORMULATED = 'formulated',
+  TESTING = 'testing',
+  VALIDATED = 'validated',
+  REFUTED = 'refuted',
+}
+
+export enum DiscoverySignificance {
+  INCREMENTAL = 'incremental',
+  MODERATE = 'moderate',
+  MAJOR = 'major',
+  BREAKTHROUGH = 'breakthrough',
+  PARADIGM_SHIFTING = 'paradigm_shifting',
+}
+
+export enum PublicationType {
+  RESEARCH_PAPER = 'research_paper',
+  TECHNICAL_REPORT = 'technical_report',
+  WHITE_PAPER = 'white_paper',
+  SURVEY_PAPER = 'survey_paper',
+}
+
+export enum PeerReviewRole {
+  METHOD_REVIEWER = 'method_reviewer',
+  STATISTICAL_REVIEWER = 'statistical_reviewer',
+  DOMAIN_REVIEWER = 'domain_reviewer',
+  ETHICS_REVIEWER = 'ethics_reviewer',
+}
+
+export enum PeerReviewVerdict {
+  ACCEPT = 'accept',
+  MINOR_REVISION = 'minor_revision',
+  MAJOR_REVISION = 'major_revision',
+  REJECT = 'reject',
+}
+
+export enum GrantType {
+  GOVERNMENT_GRANT = 'government_grant',
+  UNIVERSITY_GRANT = 'university_grant',
+  INDUSTRY_GRANT = 'industry_grant',
+  FOUNDATION_GRANT = 'foundation_grant',
+}
+
+export enum GrantStatus {
+  OPEN = 'open',
+  APPLIED = 'applied',
+  AWARDED = 'awarded',
+  REJECTED = 'rejected',
+  CLOSED = 'closed',
+}
+
+
 
 

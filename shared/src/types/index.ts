@@ -154,6 +154,18 @@ import {
   ExitStatus,
   AllocationStrategy,
   SyndicateRole,
+  AcademicDepartment,
+  ResearchProgramStatus,
+  LabType,
+  LabStatus,
+  ExperimentStatus,
+  HypothesisStatus,
+  DiscoverySignificance,
+  PublicationType,
+  PeerReviewRole,
+  PeerReviewVerdict,
+  GrantType,
+  GrantStatus,
 } from '../enums/index.js';
 
 
@@ -6067,6 +6079,7 @@ export interface PortfolioHoldingDto {
   initialInvestedUsd: number;
   followOnInvestedUsd: number;
   totalInvestedUsd: number;
+  currentInvestedUsd?: number;
   ownershipPercent: number;
   currentValuationUsd: number;
   holdingValueUsd: number;
@@ -6127,14 +6140,15 @@ export interface PortfolioIntelligenceDto {
   analyzedAt: string;
 }
 
-// Module 6: Exit Strategy & Liquidity
+// Module 6: Exit Strategy & M&A Matching Engine
 export interface ExitSimulationDto {
   id: string;
   fundId: string;
   startupId: string;
   startupName: string;
   exitType: ExitType;
-  targetAcquirerOrExchange: string;
+  status: ExitStatus;
+  targetAcquirerOrExchange?: string;
   simulatedExitValuationUsd: number;
   expectedProceedsUsd: number;
   fundReturnMultiple: number;
@@ -6152,16 +6166,21 @@ export interface LiquidityForecastDto {
   twentyFourMonthLiquidityUsd: number;
   expectedExitsCount: number;
   projectedDpiIncrease: number;
-  quarterlyForecasts: Array<{ quarter: string; projectedProceedsUsd: number; exitCandidates: string[] }>;
+  pipelineSummary?: string;
+  quarterlyForecasts?: Array<{ quarter: string; projectedProceedsUsd: number; exitCandidates: string[] }>;
 }
 
 export interface MnaTargetMatchDto {
-  startupId: string;
-  potentialAcquirer: string;
+  startupId?: string;
+  acquirerName?: string;
+  potentialAcquirer?: string;
   strategicFitScore: number;
-  rationale: string;
-  estimatedDealSizeRangeUsd: { min: number; target: number; max: number };
-  recentComparableDeals: string[];
+  historicalMnaActivity?: string;
+  estimatedOfferRangeUsd?: string;
+  synergyRationale?: string;
+  rationale?: string;
+  estimatedDealSizeRangeUsd?: { min: number; target: number; max: number };
+  recentComparableDeals?: string[];
 }
 
 // Module 7: Investor Network & Syndicates
@@ -6170,6 +6189,9 @@ export interface LpProfileDto {
   lpName: string;
   lpType: 'INSTITUTIONAL' | 'FAMILY_OFFICE' | 'SOVEREIGN_WEALTH' | 'FUND_OF_FUNDS' | 'HIGH_NET_WORTH';
   committedTotalUsd: number;
+  targetCheckSizeMinUsd?: number;
+  targetCheckSizeMaxUsd?: number;
+  contactEmail?: string;
   activeFunds: string[];
   preferredSectors: StartupCategory[];
   coInvestmentAppetite: boolean;
@@ -6242,5 +6264,364 @@ export interface VCCommandCenterOverviewDto {
   recentExits: ExitSimulationDto[];
   riskAlerts: RiskDetectionDto[];
 }
+
+// ============================================================================
+// Phase 22: Autonomous Research University & Scientific Knowledge Civilization DTOs
+// ============================================================================
+
+// Module 1: Research University Core
+export interface ResearchProgramDto {
+  id: string;
+  name: string;
+  department: AcademicDepartment;
+  leadFacultyAgent: string;
+  description: string;
+  status: ResearchProgramStatus;
+  primaryHypothesis?: string;
+  targetMilestones: string[];
+  allocatedBudgetUsd: number;
+  activeResearchersCount: number;
+  publicationsCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateResearchProgramDto {
+  name: string;
+  department: AcademicDepartment;
+  leadFacultyAgent?: string;
+  description: string;
+  status?: ResearchProgramStatus;
+  primaryHypothesis?: string;
+  targetMilestones?: string[];
+  allocatedBudgetUsd?: number;
+}
+
+export interface ResearchProjectDto {
+  id: string;
+  programId: string;
+  title: string;
+  abstract: string;
+  department: AcademicDepartment;
+  principalInvestigator: string;
+  status: ResearchProgramStatus;
+  startDate: string;
+  targetCompletionDate: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateResearchProjectDto {
+  programId: string;
+  title: string;
+  abstract: string;
+  department: AcademicDepartment;
+  principalInvestigator?: string;
+  status?: ResearchProgramStatus;
+  startDate?: string;
+  targetCompletionDate?: string;
+}
+
+// Module 2: Scientific Discovery Engine
+export interface HypothesisDto {
+  id: string;
+  programId: string;
+  statement: string;
+  rationale: string;
+  department: AcademicDepartment;
+  noveltyScore: number;
+  feasibilityScore: number;
+  testPlan: string[];
+  status: HypothesisStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateHypothesisDto {
+  programId: string;
+  statement: string;
+  rationale: string;
+  department: AcademicDepartment;
+  noveltyScore?: number;
+  feasibilityScore?: number;
+  testPlan?: string[];
+  status?: HypothesisStatus;
+}
+
+export interface DiscoveryDto {
+  id: string;
+  hypothesisId: string;
+  programId: string;
+  title: string;
+  significance: DiscoverySignificance;
+  summary: string;
+  empiricalEvidence: string[];
+  noveltyScore: number;
+  reproducibilityIndex: number;
+  confirmedAt: string;
+  createdAt: string;
+}
+
+export interface CreateDiscoveryDto {
+  hypothesisId: string;
+  programId: string;
+  title: string;
+  significance?: DiscoverySignificance;
+  summary: string;
+  empiricalEvidence?: string[];
+  noveltyScore?: number;
+  reproducibilityIndex?: number;
+}
+
+// Module 3: Digital Research Laboratories
+export interface LaboratoryDto {
+  id: string;
+  name: string;
+  labType: LabType;
+  department: AcademicDepartment;
+  status: LabStatus;
+  computeCapacityTeraflops: number;
+  activeSimulationsCount: number;
+  datasetsMountedCount: number;
+  directorAgent: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateLaboratoryDto {
+  name: string;
+  labType: LabType;
+  department: AcademicDepartment;
+  status?: LabStatus;
+  computeCapacityTeraflops?: number;
+  directorAgent?: string;
+}
+
+export interface ExperimentDto {
+  id: string;
+  labId: string;
+  hypothesisId?: string;
+  title: string;
+  parameters: Record<string, any>;
+  datasetRef: string;
+  status: ExperimentStatus;
+  executionDurationMs: number;
+  reproducibilityScore: number;
+  resultsSummary?: string;
+  logs?: string[];
+  executedAt?: string;
+  createdAt: string;
+}
+
+export interface CreateExperimentDto {
+  labId: string;
+  hypothesisId?: string;
+  title: string;
+  parameters?: Record<string, any>;
+  datasetRef?: string;
+  status?: ExperimentStatus;
+  reproducibilityScore?: number;
+  resultsSummary?: string;
+}
+
+// Module 4: Knowledge Graph Civilization
+export interface AcademicKnowledgeNodeDto {
+  id: string;
+  nodeType: KnowledgeNodeType;
+  canonicalName: string;
+  domain: AcademicDepartment;
+  definition: string;
+  confidenceScore: number;
+  incomingCitations: number;
+  outgoingConnections: string[];
+  evolutionLineage: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateAcademicKnowledgeNodeDto {
+  nodeType: KnowledgeNodeType;
+  canonicalName: string;
+  domain: AcademicDepartment;
+  definition: string;
+  confidenceScore?: number;
+  outgoingConnections?: string[];
+  evolutionLineage?: string[];
+}
+
+// Module 5: Publication Engine
+export interface PublicationDto {
+  id: string;
+  programId: string;
+  title: string;
+  abstract: string;
+  authors: string[];
+  publicationType: PublicationType;
+  status: PublicationStatus;
+  department: AcademicDepartment;
+  doi?: string;
+  fullMarkdownContent: string;
+  citationCount: number;
+  readinessScore: number;
+  publishedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreatePublicationDto {
+  programId: string;
+  title: string;
+  abstract: string;
+  authors?: string[];
+  publicationType?: PublicationType;
+  status?: PublicationStatus;
+  department: AcademicDepartment;
+  doi?: string;
+  fullMarkdownContent?: string;
+  readinessScore?: number;
+}
+
+export interface CitationDto {
+  id: string;
+  sourcePublicationId: string;
+  targetPublicationId: string;
+  citationContext: string;
+  semanticSimilarity: number;
+  citedAt: string;
+}
+
+export interface CreateCitationDto {
+  sourcePublicationId: string;
+  targetPublicationId: string;
+  citationContext?: string;
+  semanticSimilarity?: number;
+}
+
+// Module 6: Peer Review Network
+export interface PeerReviewDto {
+  id: string;
+  publicationId: string;
+  reviewerRole: PeerReviewRole;
+  reviewerAgentName: string;
+  verdict: PeerReviewVerdict;
+  overallScore: number; // 0-100
+  methodologyScore: number;
+  soundnessScore: number;
+  noveltyScore: number;
+  clarityScore: number;
+  reproducibilityScore: number;
+  comments: string;
+  strengths: string[];
+  weaknesses: string[];
+  reviewedAt: string;
+  createdAt: string;
+}
+
+export interface CreatePeerReviewDto {
+  publicationId: string;
+  reviewerRole: PeerReviewRole;
+  reviewerAgentName?: string;
+  verdict: PeerReviewVerdict;
+  overallScore: number;
+  methodologyScore?: number;
+  soundnessScore?: number;
+  noveltyScore?: number;
+  clarityScore?: number;
+  reproducibilityScore?: number;
+  comments: string;
+  strengths?: string[];
+  weaknesses?: string[];
+}
+
+// Module 7: Research Funding Intelligence
+export interface GrantDto {
+  id: string;
+  grantTitle: string;
+  grantType: GrantType;
+  fundingAgency: string;
+  totalPoolUsd: number;
+  maximumAwardUsd: number;
+  eligibilityCriteria: string[];
+  matchingDepartments: AcademicDepartment[];
+  status: GrantStatus;
+  applicationDeadline: string;
+  awardedAmountUsd?: number;
+  fundedProgramId?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateGrantDto {
+  grantTitle: string;
+  grantType: GrantType;
+  fundingAgency: string;
+  totalPoolUsd: number;
+  maximumAwardUsd: number;
+  eligibilityCriteria?: string[];
+  matchingDepartments?: AcademicDepartment[];
+  status?: GrantStatus;
+  applicationDeadline?: string;
+  awardedAmountUsd?: number;
+  fundedProgramId?: string;
+}
+
+// Module 8: Global Collaboration Network
+export interface CollaboratorDto {
+  id: string;
+  institutionName: string;
+  primaryDepartment: AcademicDepartment;
+  country: string;
+  leadInvestigator: string;
+  reputationScore: number;
+  activeSharedProjects: string[];
+  coAuthoredPublicationsCount: number;
+  cooperationStatus: 'ACTIVE' | 'PENDING' | 'FORMALIZED' | 'INACTIVE';
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateCollaboratorDto {
+  institutionName: string;
+  primaryDepartment: AcademicDepartment;
+  country?: string;
+  leadInvestigator?: string;
+  reputationScore?: number;
+  activeSharedProjects?: string[];
+  cooperationStatus?: 'ACTIVE' | 'PENDING' | 'FORMALIZED' | 'INACTIVE';
+}
+
+// Module 9 & 10: Metrics and Command Center
+export interface ResearchMetricsDto {
+  universityId: string;
+  totalPrograms: number;
+  activeLabsCount: number;
+  experimentsExecutedCount: number;
+  discoveriesLoggedCount: number;
+  publicationsCount: number;
+  totalCitationsCount: number;
+  hIndexEstimated: number;
+  totalGrantsSecuredUsd: number;
+  globalKnowledgeGraphDensity: number;
+  averageReproducibilityRate: number;
+  computedAt: string;
+}
+
+export interface AcademicCommandCenterOverviewDto {
+  universityName: string;
+  motto: string;
+  totalResearchProgramsCount: number;
+  activeDigitalLabsCount: number;
+  peerReviewedPapersCount: number;
+  totalCitationsCount: number;
+  cumulativeGrantFundingUsd: number;
+  globalKnowledgeNodesCount: number;
+  averageReproducibilityIndex: number;
+  topPrograms: ResearchProgramDto[];
+  recentDiscoveries: DiscoveryDto[];
+  recentPublications: PublicationDto[];
+  activeLabs: LaboratoryDto[];
+  openGrants: GrantDto[];
+}
+
 
 

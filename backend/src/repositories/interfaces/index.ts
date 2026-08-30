@@ -31,4 +31,6 @@ export * from './ICognitiveCoreRepository';
 export * from './IEnterpriseCivilizationRepository';
 export * from './IStartupBuilderRepository';
 export * from './IVentureCapitalRepository';
+export * from './IResearchUniversityRepository';
+
 

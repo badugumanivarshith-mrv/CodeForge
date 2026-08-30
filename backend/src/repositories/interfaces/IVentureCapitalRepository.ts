@@ -15,6 +15,7 @@ import {
   SyndicateMemberDto,
   CapitalAllocationPlanDto,
   DealStage,
+  DealPriority,
   StartupCategory,
   FundStatus,
 } from '@codeforge/shared';
@@ -25,6 +26,7 @@ export interface IVentureCapitalRepository {
   getDealFlowById(id: string): Promise<DealFlowDto | null>;
   listDealFlow(stage?: DealStage, category?: StartupCategory): Promise<DealFlowDto[]>;
   updateDealFlowStage(id: string, stage: DealStage, notes?: string): Promise<DealFlowDto | null>;
+  updateDealFlowPriority(id: string, priority: DealPriority): Promise<DealFlowDto | null>;
 
   // 2. Founder Scores
   createFounderScore(data: Partial<FounderScoreDto>): Promise<FounderScoreDto>;

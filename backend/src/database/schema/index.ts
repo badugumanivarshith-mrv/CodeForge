@@ -33,4 +33,6 @@ export * from './cognitive_core';
 export * from './enterprise_civilization';
 export * from './startup_ecosystem';
 export * from './venture_capital';
+export * from './research_university';
+
 

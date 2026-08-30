@@ -218,6 +218,18 @@ export class VentureCapitalRepository implements IVentureCapitalRepository {
     return updated;
   }
 
+  async updateDealFlowPriority(id: string, priority: DealPriority): Promise<DealFlowDto | null> {
+    const existing = this.memDealFlow.get(id);
+    if (!existing) return null;
+    const updated: DealFlowDto = {
+      ...existing,
+      priority,
+      updatedAt: new Date().toISOString(),
+    };
+    this.memDealFlow.set(id, updated);
+    return updated;
+  }
+
   // 2. Founder Scores
   async createFounderScore(data: Partial<FounderScoreDto>): Promise<FounderScoreDto> {
     const id = data.id || randomUUID();
@@ -489,6 +501,7 @@ export class VentureCapitalRepository implements IVentureCapitalRepository {
       startupId: data.startupId || 'startup-seed-1',
       startupName: data.startupName || 'Acquired Venture',
       exitType: data.exitType || ExitType.STRATEGIC_ACQUISITION,
+      status: data.status || ExitStatus.SIMULATED,
       targetAcquirerOrExchange: data.targetAcquirerOrExchange || 'Major Cloud Platform',
       simulatedExitValuationUsd: data.simulatedExitValuationUsd ?? 150000000,
       expectedProceedsUsd: data.expectedProceedsUsd ?? 27750000,

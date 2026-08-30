@@ -157,6 +157,18 @@ import {
   ExitStatus,
   AllocationStrategy,
   SyndicateRole,
+  AcademicDepartment,
+  ResearchProgramStatus,
+  LabType,
+  LabStatus,
+  ExperimentStatus,
+  HypothesisStatus,
+  DiscoverySignificance,
+  PublicationType,
+  PeerReviewRole,
+  PeerReviewVerdict,
+  GrantType,
+  GrantStatus,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -695,6 +707,11 @@ export const knowledgeNodeTypeEnum = pgEnum('knowledge_node_type', [
   KnowledgeNodeType.ROLE,
   KnowledgeNodeType.CERTIFICATION,
   KnowledgeNodeType.RESEARCH_PAPER,
+  KnowledgeNodeType.THEORY,
+  KnowledgeNodeType.ALGORITHM,
+  KnowledgeNodeType.DATASET,
+  KnowledgeNodeType.BENCHMARK,
+  KnowledgeNodeType.THEOREM,
 ]);
 
 export const knowledgeRelationTypeEnum = pgEnum('knowledge_relation_type', [
@@ -1391,6 +1408,7 @@ export const dealStageEnum = pgEnum('deal_stage', [
   DealStage.LEGAL_CLOSING,
   DealStage.PASSED,
   DealStage.INVESTED,
+  DealStage.LOST,
 ]);
 
 export const dealPriorityEnum = pgEnum('deal_priority', [
@@ -1465,6 +1483,7 @@ export const exitTypeEnum = pgEnum('exit_type', [
 
 export const exitStatusEnum = pgEnum('exit_status', [
   ExitStatus.PROPOSED,
+  ExitStatus.SIMULATED,
   ExitStatus.NEGOTIATING,
   ExitStatus.IN_ESCROW,
   ExitStatus.COMPLETED,
@@ -1491,5 +1510,105 @@ export const syndicateRoleEnum = pgEnum('syndicate_role', [
   SyndicateRole.CO_LEAD,
   SyndicateRole.PARTICIPANT,
 ]);
+
+// ============================================================================
+// Phase 22: Autonomous Research University & Scientific Knowledge Civilization pgEnums
+// ============================================================================
+
+export const academicDepartmentEnum = pgEnum('academic_department', [
+  AcademicDepartment.COMPUTER_SCIENCE,
+  AcademicDepartment.ARTIFICIAL_INTELLIGENCE,
+  AcademicDepartment.ENGINEERING,
+  AcademicDepartment.MATHEMATICS,
+  AcademicDepartment.BUSINESS,
+  AcademicDepartment.ECONOMICS,
+  AcademicDepartment.HEALTHCARE,
+  AcademicDepartment.SOCIAL_SCIENCES,
+]);
+
+export const researchProgramStatusEnum = pgEnum('research_program_status', [
+  ResearchProgramStatus.PROPOSED,
+  ResearchProgramStatus.ACTIVE,
+  ResearchProgramStatus.PEER_REVIEW,
+  ResearchProgramStatus.PUBLISHED,
+  ResearchProgramStatus.ARCHIVED,
+]);
+
+export const labTypeEnum = pgEnum('lab_type', [
+  LabType.AI_RESEARCH_LAB,
+  LabType.SYSTEMS_LAB,
+  LabType.DATA_SCIENCE_LAB,
+  LabType.ROBOTICS_LAB,
+  LabType.FUTURE_TECHNOLOGIES_LAB,
+]);
+
+export const labStatusEnum = pgEnum('lab_status', [
+  LabStatus.OPERATIONAL,
+  LabStatus.MAINTENANCE,
+  LabStatus.UPGRADING,
+  LabStatus.OFFLINE,
+]);
+
+export const experimentStatusEnum = pgEnum('experiment_status', [
+  ExperimentStatus.QUEUED,
+  ExperimentStatus.RUNNING,
+  ExperimentStatus.COMPLETED,
+  ExperimentStatus.FAILED,
+  ExperimentStatus.VERIFIED,
+]);
+
+export const hypothesisStatusEnum = pgEnum('hypothesis_status', [
+  HypothesisStatus.FORMULATED,
+  HypothesisStatus.TESTING,
+  HypothesisStatus.VALIDATED,
+  HypothesisStatus.REFUTED,
+]);
+
+export const discoverySignificanceEnum = pgEnum('discovery_significance', [
+  DiscoverySignificance.INCREMENTAL,
+  DiscoverySignificance.MODERATE,
+  DiscoverySignificance.MAJOR,
+  DiscoverySignificance.BREAKTHROUGH,
+  DiscoverySignificance.PARADIGM_SHIFTING,
+]);
+
+export const publicationTypeEnum = pgEnum('publication_type', [
+  PublicationType.RESEARCH_PAPER,
+  PublicationType.TECHNICAL_REPORT,
+  PublicationType.WHITE_PAPER,
+  PublicationType.SURVEY_PAPER,
+]);
+
+export const peerReviewRoleEnum = pgEnum('peer_review_role', [
+  PeerReviewRole.METHOD_REVIEWER,
+  PeerReviewRole.STATISTICAL_REVIEWER,
+  PeerReviewRole.DOMAIN_REVIEWER,
+  PeerReviewRole.ETHICS_REVIEWER,
+]);
+
+export const peerReviewVerdictEnum = pgEnum('peer_review_verdict', [
+  PeerReviewVerdict.ACCEPT,
+  PeerReviewVerdict.MINOR_REVISION,
+  PeerReviewVerdict.MAJOR_REVISION,
+  PeerReviewVerdict.REJECT,
+]);
+
+export const grantTypeEnum = pgEnum('grant_type', [
+  GrantType.GOVERNMENT_GRANT,
+  GrantType.UNIVERSITY_GRANT,
+  GrantType.INDUSTRY_GRANT,
+  GrantType.FOUNDATION_GRANT,
+]);
+
+export const grantStatusEnum = pgEnum('grant_status', [
+  GrantStatus.OPEN,
+  GrantStatus.APPLIED,
+  GrantStatus.AWARDED,
+  GrantStatus.REJECTED,
+  GrantStatus.CLOSED,
+]);
+
+
+
 
 

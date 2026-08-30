@@ -180,6 +180,19 @@ import {
   InvestorNetworkPage,
 } from '../pages/venture-capital';
 
+// Phase 22: Autonomous Research University & Scientific Discovery Network Pages
+import {
+  AcademicCommandCenterPage,
+  ResearchProgramsPage,
+  ScientificDiscoveryPage,
+  DigitalLaboratoriesPage,
+  PublicationsEnginePage,
+  PeerReviewNetworkPage,
+  ResearchFundingPage,
+  AcademicKnowledgeGraphPage,
+  GlobalCollaborationPage,
+} from '../pages/research-university';
+
 
 export const router = createBrowserRouter([
   {
@@ -718,6 +731,43 @@ export const router = createBrowserRouter([
           {
             path: 'investor-network',
             element: <InvestorNetworkPage />,
+          },
+          // Phase 22: Autonomous Research University & Scientific Discovery Network Routes
+          {
+            path: 'academic-command-center',
+            element: <AcademicCommandCenterPage />,
+          },
+          {
+            path: 'research-programs',
+            element: <ResearchProgramsPage />,
+          },
+          {
+            path: 'scientific-discovery',
+            element: <ScientificDiscoveryPage />,
+          },
+          {
+            path: 'digital-labs',
+            element: <DigitalLaboratoriesPage />,
+          },
+          {
+            path: 'publications-engine',
+            element: <PublicationsEnginePage />,
+          },
+          {
+            path: 'peer-review-network',
+            element: <PeerReviewNetworkPage />,
+          },
+          {
+            path: 'grant-marketplace',
+            element: <ResearchFundingPage />,
+          },
+          {
+            path: 'knowledge-graph',
+            element: <AcademicKnowledgeGraphPage />,
+          },
+          {
+            path: 'global-collaboration',
+            element: <GlobalCollaborationPage />,
           },
         ],
       },
