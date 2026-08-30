@@ -56,6 +56,7 @@ import researchUniversityRouter from './researchUniversity.routes';
 import softwareFactoryRouter from './softwareFactory.routes';
 import aiCloudRouter from './aiCloud.routes';
 import multimodalRouter from './multimodal.routes';
+import cybersecurityRouter from './cybersecurity.routes';
 
 export const v1Router = Router();
 
@@ -116,3 +117,4 @@ v1Router.use('/research-university', researchUniversityRouter);
 v1Router.use('/software-factory', softwareFactoryRouter);
 v1Router.use('/ai-cloud', aiCloudRouter);
 v1Router.use('/multimodal', multimodalRouter);
+v1Router.use('/security', cybersecurityRouter);

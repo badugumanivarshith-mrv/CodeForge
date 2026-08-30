@@ -1564,6 +1564,35 @@ export enum ReasoningComplexity {
   HYPOTHESIS_GEN = 'hypothesis_gen',
 }
 
+// Phase 26: Cybersecurity Intelligence Platform Enums
+export enum ThreatSeverity {
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HIGH = 'high',
+  CRITICAL = 'critical',
+}
+
+export enum ThreatStatus {
+  ACTIVE = 'active',
+  INVESTIGATING = 'investigating',
+  MITIGATED = 'mitigated',
+  FALSE_POSITIVE = 'false_positive',
+}
+
+export enum VulnerabilityStatus {
+  OPEN = 'open',
+  PATCHED = 'patched',
+  RISK_ACCEPTED = 'risk_accepted',
+  REMEDIATING = 'remediating',
+}
+
+export enum IncidentStatus {
+  OPEN = 'open',
+  CONTAINED = 'contained',
+  RESOLVED = 'resolved',
+  CLOSED = 'closed',
+}
+
 
 
 

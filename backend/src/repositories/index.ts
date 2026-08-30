@@ -37,4 +37,7 @@ export * from './SoftwareFactoryRepository';
 export * from './AICloudRepository';
 export * from './MultimodalRepository';
 export * from './interfaces/IMultimodalRepository';
+export * from './CybersecurityRepository';
+export * from './interfaces/ICybersecurityRepository';
+
 

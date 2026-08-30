@@ -184,6 +184,10 @@ import {
   AssetType,
   AnalysisStatus,
   ReasoningComplexity,
+  ThreatSeverity,
+  ThreatStatus,
+  VulnerabilityStatus,
+  IncidentStatus,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1735,6 +1739,34 @@ export const reasoningComplexityEnum = pgEnum('reasoning_complexity', [
   ReasoningComplexity.COGNITIVE,
   ReasoningComplexity.CROSS_MEDIA,
   ReasoningComplexity.HYPOTHESIS_GEN,
+]);
+
+export const threatSeverityEnum = pgEnum('threat_severity', [
+  ThreatSeverity.LOW,
+  ThreatSeverity.MEDIUM,
+  ThreatSeverity.HIGH,
+  ThreatSeverity.CRITICAL,
+]);
+
+export const threatStatusEnum = pgEnum('threat_status', [
+  ThreatStatus.ACTIVE,
+  ThreatStatus.INVESTIGATING,
+  ThreatStatus.MITIGATED,
+  ThreatStatus.FALSE_POSITIVE,
+]);
+
+export const vulnerabilityStatusEnum = pgEnum('vulnerability_status', [
+  VulnerabilityStatus.OPEN,
+  VulnerabilityStatus.PATCHED,
+  VulnerabilityStatus.RISK_ACCEPTED,
+  VulnerabilityStatus.REMEDIATING,
+]);
+
+export const incidentStatusEnum = pgEnum('incident_status', [
+  IncidentStatus.OPEN,
+  IncidentStatus.CONTAINED,
+  IncidentStatus.RESOLVED,
+  IncidentStatus.CLOSED,
 ]);
 
 

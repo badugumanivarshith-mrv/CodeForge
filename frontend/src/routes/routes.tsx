@@ -217,6 +217,14 @@ import {
   ReasoningStudioPage,
 } from '../pages/multimodal';
 
+// Phase 26: Cybersecurity Intelligence Platform Pages
+import {
+  SecurityDashboardPage,
+  ThreatCenterPage,
+  VulnerabilityManagerPage,
+  IncidentConsolePage,
+} from '../pages/cybersecurity';
+
 
 export const router = createBrowserRouter([
   {
@@ -843,6 +851,23 @@ export const router = createBrowserRouter([
           {
             path: 'multimodal/reason',
             element: <ReasoningStudioPage />,
+          },
+          // Phase 26: Cybersecurity Intelligence Platform Routes
+          {
+            path: 'security',
+            element: <SecurityDashboardPage />,
+          },
+          {
+            path: 'security/threats',
+            element: <ThreatCenterPage />,
+          },
+          {
+            path: 'security/vulnerabilities',
+            element: <VulnerabilityManagerPage />,
+          },
+          {
+            path: 'security/incidents',
+            element: <IncidentConsolePage />,
           },
         ],
       },

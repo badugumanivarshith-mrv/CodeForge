@@ -162,6 +162,11 @@ async function main() {
   await import('./unit/visionAnalysis.test');
   await import('./unit/documentUnderstanding.test');
 
+  // Phase 26: Cybersecurity Intelligence Platform Test Suites
+  await import('./unit/securityMonitoring.test');
+  await import('./unit/threatDetection.test');
+  await import('./unit/incidentResponse.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

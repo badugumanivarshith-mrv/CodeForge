@@ -181,6 +181,10 @@ import {
   AssetType,
   AnalysisStatus,
   ReasoningComplexity,
+  ThreatSeverity,
+  ThreatStatus,
+  VulnerabilityStatus,
+  IncidentStatus,
 } from '../enums/index.js';
 
 
@@ -6960,6 +6964,100 @@ export interface MultimodalOverviewDto {
   recentResults: AnalysisResultDto[];
   recentSessions: ReasoningSessionDto[];
   knowledgeBase: MultimodalKnowledgeDto[];
+}
+
+// Phase 26: Cybersecurity Intelligence Platform Interfaces
+export interface SecurityEventDto {
+  id: string;
+  eventType: string;
+  sourceIp: string;
+  severity: ThreatSeverity;
+  payload: Record<string, any>;
+  timestamp: string;
+}
+
+export interface CreateSecurityEventDto {
+  eventType: string;
+  sourceIp: string;
+  severity: ThreatSeverity;
+  payload: Record<string, any>;
+}
+
+export interface ThreatDto {
+  id: string;
+  title: string;
+  description: string;
+  severity: ThreatSeverity;
+  status: ThreatStatus;
+  affectedSystems: string[];
+  mitigationSteps: string[];
+  detectedAt: string;
+}
+
+export interface CreateThreatDto {
+  title: string;
+  description: string;
+  severity: ThreatSeverity;
+  status: ThreatStatus;
+  affectedSystems: string[];
+  mitigationSteps: string[];
+}
+
+export interface VulnerabilityDto {
+  id: string;
+  cveId: string;
+  packageName: string;
+  severity: ThreatSeverity;
+  status: VulnerabilityStatus;
+  cvssScore: number;
+  description: string;
+  remediationPlan: string;
+  detectedAt: string;
+}
+
+export interface CreateVulnerabilityDto {
+  cveId: string;
+  packageName: string;
+  severity: ThreatSeverity;
+  status: VulnerabilityStatus;
+  cvssScore: number;
+  description: string;
+  remediationPlan: string;
+}
+
+export interface IncidentDto {
+  id: string;
+  title: string;
+  description: string;
+  severity: ThreatSeverity;
+  status: IncidentStatus;
+  assignedTeam: string;
+  containmentAction?: string;
+  createdAt: string;
+}
+
+export interface CreateIncidentDto {
+  title: string;
+  description: string;
+  severity: ThreatSeverity;
+  assignedTeam: string;
+}
+
+export interface SecurityMetricsDto {
+  aggregateRiskScore: number;
+  totalThreatsDetected: number;
+  mitigatedThreatsCount: number;
+  openVulnerabilitiesCount: number;
+  activeIncidentsCount: number;
+  calculatedAt: string;
+}
+
+export interface SecurityOverviewDto {
+  metrics: SecurityMetricsDto;
+  recentEvents: SecurityEventDto[];
+  activeThreats: ThreatDto[];
+  openVulnerabilities: VulnerabilityDto[];
+  recentIncidents: IncidentDto[];
 }
 
 

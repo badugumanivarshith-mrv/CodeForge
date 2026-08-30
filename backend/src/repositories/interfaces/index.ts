@@ -35,5 +35,6 @@ export * from './IResearchUniversityRepository';
 export * from './ISoftwareFactoryRepository';
 export * from './IAICloudRepository';
 export * from './IMultimodalRepository';
+export * from './ICybersecurityRepository';
 
 
