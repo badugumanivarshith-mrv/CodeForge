@@ -1644,6 +1644,28 @@ export enum CrossModuleWorkflowStatus {
   FAILED = 'failed',
 }
 
+// Phase 29: Autonomous Agent Ecosystem Enums
+export enum AgentTaskStatus {
+  PENDING = 'pending',
+  RUNNING = 'running',
+  SUCCESS = 'success',
+  FAILED = 'failed',
+}
+
+export enum EcosystemAgentType {
+  CRITICAL_SYSTEM = 'critical_system',
+  UTILITY = 'utility',
+  COORDINATOR = 'coordinator',
+  COGNITIVE_COPROCESSOR = 'cognitive_coprocessor',
+}
+
+export enum EcosystemAgentStatus {
+  ACTIVE = 'active',
+  SUSPENDED = 'suspended',
+  IDLE = 'idle',
+  TERMINATED = 'terminated',
+}
+
 
 
 

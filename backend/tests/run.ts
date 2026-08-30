@@ -177,6 +177,11 @@ async function main() {
   await import('./unit/orchestration.test');
   await import('./unit/workflowExecution.test');
 
+  // Phase 29: Autonomous Agent Ecosystem Test Suites
+  await import('./unit/agentRegistry.test');
+  await import('./unit/agentCoordination.test');
+  await import('./unit/taskDelegation.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

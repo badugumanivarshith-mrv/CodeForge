@@ -195,6 +195,9 @@ import {
   PlatformEventSeverity,
   OrchestrationStepStatus,
   CrossModuleWorkflowStatus,
+  AgentTaskStatus,
+  EcosystemAgentType,
+  EcosystemAgentStatus,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1823,6 +1826,27 @@ export const crossModuleWorkflowStatusEnum = pgEnum('cross_module_workflow_statu
   CrossModuleWorkflowStatus.PAUSED,
   CrossModuleWorkflowStatus.COMPLETED,
   CrossModuleWorkflowStatus.FAILED,
+]);
+
+export const agentTaskStatusEnum = pgEnum('agent_task_status', [
+  AgentTaskStatus.PENDING,
+  AgentTaskStatus.RUNNING,
+  AgentTaskStatus.SUCCESS,
+  AgentTaskStatus.FAILED,
+]);
+
+export const ecosystemAgentTypeEnum = pgEnum('ecosystem_agent_type', [
+  EcosystemAgentType.CRITICAL_SYSTEM,
+  EcosystemAgentType.UTILITY,
+  EcosystemAgentType.COORDINATOR,
+  EcosystemAgentType.COGNITIVE_COPROCESSOR,
+]);
+
+export const ecosystemAgentStatusEnum = pgEnum('ecosystem_agent_status', [
+  EcosystemAgentStatus.ACTIVE,
+  EcosystemAgentStatus.SUSPENDED,
+  EcosystemAgentStatus.IDLE,
+  EcosystemAgentStatus.TERMINATED,
 ]);
 
 

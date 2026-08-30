@@ -59,6 +59,7 @@ import multimodalRouter from './multimodal.routes';
 import cybersecurityRouter from './cybersecurity.routes';
 import dataIntelligenceRouter from './dataIntelligence.routes';
 import platformIntegrationRouter from './platformIntegration.routes';
+import agentEcosystemRouter from './agentEcosystem.routes';
 
 export const v1Router = Router();
 
@@ -122,3 +123,4 @@ v1Router.use('/multimodal', multimodalRouter);
 v1Router.use('/security', cybersecurityRouter);
 v1Router.use('/data', dataIntelligenceRouter);
 v1Router.use('/platform', platformIntegrationRouter);
+v1Router.use('/agents', agentEcosystemRouter);

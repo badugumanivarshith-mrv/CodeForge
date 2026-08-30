@@ -192,6 +192,9 @@ import {
   PlatformEventSeverity,
   OrchestrationStepStatus,
   CrossModuleWorkflowStatus,
+  AgentTaskStatus,
+  EcosystemAgentType,
+  EcosystemAgentStatus,
 } from '../enums/index.js';
 
 
@@ -7243,6 +7246,94 @@ export interface PlatformOverviewDto {
   recentEvents: PlatformEventDto[];
   activeWorkflows: WorkflowExecutionDto[];
   contextKeys: string[];
+}
+
+// Phase 29: Autonomous Agent Ecosystem Interfaces
+export interface EcosystemAgentDto {
+  id: string;
+  creatorUserId: string;
+  agentName: string;
+  agentType: EcosystemAgentType;
+  status: EcosystemAgentStatus;
+  capabilities: string[];
+  performanceMetrics: {
+    successRate: number;
+    tasksCompleted: number;
+    averageResponseTimeMs: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateEcosystemAgentDto {
+  agentName: string;
+  agentType: EcosystemAgentType;
+  capabilities: string[];
+}
+
+export interface EcosystemAgentTaskDto {
+  id: string;
+  assignedAgentId: string;
+  taskDescription: string;
+  status: AgentTaskStatus;
+  inputParams: Record<string, any>;
+  outputResult?: Record<string, any>;
+  errorSummary?: string;
+  createdAt: string;
+  completedAt?: string;
+}
+
+export interface CreateEcosystemAgentTaskDto {
+  assignedAgentId: string;
+  taskDescription: string;
+  inputParams: Record<string, any>;
+}
+
+export interface EcosystemAgentMemoryDto {
+  id: string;
+  agentId: string;
+  memoryKey: string;
+  memoryValue: string;
+  embeddingVector?: number[];
+  createdAt: string;
+}
+
+export interface CreateEcosystemAgentMemoryDto {
+  agentId: string;
+  memoryKey: string;
+  memoryValue: string;
+}
+
+export interface AgentInteractionDto {
+  id: string;
+  sourceAgentId: string;
+  targetAgentId: string;
+  messageType: string;
+  payload: Record<string, any>;
+  timestamp: string;
+}
+
+export interface CreateAgentInteractionDto {
+  sourceAgentId: string;
+  targetAgentId: string;
+  messageType: string;
+  payload: Record<string, any>;
+}
+
+export interface AgentMetricsDto {
+  activeAgentsCount: number;
+  totalTasksDelegated: number;
+  averageSuccessRate: number;
+  totalMemoriesCount: number;
+  totalInteractionsCount: number;
+  recordedAt: string;
+}
+
+export interface AgentOverviewDto {
+  metrics: AgentMetricsDto;
+  agentsList: EcosystemAgentDto[];
+  recentTasks: EcosystemAgentTaskDto[];
+  recentInteractions: AgentInteractionDto[];
 }
 
 

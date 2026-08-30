@@ -43,5 +43,7 @@ export * from './DataIntelligenceRepository';
 export * from './interfaces/IDataIntelligenceRepository';
 export * from './PlatformIntegrationRepository';
 export * from './interfaces/IPlatformIntegrationRepository';
+export * from './AgentEcosystemRepository';
+export * from './interfaces/IAgentEcosystemRepository';
 
 

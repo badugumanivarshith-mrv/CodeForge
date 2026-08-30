@@ -240,6 +240,14 @@ import {
   PlatformAnalyticsPage,
 } from '../pages/platform';
 
+// Phase 29: Autonomous Agent Ecosystem Pages
+import {
+  AgentDashboardPage,
+  AgentRegistryPage,
+  SwarmStudioPage,
+  AgentAnalyticsPage,
+} from '../pages/agents';
+
 
 export const router = createBrowserRouter([
   {
@@ -917,6 +925,23 @@ export const router = createBrowserRouter([
           {
             path: 'platform/analytics',
             element: <PlatformAnalyticsPage />,
+          },
+          // Phase 29: Autonomous Agent Ecosystem Routes
+          {
+            path: 'agents',
+            element: <AgentDashboardPage />,
+          },
+          {
+            path: 'agents/registry',
+            element: <AgentRegistryPage />,
+          },
+          {
+            path: 'agents/swarm',
+            element: <SwarmStudioPage />,
+          },
+          {
+            path: 'agents/analytics',
+            element: <AgentAnalyticsPage />,
           },
         ],
       },
