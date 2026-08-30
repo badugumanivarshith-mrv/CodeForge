@@ -181,6 +181,9 @@ import {
   ComputeNodeStatus,
   DeploymentStatus,
   WorkloadType,
+  AssetType,
+  AnalysisStatus,
+  ReasoningComplexity,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1711,6 +1714,27 @@ export const workloadTypeEnum = pgEnum('workload_type', [
   WorkloadType.TRAINING,
   WorkloadType.FINE_TUNING,
   WorkloadType.AGENT_FLEET,
+]);
+
+export const assetTypeEnum = pgEnum('asset_type', [
+  AssetType.IMAGE,
+  AssetType.DOCUMENT,
+  AssetType.VIDEO,
+  AssetType.AUDIO,
+]);
+
+export const analysisStatusEnum = pgEnum('analysis_status', [
+  AnalysisStatus.PENDING,
+  AnalysisStatus.PROCESSING,
+  AnalysisStatus.SUCCESS,
+  AnalysisStatus.FAILED,
+]);
+
+export const reasoningComplexityEnum = pgEnum('reasoning_complexity', [
+  ReasoningComplexity.BASIC,
+  ReasoningComplexity.COGNITIVE,
+  ReasoningComplexity.CROSS_MEDIA,
+  ReasoningComplexity.HYPOTHESIS_GEN,
 ]);
 
 

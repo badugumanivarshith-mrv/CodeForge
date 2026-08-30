@@ -178,6 +178,9 @@ import {
   ComputeNodeStatus,
   DeploymentStatus,
   WorkloadType,
+  AssetType,
+  AnalysisStatus,
+  ReasoningComplexity,
 } from '../enums/index.js';
 
 
@@ -6870,6 +6873,93 @@ export interface AICloudOverviewDto {
     globalAverageLatencyMs: number;
     aggregateGpuUtilization: number;
   };
+}
+
+// Phase 25: Multimodal Intelligence Platform Interfaces
+export interface MediaAssetDto {
+  id: string;
+  name: string;
+  storageUrl: string;
+  assetType: AssetType;
+  fileSizeCharacters: number;
+  checksum: string;
+  createdAt: string;
+}
+
+export interface CreateMediaAssetDto {
+  name: string;
+  storageUrl: string;
+  assetType: AssetType;
+  fileSizeCharacters: number;
+}
+
+export interface AnalysisResultDto {
+  id: string;
+  assetId: string;
+  status: AnalysisStatus;
+  detectedTags: string[];
+  ocrText?: string;
+  confidenceScore: number;
+  metadata: Record<string, any>;
+  analyzedAt: string;
+}
+
+export interface CreateAnalysisResultDto {
+  assetId: string;
+  detectedTags: string[];
+  ocrText?: string;
+  confidenceScore: number;
+  metadata: Record<string, any>;
+}
+
+export interface ReasoningSessionDto {
+  id: string;
+  sessionName: string;
+  complexity: ReasoningComplexity;
+  promptQuery: string;
+  reasoningSteps: string[];
+  cognitiveOutput: string;
+  confidenceScore: number;
+  createdAt: string;
+}
+
+export interface CreateReasoningSessionDto {
+  sessionName: string;
+  complexity: ReasoningComplexity;
+  promptQuery: string;
+}
+
+export interface MultimodalKnowledgeDto {
+  id: string;
+  conceptName: string;
+  associatedTags: string[];
+  crossMediaSummary: string;
+  extractedRelations: Array<{ targetConcept: string; predicate: string }>;
+  verifiedAt: string;
+}
+
+export interface CreateMultimodalKnowledgeDto {
+  conceptName: string;
+  associatedTags: string[];
+  crossMediaSummary: string;
+  extractedRelations: Array<{ targetConcept: string; predicate: string }>;
+}
+
+export interface MultimodalMetricsDto {
+  totalAssetsProcessed: number;
+  averageAnalysisConfidence: number;
+  totalOCRCharactersExtracted: number;
+  activeReasoningSessionsCount: number;
+  knowledgeNodeDensity: number;
+  calculatedAt: string;
+}
+
+export interface MultimodalOverviewDto {
+  metrics: MultimodalMetricsDto;
+  recentAssets: MediaAssetDto[];
+  recentResults: AnalysisResultDto[];
+  recentSessions: ReasoningSessionDto[];
+  knowledgeBase: MultimodalKnowledgeDto[];
 }
 
 

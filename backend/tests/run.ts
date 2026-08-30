@@ -152,6 +152,16 @@ async function main() {
   await import('./unit/fundraising.test');
   await import('./security/startupSecurity.test');
 
+  // Phase 24: Autonomous AI Cloud Platform Test Suites
+  await import('./unit/cloudOrchestrator.test');
+  await import('./unit/computeScheduler.test');
+  await import('./unit/inferenceGateway.test');
+
+  // Phase 25: Multimodal Intelligence Platform Test Suites
+  await import('./unit/multimodalEngine.test');
+  await import('./unit/visionAnalysis.test');
+  await import('./unit/documentUnderstanding.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

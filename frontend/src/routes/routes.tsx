@@ -209,6 +209,14 @@ import {
   ResourceMonitorPage,
 } from '../pages/ai-cloud';
 
+// Phase 25: Multimodal Intelligence Platform Pages
+import {
+  MultimodalDashboardPage,
+  ImageAnalyzerPage,
+  DocumentIntelligencePage as MultimodalDocumentIntelligencePage,
+  ReasoningStudioPage,
+} from '../pages/multimodal';
+
 
 export const router = createBrowserRouter([
   {
@@ -818,6 +826,23 @@ export const router = createBrowserRouter([
           {
             path: 'ai-cloud/monitor',
             element: <ResourceMonitorPage />,
+          },
+          // Phase 25: Multimodal Intelligence Platform Routes
+          {
+            path: 'multimodal',
+            element: <MultimodalDashboardPage />,
+          },
+          {
+            path: 'multimodal/analyze-image',
+            element: <ImageAnalyzerPage />,
+          },
+          {
+            path: 'multimodal/analyze-document',
+            element: <MultimodalDocumentIntelligencePage />,
+          },
+          {
+            path: 'multimodal/reason',
+            element: <ReasoningStudioPage />,
           },
         ],
       },

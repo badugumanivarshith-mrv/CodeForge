@@ -35,4 +35,6 @@ export * from './VentureCapitalRepository';
 export * from './ResearchUniversityRepository';
 export * from './SoftwareFactoryRepository';
 export * from './AICloudRepository';
+export * from './MultimodalRepository';
+export * from './interfaces/IMultimodalRepository';
 

@@ -1542,6 +1542,28 @@ export enum WorkloadType {
   AGENT_FLEET = 'agent_fleet',
 }
 
+// Phase 25: Multimodal Intelligence Platform Enums
+export enum AssetType {
+  IMAGE = 'image',
+  DOCUMENT = 'document',
+  VIDEO = 'video',
+  AUDIO = 'audio',
+}
+
+export enum AnalysisStatus {
+  PENDING = 'pending',
+  PROCESSING = 'processing',
+  SUCCESS = 'success',
+  FAILED = 'failed',
+}
+
+export enum ReasoningComplexity {
+  BASIC = 'basic',
+  COGNITIVE = 'cognitive',
+  CROSS_MEDIA = 'cross_media',
+  HYPOTHESIS_GEN = 'hypothesis_gen',
+}
+
 
 
 
