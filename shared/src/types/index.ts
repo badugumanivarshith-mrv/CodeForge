@@ -195,6 +195,9 @@ import {
   AgentTaskStatus,
   EcosystemAgentType,
   EcosystemAgentStatus,
+  RobotType,
+  RobotStatus,
+  MissionStatus,
 } from '../enums/index.js';
 
 
@@ -7334,6 +7337,102 @@ export interface AgentOverviewDto {
   agentsList: EcosystemAgentDto[];
   recentTasks: EcosystemAgentTaskDto[];
   recentInteractions: AgentInteractionDto[];
+}
+
+// Phase 30: Autonomous Robotics Interfaces
+export interface RobotDto {
+  id: string;
+  creatorUserId: string;
+  robotName: string;
+  robotType: RobotType;
+  status: RobotStatus;
+  batteryLevelPercent: number;
+  currentCoordinates: {
+    x: number;
+    y: number;
+    z: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateRobotDto {
+  robotName: string;
+  robotType: RobotType;
+}
+
+export interface RobotMissionDto {
+  id: string;
+  userId: string;
+  missionName: string;
+  assignedRobotIds: string[];
+  status: MissionStatus;
+  waypointsList: Array<{
+    x: number;
+    y: number;
+    z: number;
+    actionDescription?: string;
+  }>;
+  createdAt: string;
+  completedAt?: string;
+}
+
+export interface CreateRobotMissionDto {
+  missionName: string;
+  assignedRobotIds: string[];
+  waypointsList: Array<{
+    x: number;
+    y: number;
+    z: number;
+    actionDescription?: string;
+  }>;
+}
+
+export interface SensorStreamDto {
+  id: string;
+  robotId: string;
+  sensorType: 'lidar' | 'camera' | 'imu' | 'sonar';
+  telemetryPayload: Record<string, any>;
+  timestamp: string;
+}
+
+export interface CreateSensorStreamDto {
+  robotId: string;
+  sensorType: 'lidar' | 'camera' | 'imu' | 'sonar';
+  telemetryPayload: Record<string, any>;
+}
+
+export interface SimulationRunDto {
+  id: string;
+  userId: string;
+  missionId?: string;
+  simulationName: string;
+  isSuccessful: boolean;
+  collisionWarningsCount: number;
+  executionDurationSeconds: number;
+  createdAt: string;
+}
+
+export interface CreateSimulationRunDto {
+  missionId?: string;
+  simulationName: string;
+}
+
+export interface RoboticsMetricsDto {
+  totalRobotsCount: number;
+  onlineRobotsCount: number;
+  activeMissionsCount: number;
+  completedMissionsCount: number;
+  simulationSuccessRatePercent: number;
+  sensorStreamDataRateKbps: number;
+  calculatedAt: string;
+}
+
+export interface RoboticsOverviewDto {
+  metrics: RoboticsMetricsDto;
+  robots: RobotDto[];
+  recentMissions: RobotMissionDto[];
+  recentSimulations: SimulationRunDto[];
 }
 
 

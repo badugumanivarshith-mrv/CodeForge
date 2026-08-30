@@ -45,5 +45,7 @@ export * from './PlatformIntegrationRepository';
 export * from './interfaces/IPlatformIntegrationRepository';
 export * from './AgentEcosystemRepository';
 export * from './interfaces/IAgentEcosystemRepository';
+export * from './RoboticsRepository';
+export * from './interfaces/IRoboticsRepository';
 
 

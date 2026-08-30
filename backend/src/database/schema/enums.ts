@@ -198,6 +198,9 @@ import {
   AgentTaskStatus,
   EcosystemAgentType,
   EcosystemAgentStatus,
+  RobotType,
+  RobotStatus,
+  MissionStatus,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1847,6 +1850,27 @@ export const ecosystemAgentStatusEnum = pgEnum('ecosystem_agent_status', [
   EcosystemAgentStatus.SUSPENDED,
   EcosystemAgentStatus.IDLE,
   EcosystemAgentStatus.TERMINATED,
+]);
+
+export const robotTypeEnum = pgEnum('robot_type', [
+  RobotType.DRONE,
+  RobotType.HUMANOID,
+  RobotType.ROVER,
+  RobotType.MANIPULATOR,
+]);
+
+export const robotStatusEnum = pgEnum('robot_status', [
+  RobotStatus.ONLINE,
+  RobotStatus.OFFLINE,
+  RobotStatus.CHARGING,
+  RobotStatus.MAINTENANCE,
+]);
+
+export const missionStatusEnum = pgEnum('mission_status', [
+  MissionStatus.PENDING,
+  MissionStatus.EXECUTING,
+  MissionStatus.COMPLETED,
+  MissionStatus.ABORTED,
 ]);
 
 

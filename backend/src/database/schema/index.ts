@@ -41,5 +41,6 @@ export * from './cybersecurity';
 export * from './data_intelligence';
 export * from './platform_integration';
 export * from './agent_ecosystem';
+export * from './robotics';
 
 

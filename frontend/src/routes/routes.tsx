@@ -248,6 +248,14 @@ import {
   AgentAnalyticsPage,
 } from '../pages/agents';
 
+// Phase 30: Autonomous Robotics Pages
+import {
+  RoboticsDashboardPage,
+  MissionControlPage,
+  SimulationStudioPage,
+  RoboticsAnalyticsPage,
+} from '../pages/robotics';
+
 
 export const router = createBrowserRouter([
   {
@@ -942,6 +950,23 @@ export const router = createBrowserRouter([
           {
             path: 'agents/analytics',
             element: <AgentAnalyticsPage />,
+          },
+          // Phase 30: Autonomous Robotics Routes
+          {
+            path: 'robotics',
+            element: <RoboticsDashboardPage />,
+          },
+          {
+            path: 'robotics/mission',
+            element: <MissionControlPage />,
+          },
+          {
+            path: 'robotics/simulation',
+            element: <SimulationStudioPage />,
+          },
+          {
+            path: 'robotics/analytics',
+            element: <RoboticsAnalyticsPage />,
           },
         ],
       },

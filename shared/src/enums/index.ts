@@ -1666,6 +1666,28 @@ export enum EcosystemAgentStatus {
   TERMINATED = 'terminated',
 }
 
+// Phase 30: Autonomous Robotics Enums
+export enum RobotType {
+  DRONE = 'drone',
+  HUMANOID = 'humanoid',
+  ROVER = 'rover',
+  MANIPULATOR = 'manipulator',
+}
+
+export enum RobotStatus {
+  ONLINE = 'online',
+  OFFLINE = 'offline',
+  CHARGING = 'charging',
+  MAINTENANCE = 'maintenance',
+}
+
+export enum MissionStatus {
+  PENDING = 'pending',
+  EXECUTING = 'executing',
+  COMPLETED = 'completed',
+  ABORTED = 'aborted',
+}
+
 
 
 

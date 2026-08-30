@@ -182,6 +182,11 @@ async function main() {
   await import('./unit/agentCoordination.test');
   await import('./unit/taskDelegation.test');
 
+  // Phase 30: Autonomous Robotics Test Suites
+  await import('./unit/roboticsControl.test');
+  await import('./unit/missionPlanning.test');
+  await import('./unit/sensorFusion.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {
