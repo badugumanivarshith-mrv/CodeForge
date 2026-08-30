@@ -185,6 +185,10 @@ import {
   ThreatStatus,
   VulnerabilityStatus,
   IncidentStatus,
+  DataSourceType,
+  AnalyticsJobStatus,
+  InsightType,
+  QualityRating,
 } from '../enums/index.js';
 
 
@@ -7058,6 +7062,96 @@ export interface SecurityOverviewDto {
   activeThreats: ThreatDto[];
   openVulnerabilities: VulnerabilityDto[];
   recentIncidents: IncidentDto[];
+}
+
+// Phase 27: Data Intelligence Platform Interfaces
+export interface DataSourceDto {
+  id: string;
+  name: string;
+  sourceType: DataSourceType;
+  connectionDetails: Record<string, any>;
+  rowCount: number;
+  fileSizeKb: number;
+  createdAt: string;
+}
+
+export interface CreateDataSourceDto {
+  name: string;
+  sourceType: DataSourceType;
+  connectionDetails: Record<string, any>;
+  rowCount: number;
+  fileSizeKb: number;
+}
+
+export interface AnalyticsJobDto {
+  id: string;
+  sourceId: string;
+  jobName: string;
+  status: AnalyticsJobStatus;
+  executionTimeMs: number;
+  processedRowsCount: number;
+  outputDetails: Record<string, any>;
+  createdAt: string;
+}
+
+export interface CreateAnalyticsJobDto {
+  sourceId: string;
+  jobName: string;
+}
+
+export interface DataInsightDto {
+  id: string;
+  title: string;
+  summary: string;
+  insightType: InsightType;
+  confidenceScore: number;
+  anomalyDetected: boolean;
+  historicalTrendDetails: Record<string, any>;
+  createdAt: string;
+}
+
+export interface CreateDataInsightDto {
+  title: string;
+  summary: string;
+  insightType: InsightType;
+  confidenceScore: number;
+  anomalyDetected: boolean;
+  historicalTrendDetails: Record<string, any>;
+}
+
+export interface QualityReportDto {
+  id: string;
+  sourceId: string;
+  completenessPercentage: number;
+  duplicateCount: number;
+  nullValueCount: number;
+  rating: QualityRating;
+  runAt: string;
+}
+
+export interface CreateQualityReportDto {
+  sourceId: string;
+  completenessPercentage: number;
+  duplicateCount: number;
+  nullValueCount: number;
+  rating: QualityRating;
+}
+
+export interface DataMetricsDto {
+  totalIngestedRows: number;
+  activeJobsCount: number;
+  generatedInsightsCount: number;
+  averageQualityScore: number;
+  totalDataSourcesCount: number;
+  calculatedAt: string;
+}
+
+export interface DataOverviewDto {
+  metrics: DataMetricsDto;
+  dataSources: DataSourceDto[];
+  analyticsJobs: AnalyticsJobDto[];
+  insights: DataInsightDto[];
+  qualityReports: QualityReportDto[];
 }
 
 

@@ -225,6 +225,14 @@ import {
   IncidentConsolePage,
 } from '../pages/cybersecurity';
 
+// Phase 27: Data Intelligence Platform Pages
+import {
+  DataDashboardPage,
+  AnalyticsStudioPage,
+  InsightCenterPage,
+  QualityMonitorPage,
+} from '../pages/data-intelligence';
+
 
 export const router = createBrowserRouter([
   {
@@ -868,6 +876,23 @@ export const router = createBrowserRouter([
           {
             path: 'security/incidents',
             element: <IncidentConsolePage />,
+          },
+          // Phase 27: Data Intelligence Platform Routes
+          {
+            path: 'data-intelligence',
+            element: <DataDashboardPage />,
+          },
+          {
+            path: 'data-intelligence/analytics',
+            element: <AnalyticsStudioPage />,
+          },
+          {
+            path: 'data-intelligence/insights',
+            element: <InsightCenterPage />,
+          },
+          {
+            path: 'data-intelligence/quality',
+            element: <QualityMonitorPage />,
           },
         ],
       },

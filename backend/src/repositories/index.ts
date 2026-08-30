@@ -39,5 +39,7 @@ export * from './MultimodalRepository';
 export * from './interfaces/IMultimodalRepository';
 export * from './CybersecurityRepository';
 export * from './interfaces/ICybersecurityRepository';
+export * from './DataIntelligenceRepository';
+export * from './interfaces/IDataIntelligenceRepository';
 
 

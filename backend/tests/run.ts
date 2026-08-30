@@ -167,6 +167,11 @@ async function main() {
   await import('./unit/threatDetection.test');
   await import('./unit/incidentResponse.test');
 
+  // Phase 27: Data Intelligence Platform Test Suites
+  await import('./unit/dataPipeline.test');
+  await import('./unit/analyticsEngine.test');
+  await import('./unit/insightGeneration.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

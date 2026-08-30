@@ -33,7 +33,7 @@ describe('Phase 25: Multimodal Engine Service Unit Tests', () => {
     assert.ok(session.id);
     assert.strictEqual(session.complexity, ReasoningComplexity.CROSS_MEDIA);
     assert.ok(session.reasoningSteps.length > 0);
-    assert.ok(session.cognitiveOutput.includes(' Standby replicas'));
+    assert.ok(session.cognitiveOutput.includes('Reasoning outcome'));
 
     const overview = await engineService.getOverview();
     const knowledge = overview.knowledgeBase.find(k => k.conceptName === 'Derived: Cross-media Validation');

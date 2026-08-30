@@ -1593,6 +1593,35 @@ export enum IncidentStatus {
   CLOSED = 'closed',
 }
 
+// Phase 27: Data Intelligence Platform Enums
+export enum DataSourceType {
+  DATABASE = 'database',
+  FILE_UPLOAD = 'file_upload',
+  API_STREAM = 'api_stream',
+  CLOUD_STORAGE = 'cloud_storage',
+}
+
+export enum AnalyticsJobStatus {
+  PENDING = 'pending',
+  RUNNING = 'running',
+  SUCCESS = 'success',
+  FAILED = 'failed',
+}
+
+export enum InsightType {
+  TREND = 'trend',
+  ANOMALY = 'anomaly',
+  KPI_MILESTONE = 'kpi_milestone',
+  FORECAST = 'forecast',
+}
+
+export enum QualityRating {
+  EXCELLENT = 'excellent',
+  GOOD = 'good',
+  POOR = 'poor',
+  CRITICAL = 'critical',
+}
+
 
 
 

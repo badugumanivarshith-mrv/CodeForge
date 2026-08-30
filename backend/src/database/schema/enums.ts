@@ -188,6 +188,10 @@ import {
   ThreatStatus,
   VulnerabilityStatus,
   IncidentStatus,
+  DataSourceType,
+  AnalyticsJobStatus,
+  InsightType,
+  QualityRating,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1767,6 +1771,34 @@ export const incidentStatusEnum = pgEnum('incident_status', [
   IncidentStatus.CONTAINED,
   IncidentStatus.RESOLVED,
   IncidentStatus.CLOSED,
+]);
+
+export const dataSourceTypeEnum = pgEnum('data_source_type', [
+  DataSourceType.DATABASE,
+  DataSourceType.FILE_UPLOAD,
+  DataSourceType.API_STREAM,
+  DataSourceType.CLOUD_STORAGE,
+]);
+
+export const analyticsJobStatusEnum = pgEnum('analytics_job_status', [
+  AnalyticsJobStatus.PENDING,
+  AnalyticsJobStatus.RUNNING,
+  AnalyticsJobStatus.SUCCESS,
+  AnalyticsJobStatus.FAILED,
+]);
+
+export const insightTypeEnum = pgEnum('insight_type', [
+  InsightType.TREND,
+  InsightType.ANOMALY,
+  InsightType.KPI_MILESTONE,
+  InsightType.FORECAST,
+]);
+
+export const qualityRatingEnum = pgEnum('quality_rating', [
+  QualityRating.EXCELLENT,
+  QualityRating.GOOD,
+  QualityRating.POOR,
+  QualityRating.CRITICAL,
 ]);
 
 

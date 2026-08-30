@@ -38,5 +38,6 @@ export * from './software_factory';
 export * from './ai_cloud';
 export * from './multimodal';
 export * from './cybersecurity';
+export * from './data_intelligence';
 
 
