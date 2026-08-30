@@ -54,6 +54,7 @@ import enterpriseCivilizationRouter from './enterpriseCivilization.routes';
 import startupBuilderRouter from './startupBuilder.routes';
 import researchUniversityRouter from './researchUniversity.routes';
 import softwareFactoryRouter from './softwareFactory.routes';
+import aiCloudRouter from './aiCloud.routes';
 
 export const v1Router = Router();
 
@@ -112,3 +113,4 @@ v1Router.use('/enterprise-civilization', enterpriseCivilizationRouter);
 v1Router.use('/startup-builder', startupBuilderRouter);
 v1Router.use('/research-university', researchUniversityRouter);
 v1Router.use('/software-factory', softwareFactoryRouter);
+v1Router.use('/ai-cloud', aiCloudRouter);

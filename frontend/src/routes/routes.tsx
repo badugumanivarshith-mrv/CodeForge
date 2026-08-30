@@ -201,6 +201,14 @@ import {
   EngineeringPipelinePage,
 } from '../pages/software-factory';
 
+// Phase 24: Autonomous AI Cloud Platform Pages
+import {
+  AICloudDashboardPage,
+  ClusterManagerPage,
+  DeploymentCenterPage,
+  ResourceMonitorPage,
+} from '../pages/ai-cloud';
+
 
 export const router = createBrowserRouter([
   {
@@ -793,6 +801,23 @@ export const router = createBrowserRouter([
           {
             path: 'software-factory/pipeline',
             element: <EngineeringPipelinePage />,
+          },
+          // Phase 24: Autonomous AI Cloud Platform Routes
+          {
+            path: 'ai-cloud',
+            element: <AICloudDashboardPage />,
+          },
+          {
+            path: 'ai-cloud/clusters',
+            element: <ClusterManagerPage />,
+          },
+          {
+            path: 'ai-cloud/deploy',
+            element: <DeploymentCenterPage />,
+          },
+          {
+            path: 'ai-cloud/monitor',
+            element: <ResourceMonitorPage />,
           },
         ],
       },

@@ -33,5 +33,6 @@ export * from './IStartupBuilderRepository';
 export * from './IVentureCapitalRepository';
 export * from './IResearchUniversityRepository';
 export * from './ISoftwareFactoryRepository';
+export * from './IAICloudRepository';
 
 

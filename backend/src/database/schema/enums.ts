@@ -175,6 +175,12 @@ import {
   EngineeringTaskStatus,
   ArtifactType,
   BlueprintComplexity,
+  ClusterRegion,
+  ClusterStatus,
+  ComputeNodeType,
+  ComputeNodeStatus,
+  DeploymentStatus,
+  WorkloadType,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1661,6 +1667,50 @@ export const blueprintComplexityEnum = pgEnum('blueprint_complexity', [
   BlueprintComplexity.MEDIUM,
   BlueprintComplexity.COMPLEX,
   BlueprintComplexity.ENTERPRISE,
+]);
+
+// Phase 24: Autonomous AI Cloud Platform pgEnums
+export const clusterRegionEnum = pgEnum('cluster_region', [
+  ClusterRegion.US_EAST,
+  ClusterRegion.US_WEST,
+  ClusterRegion.EU_WEST,
+  ClusterRegion.AP_EAST,
+]);
+
+export const clusterStatusEnum = pgEnum('cluster_status', [
+  ClusterStatus.HEALTHY,
+  ClusterStatus.DEGRADED,
+  ClusterStatus.CRITICAL,
+  ClusterStatus.MAINTENANCE,
+]);
+
+export const computeNodeTypeEnum = pgEnum('compute_node_type', [
+  ComputeNodeType.GPU_H100,
+  ComputeNodeType.GPU_A100,
+  ComputeNodeType.TPU_V5,
+  ComputeNodeType.CPU_HIGHMEM,
+]);
+
+export const computeNodeStatusEnum = pgEnum('compute_node_status', [
+  ComputeNodeStatus.IDLE,
+  ComputeNodeStatus.BUSY,
+  ComputeNodeStatus.OFFLINE,
+  ComputeNodeStatus.PROVISIONING,
+]);
+
+export const deploymentStatusEnum = pgEnum('deployment_status', [
+  DeploymentStatus.QUEUED,
+  DeploymentStatus.SCHEDULING,
+  DeploymentStatus.RUNNING,
+  DeploymentStatus.COMPLETED,
+  DeploymentStatus.FAILED,
+]);
+
+export const workloadTypeEnum = pgEnum('workload_type', [
+  WorkloadType.INFERENCE,
+  WorkloadType.TRAINING,
+  WorkloadType.FINE_TUNING,
+  WorkloadType.AGENT_FLEET,
 ]);
 
 

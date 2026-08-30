@@ -172,6 +172,12 @@ import {
   EngineeringTaskStatus,
   ArtifactType,
   BlueprintComplexity,
+  ClusterRegion,
+  ClusterStatus,
+  ComputeNodeType,
+  ComputeNodeStatus,
+  DeploymentStatus,
+  WorkloadType,
 } from '../enums/index.js';
 
 
@@ -6740,6 +6746,130 @@ export interface SoftwareFactoryOverviewDto {
   recentTasks: EngineeringTaskDto[];
   recentArtifacts: GeneratedArtifactDto[];
   activeBlueprints: ArchitectureBlueprintDto[];
+}
+
+// Phase 24: Autonomous AI Cloud Platform Interfaces
+export interface CloudClusterDto {
+  id: string;
+  name: string;
+  region: ClusterRegion;
+  status: ClusterStatus;
+  totalGpus: number;
+  availableGpus: number;
+  totalMemoryGb: number;
+  availableMemoryGb: number;
+  totalCpuCores: number;
+  availableCpuCores: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateCloudClusterDto {
+  name: string;
+  region: ClusterRegion;
+  totalGpus: number;
+  totalMemoryGb: number;
+  totalCpuCores: number;
+}
+
+export interface ComputeNodeDto {
+  id: string;
+  clusterId: string;
+  name: string;
+  nodeType: ComputeNodeType;
+  status: ComputeNodeStatus;
+  gpuUtilizationPercent: number;
+  memoryUtilizationPercent: number;
+  cpuUtilizationPercent: number;
+  temperatureCelsius: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateComputeNodeDto {
+  clusterId: string;
+  name: string;
+  nodeType: ComputeNodeType;
+}
+
+export interface CloudDeploymentDto {
+  id: string;
+  clusterId: string;
+  nodeId?: string;
+  workloadType: WorkloadType;
+  status: DeploymentStatus;
+  replicaCount: number;
+  cpuLimit: number;
+  memoryLimitGb: number;
+  gpuLimit: number;
+  simulatedCostUsdPerHour: number;
+  logs: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateCloudDeploymentDto {
+  clusterId: string;
+  workloadType: WorkloadType;
+  replicaCount: number;
+  cpuLimit: number;
+  memoryLimitGb: number;
+  gpuLimit: number;
+}
+
+export interface InferenceRequestDto {
+  id: string;
+  deploymentId: string;
+  promptTokens: number;
+  completionTokens: number;
+  latencyMs: number;
+  statusCode: number;
+  routedRegion: ClusterRegion;
+  createdAt: string;
+}
+
+export interface CreateInferenceRequestDto {
+  deploymentId: string;
+  promptTokens: number;
+  completionTokens: number;
+  latencyMs: number;
+  statusCode: number;
+  routedRegion: ClusterRegion;
+}
+
+export interface ResourceMetricsDto {
+  id: string;
+  clusterId: string;
+  timestamp: string;
+  cpuUsagePercent: number;
+  memoryUsagePercent: number;
+  gpuUsagePercent: number;
+  networkInboundGbps: number;
+  networkOutboundGbps: number;
+  estimatedCostUsd: number;
+}
+
+export interface CreateResourceMetricsDto {
+  clusterId: string;
+  cpuUsagePercent: number;
+  memoryUsagePercent: number;
+  gpuUsagePercent: number;
+  networkInboundGbps: number;
+  networkOutboundGbps: number;
+  estimatedCostUsd: number;
+}
+
+export interface AICloudOverviewDto {
+  clusters: CloudClusterDto[];
+  nodes: ComputeNodeDto[];
+  deployments: CloudDeploymentDto[];
+  metrics: ResourceMetricsDto[];
+  overviewStats: {
+    totalAllocatedCostUsd: number;
+    activeDeploymentsCount: number;
+    globalAverageLatencyMs: number;
+    aggregateGpuUtilization: number;
+  };
 }
 
 

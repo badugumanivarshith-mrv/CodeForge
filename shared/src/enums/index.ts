@@ -1498,6 +1498,50 @@ export enum BlueprintComplexity {
   ENTERPRISE = 'enterprise',
 }
 
+// Phase 24: Autonomous AI Cloud Platform Enums
+export enum ClusterRegion {
+  US_EAST = 'us_east',
+  US_WEST = 'us_west',
+  EU_WEST = 'eu_west',
+  AP_EAST = 'ap_east',
+}
+
+export enum ClusterStatus {
+  HEALTHY = 'healthy',
+  DEGRADED = 'degraded',
+  CRITICAL = 'critical',
+  MAINTENANCE = 'maintenance',
+}
+
+export enum ComputeNodeType {
+  GPU_H100 = 'gpu_h100',
+  GPU_A100 = 'gpu_a100',
+  TPU_V5 = 'tpu_v5',
+  CPU_HIGHMEM = 'cpu_highmem',
+}
+
+export enum ComputeNodeStatus {
+  IDLE = 'idle',
+  BUSY = 'busy',
+  OFFLINE = 'offline',
+  PROVISIONING = 'provisioning',
+}
+
+export enum DeploymentStatus {
+  QUEUED = 'queued',
+  SCHEDULING = 'scheduling',
+  RUNNING = 'running',
+  COMPLETED = 'completed',
+  FAILED = 'failed',
+}
+
+export enum WorkloadType {
+  INFERENCE = 'inference',
+  TRAINING = 'training',
+  FINE_TUNING = 'fine_tuning',
+  AGENT_FLEET = 'agent_fleet',
+}
+
 
 
 
