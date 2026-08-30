@@ -1449,6 +1449,55 @@ export enum GrantStatus {
   CLOSED = 'closed',
 }
 
+// Phase 23: Autonomous Software Factory Enums
+export enum SoftwareProjectType {
+  WEB_APP = 'web_app',
+  MOBILE_APP = 'mobile_app',
+  LIBRARY = 'library',
+  API_SERVICE = 'api_service',
+  CLI_TOOL = 'cli_tool',
+  MICROSERVICE = 'microservice',
+}
+
+export enum SoftwareProjectStatus {
+  PLANNING = 'planning',
+  GENERATING = 'generating',
+  TESTING = 'testing',
+  DEPLOYED = 'deployed',
+  ARCHIVED = 'archived',
+}
+
+export enum EngineeringTaskType {
+  REQUIREMENTS = 'requirements',
+  ARCHITECTURE = 'architecture',
+  CODING = 'coding',
+  TESTING = 'testing',
+  REFACTORING = 'refactoring',
+}
+
+export enum EngineeringTaskStatus {
+  BACKLOG = 'backlog',
+  IN_PROGRESS = 'in_progress',
+  REVIEW = 'review',
+  COMPLETED = 'completed',
+  FAILED = 'failed',
+}
+
+export enum ArtifactType {
+  SOURCE_CODE = 'source_code',
+  CONFIGURATION = 'configuration',
+  DOCUMENTATION = 'documentation',
+  TEST_SUITE = 'test_suite',
+  BUILD_PACKAGE = 'build_package',
+}
+
+export enum BlueprintComplexity {
+  SIMPLE = 'simple',
+  MEDIUM = 'medium',
+  COMPLEX = 'complex',
+  ENTERPRISE = 'enterprise',
+}
+
 
 
 

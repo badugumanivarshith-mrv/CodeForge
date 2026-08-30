@@ -32,5 +32,6 @@ export * from './IEnterpriseCivilizationRepository';
 export * from './IStartupBuilderRepository';
 export * from './IVentureCapitalRepository';
 export * from './IResearchUniversityRepository';
+export * from './ISoftwareFactoryRepository';
 
 

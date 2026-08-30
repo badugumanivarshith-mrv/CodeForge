@@ -166,6 +166,12 @@ import {
   PeerReviewVerdict,
   GrantType,
   GrantStatus,
+  SoftwareProjectType,
+  SoftwareProjectStatus,
+  EngineeringTaskType,
+  EngineeringTaskStatus,
+  ArtifactType,
+  BlueprintComplexity,
 } from '../enums/index.js';
 
 
@@ -6621,6 +6627,119 @@ export interface AcademicCommandCenterOverviewDto {
   recentPublications: PublicationDto[];
   activeLabs: LaboratoryDto[];
   openGrants: GrantDto[];
+}
+
+// Phase 23: Autonomous Software Factory Interfaces
+export interface SoftwareProjectDto {
+  id: string;
+  name: string;
+  description: string;
+  projectType: SoftwareProjectType;
+  status: SoftwareProjectStatus;
+  complexity: BlueprintComplexity;
+  targetPlatform: string;
+  frameworks: string[];
+  dependencies: string[];
+  linesOfCodeGenerated: number;
+  buildStatus: 'SUCCESS' | 'FAILED' | 'PENDING';
+  deploymentUrl?: string;
+  repositoryUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateSoftwareProjectDto {
+  name: string;
+  description: string;
+  projectType: SoftwareProjectType;
+  complexity: BlueprintComplexity;
+  targetPlatform: string;
+  frameworks: string[];
+  dependencies: string[];
+}
+
+export interface EngineeringTaskDto {
+  id: string;
+  projectId: string;
+  title: string;
+  description: string;
+  taskType: EngineeringTaskType;
+  status: EngineeringTaskStatus;
+  assignedAgent: string;
+  estimatedHours: number;
+  actualHoursSpent: number;
+  completedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateEngineeringTaskDto {
+  projectId: string;
+  title: string;
+  description: string;
+  taskType: EngineeringTaskType;
+  assignedAgent: string;
+  estimatedHours: number;
+}
+
+export interface GeneratedArtifactDto {
+  id: string;
+  projectId: string;
+  taskId?: string;
+  filePath: string;
+  artifactType: ArtifactType;
+  fileContent: string;
+  fileSizeCharacters: number;
+  checksum: string;
+  generatedAt: string;
+}
+
+export interface CreateGeneratedArtifactDto {
+  projectId: string;
+  taskId?: string;
+  filePath: string;
+  artifactType: ArtifactType;
+  fileContent: string;
+}
+
+export interface ArchitectureBlueprintDto {
+  id: string;
+  projectId: string;
+  diagramMermaid: string;
+  componentLayout: Record<string, any>;
+  apiGateways: Array<{ route: string; targetService: string; method: string }>;
+  databaseSchemas: Record<string, string>;
+  deploymentSpecs: Record<string, any>;
+  designedAt: string;
+}
+
+export interface CreateArchitectureBlueprintDto {
+  projectId: string;
+  diagramMermaid: string;
+  componentLayout: Record<string, any>;
+  apiGateways: Array<{ route: string; targetService: string; method: string }>;
+  databaseSchemas: Record<string, string>;
+  deploymentSpecs: Record<string, any>;
+}
+
+export interface SoftwareFactoryMetricsDto {
+  totalProjects: number;
+  activeProjects: number;
+  totalLinesOfCode: number;
+  buildSuccessRate: number;
+  activeAgentsCount: number;
+  averageTaskCompletionHours: number;
+  completedTasksCount: number;
+  failedTasksCount: number;
+  calculatedAt: string;
+}
+
+export interface SoftwareFactoryOverviewDto {
+  metrics: SoftwareFactoryMetricsDto;
+  recentProjects: SoftwareProjectDto[];
+  recentTasks: EngineeringTaskDto[];
+  recentArtifacts: GeneratedArtifactDto[];
+  activeBlueprints: ArchitectureBlueprintDto[];
 }
 
 

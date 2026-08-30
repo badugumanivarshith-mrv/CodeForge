@@ -193,6 +193,14 @@ import {
   GlobalCollaborationPage,
 } from '../pages/research-university';
 
+// Phase 23: Autonomous Software Factory Pages
+import {
+  SoftwareFactoryDashboardPage,
+  ProjectGeneratorPage,
+  ArchitectureStudioPage,
+  EngineeringPipelinePage,
+} from '../pages/software-factory';
+
 
 export const router = createBrowserRouter([
   {
@@ -768,6 +776,23 @@ export const router = createBrowserRouter([
           {
             path: 'global-collaboration',
             element: <GlobalCollaborationPage />,
+          },
+          // Phase 23: Autonomous Software Factory Routes
+          {
+            path: 'software-factory',
+            element: <SoftwareFactoryDashboardPage />,
+          },
+          {
+            path: 'software-factory/generate',
+            element: <ProjectGeneratorPage />,
+          },
+          {
+            path: 'software-factory/architecture',
+            element: <ArchitectureStudioPage />,
+          },
+          {
+            path: 'software-factory/pipeline',
+            element: <EngineeringPipelinePage />,
           },
         ],
       },

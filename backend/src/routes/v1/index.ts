@@ -53,6 +53,7 @@ import cognitiveCoreRouter from './cognitiveCore.routes';
 import enterpriseCivilizationRouter from './enterpriseCivilization.routes';
 import startupBuilderRouter from './startupBuilder.routes';
 import researchUniversityRouter from './researchUniversity.routes';
+import softwareFactoryRouter from './softwareFactory.routes';
 
 export const v1Router = Router();
 
@@ -110,3 +111,4 @@ v1Router.use('/cognitive-core', cognitiveCoreRouter);
 v1Router.use('/enterprise-civilization', enterpriseCivilizationRouter);
 v1Router.use('/startup-builder', startupBuilderRouter);
 v1Router.use('/research-university', researchUniversityRouter);
+v1Router.use('/software-factory', softwareFactoryRouter);

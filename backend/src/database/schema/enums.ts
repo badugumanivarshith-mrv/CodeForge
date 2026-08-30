@@ -169,6 +169,12 @@ import {
   PeerReviewVerdict,
   GrantType,
   GrantStatus,
+  SoftwareProjectType,
+  SoftwareProjectStatus,
+  EngineeringTaskType,
+  EngineeringTaskStatus,
+  ArtifactType,
+  BlueprintComplexity,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1606,6 +1612,55 @@ export const grantStatusEnum = pgEnum('grant_status', [
   GrantStatus.AWARDED,
   GrantStatus.REJECTED,
   GrantStatus.CLOSED,
+]);
+
+// Phase 23: Autonomous Software Factory pgEnums
+export const softwareProjectTypeEnum = pgEnum('software_project_type', [
+  SoftwareProjectType.WEB_APP,
+  SoftwareProjectType.MOBILE_APP,
+  SoftwareProjectType.LIBRARY,
+  SoftwareProjectType.API_SERVICE,
+  SoftwareProjectType.CLI_TOOL,
+  SoftwareProjectType.MICROSERVICE,
+]);
+
+export const softwareProjectStatusEnum = pgEnum('software_project_status', [
+  SoftwareProjectStatus.PLANNING,
+  SoftwareProjectStatus.GENERATING,
+  SoftwareProjectStatus.TESTING,
+  SoftwareProjectStatus.DEPLOYED,
+  SoftwareProjectStatus.ARCHIVED,
+]);
+
+export const engineeringTaskTypeEnum = pgEnum('engineering_task_type', [
+  EngineeringTaskType.REQUIREMENTS,
+  EngineeringTaskType.ARCHITECTURE,
+  EngineeringTaskType.CODING,
+  EngineeringTaskType.TESTING,
+  EngineeringTaskType.REFACTORING,
+]);
+
+export const engineeringTaskStatusEnum = pgEnum('engineering_task_status', [
+  EngineeringTaskStatus.BACKLOG,
+  EngineeringTaskStatus.IN_PROGRESS,
+  EngineeringTaskStatus.REVIEW,
+  EngineeringTaskStatus.COMPLETED,
+  EngineeringTaskStatus.FAILED,
+]);
+
+export const artifactTypeEnum = pgEnum('artifact_type', [
+  ArtifactType.SOURCE_CODE,
+  ArtifactType.CONFIGURATION,
+  ArtifactType.DOCUMENTATION,
+  ArtifactType.TEST_SUITE,
+  ArtifactType.BUILD_PACKAGE,
+]);
+
+export const blueprintComplexityEnum = pgEnum('blueprint_complexity', [
+  BlueprintComplexity.SIMPLE,
+  BlueprintComplexity.MEDIUM,
+  BlueprintComplexity.COMPLEX,
+  BlueprintComplexity.ENTERPRISE,
 ]);
 
 
