@@ -37,5 +37,6 @@ export * from './IAICloudRepository';
 export * from './IMultimodalRepository';
 export * from './ICybersecurityRepository';
 export * from './IDataIntelligenceRepository';
+export * from './IPlatformIntegrationRepository';
 
 

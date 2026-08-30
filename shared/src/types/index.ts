@@ -189,6 +189,9 @@ import {
   AnalyticsJobStatus,
   InsightType,
   QualityRating,
+  PlatformEventSeverity,
+  OrchestrationStepStatus,
+  CrossModuleWorkflowStatus,
 } from '../enums/index.js';
 
 
@@ -7152,6 +7155,94 @@ export interface DataOverviewDto {
   analyticsJobs: AnalyticsJobDto[];
   insights: DataInsightDto[];
   qualityReports: QualityReportDto[];
+}
+
+// Phase 28: Platform Integration Interfaces
+export interface PlatformEventDto {
+  id: string;
+  sourceModule: string;
+  eventName: string;
+  severity: PlatformEventSeverity;
+  payload: Record<string, any>;
+  timestamp: string;
+}
+
+export interface CreatePlatformEventDto {
+  sourceModule: string;
+  eventName: string;
+  severity: PlatformEventSeverity;
+  payload: Record<string, any>;
+}
+
+export interface UnifiedContextDto {
+  id: string;
+  userId: string;
+  contextKey: string;
+  contextValue: Record<string, any>;
+  updatedAt: string;
+}
+
+export interface CreateUnifiedContextDto {
+  contextKey: string;
+  contextValue: Record<string, any>;
+}
+
+export interface WorkflowExecutionDto {
+  id: string;
+  userId: string;
+  workflowName: string;
+  status: CrossModuleWorkflowStatus;
+  triggerEvent: string;
+  executedSteps: Array<{
+    stepNumber: number;
+    moduleName: string;
+    actionTaken: string;
+    status: OrchestrationStepStatus;
+    resultSummary?: string;
+  }>;
+  createdAt: string;
+  completedAt?: string;
+}
+
+export interface CreateWorkflowExecutionDto {
+  workflowName: string;
+  triggerEvent: string;
+  steps: Array<{
+    stepNumber: number;
+    moduleName: string;
+    actionTaken: string;
+  }>;
+}
+
+export interface GlobalSearchResultDto {
+  type: 'concept' | 'job' | 'insight' | 'threat' | 'source';
+  id: string;
+  title: string;
+  subtitle: string;
+  relevanceScore: number;
+}
+
+export interface PlatformHealthDto {
+  status: 'healthy' | 'degraded' | 'critical';
+  uptimeSeconds: number;
+  cpuUsagePercent: number;
+  memoryUsagePercent: number;
+  moduleHealth: Record<string, 'healthy' | 'degraded' | 'failed'>;
+  activeWorkflowsCount: number;
+  totalErrorsLogged: number;
+}
+
+export interface PlatformOverviewDto {
+  metrics: {
+    totalEventsCount: number;
+    activeWorkflowsCount: number;
+    unifiedContextKeysCount: number;
+    aggregateRiskScore: number;
+    systemUptimeHours: number;
+  };
+  recentEvents: PlatformEventDto[];
+  activeWorkflows: WorkflowExecutionDto[];
+  contextKeys: string[];
 }
 
 

@@ -1622,6 +1622,28 @@ export enum QualityRating {
   CRITICAL = 'critical',
 }
 
+// Phase 28: Platform Integration Enums
+export enum PlatformEventSeverity {
+  INFO = 'info',
+  WARNING = 'warning',
+  ERROR = 'error',
+  CRITICAL = 'critical',
+}
+
+export enum OrchestrationStepStatus {
+  PENDING = 'pending',
+  RUNNING = 'running',
+  SUCCESS = 'success',
+  FAILED = 'failed',
+}
+
+export enum CrossModuleWorkflowStatus {
+  ACTIVE = 'active',
+  PAUSED = 'paused',
+  COMPLETED = 'completed',
+  FAILED = 'failed',
+}
+
 
 
 

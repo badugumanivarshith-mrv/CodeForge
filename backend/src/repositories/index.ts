@@ -41,5 +41,7 @@ export * from './CybersecurityRepository';
 export * from './interfaces/ICybersecurityRepository';
 export * from './DataIntelligenceRepository';
 export * from './interfaces/IDataIntelligenceRepository';
+export * from './PlatformIntegrationRepository';
+export * from './interfaces/IPlatformIntegrationRepository';
 
 

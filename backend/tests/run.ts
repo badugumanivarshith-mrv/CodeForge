@@ -172,6 +172,11 @@ async function main() {
   await import('./unit/analyticsEngine.test');
   await import('./unit/insightGeneration.test');
 
+  // Phase 28: Platform Integration Test Suites
+  await import('./unit/platformIntegration.test');
+  await import('./unit/orchestration.test');
+  await import('./unit/workflowExecution.test');
+
   // Allow tests to execute and finish
   setTimeout(async () => {
     try {

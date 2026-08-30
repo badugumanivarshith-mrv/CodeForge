@@ -192,6 +192,9 @@ import {
   AnalyticsJobStatus,
   InsightType,
   QualityRating,
+  PlatformEventSeverity,
+  OrchestrationStepStatus,
+  CrossModuleWorkflowStatus,
 } from '@codeforge/shared';
 
 export const userRoleEnum = pgEnum('user_role', [
@@ -1799,6 +1802,27 @@ export const qualityRatingEnum = pgEnum('quality_rating', [
   QualityRating.GOOD,
   QualityRating.POOR,
   QualityRating.CRITICAL,
+]);
+
+export const platformEventSeverityEnum = pgEnum('platform_event_severity', [
+  PlatformEventSeverity.INFO,
+  PlatformEventSeverity.WARNING,
+  PlatformEventSeverity.ERROR,
+  PlatformEventSeverity.CRITICAL,
+]);
+
+export const orchestrationStepStatusEnum = pgEnum('orchestration_step_status', [
+  OrchestrationStepStatus.PENDING,
+  OrchestrationStepStatus.RUNNING,
+  OrchestrationStepStatus.SUCCESS,
+  OrchestrationStepStatus.FAILED,
+]);
+
+export const crossModuleWorkflowStatusEnum = pgEnum('cross_module_workflow_status', [
+  CrossModuleWorkflowStatus.ACTIVE,
+  CrossModuleWorkflowStatus.PAUSED,
+  CrossModuleWorkflowStatus.COMPLETED,
+  CrossModuleWorkflowStatus.FAILED,
 ]);
 
 

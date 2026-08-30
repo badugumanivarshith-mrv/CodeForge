@@ -39,5 +39,6 @@ export * from './ai_cloud';
 export * from './multimodal';
 export * from './cybersecurity';
 export * from './data_intelligence';
+export * from './platform_integration';
 
 

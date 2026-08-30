@@ -225,13 +225,20 @@ import {
   IncidentConsolePage,
 } from '../pages/cybersecurity';
 
-// Phase 27: Data Intelligence Platform Pages
 import {
   DataDashboardPage,
   AnalyticsStudioPage,
   InsightCenterPage,
   QualityMonitorPage,
 } from '../pages/data-intelligence';
+
+// Phase 28: Platform Integration Pages
+import {
+  UnifiedCommandCenterPage,
+  GlobalSearchPage,
+  WorkflowStudioPage as PlatformWorkflowStudioPage,
+  PlatformAnalyticsPage,
+} from '../pages/platform';
 
 
 export const router = createBrowserRouter([
@@ -893,6 +900,23 @@ export const router = createBrowserRouter([
           {
             path: 'data-intelligence/quality',
             element: <QualityMonitorPage />,
+          },
+          // Phase 28: Platform Integration Routes
+          {
+            path: 'platform',
+            element: <UnifiedCommandCenterPage />,
+          },
+          {
+            path: 'platform/search',
+            element: <GlobalSearchPage />,
+          },
+          {
+            path: 'platform/workflow',
+            element: <PlatformWorkflowStudioPage />,
+          },
+          {
+            path: 'platform/analytics',
+            element: <PlatformAnalyticsPage />,
           },
         ],
       },
